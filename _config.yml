@@ -10,7 +10,7 @@ url:
 owner:
   name:           PuRonglong
   avatar:         kid.PNG
-  bio:            "预测未来最好的方式就是实现它"
+  bio:            "踏实，踏实，踏实"
   email:          1240429156@qq.com
   # Social networking links used in footer. Update and remove as you like.
   twitter:        
@@ -39,12 +39,12 @@ bing_verify:
 links:
 #  - title: Theme Setup
 #    url: /theme-setup
-  - title: Works
-    url: https://github.com/PuRonglong/mygitpractice
-    external: true
-#  - title: GitHub
-#    url: https://github.com/hacke2
+#  - title: Works
+#    url: https://github.com/PuRonglong
 #    external: true
+  - title: GitHub
+    url: https://github.com/PuRonglong
+    external: true
     
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
