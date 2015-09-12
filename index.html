@@ -48,7 +48,7 @@ style="left: 600px; width: 200px; position:relative; top:0px; padding:0px; margi
   <div class="entry-content">
     {% if post.content contains '<!--more-->' %}
       {{ post.content | split:'<!--more-->' | first %}}
-      <div><a class="btn btn-info" style="float:right;" href="{{ post.url }}">Read more</a></div>
+      <div><a class="btn-info" style="float:right;" href="{{ post.url }}">Read more</a></div>
     {% else %}
       {{ post.content }}
     {% endif %}
