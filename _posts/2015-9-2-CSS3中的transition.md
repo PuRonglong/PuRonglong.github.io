@@ -98,6 +98,17 @@ div.rocket img {
 
 而这里transform只是定义状态而已，过渡动画是靠transition完成的，不过貌似现在animation用的比较多些。
 
-这里```background-position:50% 50%;```可以用来定义背景图片居中，左上角是0,0;右下角是100,100;想要说的是这里的百分比定位是按照图片中心来相对说的，不是左上角。
+这里```background-position:50% 50%;```可以用来定义背景图片居中，左上角是0,0;右下角是100,100;想要说的是这里的百分比定位的点是容器和容器内元素的百分比的点重合的位置，不是左上角。可看官网上的解释[background-position](http://www.w3.org/TR/css3-background/#the-background-position)
+
+在某篇文章中看到这样的效果：
+
+<figure>
+    <a href="http://7vznhl.com1.z0.glb.clouddn.com/2015-9-1-02outerspace.gif">
+        <img src="http://7vznhl.com1.z0.glb.clouddn.com/2015-9-1-02outerspace.gif" alt="a gif" />
+    </a>
+    <figcaption>实现背景图片自下而上展开</figcaption>
+</figure>
+
+这里其实是两张图片，通过```background-position```将两张图定位重合，对背景色的图片开始height:0,当:hover的时候再给height一个值，中间用transition,这样当height变化时,因为定位重合，看起来就好像是从底部“长”出来一样。
 
 这些是transition部分，以后再聊聊transform,animation等~
