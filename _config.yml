@@ -50,13 +50,14 @@ links:
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone:    China
 future:      true
+# 使用pygments进行代码高亮
 highlighter: pygments
 markdown:    kramdown
 
 # https://github.com/mojombo/jekyll/wiki/Permalinks
 permalink:   /:categories/:title/
 
-# Amount of post to show on home page
+# 每页显示文章个数
 paginate: 7
 
 kramdown:
