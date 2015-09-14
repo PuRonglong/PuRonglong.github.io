@@ -103,8 +103,8 @@ div.rocket img {
 在某篇文章中看到这样的效果：
 
 <figure>
-    <a href="http://7vznhl.com1.z0.glb.clouddn.com/2015-9-1-02outerspace.gif">
-        <img src="http://7vznhl.com1.z0.glb.clouddn.com/2015-9-1-02outerspace.gif" alt="a gif" />
+    <a href="http://7vznhl.com1.z0.glb.clouddn.com/2015-9-2-01demo.gif">
+        <img src="http://7vznhl.com1.z0.glb.clouddn.com/2015-9-2-01demo.gif" alt="a gif" />
     </a>
     <figcaption>实现背景图片自下而上展开</figcaption>
 </figure>
