@@ -24,12 +24,14 @@ share: true
 <p data-height="268" data-theme-id="20434" data-slug-hash="LVGvoX" data-default-tab="result" data-user="puronglong" class='codepen'>See the Pen <a href='http://codepen.io/puronglong/pen/LVGvoX/'>table&&border-radius</a> by puronglong (<a href='http://codepen.io/puronglong'>@puronglong</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
-给table加没有效果但可以给每个单元格加啊，嗯，好像很有道理的样子，试试：
+咦，给table加没有效果
+
+但可以给每个单元格加圆角啊，嗯，好像很有道理的样子，试试：
 
 <p data-height="268" data-theme-id="20434" data-slug-hash="RWyPzP" data-default-tab="result" data-user="puronglong" class='codepen'>See the Pen <a href='http://codepen.io/puronglong/pen/RWyPzP/'>table&&border-radius-2</a> by puronglong (<a href='http://codepen.io/puronglong'>@puronglong</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
-咦，怎么和想象的不一样捏，左右上角的直线角还在呢，而底部的圆角并没有效果
+嗯？怎么和想象的不一样捏，左右上角的直线角还在呢，而底部的圆角并没有效果
 
 后来找到问题是：```CSS3's border-radius property and border-collapse:collapse don't mix.```
 
