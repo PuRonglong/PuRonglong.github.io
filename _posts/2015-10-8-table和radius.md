@@ -75,3 +75,9 @@ table tr th,table tr td {
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 以上就是关于在table中使用border-radius碰到的一些问题哒
+
+>>>>>>>>>>>>>
+
+2015-10-30
+
+后来在看大漠的CSS3中border-radius一篇中也提到了这个问题
