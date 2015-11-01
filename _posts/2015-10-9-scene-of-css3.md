@@ -25,6 +25,8 @@ share: true
 
 首先对这个场景进行分离，分别是我们需要给其加上动画的几个元素，有最基础的，天空，大地，然后是太阳，云朵，月亮。
 
+还要定义animation每个属性的属性值：
+
 {% highlight JavaScript %}
 	animation-name: sky;/*动画名称*/
     animation-duration: 10s;/*周期时长*/
