@@ -1,0 +1,5 @@
+if (debug){
+	requirejs.config(
+
+	);
+}
