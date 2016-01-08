@@ -1,7 +1,7 @@
 define(['jquery', 'angular'], function($, angular){
 	var puronglong = angular.module('puronglong', ['ui.router', 'ngAnimate']);//定义了一个模块,后面是依赖列表
 
-	puronglong.config(['$stateProvider', function($stateProvider){
+	puronglong.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
 		$stateProvider
 			.state('main', {
 				url: '/',
@@ -11,9 +11,12 @@ define(['jquery', 'angular'], function($, angular){
 				url: '',
 				templateUrl: './template/blog-main.html'
 			})
-			.state('list', {
-				url: '/list',
+			.state('blogList', {
+				url: '/blogList',
 				templateUrl: './template/blog-list.html'
-			})
+			});
+
+		$urlRouterProvider
+			.when("", "/");
 	}]);
 })
