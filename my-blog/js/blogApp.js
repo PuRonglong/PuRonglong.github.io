@@ -5,11 +5,11 @@ define(['jquery', 'angular'], function($, angular){
 		$stateProvider
 			.state('main', {
 				url: '/',
-				templateUrl: './template/blog-main.html'
+				templateUrl: './template/blog-index.html'
 			})
-			.state('home', {
+			.state('index', {
 				url: '',
-				templateUrl: './template/blog-main.html'
+				templateUrl: './template/blog-index.html'
 			})
 			.state('blogList', {
 				url: '/blogList',

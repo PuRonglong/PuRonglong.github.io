@@ -38,6 +38,5 @@ var libs = ['jquery', 'angular', 'ngRoute', 'ngAnimate', 'require', 'bootstrap',
 'blogController', 'blogDirective', 'blogFilter'];
 
 require(libs, function($, angular){
-	alert('a');
 	return	angular.bootstrap(document, ["puronglong"]);
 });
