@@ -27,6 +27,10 @@ if (debug) {
 				deps: ['angular'],
 				exports: "ngAnimate"
 			},
+			"bootstrap": {
+				deps: ['jquery'],
+				exports: "bootstrap"
+			},
 			"markdown": {
 				exports: "markdown"
 			}

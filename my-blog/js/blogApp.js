@@ -11,10 +11,20 @@ define(['jquery', 'angular'], function($, angular){
 				url: '',
 				templateUrl: './template/blog-index.html'
 			})
-			.state('blogList', {
-				url: '/blogList',
-				templateUrl: './template/blog-list.html'
-			});
+			.state('blog',{
+				url: '/blog',
+				templateUrl: './template/blog-common.html'
+			})
+			.state('blog.listItem', {
+				url: '/:type',
+				templateUrl: './template/blog-list.html',
+				controller: 'blogListItem'
+			})
+			.state('blog.blogContent', {
+				url: '/post/:article',
+				templateUrl: './template/blog-content.html',
+				controller: 'blogListContent'
+			})
 
 		$urlRouterProvider
 			.when("", "/");
