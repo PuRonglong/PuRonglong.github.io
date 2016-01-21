@@ -1,9 +1,25 @@
 define(['jquery', 'angular'], function($, angular){
 	var puronglong = angular.module('puronglong');
 
-	puronglong.controller('blogListItem', function($scope, $element, $attrs, $transclude){
-
+	puronglong.controller('blogListItem', function($scope, $http, $stateParams){
+		$http.get('./post/list.md').success(function(data){
+			return $scope.bloglist = eachList(data);
+		});
 	});
+
+	//返回包含所有list的数组
+	eachList = function(data){
+		var list = [], eachListDetail;
+		data = data.split(/\n[\-=]+/);
+		data.forEach(function(eachList){
+			eachListDetail = listDetail(eachList);
+			if(eachListDetail.hide !== 'true'){
+				list.push(eachList);
+			}
+		});
+
+		return list;
+	};
 
 	//返回每一个list的详细信息
 	listDetail = function(data){
@@ -31,5 +47,10 @@ define(['jquery', 'angular'], function($, angular){
 		list.day = parseInt(list.date[2], 10);
 
 		return list;
-	}
+	};
+
+	listType = function(data){
+		var allType;
+		allType = listDetail(data).type;
+	};
 });

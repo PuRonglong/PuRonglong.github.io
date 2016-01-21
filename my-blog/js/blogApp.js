@@ -15,8 +15,8 @@ define(['jquery', 'angular'], function($, angular){
 				url: '/blog',
 				templateUrl: './template/blog-common.html'
 			})
-			.state('blog.listItem', {
-				url: '/:type',
+			.state('blogListItem', {
+				url: '/list',
 				templateUrl: './template/blog-list.html',
 				controller: 'blogListItem'
 			})
