@@ -38,7 +38,8 @@ define(['jquery', 'angular'], function($, angular){
 			eachLineAttr = eachLine.split(':');
 			key = $.trim(eachLineAttr[0]), value = $.trim(eachLineAttr[1]);
 			if (list.hasOwnProperty(key)){
-				list.key = value;
+				console.log(list[key] + ":" + value);
+				list[key] = value;
 			}
 		}
 		list.date = list.url.split('-');
