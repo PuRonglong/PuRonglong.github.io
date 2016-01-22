@@ -11,10 +11,10 @@ define(['jquery', 'angular'], function($, angular){
 	eachList = function(data){
 		var list = [], eachListDetail;
 		data = data.split(/\n[\-=]+/);
-		data.forEach(function(eachList){
-			eachListDetail = listDetail(eachList);
+		data.forEach(function(eachData){
+			eachListDetail = listDetail(eachData);
 			if(eachListDetail.hide !== 'true'){
-				list.push(eachList);
+				list.push(eachListDetail);
 			}
 		});
 
@@ -38,8 +38,8 @@ define(['jquery', 'angular'], function($, angular){
 			eachLineAttr = eachLine.split(':');
 			key = $.trim(eachLineAttr[0]), value = $.trim(eachLineAttr[1]);
 			if (list.hasOwnProperty(key)){
-				console.log(list[key] + ":" + value);
 				list[key] = value;
+				console.log(list[key] + ":" + value);
 			}
 		}
 		list.date = list.url.split('-');

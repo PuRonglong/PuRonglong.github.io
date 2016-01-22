@@ -108,14 +108,14 @@ body{
 
 .article-header-title{
     font-family: "Open Sans","Helvetica Neue",'Helvetica',Arial, "Microsoft YaHei","STKaiti","Droid Sans Fallback",SimSun,serif;
-    font-size: 1.7rem;
+    font-size: 27px;
     color: #50585D;
     margin-bottom: 0.51em;
     text-indent: -3px;
 }
 
 .article-header-time{
-    font-size: 1.2rem;
+    font-size: 19px;
     color: #7f8c8d;
     margin-bottom: 10px;
 }
