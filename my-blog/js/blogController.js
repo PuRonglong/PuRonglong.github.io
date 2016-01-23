@@ -57,11 +57,6 @@ define(['jquery', 'angular'], function($, angular){
 		return list;
 	};
 
-	listType = function(data){
-		var allType;
-		allType = listDetail(data).type;
-	};
-
 	blogContent = function(text){
 		var eachLine;
 		eachLine = text.split('\n');
