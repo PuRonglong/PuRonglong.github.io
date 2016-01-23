@@ -10,6 +10,10 @@ img {
     border-style: none;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 html {
     position: relative;
     height: 100%;

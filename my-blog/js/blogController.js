@@ -7,9 +7,11 @@ define(['jquery', 'angular'], function($, angular){
 		});
 	});
 
-	puronglong.controller('blogListContent', function($scope, $http, $stateParams){
+	 puronglong.controller('blogListContent', function($scope, $http, $stateParams){
 		$http.get('./post/' + $stateParams.article).success(function(data){
-
+			data = blogContent(data);
+			$scope.title = data.title;
+			return $scope.article = data.text;
 		})
 	});
 
@@ -61,11 +63,12 @@ define(['jquery', 'angular'], function($, angular){
 	};
 
 	blogContent = function(text){
-		var eachLine = text.split('\n');
+		var eachLine;
+		eachLine = text.split('\n');
 		var i, flag = false, head = '', tail = '';
-		var post;
+		var post, eachLineText;
 		for (i = 0; i < eachLine.length; i++){
-			eachLineText = eachLine(i);
+			eachLineText = eachLine[i];
 			if (/[\-=]+/.test(eachLineText)){
 				flag = true;
 			}
