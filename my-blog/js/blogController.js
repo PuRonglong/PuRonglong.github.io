@@ -1,10 +1,16 @@
 define(['jquery', 'angular'], function($, angular){
 	var puronglong = angular.module('puronglong');
 
-	puronglong.controller('blogListItem', function($scope, $http, $stateParams){
+	puronglong.controller('blogListItem', function($scope, $http){
 		$http.get('./post/list.md').success(function(data){
 			return $scope.bloglist = eachList(data);
 		});
+	});
+
+	puronglong.controller('blogListContent', function($scope, $http, $stateParams){
+		$http.get('./post/' + $stateParams.article).success(function(data){
+
+		})
 	});
 
 	//返回包含所有list的数组
@@ -39,7 +45,6 @@ define(['jquery', 'angular'], function($, angular){
 			key = $.trim(eachLineAttr[0]), value = $.trim(eachLineAttr[1]);
 			if (list.hasOwnProperty(key)){
 				list[key] = value;
-				console.log(list[key] + ":" + value);
 			}
 		}
 		list.date = list.url.split('-');
@@ -54,4 +59,29 @@ define(['jquery', 'angular'], function($, angular){
 		var allType;
 		allType = listDetail(data).type;
 	};
+
+	blogContent = function(text){
+		var eachLine = text.split('\n');
+		var i, flag = false, head = '', tail = '';
+		var post;
+		for (i = 0; i < eachLine.length; i++){
+			eachLineText = eachLine(i);
+			if (/[\-=]+/.test(eachLineText)){
+				flag = true;
+			}
+			if(flag){
+				tail += '\n' + eachLineText;
+			}else {
+				head += '\n' + eachLineText + '\n';
+			}
+		}
+		post = listDetail(head);
+		post.text = tail;
+
+		if(post.hide == true){
+			return;
+		}
+
+		return post;
+	}
 });
