@@ -103,10 +103,13 @@ body{
     font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
 }
 
-.article{
+.content{
     width: 80%;
     max-width: 700px;
     margin: 0 auto;
+}
+
+.article{
     margin-bottom: 50px;
 }
 
@@ -128,4 +131,18 @@ body{
     font-family: Georgia, serif;
     font-size: 17px;
     line-height: 30px;
+}
+
+.blog-content{
+    font-family: Georgia, serif;
+    font-size: 17px;
+    line-height: 30px;
+}
+
+.blog-title{
+    font-family: "Open Sans","Helvetica Neue",'Helvetica',Arial, "Microsoft YaHei","STKaiti","Droid Sans Fallback",SimSun,serif;
+    font-size: 27px;
+    color: #50585D;
+    margin-bottom: 0.51em;
+    text-indent: -3px;
 }

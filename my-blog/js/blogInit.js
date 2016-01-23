@@ -9,7 +9,7 @@ if (debug) {
 			require: 'lib/require',
 			bootstrap: 'lib/bootstrap',
 			markdown: 'lib/markdown',
-			highLight: 'lib/highlight.pack',
+			hljs: 'lib/highlight.pack',
 			blogApp: 'blogApp',
 			blogController: 'blogController',
 			blogDirective: 'blogDirective',
@@ -38,7 +38,7 @@ if (debug) {
 	});
 }
 
-var libs = ['jquery', 'angular', 'ngRoute', 'ngAnimate', 'require', 'bootstrap', 'markdown', 'highLight', 'blogApp',
+var libs = ['jquery', 'angular', 'ngRoute', 'ngAnimate', 'require', 'bootstrap', 'markdown', 'hljs', 'blogApp',
 'blogController', 'blogDirective', 'blogFilter'];
 
 require(libs, function($, angular){

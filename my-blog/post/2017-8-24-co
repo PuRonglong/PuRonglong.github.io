@@ -3,7 +3,7 @@ disc:实现一个最简版的co
 type:node.js
 -----------
 
-### 能在console里运行的co最简单代码，debug一下比较方便理解。
+> 能在console里运行的co最简单代码，debug一下比较方便理解。
 
 
 Koa 是nodejs新一代web框架，koa 编写 web 应用，通过组合不同的 generator，可以免除重复繁琐的回调函数嵌套，并极大地提升常用错误处理效率。
@@ -18,7 +18,7 @@ co主要就是利用了ES6的generator函数 看之前要先要学习一下gener
 co的简单实现方法 参考至竹隐的博客 <http://purplebamboo.github.io/2014/05/24/koa-source-analytics-2/>
 
     
-    //chunk函数，
+    chunk函数，
     function size(file) {
       //这里的参数fn 其实就是co里面的_next
       return function(fn){

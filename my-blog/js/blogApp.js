@@ -24,7 +24,7 @@ define(['jquery', 'angular'], function($, angular){
 				url: '/post/:article',
 				templateUrl: './template/blog-content.html',
 				controller: 'blogListContent'
-			})
+			});
 
 		$urlRouterProvider
 			.when("", "/");
