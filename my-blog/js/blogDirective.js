@@ -8,14 +8,6 @@ define(['jquery', 'angular'], function($, angular){
 				content: '=markdownText'
 			},
 			link: function(scope, element, attrs){
-				var cssUrl, link, loading, them;
-				them = attrs.theme ? attrs.theme : 'zenburn';
-				cssUrl = require.toUrl('../css/' + them + '.css');
-				link = document.createElement('link');
-				link.type = 'text/css';
-				link.rel = 'stylesheet';
-				link.href = cssUrl;
-				document.getElementsByTagName('head')[0].appendChild(link);
 				return require(['markdown', 'hljs'], function(md, hljs){
 					scope.$watch(function(){
 						return scope.content;
