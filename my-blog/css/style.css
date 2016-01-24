@@ -95,12 +95,18 @@ body{
 
 .header-list{
     padding: 10px 0px;
+    position: fixed;
 }
 
 .header-list li{
     padding: 5px 19px;
     list-style-type: none;
     font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+    color: #50585D;
+}
+
+.header-list li a{
+    color: #50585D;
 }
 
 .content{
