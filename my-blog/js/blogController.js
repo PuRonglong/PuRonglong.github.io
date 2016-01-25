@@ -3,7 +3,8 @@ define(['jquery', 'angular'], function($, angular){
 
 	puronglong.controller('blogListItem', function($scope, $http){
 		$http.get('./post/list.md').success(function(data){
-			return $scope.bloglist = eachList(data);
+			$scope.bloglist = eachList(data);//得到每一个list的详细信息
+			return $scope.blogTypeList = blogType($scope.bloglist);
 		});
 	});
 
@@ -57,6 +58,7 @@ define(['jquery', 'angular'], function($, angular){
 		return list;
 	};
 
+	//返回博客内容
 	blogContent = function(text){
 		var eachLine;
 		eachLine = text.split('\n');
@@ -81,5 +83,16 @@ define(['jquery', 'angular'], function($, angular){
 		}
 
 		return post;
+	};
+
+	//返回博客类型
+	blogType = function(data){
+		var typeArr = [];
+		data.forEach(function(listLine){
+			if(listLine.indexOf(listLine.type) == -1){
+				return typeArr.push(listLine.type);
+			}
+		});
+		return typeArr;
 	}
 });
