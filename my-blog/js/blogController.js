@@ -1,9 +1,10 @@
 define(['jquery', 'angular'], function($, angular){
 	var puronglong = angular.module('puronglong');
 
-	puronglong.controller('blogListItem', function($scope, $http){
+	puronglong.controller('blogListItem', function($scope, $http, $stateParams){
 		$http.get('./post/list.md').success(function(data){
 			$scope.bloglist = eachList(data);//得到每一个list的详细信息
+			$scope.blogtype = $stateParams.type;
 			return $scope.blogTypeList = blogType($scope.bloglist);
 		});
 	});
@@ -89,7 +90,7 @@ define(['jquery', 'angular'], function($, angular){
 	blogType = function(data){
 		var typeArr = [];
 		data.forEach(function(listLine){
-			if(listLine.indexOf(listLine.type) == -1){
+			if(typeArr.indexOf(listLine.type) == -1){
 				return typeArr.push(listLine.type);
 			}
 		});
