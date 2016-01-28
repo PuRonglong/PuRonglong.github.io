@@ -1,100 +1,106 @@
-title:王小波为什么对我这么重要
-disc:这世界有许多文学家，思想家，太多了，比王小波伟大的也是不计其数。有人说文学和思想就好像番茄和炒蛋，有些人炒番茄厉害，有些人炒蛋厉害，但是番茄炒蛋弄的厉害的人就是王小波。——所以他在年轻群体当中有那么多的拥趸。当然，也有许多「番茄炒蛋」做得好的人，就国内来说有人会说顾准，往东看有人说村上春树，往西看有人甚至把萨特
-type:node.js
-url: 2017-8-24-co.md
--------
-title:angularJS $rootscope.$apply()
-disc:$rootscope.$apply() 与 angular 双向绑定机制
-type:JavaScript
-url: 2015-7-27-angular-$rootscope.$apply.md
--------
-title:Blog 3 todo list
-disc:后续计划列表
-type:project
-url: 2015-07-24-blog-todo-list.md
--------
-title:Blog 3.0 技术分析
-disc:详细介绍了本博客的 架构、设计、动画、主题系统的构思和实现
-type:project
-url: 2015-07-21-blog3.0.md
--------
-title:轻松理解jsonp
-disc:json with padding 学习心得
-type:JavaScript
-url: 2015-05-04-jsonp.md
--------
-title:(●—●) 2015 不平凡
-disc:回顾一下从新年的第一天到现在发生的一些事情
-type:生活·life
-url: 2015-04-20-newstartfor2015.md
--------
-title:html5QQClient
-disc:使用HTML5+ 开发的第三方手机QQ客户端
-type:project
-url: 2014-12-30-html5plusQQClient.md
--------
-title:[转][面经]
-disc:已拿到阿里前端offer，发个面经。
-type:生活·life
-url: 2014-11-11-alibabainterview.md
--------
-title:如何编写高扩展且可维护的 JavaScript
-disc:如何编写高扩展且可维护的 JavaScript ：模块
-type:JavaScript
-url: 2014-11-05-javascript-module.md
--------
-title:科大虚拟仿真实验中心
-disc:湖南科技大学虚拟仿真实验教学中心门户网
-type:project
-url: 2014-11-04-vlab.md
--------
-title:遇到下一个你
-disc:遇到下一个你，我会不会已经是打磨完毕的成品
-type:生活·life
-hide:true
-url: 2014-10-26-whenIMeetYou.md
--------
-title:JCarousel.js
-disc:自己编写的原生JavaScript轮播插件
-type:project
-url: 2014-10-25-JCarousel.js.md
--------
-title:让IE8兼容HTML5标签
-disc:介绍两种IE8兼容HTML5标签的方案
-type:HTML&CSS
-url: 2014-10-19-html5shiv.md
--------
-title:Memoization
-disc:JavaScript实现记忆化方法
-type:JavaScript
-url: 2014-10-10-memoization.md
--------
-title:柯里化
-disc:Curry 方法的实现
-type:JavaScript
-url: 2014-10-10-curry.md
--------
-title:parseInt()
-disc:parseInt(string,radex)隐含的问题
-type:JavaScript
-url: 2014-10-08-prase.md
--------
-title:hasOwnProperty
-disc:hasOwnProperty 过滤器
-type:JavaScript
-url: 2014-10-08-hasOwnProperty.md
--------
-title:科大成绩查询网开发过程
-disc:参加微知著奖学金评选要的材料，挑了这个项目来写一写
-type:project
-url: 2014-09-18-about-myscore.md
--------
-title:JavaScript on 绑定方法
-disc:使用on来绑定变化的dom元素
-type:JavaScript
-url: 2014-08-21-javascript-on.md
--------
-title:博客计划
-disc:欢迎来到我的博客
-type:project
-url: 2014-08-19-firs-blog.md
+title: 小萝莉的猴神大叔
+disc: 早先不知道从哪里了解到有这部电影，今天偶然看到网上有资源，便点开来看瞅瞅，没想到一发不可收拾，从笑声到眼泪，从感动到敬佩，😭。一起踏上这段萝莉与大叔的奇妙之旅吧。
+type: life
+url: 2015-10-10-小萝莉的猴神大叔.md
+---------
+title: 一个css3实现的简单场景
+disc: 一个简单的demo，表现了日出而作，日落而息的场景，让我们来看看是怎么实现的
+type: code
+url: 2015-10-9-scene-of-css3.md
+---------
+title: 在table中使用border-radius
+disc: 在table中使用border-radius时遇到的一些问题记下来
+type: code
+url: 2015-10-8-table和radius.md
+---------
+title: 《少年啊，前路漫漫》
+disc: 要长成一棵树，风吹也好，雨打也罢，要坚强
+type: life
+url: 2015-10-7-少年啊，前路漫漫.md
+---------
+title: 《爱在黎明破晓前》
+disc: 时间恰好，你遇见我的时间是恰好；你来之前，我过得很消沉；正掷出失败的骰子；生活的桥胡乱交叉，无路可走
+type: life
+url: 2015-10-6-爱在黎明破晓前.md
+---------
+title: 《牧羊少年的奇幻之旅》
+disc: “什么是世界上最大的谎言？”“在人生的某个时刻，我们失去了对自己生活的掌控，命运主宰了我们的人生。这就是世界上最大的谎言。”
+type: life
+url: 2015-10-2-牧羊少年的奇幻之旅.md
+---------
+title: 用browsersync提高效率
+disc: 一般来说，当我们进行项目开发时，文件保存以后，需要通过刷新浏览器来查看修改后的效果。而且，由于习惯，一般开发者都会多刷几遍。那么在强调高效开发的今天，有没有什么工具提高这种重复的工作的低效率呢？这就是我们今天要介绍的browersync
+type: code
+url: 2015-10-1-browsersync.md
+---------
+title: JS(9):函数表达式
+disc: 函数表达式是 JavaScript 中的一个既强大又容易令人困惑的特性。定义函数的 方式有两种:一种是函数声明,另一种就是函数表达式。
+type: code
+url: 2015-9-24-JS.md
+---------
+title: JS(8):JS中对象和继承
+disc: 面向对象的语言有一个标志，那就是它们都有类的概念，而通过类可以创建任意多个具有相同属性和方法的对象。
+type: code
+url: 2015-9-15-js.md
+---------
+title: jekyll配置
+disc: 介绍下最近对jekyll的使用
+type: code
+url: 2015-9-5-jekyll.md
+---------
+title: 聊聊CSS(5)
+disc: CSS伪类和伪元素。之所以要说这两个是因为看到有这样的写法“::before”，不是应该为“before”吗，原来之所以有前者这样的写法是为了区分伪类和伪元素，那么问题来了，伪类和伪元素，两者有什么区别。
+type: code
+url: 2015-9-4-CSS.md
+---------
+title: gulp的使用
+disc: 介绍下最近对gulp的一些使用
+type: code
+url: 2015-9-3-gulp.md
+---------
+title: 聊聊CSS(4):CSS3中的transition
+disc: 举一个网上看到的例子，火箭起飞，通过下面的gif图片我们能看到当鼠标移入太空的时候，火箭升空并倾斜，鼠标移除恢复原样
+type: code
+url: 2015-9-2-CSS3中的transition.md
+---------
+title: 选择题活动小结
+disc: 最近一个选择题的小活动，分别用vue和zepto尝试了下，期间遇到了不少问题，以下：
+type: code
+url: 2015-9-1-选择题小结.md
+---------
+title: 《三体(一)》
+disc: 如果存在外星文明，那么宇宙中有共同的道德准则吗？
+type: life
+url: 2015-8-31-三体(一).md
+---------
+title: 《从0到1》
+disc: 从0到1，给人类带来了更多的可能性；从1到n只是复制，创造不了新价值。
+type: life
+url: 2015-8-30-从0到1.md
+---------
+title: 聊聊CSS(3)：CSS透明度问题
+disc: 今天遇到一个问题，在一个有背景颜色和透明度的div中，背景透明了，可是文字也有透明度了，如何要让文字没有透明度呢？
+type: code
+url: 2015-8-24-CSS.md
+---------
+title: 《打造Facebook》
+disc: 这个题目很嚣张——“打造Facebooke”。谁有资格可以说这句话呢？当然，扎克伯格最有资格，但他不会亲自来告诉你。我想强调的是团队。而让团队凝聚在一起并充满战斗力的，是其文化。
+type: life
+url: 2015-8-23-打造Facebook.md
+---------
+title: 随感
+disc: 人生如戏，全靠演技
+type: life
+url: 2015-8-22-人生如戏，全靠演技.md
+---------
+title: 抢红包页面之总结
+disc: 这是一个微信上的发红包推广活动，以前没有移动端的经验着实碰壁不少。
+type: code
+url: 2015-8-20-活动小结.md
+---------
+title: 《伊斯坦布尔假期》
+disc: 我从不信命运，不信所谓的可以指引我们的生命征兆。我不信算命师讲的故事，不相信可以预知未来的扑克牌。我只相信简单的巧合，还有偶然的真相。——阿丽斯
+type: life
+url: 2015-8-16-伊斯坦布尔假期.md
+---------
+
