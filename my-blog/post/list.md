@@ -1,12 +1,12 @@
 title:王小波为什么对我这么重要
 disc:这世界有许多文学家，思想家，太多了，比王小波伟大的也是不计其数。有人说文学和思想就好像番茄和炒蛋，有些人炒番茄厉害，有些人炒蛋厉害，但是番茄炒蛋弄的厉害的人就是王小波。——所以他在年轻群体当中有那么多的拥趸。当然，也有许多「番茄炒蛋」做得好的人，就国内来说有人会说顾准，往东看有人说村上春树，往西看有人甚至把萨特
 type:node.js
-url: 2017-8-24-co
+url: 2017-8-24-co.md
 -------
 title:angularJS $rootscope.$apply()
 disc:$rootscope.$apply() 与 angular 双向绑定机制
 type:JavaScript
-url: 2015-7-27-angular-$rootscope.$apply
+url: 2015-7-27-angular-$rootscope.$apply.md
 -------
 title:Blog 3 todo list
 disc:后续计划列表
