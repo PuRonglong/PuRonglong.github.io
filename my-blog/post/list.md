@@ -123,13 +123,137 @@ disc: 按照ECMA-262的定义，JavaScript的变量与其他语言的变量有�
 type: code
 url: 2015-5-25-JS(5).md
 ---------
-title: 随感
-disc: 人生如戏，全靠演技
-type: life
-url: 2015-8-22-人生如戏，全靠演技.md
+title: My codewars(4)
+disc: My codewars(4)
+type: code
+url: 2015-5-16-Mycodewars(4).md
 ---------
-title: 随感
-disc: 人生如戏，全靠演技
-type: life
-url: 2015-8-22-人生如戏，全靠演技.md
+title: My codewars(3)
+disc: My codewars(3)
+type: code
+url: 2015-5-14-Mycodewars(3).md
 ---------
+title: My codewars(2)
+disc: My codewars(2)
+type: code
+url: 2015-5-8-Mycodewars(2).md
+---------
+title: My codewars(1)
+disc: My codewars(1)
+type: code
+url: 2015-5-7-Mycodewars(1).md
+---------
+title: JS部分语句简析
+disc: 这周在讨论班讲解了一下JS中的部分语句，将PPT内容摘录如下
+type: code
+url: 2015-5-5-JS(4)语句.md
+---------
+title: JS基本概念(2)
+disc: string类型用于表示由零或多个16位Unicode字符组成的字符序列，即字符串。与PHP中的双引号和单引号会影响对字符串的解释方式不同，ECMAScript中的这两种语法形式没有什么区别。
+type: code
+url: 2015-4-18-JS(3).md
+---------
+title: JS基本概念(1)
+disc: 任何语言的核心都必然会描述这门语言最基本的工作原理。而描述的内容通常都要涉及这门语言的语法，操作符，数据类型，内置功能等用于构建复杂方案的基本概念。
+type: code
+url: 2015-4-14-JS(2).md
+---------
+title: 从GitHub遭受攻击看DDoS
+disc: 3月底，GitHub遭受了有史以来最为严重的DDoS攻击
+type: code
+url: 2015-4-12-从GitHub遭受攻击看DDoS.md
+---------
+title: JS在HTML中使用JavaScript
+disc: 在HTML中使用JavaScript
+type: code
+url: 2015-4-9-JS(1).md
+---------
+title: 聊聊CSS(2)，12种居中方式
+disc: CSS让元素居中是个经典的问题，那么问题来了，共有哪几种方式？不同的居中方式又分别适用于哪些情况？12种CSS居中方式来看看都有哪些哒~
+type: code
+url: 2015-4-1-居中的几种方式.md
+---------
+title: 《CSS设计指南(二)》
+disc: 我知道我们需要另外一种语言来保护HTML，这就是我们创造CSS的直接原因
+type: code
+url: 2015-3-30-CSS设计指南2.md
+---------
+title: 《CSS设计指南(一)》
+disc: 第一章 HTML标记与文档结构
+type: code
+url: 2015-3-28-CSS设计指南.md
+---------
+title: 《乖,摸摸头》
+disc: 请你相信，这个世界上真的有些人在过着你想要的生活。愿你我带着最微薄的行李和最丰盛的自己在世间流浪，有梦为马，随处可栖。来，我把他们的故事话与你知
+type: life
+url: 2015-3-10-乖，摸摸头.md
+---------
+title: 《只有医生知道》
+disc: 这是每一个女孩都应该读的一本书，因为她终将成为一个母亲；这是每一个男孩都应该读的一本书，因为他终将成为一位丈夫
+type: life
+url: 2015-3-5-只有医生知道.md
+---------
+title: 《解忧杂货店》
+disc: 僻静的街道旁有一家杂货店，只要深夜写下烦恼投进卷帘门的投信口，第二天就会在店后的牛奶箱里得到回答。
+type: life
+url: 2015-2-24-解忧杂货店.md
+---------
+title: 《看见》
+disc: 我试着尽可能诚实地写下这不断犯错、不断推翻、不断疑问、不断重建的事实和因果，一个国家由人构成，一个人也由无数他人构成，你想如何报道一个国家，就要如何报道自已。
+type: life
+url: 2015-2-22-看见.md
+---------
+title: 深圳红树林之游
+disc: 要不要，带你去红树林；去听听海，看看风
+type: life
+url: 2015-2-20-红树林之游.md
+---------
+title: 起风了
+disc: 纵有疾风起，人生不言弃
+type: life
+url: 2015-2-17-起风了.md
+---------
+title: Head First jQuery
+disc: 第一次尝试读全英文书籍
+type: code
+url: 2015-1-1-Head-and-First-jQuery.md
+---------
+title: 回首2014，展望2015
+disc: 人只是一根芦苇，是自然界最为脆弱的，但他却是一根会思考的芦苇。——帕斯卡
+type: life
+url: 2014-12-31-conclusion.md
+---------
+title: JavaScript语法中的运算优先级
+disc: 有些运算符不直接产生运算效果，而是用于影响运算效果，这一类运算符的操作对象通常是“表达式”，而非“表达式的值”。
+type: code
+url: 2014-12-26-operator.md
+---------
+title: 《JavaScript DOM编程艺术》
+disc: 最好的阅读是输出 ——玉伯
+type: code
+url: 2014-12-25-js-DOM.md
+---------
+title: 《失业的程序员》
+disc: 《失业的程序员》作者沈逸。这本书通过诙谐幽默的语言很好的阐述了当代中国这个大环境下的IT从业者的创业囧途。
+type: life
+url: 2014-12-23-lose-job-coder.md
+---------
+title: jQuery中的Ajax学习笔记
+disc: 前段时间学习了《锋利的jQuery第六章》jQuery与Ajax应用，现做如下笔记：
+type: code
+url: 2014-12-22-jQuery-Ajax.md
+---------
+title: 《榨干百度谷歌——搜索引擎广告大赢家》
+disc: 这是一个开口谷歌，闭口百度的时代；这是一个人人都想和搜索框后世界对话的时代；这是一个价值多元，个性张扬的时代。
+type: life
+url: 2014-12-21-SEM-popularization-science.md
+---------
+title: js语法中运算符的二义性之逗号“,”的二义性
+disc: 看到《js语言精髓与编程实践》中讲解的js语法中运算符的二义性之逗号的二义性，做些笔记
+type: code
+url: 2014-12-20-js-comma-two.md
+---------
+title: 聊聊CSS(1),关于用css实现的文字超出部分显示省略号
+disc: 文字超出部分显示省略号还是比较常用的一个效果,最近看到网上的一些方法亲自实践了一下,发现有些以前一些浏览器不能用的属性现在可以用了，于是总结一下：
+type: code
+url: 2014-12-19-css-ellipsis.md
