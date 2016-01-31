@@ -1,4 +1,3 @@
----
 layout: post
 title: Head First jQuery笔记
 description: "第一次尝试着读英文读物"

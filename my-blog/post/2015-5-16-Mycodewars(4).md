@@ -1,4 +1,3 @@
----
 layout: post
 title: My codewars(4)
 description: "codewars"
