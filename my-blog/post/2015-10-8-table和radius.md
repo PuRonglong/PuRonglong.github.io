@@ -10,13 +10,7 @@ share: true
 
 >先来看看设计图吧：
 
-<figure>
-    <a href="http://7vznhl.com1.z0.glb.clouddn.com/2015-10-8-01Snip20151028_2.png">
-        <img src="http://7vznhl.com1.z0.glb.clouddn.com/2015-10-8-01Snip20151028_2.png" alt="result" />
-    </a>
-</figure>
-
-<!--more-->
+![img](http://7vznhl.com1.z0.glb.clouddn.com/2015-10-8-01Snip20151028_2.png)
 
 拿到图，先想到还是表格，table标签，可是，table表格是矩形的，没关系，我们有border-radius呀，结果如下：
 
@@ -41,11 +35,7 @@ share: true
 
 这里声明下border-collapse属性的区别了，w3school是这样说的：
 
-<figure>
-    <a href="http://7vznhl.com1.z0.glb.clouddn.com/2015-10-8-03Snip20151028_4.png">
-        <img src="http://7vznhl.com1.z0.glb.clouddn.com/2015-10-8-03Snip20151028_4.png" alt="result" />
-    </a>
-</figure>
+![img](http://7vznhl.com1.z0.glb.clouddn.com/2015-10-8-03Snip20151028_4.png)
 
 于是我们看到separate的问题就在于表格边框并不合并，这样会使得边框看起来很粗，实在太丑，难保不会被设计狮打死，
 
@@ -58,13 +48,11 @@ share: true
 
 关键在于table标签内不要写border=‘1’，这个border是给单元格加上边框，这里我们单元格是需要边框，但在html里的table标签里直接写就会让每个单元格有边框，合起来就变粗了，于是通过table tr th,table tr td这样来给单元格加上想要的边框，如下：
 
-{% highlight JavaScript %}
-table tr th,table tr td {
-    border-right: 1px solid #d4d8da;
-    border-bottom: 1px solid #d4d8da;
-    padding: 5px;
-}
-{% endhighlight %}
+	table tr th,table tr td {
+	    border-right: 1px solid #d4d8da;
+	    border-bottom: 1px solid #d4d8da;
+	    padding: 5px;
+	}
 
 控制单边的边框生成。
 
@@ -75,7 +63,7 @@ table tr th,table tr td {
 
 以上就是关于在table中使用border-radius碰到的一些问题哒
 
->>>>>>>>>>>>>
+/>>>>>>>>>>>>>
 
 2015-10-30
 

@@ -12,8 +12,6 @@ share: true
 
 Deoxyribonucleic acid, DNA is the primary information storage molecule in biological systems. It is composed of four nucleic acid bases Guanine ('G'), Cytosine ('C'), Adenine ('A'), and Thymine ('T').
 
-<!--more-->
-
 Ribonucleic acid, RNA, is the primary messenger molecule in cells. RNA differs slightly from DNA its chemical structure and contains no Thymine. In RNA Thymine is replaced by another nucleic acid Uracil ('U').
 
 Create a funciton which translates a given DNA string into RNA.
@@ -23,36 +21,31 @@ For example:
 ```DNAtoRNA("GCAT") returns ("GCAU")```
 
 solution:
-{% highlight JavaScript %}
-function DNAtoRNA(dna){
-  return dna.replace(/T/g, 'U');
-}
-{% endhighlight %}
+
+    function DNAtoRNA(dna){
+      return dna.replace(/T/g, 'U');
+    }
 
 or
-{% highlight JavaScript %}
-function DNAtoRNA(dna) {
-  return dna.split("T").join("U");
-}
-{% endhighlight %}
+
+    function DNAtoRNA(dna) {
+      return dna.split("T").join("U");
+    }
 
 25.
 
 Create a function that takes an integer as an argument and returns "Even" or "Odd".
-{% highlight JavaScript %}
-function even_or_odd(number) {
-  if (number%2==0) {
-                    return "Even";
-                }else{
-                    return "Odd";
-                }
-}
-{% endhighlight %}
-{% highlight JavaScript %}
-function even_or_odd(number) {
- return number%2==0?"Even":"Odd";
-}
-{% endhighlight %}
+
+    function even_or_odd(number) {
+      if (number%2==0) {
+                        return "Even";
+                    }else{
+                        return "Odd";
+                    }
+    }
+    function even_or_odd(number) {
+     return number%2==0?"Even":"Odd";
+    }
 
 26.
 
@@ -62,43 +55,36 @@ Can you figure out what's wrong here?
 
 example:
 
-function swapValues() {
-    var args = Array.prototype.slice.call(arguments);
-    var temp = args[0];
-    args[0] = args[1];
-    args[1] = temp;
-}
+    function swapValues() {
+        var args = Array.prototype.slice.call(arguments);
+        var temp = args[0];
+        args[0] = args[1];
+        args[1] = temp;
+    }
 
 solution 1:
-{% highlight JavaScript %}
-function swapValues(args) {
-    var temp = args[0];
-    args[0] = args[1];
-    args[1] = temp;
-}
-{% endhighlight %}
+
+    function swapValues(args) {
+        var temp = args[0];
+        args[0] = args[1];
+        args[1] = temp;
+    }
 
 solution 2:
-{% highlight JavaScript %}
-function swapValues(args) {
-    args[1] = [args[0], args[0] = args[1]][0];
-}
-{% endhighlight %}
+
+    function swapValues(args) {
+        args[1] = [args[0], args[0] = args[1]][0];
+    }
 
 solution 3:
-{% highlight JavaScript %}
-function swapValues() {
-  return arguments[0].reverse();
-}
-{% endhighlight %}
+
+    function swapValues() {
+      return arguments[0].reverse();
+    }
 
 good discourse about solution 3:
 
-<figure>
-    <a href="http://7vznhl.com1.z0.glb.clouddn.com/2015-5-16-1codewars1.png">      
-    <img src="http://7vznhl.com1.z0.glb.clouddn.com/2015-5-16-1codewars1.png" alt="discourse" />
-    </a>
-</figure>
+![img](http://7vznhl.com1.z0.glb.clouddn.com/2015-5-16-1codewars1.png)
 
 27.
 
@@ -111,11 +97,10 @@ Given: a boolean value
 Return: a 'Yes' string for true and a 'No' string for false
 
 solution:
-{% highlight JavaScript %}
-function boolToWord( bool ){
-  return bool ? 'Yes':'No';
-}
-{% endhighlight %}
+
+    function boolToWord( bool ){
+      return bool ? 'Yes':'No';
+    }
 
 28.
 
@@ -124,12 +109,11 @@ Description:
 Code as fast as you can! You need to double the integer and return it.
 
 solution:
-{% highlight JavaScript %}
-function doubleInteger(i) {
-  // i will be an integer. Double it and return it.
-  return i * 2;
-}
-{% endhighlight %}
+
+    function doubleInteger(i) {
+      // i will be an integer. Double it and return it.
+      return i * 2;
+    }
 
 29.
 
@@ -153,29 +137,23 @@ for example:
 
 solution:
 
-{% highlight JavaScript %}
-var Ball = function(ballType) {
-  if (!ballType){
-    this.ballType = 'regular';
-  }
-  else {
-    this.ballType= 'super';
-  }
-};
-{% endhighlight %}
+    var Ball = function(ballType) {
+      if (!ballType){
+        this.ballType = 'regular';
+      }
+      else {
+        this.ballType= 'super';
+      }
+    };
 
 or:
-{% highlight JavaScript %}
-var Ball = function(ballType) {
-  this.ballType = ballType ? ballType : "regular";
-};
-{% endhighlight %}
 
-{% highlight JavaScript %}
-var Ball = function(ballType) {
-  this.ballType = ballType || 'regular';
-};
-{% endhighlight %}
+    var Ball = function(ballType) {
+      this.ballType = ballType ? ballType : "regular";
+    };
+    var Ball = function(ballType) {
+      this.ballType = ballType || 'regular';
+    };
 
 30.
 
@@ -190,9 +168,7 @@ Example
 
 solution:
 
-{% highlight JavaScript %}
-function smash (words) {
-    var string = words.join(" ");
-    return string; 
-};
-{% endhighlight %}
+    function smash (words) {
+        var string = words.join(" ");
+        return string; 
+    };

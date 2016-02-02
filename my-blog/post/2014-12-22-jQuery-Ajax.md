@@ -11,14 +11,7 @@ share: true
 
 >前段时间学习了《锋利的jQuery第六章》jQuery与Ajax应用，现做如下笔记：
 
-<figure>
-	<a href="http://img11.360buyimg.com/n0/g6/M04/06/1C/rBEGDFD2UYIIAAAAAAGrx67MlCIAABWBAKB-WkAAavf388.jpg">
-		<img src="http://img11.360buyimg.com/n0/g6/M04/06/1C/rBEGDFD2UYIIAAAAAAGrx67MlCIAABWBAKB-WkAAavf388.jpg" alt="cover of the book" />
-	</a>
-	<figcaption>《锋利的jQuery(第二版)》</figcaption>
-</figure>
-
-<!--more-->
+![img](http://img11.360buyimg.com/n0/g6/M04/06/1C/rBEGDFD2UYIIAAAAAAGrx67MlCIAABWBAKB-WkAAavf388.jpg)
 
 ## 什么是Ajax呢？
 
@@ -82,22 +75,15 @@ jQuery中，jQuery对Ajax操作进行了**封装**，提供了多个与AJAX有�
 
 结构：load(url[,data][,callback])
 
-<figure>
-	<a href="/images/article/2014-12/load.png">
-		<img src="/images/article/2014-12/load.png" alt="load" />
-	</a>
-	<figcaption>load()方法参数解释</figcaption>
-</figure>
+![img](/images/article/2014-12/load.png)
 
 下面是一个load()方法的例子的jQuery代码：
 
-{% highlight JavaScript %}
-$(function(){
-				$("#btn1").click(function(){
-					$("#test").load("here.html");
+	$(function(){
+					$("#btn1").click(function(){
+						$("#test").load("here.html");
+					})
 				})
-			})
-{% endhighlight %}		
 
 **注意**：load()方法中，无论Ajax请求是否成功，只要当请求完成(complete)后，回调函数(callback)就被触发。
 
@@ -107,35 +93,23 @@ $.get() 方法通过 HTTP GET 方法来进行异步请求
 
 结构：$.get(url[,data][,callback][,type])
 
-<figure>
-	<a href="/images/article/2014-12/get.png">
-		<img src="/images/article/2014-12/get.png" alt="get" />
-	</a>
-	<figcaption>load()方法参数解释</figcaption>
-</figure>
+![img](./images/article/2014-12/get.png)
 
 下面的例子使用$.get()方法从服务器上的一个文件中取回数据：
 
-{% highlight JavaScript %}
-$(function(){
+	$(function(){
 					$.get('test.txt', function(data,status) {
 						alert("数据："+data+"\n状态："+status);
 					}); //$.get() 的第一个参数是我们希望请求的 URL。
 						// 第二个参数是回调函数。第一个回调参数存有被请求页面的内容，第二个回调参数存有请求的状态。
 						//而且回调函数只有在数据成功返回(success)后才被调用，这点与load()方法不一样。
-				})
-{% endhighlight %}
+					})
 
 ### $.post()方法
 
 它与$.get()方法的结构和使用方式都相同，不过它们之间仍然有以下区别：
 
-<figure>
-	<a href="/images/article/2014-12/post-vs-get.png">
-		<img src="/images/article/2014-12/post-vs-get.png" alt="get" />
-	</a>
-	<figcaption>load()方法参数解释</figcaption>
-</figure>
+![img](./images/article/2014-12/post-vs-get.png)
 
 ### jQuery $.post() 方法
 
@@ -157,25 +131,19 @@ $.post(URL,data,callback);
 
 有时候，在页面初次加载时就取得所需的全部JavaScript文件是完全没有必要的。虽然可以再需要哪个JavaScript文件时，动态地创建`<script>`标签，如：
 
-{% highlight JavaScript %}
-$(document.createElement("script")).attr("src","test.js").appendTo("head");
-{% endhighlight %}
+	$(document.createElement("script")).attr("src","test.js").appendTo("head");
 
 或者：
 
-{% highlight JavaScript %}
-$("<script type='text/javascript' src='test.js'/>").appendTo("head">;
-{% endhighlight %}
+	$("<script type='text/javascript' src='test.js'/>").appendTo("head">;
 
 但这种方式并不理想。为此，jQuery提供了`$.getSctipt()`方法来直接加载.js文件，与加载一个HTML片段一样简单方便，并且不需要对JavaScript文件进行处理，JavaScript文件会自动执行。jQuery代码如下：
 
-{% highlight JavaScript %}
-$(function(){
-				$("#send").click(function(){
-					$.getScript('test.js');
+	$(function(){
+					$("#send").click(function(){
+						$.getScript('test.js');
+					})
 				})
-			})
-{% endhighlight %}
 
 这个方法也有回调函数
 
@@ -183,15 +151,13 @@ $(function(){
 
 $.getJSON()方法用于加载JSON文件，与$.getScript()方法的用法相同:
 
-{% highlight JavaScript %}
-$(function(){
-				$('#send').click(function(event) {
-					$.getJSON('test.json',function(data){
-						//data:返回的数据
-					})
-				});
-			})
-{% endhighlight %}
+	$(function(){
+			$('#send').click(function(event) {
+				$.getJSON('test.json',function(data){
+					//data:返回的数据
+				})
+			});
+		})
 
 ### 6.5.4 $.ajax()方法
 $.ajax()方法是最底层的Ajax实现
@@ -204,20 +170,18 @@ $.ajax()方法是最底层的Ajax实现
 
 下面是一个简单的Ajax请求的例子：
 
-{% highlight JavaScript %}
-$(function(){
-				$.ajax({
-					url:"here.html",
-					dataType:"html",
-					success:function(r){
-						console.log("make it");
-					},
-					error : function(r){
-						console.log("something didn't work");
-					}
-				})
+	$(function(){
+			$.ajax({
+				url:"here.html",
+				dataType:"html",
+				success:function(r){
+					console.log("make it");
+				},
+				error : function(r){
+					console.log("something didn't work");
+				}
 			})
-{% endhighlight %}
+		})
 
 如果想使某个Ajax请求不受全局方法的影响，那么可以在使用$.ajax(options)方法时，将参数中的global设置为false
 
@@ -225,7 +189,7 @@ $(function(){
 
 当我们计划发起大量请求时，如果能为页面上的这些选项设置默认值会很方便。jQuery就为我们提供了一种方式来定义一组默认的AJAX属性值，如果没有覆盖这些属性的值，则会使用这些默认值。如果要发起很多相似的Ajax请求，这可以简化页面。
 
-$.ajaxSetup(options)
+	$.ajaxSetup(options)
 
 把传去的一组选项属性创建为随后调用$.ajax()的默认值。参数options:（对象)对象实例，其属性定义了一组默认的Ajax选项。
 
@@ -233,13 +197,11 @@ $.ajaxSetup(options)
 
 假设要创建一个保安大多数Ajax请求的页面(使用实用函数来创建，而不是load()方法)，我们希望设置一些默认值，以免每次调用时都指定它们。我们可以在页面头部的<script>元素的第一行编写这样的代码
 
-{% highlight JavaScript %}
-$.ajaxSetup({
-				type:'POST',
-				timeout:5000,
-				dataType:'html'
-			});
-{% endhighlight %}
+	$.ajaxSetup({
+					type:'POST',
+					timeout:5000,
+					dataType:'html'
+				});
 
 这将会确保随后的每个Ajax调用(除了前面提到的load()方法)都会使用这些默认值。除非使用传入Ajax使用函数的属性来显示地覆盖它们
 
@@ -247,43 +209,34 @@ $.ajaxSetup({
 
 下面来看一下jQuery中的Ajax全局事件。jQuery简化Ajax操作不仅体现在调用Ajax方法和处理响应方面，而且还体现在对调用Ajax方法的过程中的HTTP请求的控制。通过jQuery提供的一些自定义全局函数，能够为各种与Ajax相关的事件注册回调函数。例如当Ajax请求开始时，会触发ajaxStart()方法的回调函数；当Ajax请求结束时，会触发ajaxStop()方法的回调函数。这些方法都是全局的方法，因此无论创建它们的代码位于何处，只要有Ajax()请求发生，就会触发它们。
 
-{% highlight JavaScript %}
-$(function(){
-				$("#loading").ajaxStart(function(){
-					$(this).show();
-				});
-				$("#loading").ajaxStop(function(){
-					$(this).hide();
-				});
-				$.get('test.txt', function(data,status) {
-						alert("数据："+data+"\n状态："+status);
-						// console.log(123);
-					}); 
-				})
-{% endhighlight %}
+	$(function(){
+					$("#loading").ajaxStart(function(){
+						$(this).show();
+					});
+					$("#loading").ajaxStop(function(){
+						$(this).hide();
+					});
+					$.get('test.txt', function(data,status) {
+							alert("数据："+data+"\n状态："+status);
+							// console.log(123);
+						}); 
+					})
 
 除了ajaxStart()和ajaxStop()，还有另外几个方法：
 
-<figure>
-	<a href="/images/article/2014-12/ajax-all-event.png">
-		<img src="/images/article/2014-12/ajax-all-event.png" alt="get" />
-	</a>
-	<figcaption>load()方法参数解释</figcaption>
-</figure>
+![img](./images/article/2014-12/ajax-all-event.png)
 
 期间关于ajaxSend()遇到些问题，记录下来：
 
-{% highlight JavaScript %}
-$(document).ready(function(){
-                $("#div1").ajaxSend(function(){
-                alert(123);
-              });
-                  $("button").click(function(){
-                    $("#div1").load("here.html");
-              });
-            });//上面定义$("#div1").ajaxSend(function(){});事件不在任何一下onClick事件中。
-			//如果发生了全局事件的重复定义，在本例中也就是每一个onClick事件中都定义一次全局事件$("#div1").ajaxSend(function(){});的话，那么，该全局事件会增加执行次数，而不是覆盖前面的定义
-{% endhighlight %}
+	$(document).ready(function(){
+	                $("#div1").ajaxSend(function(){
+	                alert(123);
+	              });
+	                  $("button").click(function(){
+	                    $("#div1").load("here.html");
+	              });
+	            });//上面定义$("#div1").ajaxSend(function(){});事件不在任何一下onClick事件中。
+				//如果发生了全局事件的重复定义，在本例中也就是每一个onClick事件中都定义一次全局事件$("#div1").ajaxSend(function(){});的话，那么，该全局事件会增加执行次数，而不是覆盖前面的定义
 
 是在这里找到的相关资料：[http://zhina123.blog.163.com/blog/static/41789578201211931319529/](http://zhina123.blog.163.com/blog/static/41789578201211931319529/)
 
@@ -321,19 +274,15 @@ jQuery中提供了serialize()方法，作用于一个jQuery对象，将DOM元素
 
 这样在ajax提交表单数据时，就不用一一列举出每一个参数。只需将data参数设置为 $("form").serialize() 即可。
 
-{% highlight JavaScript %}
-$(document).ready(function(){
-            $("button").click(function(){
-                $("div").text($("form").serialize());
-              });
-            });
-{% endhighlight %}
+	$(document).ready(function(){
+	            $("button").click(function(){
+	                $("div").text($("form").serialize());
+	              });
+	            });
 
 因为serialize()方法作用于jQuery对象，所以不光只有表单能使用它，其他选择器选取的元素也都能使用它，如：
 
-{% highlight JavaScript %}
-$(“:checkbox,:radio”).serialize();
-{% endhighlight %}
+	$(“:checkbox,:radio”).serialize();
 
 ### serializeArray()方法
 
@@ -343,26 +292,22 @@ $(“:checkbox,:radio”).serialize();
 
 　　比如，[{"name":"lihui", "age":"20"},{...}] 获取数据为 jsonData[0].name
 
-{% highlight JavaScript %}
-$(function(){
-       $("#send").click(function(){
-            var $data =  $(":checkbox,:radio").serializeArray();
-            alert( $data );
-       })
-    })
-{% endhighlight %}
+	$(function(){
+	       $("#send").click(function(){
+	            var $data =  $(":checkbox,:radio").serializeArray();
+	            alert( $data );
+	       })
+	    })
 
 ### $.param()方法
 
 它是serialize()方法的核心，用来对一个数组或对象按照key/value进行序列化
 
-{% highlight JavaScript %}
-$(function(){
-				var obj = {a:1,b:2,c:3};
-				var k = $.param(obj);
-				alert(k);
-			})//输出a=1&b=2&c=3
-{% endhighlight %}
+	$(function(){
+					var obj = {a:1,b:2,c:3};
+					var k = $.param(obj);
+					alert(k);
+				})//输出a=1&b=2&c=3
 
 ## 避免缓冲
 对于AJAX请求，GET请求中的数据缓冲存在根本性的问题。遗憾的是，即使有必要，服务器也很少在AJAX请求中重新请求数据。浏览器简单地从本地缓存汇中读取数据`（要知道，浏览器在历史上就从不是为异步数据请求设计的）`。这个问题首先影响到Internet Explorer。在手工编程中，在查询字符串后附加由JavaScript生成的随机数或者时间戳(不管在服务器还是在客户端，这个数值基本上都没有进一步的用途)是一个好的变通方法。这种方法知识为了告诉浏览器必须重新加载数据。事实上，这种技巧是目前避免缓冲行为(在传统的Web数据请求中确实很有用的一种行为)的**唯一简单而可靠的方法**。明确提供这类机制的框架(例如YUI)在后台所做的也就是这些。在jQuery中，目前必须为大部分方法手工创建一个额外的参数，并将这个参数附加到URL中。只有ajax()方法通过特殊参数提供了对应的避免缓冲选项。
@@ -373,62 +318,51 @@ $(function(){
 ### 前置过滤器：
 前置过滤器(prefilter)指的是任何AJAX请求被发送之前和$.ajax()处理任何选项之前执行的回调函数
 
-{% highlight JavaScript %}
-$.ajaxPrefilter(
-				function(requestOptions,originalOptions,jqXHR){
-					//Modify options,control the original options,store jqXHR object etc
-				});
-{% endhighlight %}
+	$.ajaxPrefilter(
+					function(requestOptions,originalOptions,jqXHR){
+						//Modify options,control the original options,store jqXHR object etc
+					});
 
 ### 转换器：
 转换器指的也是新型的回调函数。转换器在服务器以预期之外的数据类型发送响应数据时调用。可以在回调函数中采取相应的措施，转换数据类型或者引入自己的数据类型。转换器保存在ajaxSetting中，可以全局添加。
 
-{% highlight JavaScript %}
-({
-				converters:{
-					"text mydatatype":function(textValue){
-						if (valid(textValue)) {
+	({
+					converters:{
+						"text mydatatype":function(textValue){
 							if (valid(textValue)) {
-								//some logic
-								return mydatatypeValue;
-							}
-							else{
-								//indicate parse-error
-								throw exceptionObject;
-							}
-						};
+								if (valid(textValue)) {
+									//some logic
+									return mydatatypeValue;
+								}
+								else{
+									//indicate parse-error
+									throw exceptionObject;
+								}
+							};
+						}
 					}
-				}
-			})
-{% endhighlight %}
+				})
 
 可以用转换器创建自定义数据类型(数据类型必须采用小写字母)。    如果观察前一个程序清单中的典型转换器，就可以请求类型为mydatatype的数据，如:
 
-{% highlight JavaScript %}
 $.ajax(url,{
 				dataType:"mydatatype"
 			});
-{% endhighlight %}
 
 ### 分发器：
 jQuery中的分发器(transport)是提供一下两个方法的一个对象：send()abort()上述两个方法都由$.ajax()在内部使用，可以用于扩展$.ajax()。但是，jQuery文档还指出，分发器应该只作为最后手段，在前置过滤器和转换器都不足以影响AJAX请求时使用。因为每个请求需要自己的分发器对象实例，这些对象不能被直接注册。作为替代，应该提供一个函数来返回这样的对象。这种生成对象的函数被称为工厂(Factory)。分发器工厂的注册如下：
 
-{% highlight JavaScript %}
-$.ajaxTransport(function(requestOptions,originalOptions,jqXHR){
-				if (/*conditions for transport*/) {
-					return {
-						send:function(header fields as map,callback){
-							/*code for sending*/
-						},
-						abort:function(){
-							/*code in case of abort*/
+	$.ajaxTransport(function(requestOptions,originalOptions,jqXHR){
+					if (/*conditions for transport*/) {
+						return {
+							send:function(header fields as map,callback){
+								/*code for sending*/
+							},
+							abort:function(){
+								/*code in case of abort*/
+							}
 						}
-					}
-				};
-			})
-{% endhighlight %}
+					};
+				})
 
 本次笔记以《锋利的jQuery》(第二版)为主，参考资料有《jQuery实战》(第二版),《jQuery应用开发实践指南》。有任何建议，还望大家不吝赐教[抱拳]
-
-
-**文章来自 [https://github.com/PuRonglong/PuRonglong.github.io]({https://github.com/PuRonglong/PuRonglong.github.io})**

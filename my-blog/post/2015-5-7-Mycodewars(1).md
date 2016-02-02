@@ -12,12 +12,7 @@ share: true
 
 编程codewars是个很好的东西，现在做的题目虽然简单，还没有涉及到深层次的数据结构和算法等问题，但是对知识点是一个很好的复习和熟悉，类似的网站还有比如fightcode，光是听这个名字就知道了是干什么的啦，通过和两个人的code的一个fight来相互竞争着解决一个问题，看谁更快解决问题，如果把语言看做一把剑的话，它就是用js这把剑去和持有c，java的剑的人去fight咯
 
-<figure>
-    <a href="http://7vznhl.com1.z0.glb.clouddn.com/2015-5-7-mycodewarscodewars.jpg">
-        <img src="http://7vznhl.com1.z0.glb.clouddn.com/2015-5-7-mycodewarscodewars.jpg" alt="cover of the book" />
-    </a>
-    <figcaption>codewars</figcaption>
-</figure>
+![img](http://7vznhl.com1.z0.glb.clouddn.com/2015-5-7-mycodewarscodewars.jpg)
 
 1.
 Write a function that flattens an Array of Array objects into a flat Array. Your function must only do one level of flattening.
@@ -28,8 +23,6 @@ Examples
 ```flatten([[1,2,3],["a","b","c"],[1,2,3]])  // => [1,2,3,"a","b","c",1,2,3]```
 ```flatten([[[1,2,3]]]) // => [[1,2,3]]```
 
-<!--more-->
-
 从这道题的例子就可以看出这是一道对数组合并的考察，这就涉及到JS中的关于数组的一些操作如reduce,comcat等，那么让我们来好好捋一捋哒：
 
 在JavaScript高级程序设计第三版的P97页的*5.2.9 归并方法*讲到的reduce()和ruduceRight()。这两个方法都会迭代数组的所有项，然后构建一个最终返回的值。这两个方法接受四个参数：前一个值，当前值，项的索引值，数组对象
@@ -38,46 +31,39 @@ reduce()方法可对数组中的所有元素调用指定的回调函数。 该�
 
 使用reduce()方法可以执行求数组中所有值之和的操作，比如：
 
-{% highlight JavaScript %}
-var values = [1,2,3,4,5];
-var sum = values,reduce(function(prev,cur,index,array){
-return prev + cur;
-});
-alert(sum);//15
-{% endhighlight %}
+    var values = [1,2,3,4,5];
+    var sum = values,reduce(function(prev,cur,index,array){
+    return prev + cur;
+    });
+    alert(sum);//15
 
 而w3cschool对concat()方法的解释是此法用于连接两个或两个数组。该方法不会改变现有的数组，而仅仅返回被连接数组的一个副本。
 
 我们还是来看一个例子：
-{% highlight JavaScript %}
-var a = [1,2,3];
-document.write(a.concat(4,5));//1,2,3,4,5
-{% endhighlight %}
+
+    var a = [1,2,3];
+    document.write(a.concat(4,5));//1,2,3,4,5
 
 如果要连接多个数组，可以在concat参数中添加多个数组。但是呢，concat（）方法这种方式占用了两倍内存，因为构成新数组的原来成员并没有销毁，将其置空就可以被垃圾回收了，但这样只是对较小的数组能解决问题，遇到大型数据时还需要优化了。
 
 讨论完这两个方法，那我们来看看如何解决这个问题，博客园上看到一个方法是这样的：
 
-{% highlight JavaScript %}
-var flatten = function (array){
-   return array.reduce(function(a,b){
-       return a.concat(b);
-   },[])
-}
-{% endhighlight %}
+    var flatten = function (array){
+       return array.reduce(function(a,b){
+           return a.concat(b);
+       },[])
+    }
 
 在stackoverflow上的另一种解法：
 
-{% highlight JavaScript %}
-var flatten = function (array) {
-    var newArray = [];
-    var arrayLength = array.length;
-    for (i = 0; i < arrayLength; i++) {
-        newArray = newArray.concat(array[i]);
+    var flatten = function (array) {
+        var newArray = [];
+        var arrayLength = array.length;
+        for (i = 0; i < arrayLength; i++) {
+            newArray = newArray.concat(array[i]);
+        }
+        return newArray;
     }
-    return newArray;
-}
-{% endhighlight %}
 
 这两种方法显然第一种更clever一些，他想到了使用reduce()与concat()方法的组合，第二种没有用到reduce，便想到了定义一个空的数组，让这个数组和传的参数进行concat
 
@@ -88,22 +74,18 @@ Can you help her?
 
 dear Jenny~let me help you~拿到这道题容易比较想到的是if-else的情况：
 
-{% highlight JavaScript %}
-function greet(name){
-  if(name === "Johnny"){
-    return "Hello, my love!";
-  }else{
-  return "Hello, "+name+"!"}
-}
-{% endhighlight %}
+    function greet(name){
+      if(name === "Johnny"){
+        return "Hello, my love!";
+      }else{
+      return "Hello, "+name+"!"}
+    }
 
 不过用三元法一行就能搞定啦
 
-{% highlight JavaScript %}
-function greet(name){
-  return "Hello, " + (name == "Johnny" ? "my love" : name) + "!";
-}
-{% endhighlight %}
+    function greet(name){
+      return "Hello, " + (name == "Johnny" ? "my love" : name) + "!";
+    }
 
 话说感觉get到一项新技能...
 
@@ -132,19 +114,15 @@ Examples
 
 刚开始看的时候会被这道题目的长度给吓到，但实际分析不难发现，问题就是求这个西瓜能不能分成两个人手上的都是偶数，而知只有偶数才能分成两个加数都是偶数，显而易见每人分一份这样是不行的，排除掉偶数2，所以问题就转变成了求分成的数是不是偶数并且这个数不能是2
 
-{% highlight JavaScript %}
-function divide(weight){
-  return (weight>2)&&(weight%2==0)?true:false;
-}
-{% endhighlight %}
+    function divide(weight){
+      return (weight>2)&&(weight%2==0)?true:false;
+    }
 
 或者
 
-{% highlight JavaScript %}
-function divide(weight){
-  return weight > 2 && !(weight % 2);
-}
-{% endhighlight %}
+    function divide(weight){
+      return weight > 2 && !(weight % 2);
+    }
 
 4.
 Teach snoopy and scooby doo how to bark using object methods. Currently only snoopy can bark and not scooby doo.
@@ -155,19 +133,17 @@ Use method prototypes to enable all Dogs to bark.
 
 solution:
 
-{% highlight JavaScript %}
-function Dog (breed) {
-  this.breed = breed;
-}
+    function Dog (breed) {
+      this.breed = breed;
+    }
 
-var snoopy = new Dog("Beagle");
+    var snoopy = new Dog("Beagle");
 
-Dog.prototype.bark = function() {
-  return "Woof";
-};
+    Dog.prototype.bark = function() {
+      return "Woof";
+    };
 
 var scoobydoo = new Dog("Great Dane");
-{% endhighlight %}
 
 通过在Dog这个函数的原型上声明一个变量，从而让后来new的对象都能继承它的bark方法了
 
@@ -185,28 +161,24 @@ Examples:
 
 可以得知，题目要求这个函数有两个参数，第一个参数是起始值，后面的值是个数，然后输出是要求每个数都是前一个数加上一个起始值，便想到了用一个循环执行这样一个相加的过程，然后返回一个数组
 
-{% highlight JavaScript %}
-function countBy(x,n){
-                var z = [];
-                z.push(x);
-                for (var i = 1; i < n; i++) {
-                    z[i] = z[i-1] + x;
-                };
-                return z;
-}
-{% endhighlight %}
+    function countBy(x,n){
+                    var z = [];
+                    z.push(x);
+                    for (var i = 1; i < n; i++) {
+                        z[i] = z[i-1] + x;
+                    };
+                    return z;
+    }
 
 相比之下还有更简洁的方法：
 
-{% highlight JavaScript %}
-function countBy(x, n) {
-    var z = [];
-    for (i = 1; i <= n; i++) {
-        z.push(x * i);
+    function countBy(x, n) {
+        var z = [];
+        for (i = 1; i <= n; i++) {
+            z.push(x * i);
+        }
+        return z;
     }
-    return z;
-}
-{% endhighlight %}
 
 6.
 Ahoy matey!
@@ -235,13 +207,11 @@ titanic.isWorthIt() //return false
 
 题意是说海盗有个船，船上有人和货物，要尽可能放多的货物，如果货物比全体船员的1.5倍还多20，那么这艘船就值得board，准备出发了。
 
-{% highlight JavaScript %}
-function Ship(draft,crew) {
- this.draft = draft;
- this.crew = crew;
-}
+    function Ship(draft,crew) {
+     this.draft = draft;
+     this.crew = crew;
+    }
 
-Ship.prototype.isWorthIt = function(){
-return this.draft-(this.crew*1.5) > 20;
-}
-{% endhighlight %}
+    Ship.prototype.isWorthIt = function(){
+    return this.draft-(this.crew*1.5) > 20;
+    }

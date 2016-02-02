@@ -12,13 +12,7 @@ share: true
 
 一个简单的demo，表现了日出而作，日落而息的场景，让我们来看看是怎么实现的：
 
-<figure>
-    <a href="http://7vznhl.com1.z0.glb.clouddn.com/2015-10-9-01scene-sun.gif">
-        <img src="http://7vznhl.com1.z0.glb.clouddn.com/2015-10-9-01scene-sun.gif" alt="result" />
-    </a>
-</figure>
-
-<!--more-->
+![img](http://7vznhl.com1.z0.glb.clouddn.com/2015-10-9-01scene-sun.gif)
 
 首先我们要知道一个关键帧的概念，其实就类似于给每一个动画照相，照出来的照片就是这个动画里的某一帧，而css3的animation就是通过分别定义某一张照片的样式，再定义一个持续时间，然后它自己会把这几帧连起来形成动画。
 
@@ -26,7 +20,6 @@ share: true
 
 还要定义animation每个属性的属性值：
 
-{% highlight JavaScript %}
 	animation-name: sky;/*动画名称*/
     animation-duration: 10s;/*周期时长*/
     animation-timing-function: ease;/*规定动画速度曲线*/
@@ -34,7 +27,6 @@ share: true
     animation-direction: normal;/*动画方向*/
     animation-play-state: running;/*是否暂停*/
     animation-fill-mode: forwards;/*设置对象状态为动画开始时的状态*/
-{% endhighlight %}
 
 每一帧就是一个状态，天空和大地比较简单，都分别有两种，天黑天亮，如下：
 

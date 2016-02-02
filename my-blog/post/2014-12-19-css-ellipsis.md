@@ -12,62 +12,40 @@ share: true
 
 我们先来看下HTML代码：
 
-{% highlight JavaScript %}
-<div>
-    <p><span>用css来实现当文字超出宽度时显示省略号的效果</span></p>
-</div>
-{% endhighlight %}
+	<div>
+	    <p><span>用css来实现当文字超出宽度时显示省略号的效果</span></p>
+	</div>
 
 CSS代码：
 
-{% highlight JavaScript %}
-div{
-	width:200px;
-}
-span{
-	display:block;
-	width:200px;
-	overflow:hidden;
-	white-space:nowrap;//段落中的文本不进行换行
-	text-overflow:ellipsis;
-}
-{% endhighlight %}
+	div{
+		width:200px;
+	}
+	span{
+		display:block;
+		width:200px;
+		overflow:hidden;
+		white-space:nowrap;//段落中的文本不进行换行
+		text-overflow:ellipsis;
+	}
 
 我们可以看到其中用到了`text-overflow:ellipsis;`网上说这是一个IE特有的属性，别的浏览器不支持，经过实践，现在chrome和火狐都已经支持了，效果和版本号如下：
 
-<!--more-->
-
 在chrome下的效果：
 
-<figure>
-	<a href="/images/article/2014-12-19/1.png">
-		<img src="/images/article/2014-12-19/1.png" alt="效果" />
-	</a>
-</figure>
+![img](./images/article/2014-12-19/1.png)
 
 我的chrome版本号：
 
-<figure>
-	<a href="/images/article/2014-12-19/2.png">
-		<img src="/images/article/2014-12-19/2.png" alt="38.0.2125.111m" />
-	</a>
-</figure>
+![img](./images/article/2014-12-19/2.png)
 
 在火狐下的效果：
 
-<figure>
-	<a href="/images/article/2014-12-19/3.png">
-		<img src="/images/article/2014-12-19/3.png" alt="效果" />
-	</a>
-</figure>
+![img](./images/article/2014-12-19/3.png)
 
 我的火狐版本号：
 
-<figure>
-	<a href="/images/article/2014-12-19/4.png">
-		<img src="/images/article/2014-12-19/4.png" alt="33.1.1" />
-	</a>
-</figure>
+![img](./images/article/2014-12-19/4.png)
 
 查到的资料还说opera不支持`text-overflow`，针对Opera的话得使用`-o-text-overflow:ellipsis;`欧朋浏览器还没有装所以无法实践，但通过网上查找已经找到答案，有博主说自己新版的欧朋已经支持这个属性了，看博客时间是2012年，看来也是早就支持了的。
 
@@ -77,32 +55,26 @@ span{
 
 来看下CSS代码：
 
-{% highlight JavaScript %}
-span{
-	display:block;
-	width:200px;
-	overflow:hidden;
-	white-space:nowrap;
-}
-p{
-	clear:both;
-}
-p span{
-	float:left;
-	max-width:175px;
-}
-p:afer{
-	content:"...";
-}
-{% endhighlight %}
+	span{
+		display:block;
+		width:200px;
+		overflow:hidden;
+		white-space:nowrap;
+	}
+	p{
+		clear:both;
+	}
+	p span{
+		float:left;
+		max-width:175px;
+	}
+	p:afer{
+		content:"...";
+	}
 
 这样能有省略号的效果，但会有小小的**问题**，我们一起来看下效果：
 
-<figure>
-	<a href="/images/article/2014-12-19/5.png">
-		<img src="/images/article/2014-12-19/5.png" alt="效果" />
-	</a>
-</figure>
+![img](./images/article/2014-12-19/5.png)
 
 在chrome下和火狐下都是这样的效果，可见这样的方法并不完美。
 

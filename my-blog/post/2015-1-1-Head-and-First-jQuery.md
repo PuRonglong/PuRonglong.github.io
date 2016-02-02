@@ -9,13 +9,9 @@ share: true
 ---
 >第一次尝试读全英文书籍
 
-<figure>
-    <a href="http://img30.ddimg.cn/32/15/22775180-1_u_1.jpg">
-        <img src="http://img30.ddimg.cn/32/15/22775180-1_u_1.jpg" alt="cover of the book" />
-    </a>
-    <figcaption>《深入浅出jQuery(影印版)》</figcaption>
-</figure>
-<!--more-->
+![img](http://img30.ddimg.cn/32/15/22775180-1_u_1.jpg)
+
+《深入浅出jQuery(影印版)》
 
 水平有限，并没有像读中文书那样细读。
 
@@ -25,26 +21,17 @@ share: true
 
 这本书看的时候还比较囫囵吞枣，因为jQuery的知识点都还了解，讲解部分知识瞄了瞄，干货也没有什么，主要是做下本书中的题，因为提形式多样，需要手写，别的书还没有遇到过要手写的，就当是锻炼笔试了。
 
-<figure>
-    <a href="http://7vznhl.com1.z0.glb.clouddn.com/2015-1-11.jpg">
-        <img src="http://7vznhl.com1.z0.glb.clouddn.com/2015-1-11.jpg" alt="book" />
-    </a>
-    <figcaption>像这样的填空题比较多</figcaption>
-</figure>
+![img](http://7vznhl.com1.z0.glb.clouddn.com/2015-1-11.jpg)
 
-<figure>
-    <a href="http://7vznhl.com1.z0.glb.clouddn.com/2015-1-14.jpg">
-        <img src="http://7vznhl.com1.z0.glb.clouddn.com/2015-1-14.jpg" alt="book" />
-    </a>
-    <figcaption>每章后面都有道这种题</figcaption>
-</figure>
+像这样的填空题比较多
 
-<figure>
-    <a href="http://7vznhl.com1.z0.glb.clouddn.com/2015-1-16.jpg">
-        <img src="http://7vznhl.com1.z0.glb.clouddn.com/2015-1-16.jpg" alt="book" />
-    </a>
-    <figcaption>别人家的讲解</figcaption>
-</figure>
+![img](http://7vznhl.com1.z0.glb.clouddn.com/2015-1-14.jpg)
+
+每章后面都有道这种题
+
+![img](http://7vznhl.com1.z0.glb.clouddn.com/2015-1-16.jpg)
+
+别人家的讲解
 
 还有其它类型的题目如连线匹配这种，就不一一列举了。
 

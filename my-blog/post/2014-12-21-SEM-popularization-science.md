@@ -8,14 +8,7 @@ comments: true
 share: true
 ---
 
-<figure>
-	<a href="http://img10.360buyimg.com/n0/g15/M03/02/16/rBEhWFHKSUgIAAAAAAKzL-pq1JEAAAh4gLO0zYAArNH039.jpg">
-		<img src="http://img10.360buyimg.com/n0/g15/M03/02/16/rBEhWFHKSUgIAAAAAAKzL-pq1JEAAAh4gLO0zYAArNH039.jpg" alt="cover of the book" />
-	</a>
-	<figcaption>《榨干百度谷歌——搜索引擎广告大赢家》</figcaption>
-</figure>
-
-<!--more--> 
+![img](http://img10.360buyimg.com/n0/g15/M03/02/16/rBEhWFHKSUgIAAAAAAKzL-pq1JEAAAh4gLO0zYAArNH039.jpg)
 
 **关于本书**： 
 

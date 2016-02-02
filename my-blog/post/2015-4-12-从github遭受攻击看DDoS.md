@@ -10,18 +10,13 @@ share: true
 
 >3月底，GitHub遭受了有史以来最为严重的DDoS攻击
 
-<figure>
-    <a href="http://7vznhl.com1.z0.glb.clouddn.com/2015-4-12-GitHub-DDoS.PNG">
-        <img src="http://7vznhl.com1.z0.glb.clouddn.com/2015-4-12-GitHub-DDoS.PNG" alt="photo" />
-    </a>
-    <figcaption>GitHub官方微博的声明</figcaption>
-</figure>
+![img](http://7vznhl.com1.z0.glb.clouddn.com/2015-4-12-GitHub-DDoS.PNG)
+
+GitHub官方微博的声明
 
 由于网站是托管在GitHub上的，所以也受到了影响，即使现在GitHub恢复了，也有时不稳定。
 
 别的一些DDoS攻击案例，比如暴雪战网，Valve Steam和EA Origin都遭受过大规模DDoS攻击，致使大批玩家无法登陆进行游戏。(战网，steam,origin都是著名的游戏平台)
-
-<!--more-->
 
 还有就是学校选课的时候，经常会碰到网站挂掉的情况，这就是一个最简单的DDoS原理，因为它虽然是正规的访问，但所体现的就是一个DDoS的效果
 
@@ -53,11 +48,7 @@ Call到你手机没电：这被称为系统资源消耗攻击
 
 在现实中的攻击一般是这样，如图，
 
-<figure>
-    <a href="http://7vznhl.com1.z0.glb.clouddn.com/2015-4-12-DDoS.PNG">
-        <img src="http://7vznhl.com1.z0.glb.clouddn.com/2015-4-12-DDoS.PNG" alt="photo" />
-    </a>
-</figure>
+![img](http://7vznhl.com1.z0.glb.clouddn.com/2015-4-12-DDoS.PNG)
 
 攻击者通过一个服务器节点，下发命令到所有的客户机上，然后来攻击这一个网站使其瘫痪，这就是一个最常见的DDoS案例，著名的攻击者有如：ANONYMOUS(匿名者)组织
 
@@ -79,12 +70,9 @@ Lyft是 Uber 的竞争对手。去在2014年某段时间 Lyft的司机收到很�
 
 例子5：
 
-<figure>
-    <a href="http://7vznhl.com1.z0.glb.clouddn.com/2015-4-12-freebuf.png">
-        <img src="http://7vznhl.com1.z0.glb.clouddn.com/2015-4-12-freebuf.png" alt="photo" />
-    </a>
-    <figcaption>这个段子很形象</figcaption>
-</figure>
+![img](http://7vznhl.com1.z0.glb.clouddn.com/2015-4-12-freebuf.png)
+
+这个段子很形象
 
 DNS 是域名系统 (Domain Name System) 的缩写，是因特网的一项核心服务，它作为可以将域名和IP地址相互映射的一个分布式数据库，能够使人更方便的访问互联网。DNS劫持其实就是段子中的东头煎饼摊派人将想去西头煎饼摊子的人“劫持”到自己的煎饼摊子去。
 
@@ -125,20 +113,34 @@ VERIZON资料外泄报告出炉，9成网络间谍攻击，来自国家级机构
 
 该如何防范DDoS？
 
-防火墙<br  />
-增加频宽与设备性能<br  />
-CDN<br  />
-Cleaning Center<br  />
-交换机速率限制/ACL功能<br  />
-装DDS<br  />
-定期扫描<br  />
-在骨干节点配置防火墙<br  />
-用足够的机器承受黑客攻击<br  />
-充分利用网络设备保护网络资源<br  />
-过滤不必要的服务和端口<br  />
-检查访问者的来源<br  />
-过滤所有RFC1918 IP地址<br  />
-限制SYN/ICMP流量<br  />
+防火墙
+
+增加频宽与设备性能
+
+CDN
+
+Cleaning Center
+
+交换机速率限制/ACL功能
+
+装DDS
+
+定期扫描
+
+在骨干节点配置防火墙
+
+用足够的机器承受黑客攻击
+
+充分利用网络设备保护网络资源
+
+过滤不必要的服务和端口
+
+检查访问者的来源
+
+过滤所有RFC1918 IP地址
+
+限制SYN/ICMP流量
+
 等等
 
 而回到现在，若有时网站打不开可以翻墙：
