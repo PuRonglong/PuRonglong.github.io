@@ -44,6 +44,14 @@ pre{
     position: absolute;
     width: 100%;
     height: 100%;
+    opacity: 0.9;
+}
+
+.left-right-contain-dog{
+    background-image: url("../images/dog.jpg");
+    background-size: cover;
+    width: 100%;
+    height: 100%;
 }
 
 .index-left{
@@ -56,16 +64,17 @@ pre{
 
 .index-right{
     position: absolute;
-    background: black;
+    background-color: black;
     left: 50%;
     width: 50%;
     height: 100%;
+    background-size: cover;
 }
 
 .index-left-button{
     width: 80px;
     height: 80px;
-    background: black;
+    background: rgba(0, 0, 0, 0.9);
     color: white;
     position: absolute;
     left: 50%;
