@@ -29,4 +29,4 @@ define(['jquery', 'angular'], function($, angular){
 		$urlRouterProvider
 			.when("", "/");
 	}]);
-})
+});
