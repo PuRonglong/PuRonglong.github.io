@@ -1,5 +1,5 @@
 layout: post
-title: Mac连接安卓
+title: Mac,Android,Google play
 description: "记一次Mac连接安卓的笔记"
 tags: [代码]
 image:
