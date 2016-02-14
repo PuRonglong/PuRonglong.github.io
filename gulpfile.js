@@ -14,6 +14,16 @@ gulp.task('blogStyleCss', ['styleCss']);
 
 
 
+gulp.task('zenburnCss', function(){
+	return gulp.src('./css/zenburn.css')
+			.pipe(minifyCss())
+			.pipe(rename('zenburn.min.css'))
+			.pipe(gulp.dest('./css/lib'));
+});
+
+gulp.task('blogZenburnCss', ['zenburnCss']);
+
+
 
 gulp.task('requirejs', function () {
 	return gulp.src(['./js/lib/require.js'])
