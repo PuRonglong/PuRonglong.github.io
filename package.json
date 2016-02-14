@@ -1,12 +1,14 @@
 {
   "name": "angular-blog",
-  "version": "",
+  "version": "1.0.0",
   "description": "my angular-blog",
   "author": {
-    "name": "puronglong",
+    "name": "puronglong"
   },
   "license": "MIT",
   "dependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-minify-css": "^1.2.3",
+    "gulp-rename": "^1.2.2"
   }
 }
