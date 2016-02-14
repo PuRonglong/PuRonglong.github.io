@@ -40,12 +40,12 @@ if (!debug) {
 	requirejs.config({
 		baseUrl: 'js',
 		paths: {
-			jquery: '//cdn.bootcss.com/jquery/2.2.0/jquery.min',
-			angular: '//cdn.bootcss.com/angular.js/1.3.20/angular.min',
-			ngRoute: '//cdn.bootcss.com/angular-ui-router/0.2.18/angular-ui-router.min',
-			ngAnimate: '//cdn.bootcss.com/angular.js/1.3.20/angular-animate.min',
-			require: '//cdn.bootcss.com/require.js/2.1.22/require.min',
-			bootstrap: '//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min',
+			jquery: 'http://cdn.bootcss.com/jquery/2.2.0/jquery.min',
+			angular: 'http://cdn.bootcss.com/angular.js/1.3.20/angular.min',
+			ngRoute: 'http://cdn.bootcss.com/angular-ui-router/0.2.18/angular-ui-router.min',
+			ngAnimate: 'http://cdn.bootcss.com/angular.js/1.3.20/angular-animate.min',
+			require: 'http://cdn.bootcss.com/require.js/2.1.22/require.min',
+			bootstrap: 'lib/bootstrap.min',
 			markdown: 'lib/markdown',
 			hljs: 'lib/highlight.pack',
 			blogApp: 'blogApp',
