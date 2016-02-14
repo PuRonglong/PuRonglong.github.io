@@ -45,7 +45,7 @@ if (!debug) {
 			ngRoute: 'http://cdn.bootcss.com/angular-ui-router/0.2.18/angular-ui-router.min',
 			ngAnimate: 'http://cdn.bootcss.com/angular.js/1.3.20/angular-animate.min',
 			require: 'http://cdn.bootcss.com/require.js/2.1.22/require.min',
-			bootstrap: 'lib/bootstrap.min',
+			bootstrap: 'lib/bootstrap',
 			markdown: 'lib/markdown',
 			hljs: 'lib/highlight.pack',
 			blogApp: 'blogApp',
