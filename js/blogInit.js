@@ -36,6 +36,10 @@ if (debug) {
 			}
 		}
 	});
+}else {
+	requirejs.config({
+
+	});
 }
 
 var libs = ['jquery', 'angular', 'ngRoute', 'ngAnimate', 'require', 'bootstrap', 'markdown', 'hljs', 'blogApp',
