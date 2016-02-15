@@ -12,17 +12,15 @@
             debug = true;
 
             window.onload = function(){
-                var loadContent = document.getElementById('loadContent');
+                var loadContent = document.getElementById('loading');
                 loadContent.style.display = "none";
             };
         </script>
     </head>
     <body>
-        <div class="loadContent" id="loadContent">
-            <div class="spinner">
-                <div class="cube1"></div>
-                <div class="cube2"></div>
-            </div>
+        <div class="layout-loading" id="loading">
+            <div class="be"></div>
+            <div class="fe"></div>
         </div>
         <div ui-view class="main"></div>
         <script data-main="js/blogInit.js" src="http://cdn.bootcss.com/require.js/2.1.22/require.min.js" type="text/javascript" charset="utf-8" async defer></script>
