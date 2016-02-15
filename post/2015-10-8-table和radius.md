@@ -1,6 +1,6 @@
 layout: post
-title: 在table中使用border-radius
-description: "在table中使用border-radius"
+title: 在table中使用border radius
+description: "在table中使用border radius"
 tags: [技术]
 image:
 background: triangular.png
