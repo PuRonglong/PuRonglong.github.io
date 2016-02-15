@@ -28,7 +28,7 @@ disc: 一个简单的demo，表现了日出而作，日落而息的场景，让�
 type: code
 url: 2015-10-9-scene-of-css3.md
 ---------
-title: 在table中使用border-radius
+title: 在table中使用borderradius
 disc: 在table中使用border-radius时遇到的一些问题记下来
 type: code
 url: 2015-10-8-table和radius.md
