@@ -5,13 +5,22 @@
         <meta name="description" content="蒲荣龙的个人博客">
         <title>博文</title>
         <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="http://7vznhl.com1.z0.glb.clouddn.com/css/style.min.css">
+        <!--<link rel="stylesheet" href="http://7vznhl.com1.z0.glb.clouddn.com/css/style.min.css">-->
+        <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/lib/zenburn.min.css">
         <script type="text/javascript">
             debug = true;
+
+            window.onload = function(){
+                var loadContent = document.getElementById('loadContent');
+                loadContent.style.display = "none";
+            };
         </script>
     </head>
     <body>
+        <div class="loadContent" id="loadContent">
+
+        </div>
         <div ui-view class="main"></div>
         <script data-main="js/blogInit.js" src="http://cdn.bootcss.com/require.js/2.1.22/require.min.js" type="text/javascript" charset="utf-8" async defer></script>
     </body>

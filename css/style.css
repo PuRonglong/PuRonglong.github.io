@@ -38,7 +38,6 @@ pre{
 .main{
     width: 100%;
     height: 100%;
-    position: relative;
 }
 
 .left-right-contain{
@@ -168,4 +167,12 @@ pre{
     color: #50585D;
     margin-bottom: 0.51em;
     text-indent: -3px;
+}
+
+.loadContent{
+    width: 100%;
+    height: 100%;
+    background: red;
+    position: absolute;
+    z-index: 1000;
 }
