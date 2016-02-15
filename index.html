@@ -20,9 +20,16 @@
         <script type="text/javascript">
             debug = true;
 
-            window.onload = function(){
+            function load(){
                 var loadContent = document.getElementById('loading');
+
                 loadContent.style.display = "none";
+            }
+
+            window.onload = function(){
+                
+                setTimeout("load()", 1000);
+
             };
         </script>
     </body>
