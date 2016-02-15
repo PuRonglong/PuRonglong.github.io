@@ -1,3 +1,7 @@
+
+var debug = true;
+
+
 if (!debug) {
 	requirejs.config({
 		baseUrl: 'js',
