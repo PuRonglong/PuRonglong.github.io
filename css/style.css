@@ -77,7 +77,6 @@ pre{
     background: rgba(0, 0, 0, 0.9);
     color: white;
     position: absolute;
-    left: 50%;
     top: 50%;
     margin-left: -40px;
     margin-top: -40px;
@@ -85,6 +84,24 @@ pre{
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    animation: index-left-button 1.5s both ease;
+}
+
+.index-left-button:hover{
+    color: white;
+}
+
+.index-right-button:hover{
+    color: #000000;
+}
+
+@keyframes index-left-button {
+    0%{
+        left: 100%;
+    }
+    100%{
+        left: 50%;
+    }
 }
 
 .index-right-button{
@@ -93,7 +110,6 @@ pre{
     background: white;
     color: black;
     position: absolute;
-    left: 50%;
     top: 50%;
     margin-left: -40px;
     margin-top: -40px;
@@ -101,6 +117,16 @@ pre{
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    animation: index-right-button 1.5s both ease;
+}
+
+@keyframes index-right-button {
+    0%{
+        left: 0%;
+    }
+    100%{
+        left: 50%;
+    }
 }
 
 .blog-common-header{

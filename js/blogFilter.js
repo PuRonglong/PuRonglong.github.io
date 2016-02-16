@@ -3,7 +3,6 @@ define(['jquery', 'angular'], function($, angular){
 
 	return puronglong.filter('blogListType', function(){
 		return function (data, type){
-			console.log(type);
 			var typeList = [], i, len;
 
 			if(data && type && type !== 'all'){
