@@ -138,24 +138,6 @@ pre{
     animation: in-content-up 0.5s both ease;
 }
 
-@keyframes out-rotate-fall {
-    0%{
-        transform: rotateZ(0deg);
-    }
-    20%{
-        transform: rotateZ(10deg);
-    }
-    40%{
-        transform: rotateZ(17deg);
-    }
-    60%{
-        transform: rotateZ(16deg);
-    }
-    100%{
-        transform: translateY(100%) rotateZ(17deg);
-    }
-}
-
 .main.ng-enter {
     opacity: 1;
     -webkit-animation: fade-in 1.7s ease;
@@ -199,31 +181,34 @@ pre{
 }
 
 .content{
+    max-width: 700px;
+}
+
+.blog-common-content{
+    position: relative;
     width: 80%;
     max-width: 700px;
     margin: 0 auto;
 }
 
 .content-main.ng-enter{
-     animation: in-content-up 0.5s ease;
+    position: absolute;
+    animation: in-content-up 0.5s ease;
 }
 
 .content-main.ng-leave{
-    animation: out-content-down 1.3s ease both;
+    animation: out-content-down 0.5s ease both;
 }
 
 @keyframes in-content-up {
     0%{
         transform: translateY(100%);
     }
-    100%{
-        transform: translateY(0%);
-    }
 }
 
 @keyframes out-content-down {
     100%{
-        transform: translateX(100%);
+        opacity: 0;
     }
 }
 
