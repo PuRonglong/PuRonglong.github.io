@@ -134,6 +134,54 @@ pre{
     width: 86px;
 }
 
+.blog-common-header.ng-enter{
+    animation: in-content-up 0.5s both ease;
+}
+
+@keyframes out-rotate-fall {
+    0%{
+        transform: rotateZ(0deg);
+    }
+    20%{
+        transform: rotateZ(10deg);
+    }
+    40%{
+        transform: rotateZ(17deg);
+    }
+    60%{
+        transform: rotateZ(16deg);
+    }
+    100%{
+        transform: translateY(100%) rotateZ(17deg);
+    }
+}
+
+.main.ng-enter {
+    opacity: 1;
+    -webkit-animation: fade-in 1.7s ease;
+    animation: fade-in 1.7s ease;
+    position: absolute;
+}
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+}
+
+.main.ng-leave {
+    -webkit-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    transform-origin: 0 0;
+    animation: round-to-left 1s ease;
+    z-index: 10;
+}
+@keyframes round-to-left {
+    to {
+        -webkit-transform: rotateZ(90deg);
+        transform: rotateZ(90deg);
+    }
+}
+
 .header-list{
     padding: 10px 0px;
     position: fixed;
@@ -154,6 +202,36 @@ pre{
     width: 80%;
     max-width: 700px;
     margin: 0 auto;
+}
+
+.content-main.ng-enter{
+     animation: in-content-up 0.5s ease;
+}
+
+.content-main.ng-leave{
+    animation: out-content-down 1.3s ease both;
+}
+
+@keyframes in-content-up {
+    0%{
+        transform: translateY(100%);
+    }
+    100%{
+        transform: translateY(0%);
+    }
+}
+
+@keyframes out-content-down {
+    100%{
+        transform: translateX(100%);
+    }
+}
+
+@keyframes out-rotate-disappear {
+    100%{
+        transform: scale(0.5);
+        opacity: 0;
+    }
 }
 
 .article{
