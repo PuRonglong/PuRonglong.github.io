@@ -1,7 +1,12 @@
+title: 在浏览器控制台输出字符画
+disc: 对于一张网页，我们有时能按F12打开浏览器控制台的时候看到输出的各种图案，下面说说我的了解过程吧~
+type: code
+url: 2016-2-19-console-ascii.md
+---------
 title: Github上都有哪些有用但不为大家熟知的小功能？
 disc: 有些小功能是从书中看到的，有些是自己结合使用的一些插件，目前共收集了十多个，分享给大家：
 type: code
-url: 2016-2-19-GitHub-unkown.md
+url: 2016-2-18-GitHub-unkown.md
 ---------
 title: Mac,Android,Google play
 disc: 记一次Mac连接Android和Google play电脑下载
