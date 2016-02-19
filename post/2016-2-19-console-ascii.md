@@ -14,7 +14,7 @@ share: true
 
 ![img](https://pic3.zhimg.com/1cf9e6a9a4ad685304f7ccc972e820b2_b.jpg)
 
-![img](https://pic1.zhimg.com/99c84da7266729fd2b42054502b60264_b.jpg)
+![img](https://pic4.zhimg.com/cb50f5c4257feedab7fae8d6d954e2c3_b.jpg)
 
 ![img](https://pic3.zhimg.com/dfd7a0cdcb452fbe3a582bbf548f8f62_b.jpg)
 
@@ -66,4 +66,4 @@ share: true
 
 OK，Nice
 
-控制台还能玩出好多花样，除了我们这里介绍的字符画，还可以显示图片，更高级的还有打游戏，比如贪吃蛇啊，2048啊，下次，我们接着聊~😄
+控制台还能玩出好多花样，除了我们这里介绍的字符画，还可以显示图片，可以是字符画动画，还能打游戏，比如贪吃蛇啊，2048啊，下次，我们接着聊~😄
