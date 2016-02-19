@@ -8,6 +8,11 @@ disc: 记一次Mac连接Android和Google play电脑下载
 type: code
 url: 2016-2-12-mac与android.md
 ---------
+title: 只用css能玩出什么花样？
+disc: 只用css能玩出什么花样?下面是自己整理的一些知识，分享一下:
+type: code
+url: 2016-2-11-只用css能玩出什么花样.md
+---------
 title: 《如何变得有思想》
 disc: 选择《如何变得有思想》作为书名，只是想挑一个醒目的名字，整本书其实是一本涉猎广泛的笔记体文集。好在全书的主题（或者说我人生的主题》还算集中，就是企图理解这个世界。
 type: life
