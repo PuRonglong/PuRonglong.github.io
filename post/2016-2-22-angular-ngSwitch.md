@@ -1,6 +1,6 @@
 layout: post
-title: angular养成记(1)——ng-switch
-description: "angular养成记(1)——ng-switch"
+title: angular养成记(一)ngSwitch
+description: "angular养成记(一)ngSwitch"
 tags: [代码]
 image:
 background: triangular.png
@@ -33,20 +33,20 @@ ngSwitch选择一组元素中的一个，当这个元素和表达式的值匹配
 * enter:ngSwitch的内容改变并且子元素进入的容器中的时候
 * leave:ngSwitch的内容改变并且在前一个内容被从DOM中移除之前
 
-demo，通过ng-switch-when进行视图切换：
+demo1，通过ng-switch-when进行视图切换：
 
 HTML:
 
-					<div class="view-container" ng-controller="viewController as view" ng-switch="view.current">
-			            <div class="view-page view-1" ng-switch-when="1">
-			                <input type="button" value="1" ng-click="view.current = '1'" />
-			                <input type="button" value="2" ng-click="view.current = '2'" />
-			            </div>
-			            <div class="view-page view-2" ng-switch-when="2">
-			                <input type="button" value="1" ng-click="view.current = '1'" />
-			                <input type="button" value="2" ng-click="view.current = '2'" />
-			            </div>
-			        </div>
+    <div class="view-container" ng-controller="viewController as view" ng-switch="view.current">
+        <div class="view-page view-1" ng-switch-when="1">
+            <input type="button" value="1" ng-click="view.current = '1'" />
+            <input type="button" value="2" ng-click="view.current = '2'" />
+        </div>
+        <div class="view-page view-2" ng-switch-when="2">
+            <input type="button" value="1" ng-click="view.current = '1'" />
+            <input type="button" value="2" ng-click="view.current = '2'" />
+        </div>
+    </div>
 
 
 CSS:
@@ -84,48 +84,53 @@ CSS:
 
 JS:
 
-					var myApp = angular.module('myApp', ['ui.router', 'ngAnimate']);
+        var myApp = angular.module('myApp', ['ui.router', 'ngAnimate']);
 
-					myApp.controller('viewController', function(){
-						this.current = '1';
-					});
+        myApp.controller('viewController', function(){
+            this.current = '1';
+        });
 
 
-demo，如果输入框的值和ng-switch-when匹配则显示：
+demo2，如果输入框的值和ng-switch-when匹配则显示：
 
 HTML:
 
-						  <div ng-controller="SomeController" ng-switch on="person">
-						    <input type="text" ng-model="person" />
-						    <h1 ng-switch-default>请输入</h1>
-						    <h1 ng-switch-when="puronglong">{{ person}}</h1>
-						  </div>
+    <div ng-controller="SomeController" ng-switch on="person">
+        <input type="text" ng-model="person" />
+        <h1 ng-switch-default>请输入</h1>
+        <h1 ng-switch-when="puronglong">{{ person}}</h1>
+    </div>
 
 
 JS:
 
-				var myApp = angular.module('myApp', []);
+    var myApp = angular.module('myApp', []);
 
-				myApp.controller('SomeController', function() {
-				  person = {};
-				});
-
-
+    myApp.controller('SomeController', function() {
+      person = {};
+    });
 
 
+上面看了基本用法以后，那么如果当两个```ng-switch-when```要显示的是同样的内容，这两个```ng-switch-when```可以合并吗？
 
+可以按照下面的demo3：
 
+HTML：
 
+	<select ng-model="status" ng-options="status for status in statusList"></select>
+    <p ng-switch ="(status == 'wrong') || (status == 'incorrect')">
+        <span ng-switch-when="true">
+            Wrong
+        </span>
+        <span ng-switch-default>
+           Correct
+        </span>
+    </p>
 
+JS：
 
+	function ctrl($scope){
+    	$scope.statusList=["incorrect","wrong","stuff"];
+	}
 
-
-
-
-
-
-
-
-
-
-
+通过在```ng-switch```中控制不同的状态而不是通过```ng-switch-when```来控制，就可以解决这个问题了
