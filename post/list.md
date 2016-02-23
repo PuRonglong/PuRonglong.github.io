@@ -1,3 +1,8 @@
+title: angular养成记(一)ngSwitch
+disc: 来聊聊angular中的ngSwitch
+type: code
+url: 2016-2-22-angular-ngSwitch.md
+---------
 title: 在浏览器控制台输出字符画
 disc: 对于一张网页，我们有时能按F12打开浏览器控制台的时候看到输出的各种图案，下面说说我的了解过程吧~
 type: code
