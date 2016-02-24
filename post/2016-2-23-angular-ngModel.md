@@ -118,6 +118,69 @@ HTML:
 
 用```ng-pattern```匹配一个正则表达式，当input输入框为empty的时候，输入框的背景是绿色，输入非纯数字时样式为```.myinput.ng-invalid```，
 
+demo4，联系上次说到的ng-switch，stackoverflow上有个问题说，当在ng-switch里有一个ng-model，可是在console.log这个ng-model的值的时候打不出来，这个问题还是有价值的，这里说一下，他的代码如下：
+
+HTML：
+
+	<div ng-controller="Ctrl">
+		<select ng-model="selection" ng-options="item.type for item in items">
+		</select>
+		<tt>selection={{selection}}</tt>
+		<hr/>
+		<div>
+			<ul>
+			  <li ng-repeat="op in options"><a style="line-height: 13px;" title="{{op.title}}" tabindex="-1" href ng-click="selectSearchType(op)">{{op.title}}</a></li>
+			</ul>
+		</div>
+
+		<span class="pew"  ng-switch on="searchType.type" >
+			<div class="pew" ng-switch-when="title1">Settings Div</div>
+			<span class="pew"  ng-switch-when="title2"><input ng-model="test" placeholder="pre" type="text" />{{test}}</span>
+			<span class="pew"  ng-switch-default>default</span>
+		</span>
+		<button ng-click="actionme()">click</button>
+	</div>
+
+JS：
+
+	function Ctrl($scope) {
+	  $scope.items = [{'type' : 'settings'}, {'type':'home'}, {'type':'other'}];
+	  $scope.selection = $scope.items[0];
+
+	  $scope.options = [
+	    {'title' : 'Title1', 'label' : 'Zip code', 'type' : 'xxx' },
+	    {'title' : 'Title2', 'label' : 'MD', 'type' : 'title1'},
+	    {'title' : 'Title3', 'label' : 'DMS', 'type' : 'title2'}
+	];
+
+	  $scope.test = '';
+	  $scope.searchType = $scope.options[0];
+
+	  $scope.selectSearchType = function(op){
+	    $scope.searchType = op;
+	  };
+
+	  $scope.actionme = function(){
+	    console.log('value is:' + $scope.test);
+	    // alert($scope.test);
+	  };
+	}
+
+原来是ng-switch创建了他自己的作用域。所以事实上是在ng-switch里创建了一个子作用域。在ngSwitch指令下的作用域中存在另一个test原型。当点击按钮想要打印父作用域的原型时，实际上子作用域上的改变不能change父作用域上的原型。
+
+ng-model里的是子作用域的原型，而想要打印的是父作用域的原型，所以会出现```noting is binded for the scope attribute $scope.test```
+
+解决方法：
+
+方法一：
+
+	<input ng-model="test.value" placeholder="pre" type="text" />
+	$scope.test={value:''}
+
+方法二：
+
+	<input ng-model="$parent.test" placeholder="pre" type="text" />
+
 
 
 
