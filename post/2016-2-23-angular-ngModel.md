@@ -118,7 +118,9 @@ HTML:
 
 用```ng-pattern```匹配一个正则表达式，当input输入框为empty的时候，输入框的背景是绿色，输入非纯数字时样式为```.myinput.ng-invalid```，
 
-demo4，联系上次说到的ng-switch，stackoverflow上有个问题说，当在ng-switch里有一个ng-model，可是在console.log这个ng-model的值的时候打不出来，这个问题还是有价值的，这里说一下，他的代码如下：
+demo4:
+
+联系上次说到的```ng-switch```，```stackoverflow上```有个问题说，当在ng-switch里有一个ng-model，可是在console.log这个ng-model的值的时候打不出来，这个问题还是有价值的，这里说一下，他的代码如下：
 
 HTML：
 
@@ -166,7 +168,7 @@ JS：
 	  };
 	}
 
-原来是ng-switch创建了他自己的作用域。所以事实上是在ng-switch里创建了一个子作用域。在ngSwitch指令下的作用域中存在另一个test原型。当点击按钮想要打印父作用域的原型时，实际上子作用域上的改变不能change父作用域上的原型。
+原来是ng-switch创建了他自己的作用域。所以事实上是在ng-switch里创建了一个子作用域。在ngSwitch指令下的作用域中存在另一个test原型。当input中输入value然后点击按钮想要打印父作用域的原型时，实际上子作用域上的改变不能change父作用域上的原型。
 
 ng-model里的是子作用域的原型，而想要打印的是父作用域的原型，所以会出现```noting is binded for the scope attribute $scope.test```
 
