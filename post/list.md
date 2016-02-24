@@ -1,10 +1,10 @@
-title: angular养成记(一)ngModel
-disc: 来聊聊angular中的ngModel
+title: angular养成记(二)ngModel
+disc: 聊聊angular中的ngModel
 type: code
 url: 2016-2-23-angular-ngModel.md
 ---------
 title: angular养成记(一)ngSwitch
-disc: 来聊聊angular中的ngSwitch
+disc: 聊聊angular中的ngSwitch
 type: code
 url: 2016-2-22-angular-ngSwitch.md
 ---------
