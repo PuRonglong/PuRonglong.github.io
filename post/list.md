@@ -1,6 +1,11 @@
+title: 《岛上书店》
+disc: 无人为孤岛；一书一世界
+type: life
+url: 2016-2-25-岛上书店.md
+---------
 title: 《看海的人》
-disc: 聊聊angular中的ngModel
-type: code
+disc: 是啊，我是在看大海。
+type: life
 url: 2016-2-25-看海的人.md
 ---------
 title: angular养成记(二)ngModel
