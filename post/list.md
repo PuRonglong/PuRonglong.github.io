@@ -1,3 +1,8 @@
+title: 《看海的人》
+disc: 聊聊angular中的ngModel
+type: code
+url: 2016-2-25-看海的人.md
+---------
 title: angular养成记(二)ngModel
 disc: 聊聊angular中的ngModel
 type: code
