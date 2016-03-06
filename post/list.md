@@ -1,3 +1,8 @@
+title: 《参与感》
+disc: 本书是了解小米文化的入门书籍
+type: life
+url: 2016-2-29-参与感.md
+---------
 title: 《岛上书店》
 disc: 无人为孤岛；一书一世界
 type: life
