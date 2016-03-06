@@ -62,6 +62,10 @@ CSS:
 	  box-shadow: 0.85em -0.55em rgba(225, 20, 98, 0.75), -0.85em 0.55em rgba(111, 202, 220, 0.75);
 	}
 
+如下：
+
+![img](./images/article/2016-3-6/5.png)
+
 width和height两个属性决定两点大小，box-shadow决定两点位置和颜色，总共这两个点有三个位置四种状态，分别是这三个位置，
 
 ![img](./images/article/2016-3-6/2.png)
