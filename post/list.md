@@ -3,6 +3,11 @@ disc: 讨论看到的一个loading动效
 type: code
 url: 2016-3-6-css-loading.md
 ---------
+title: gulp常用方法
+disc: 理一理gulp的一些常用方法
+type: code
+url: 2016-3-4-gulp.md
+---------
 title: 《参与感》
 disc: 本书是了解小米文化的入门书籍
 type: life
