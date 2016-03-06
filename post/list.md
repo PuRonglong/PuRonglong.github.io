@@ -1,4 +1,4 @@
-title: CSS3-loading
+title: css3制作loading
 disc: 讨论看到的一个loading动效
 type: code
 url: 2016-3-6-css-loading.md
