@@ -1,5 +1,5 @@
 title: CSS3-loading
-disc: 讨论最近看到的一个loading动效
+disc: 讨论看到的一个loading动效
 type: code
 url: 2016-3-6-css-loading.md
 ---------
