@@ -1,3 +1,8 @@
+title: HTML+CSS九宫格
+disc: 使用 HTML+CSS 实现如图布局，border-widht 5px，一个格子大小是 50*50，hover时候边框变为红色
+type: code
+url: 2016-3-8-css-margin.md
+---------
 title: css3制作loading
 disc: 讨论看到的一个loading动效
 type: code

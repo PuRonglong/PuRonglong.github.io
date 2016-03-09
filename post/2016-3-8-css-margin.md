@@ -22,10 +22,12 @@ share: true
 
 这时候就要用到神奇的margin负值啦，对每一个li的上和左加一个border宽度的margin负值，如下：
 
-	margin-top: -5px;
-	margin-left: -5px;
+	li{
+		margin-top: -5px;
+		margin-left: -5px;
+	}
 
-看起来很美好
+看起来很美好，如下：
 
 ![img](./images/article/2016-3-8/1.png)
 
@@ -35,13 +37,13 @@ share: true
 
 想到为什么了吗？
 
-因为我们对每个li赋予了margin的负值，然后每个li都会往相应的方向移动5px，解决了border的问题，但是添加一个hover样式后：
+因为我们对每个li赋予了margin的负值，然后每个li都会往相应的方向移动5px，解决了border的问题，但是添加hover样式：
 
 	li a:hover{
 		border-color: red;
 	}
 
-hover的时候让border变为红色，这一步没有错，但是如上图所示中的8，实际上它的右边框是变为红色了的，只是我们的margin-left: -5px让右边9方格往左移动了5px，刚好盖住了8的右边框，看起来这里像是8的右边框的这个边框，实际上是9的左边框，我们hover的是8，所以9的边框当然不会变色了。
+hover的时候让border变为红色，这一步没有错，以九宫格所示的8号格为例，实际上它的右边框是变为红色了的，只是我们的margin-left: -5px让右边方格9往左移动了5px，刚好盖住了8的右边框，看起来这里像是8的右边框的这个未变色边框，实际上是9的左边框，我们hover的是8，所以9的边框当然不会变色了。
 
 知道是位置造成的视觉差，那么我们在位置上下工夫咯~
 
@@ -56,7 +58,7 @@ absolute是脱离文档流的，用在这里肯定会出问题，而relative是�
         position:relative;
     }
 
-来来来，试试
+来来来，试试。
 
 ![img](./images/article/2016-3-8/4.png)
 
@@ -64,9 +66,13 @@ O(∩_∩)O哈哈~，加上一个left更能看的清楚一些：
 
 ![img](./images/article/2016-3-8/5.png)
 
+可以在这里看实际例子：
+
 [关于这个css九宫格的demo地址](http://codepen.io/puronglong/pen/eZZgVN?editors=1100)
 
-margin的负值还是挺有用的，常用的比如还可以用来实现多列等高的布局需求，padding补偿法
+上面的例子中我们用到了margin的负值。
+
+margin的负值还是挺有用的，常用的比如还可以用来实现多列等高的布局需求，所称的padding补偿法。
 
 首先把列的padding-bottom设为一个足够大的值，再把列的margin-bottom设一个与前面的padding-bottom的正值相抵消的负值，父容器设置超出隐藏
 
@@ -76,7 +82,8 @@ margin的负值还是挺有用的，常用的比如还可以用来实现多列�
 
 我们可以看到，左右不等高的时候左列会有空窗。使用margin-bottom负值如下：
 
-	.left{ float:left; width:150px; background:#B0B0B0;
+	.left{
+	  float:left; width:150px; background:#B0B0B0;
 	  padding-bottom: 2000px;
 	  margin-bottom: -2000px;
 	}
@@ -88,5 +95,7 @@ margin的负值还是挺有用的，常用的比如还可以用来实现多列�
 显示效果：
 
 ![img](./images/article/2016-3-8/7.png)
+
+可以在这里看实际例子：
 
 [css-margin负值-多列等高](http://codepen.io/puronglong/pen/MyyJad?editors=1100)
