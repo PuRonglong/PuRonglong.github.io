@@ -1,3 +1,8 @@
+title: 围观人机大战
+disc: 观李世石 VS AlphaGo围棋大战直播
+type: code
+url: 2016-3-9-人机大战.md
+---------
 title: HTML+CSS九宫格
 disc: 使用 HTML+CSS 实现如图布局，border-widht 5px，一个格子大小是 50*50，hover时候边框变为红色
 type: code
@@ -12,6 +17,11 @@ title: gulp常用方法
 disc: 理一理gulp的一些常用方法
 type: code
 url: 2016-3-4-gulp.md
+---------
+title: 微信小活动
+disc: 记一次微信小活动
+type: code
+url: 2016-3-2-你是大咖.md
 ---------
 title: 《参与感》
 disc: 本书是了解小米文化的入门书籍
