@@ -99,3 +99,5 @@ margin的负值还是挺有用的，常用的比如还可以用来实现多列�
 可以在这里看实际例子：
 
 [css-margin负值-多列等高](http://codepen.io/puronglong/pen/MyyJad?editors=1100)
+
+并且给原本没有width的元素使用margin负值的时候，其实它的宽度是会增加的。通常的使用场景是图文混排时，每行最后一个元素的margin值如何处理？使用margin负值。
