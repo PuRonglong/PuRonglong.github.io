@@ -1,6 +1,6 @@
 title: 围观人机大战
 disc: 观李世石 VS AlphaGo围棋大战直播
-type: code
+type: life
 url: 2016-3-9-人机大战.md
 ---------
 title: HTML+CSS九宫格
