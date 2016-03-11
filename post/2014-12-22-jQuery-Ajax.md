@@ -52,25 +52,26 @@ Ajax主要有以下几点**不足之处**：
 
 5、另外，像其他方面的一些问题，比如说违背了url和资源定位的初衷。例如，我给你一个url地址，如果采用了ajax技术，也许你在该url地址下面看到的和我在这个url地址下看到的内容是不同的。这个和资源定位的初衷是相背离的。
 
-## 6.2Ajax的XMLHttpRequest对象
+## 6.2 Ajax的XMLHttpRequest对象
 
 Ajax的核心是XMLHttpRequest对象，它是Ajax实现的关键——发送异步请求，接收相应及执行回调都是通过它来完成的。
 
-## 6.3安装Web环境——AppServ
+## 6.3 安装Web环境——AppServ
 
 文中安装的是AppServ，我自己电脑上用的是nginx
 
-## 6.4编写第一个Ajax例子
+## 6.4 编写第一个Ajax例子
 
 主要讲解了一个用传统JavaScript实现的Ajax例子。
 
-## 6.5jQuery中的Ajax
+## 6.5 jQuery中的Ajax
 
 jQuery中，jQuery对Ajax操作进行了**封装**，提供了多个与AJAX有关的方法。通过这些方法，能够使用HTTP Get和HTTP Post从远程服务器上请求文本，HTML,XML或JSON-同时我们能把这些外部数据直接载入网页的被选元素中。
 
-在jQuery中$.ajax()方法属于最底层的方法，第2层是load(),$.get()和$.post()方法，第三层是$.getScript()和$.getJSON()方法。
+在jQuery中```$.ajax()```方法属于最底层的方法，第2层是load()，```$.get()```和```$.post()```方法，第三层是```$.getScript()```和```$.getJSON()```方法。
 
 ### 6.5.1
+
 **jQuery $.load() 方法**
 
 结构：load(url[,data][,callback])
@@ -98,12 +99,13 @@ $.get() 方法通过 HTTP GET 方法来进行异步请求
 下面的例子使用$.get()方法从服务器上的一个文件中取回数据：
 
 	$(function(){
-					$.get('test.txt', function(data,status) {
-						alert("数据："+data+"\n状态："+status);
-					}); //$.get() 的第一个参数是我们希望请求的 URL。
-						// 第二个参数是回调函数。第一个回调参数存有被请求页面的内容，第二个回调参数存有请求的状态。
-						//而且回调函数只有在数据成功返回(success)后才被调用，这点与load()方法不一样。
-					})
+		$.get('test.txt', function(data,status) {
+			alert("数据："+data+"\n状态："+status);
+		}); 
+		//$.get() 的第一个参数是我们希望请求的 URL。
+		// 第二个参数是回调函数。第一个回调参数存有被请求页面的内容，第二个回调参数存有请求的状态。
+		//而且回调函数只有在数据成功返回(success)后才被调用，这点与load()方法不一样。
+	})
 
 ### $.post()方法
 
@@ -125,7 +127,7 @@ $.post(URL,data,callback);
 
 但在此期间报错了，后来找到原因：Apache、IIS、Nginx等绝大多数web服务器，都不允许静态文件响应POST请求，网上找到的资料：[http://blog.csdn.net/haitun312366/article/details/8241350](http://blog.csdn.net/haitun312366/article/details/8241350)，貌似需要修改nginx的相关配置。
 
-## 6.5.3$.getScript()方法和$.getJson()方法
+## 6.5.3 ```$.getScript()```方法和```$.getJson()```方法
 
 ### 1.$.getScript()方法
 
@@ -149,7 +151,7 @@ $.post(URL,data,callback);
 
 ### 2.$.getJSON() 方法
 
-$.getJSON()方法用于加载JSON文件，与$.getScript()方法的用法相同:
+```$.getJSON()```方法用于加载JSON文件，与```$.getScript()```方法的用法相同:
 
 	$(function(){
 			$('#send').click(function(event) {
@@ -160,13 +162,14 @@ $.getJSON()方法用于加载JSON文件，与$.getScript()方法的用法相同:
 		})
 
 ### 6.5.4 $.ajax()方法
+
 $.ajax()方法是最底层的Ajax实现
 
 结构为:$.ajax(options)
 
 该方法只有一个参数，但在这个对象里包含了$.ajax()方法所需要的请求设置以及回调函数等信息，参数以key/value的形式存在，所有参数都是可选的.
 
-前面用到的$.load(),$.get(),$.post().$.getScript和$.getJSON()这些方法，都是基于$.ajax()方法构建的，$.ajax()方法是jQuery最底层的Ajax实现，因此可以用它来代替前面的所有方法。
+前面用到的```$.load()```，```$.get()```，```$.post()```，```$.getScript```和```$.getJSON()```这些方法，都是基于```$.ajax()方法构建的```，$.ajax()方法是jQuery最底层的Ajax实现，因此可以用它来代替前面的所有方法。
 
 下面是一个简单的Ajax请求的例子：
 
@@ -210,17 +213,17 @@ $.ajax()方法是最底层的Ajax实现
 下面来看一下jQuery中的Ajax全局事件。jQuery简化Ajax操作不仅体现在调用Ajax方法和处理响应方面，而且还体现在对调用Ajax方法的过程中的HTTP请求的控制。通过jQuery提供的一些自定义全局函数，能够为各种与Ajax相关的事件注册回调函数。例如当Ajax请求开始时，会触发ajaxStart()方法的回调函数；当Ajax请求结束时，会触发ajaxStop()方法的回调函数。这些方法都是全局的方法，因此无论创建它们的代码位于何处，只要有Ajax()请求发生，就会触发它们。
 
 	$(function(){
-					$("#loading").ajaxStart(function(){
-						$(this).show();
-					});
-					$("#loading").ajaxStop(function(){
-						$(this).hide();
-					});
-					$.get('test.txt', function(data,status) {
-							alert("数据："+data+"\n状态："+status);
-							// console.log(123);
-						}); 
-					})
+		$("#loading").ajaxStart(function(){
+			$(this).show();
+		});
+		$("#loading").ajaxStop(function(){
+			$(this).hide();
+		});
+		$.get('test.txt', function(data,status) {
+				alert("数据："+data+"\n状态："+status);
+				// console.log(123);
+			}); 
+		})
 
 除了ajaxStart()和ajaxStop()，还有另外几个方法：
 
@@ -229,14 +232,15 @@ $.ajax()方法是最底层的Ajax实现
 期间关于ajaxSend()遇到些问题，记录下来：
 
 	$(document).ready(function(){
-	                $("#div1").ajaxSend(function(){
-	                alert(123);
-	              });
-	                  $("button").click(function(){
-	                    $("#div1").load("here.html");
-	              });
-	            });//上面定义$("#div1").ajaxSend(function(){});事件不在任何一下onClick事件中。
-				//如果发生了全局事件的重复定义，在本例中也就是每一个onClick事件中都定义一次全局事件$("#div1").ajaxSend(function(){});的话，那么，该全局事件会增加执行次数，而不是覆盖前面的定义
+            $("#div1").ajaxSend(function(){
+            	alert(123);
+          });
+            $("button").click(function(){
+                $("#div1").load("here.html");
+          });
+        });
+        //上面定义$("#div1").ajaxSend(function(){});事件不在任何一下onClick事件中。
+		//如果发生了全局事件的重复定义，在本例中也就是每一个onClick事件中都定义一次全局事件$("#div1").ajaxSend(function(){});的话，那么，该全局事件会增加执行次数，而不是覆盖前面的定义
 
 是在这里找到的相关资料：[http://zhina123.blog.163.com/blog/static/41789578201211931319529/](http://zhina123.blog.163.com/blog/static/41789578201211931319529/)
 
@@ -327,21 +331,21 @@ jQuery中提供了serialize()方法，作用于一个jQuery对象，将DOM元素
 转换器指的也是新型的回调函数。转换器在服务器以预期之外的数据类型发送响应数据时调用。可以在回调函数中采取相应的措施，转换数据类型或者引入自己的数据类型。转换器保存在ajaxSetting中，可以全局添加。
 
 	({
-					converters:{
-						"text mydatatype":function(textValue){
-							if (valid(textValue)) {
-								if (valid(textValue)) {
-									//some logic
-									return mydatatypeValue;
-								}
-								else{
-									//indicate parse-error
-									throw exceptionObject;
-								}
-							};
+			converters:{
+				"text mydatatype":function(textValue){
+					if (valid(textValue)) {
+						if (valid(textValue)) {
+							//some logic
+							return mydatatypeValue;
 						}
-					}
-				})
+						else{
+							//indicate parse-error
+							throw exceptionObject;
+						}
+					};
+				}
+			}
+		})
 
 可以用转换器创建自定义数据类型(数据类型必须采用小写字母)。    如果观察前一个程序清单中的典型转换器，就可以请求类型为mydatatype的数据，如:
 
