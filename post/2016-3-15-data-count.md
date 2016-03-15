@@ -244,7 +244,173 @@ XAxis里的data就是x轴的数据，这里要注意的而是Y轴的数据并不
 以上，就能生成我们的echarts图表了，并能实时监控图表变化。
 
 ![img](./images/article/2016-3-15/4.png)
+
+通过左上的输入框可以选择横坐标的的间隔值，当输入框里的值改变时，视图也实时改变，思路是给这个input绑定一个ng-model="photo.recentPhoto"，在js文件中设置一个默认值
+
+    $scope.photo = {
+        recentPhoto : 20
+    }
+
+然后进行监听：
+
+$scope.$watch('photo', function(newVal, oldVal){
+    if(newVal != oldVal && newVal.recentPhoto !== old.rencentPhoto){
+        if (!newVal.recentPhoto || newVal.recentPhoto < 1 || newVal.recentPhoto > $scope.no) {
+                return;
+            }
+        qjcPicCount($scope.photo.recentPhoto);
+    }
+})
+
+以上，监听这个输入框里的值，如果有所变化，则把新值传入要执行的函数中，如果这个值大于获取的最大值或小于1的话，直接return。
+
+那么我们要执行的函数是什么呢？当然了，这个函数里要执行的操作就是我们需要通过接口获取到的x轴和y轴的数据，然后把这个值传给我们html文件的echarts的配置文件里的```photo_result_x```和```photo_result_y```
+
+    xAxis : [
+        {
+            name : '最近视频期数',
+            type : 'category',
+            data : {{photo_result_x}},
+            nameTextStyle : {fontSize:15},
+        }
+    ],
+    series : [
+        {
+            name:'上传图片数',
+            smooth: true,
+            type:'line',
+            data:{{photo_result_y}}
+        }
+
+要执行的函数：
+
+    function qjcPicCount(num) {
+
+        $http.get("/svc/dakatongji/getNewestActivity").success(function (data) {
+
+            $scope.no = data.result.no;
+            $http.get("/svc/dakatongji/qjcPicCount?num=" + num).success(function (data) {
+
+                var details = data.result.details;
+                utilsService.formatDataByNo(details, $scope.no, $scope.photo.recentPhoto);
+                var rs = utilsService.getFormatData(details, "no");
+                var ls = utilsService.getFormatData(details, "count");
+
+                $scope.photo_result_x = rs;
+                $scope.photo_result_y = ls;
+
+            }).error(function (data, status) {
+                console.log("qjcPicCount in error");
+            });
+
+        }).error(function (data, status) {
+            console.log("qjcPicCount in error");
+        });
+    }
+
+具体返回的接口格式可以看接口文档，也可以在chrome调试工具里network下点击返回的js文件，在下面的preview可以查看到。
+
+![img]()
+
+上面的```utilsService.getFormatData```是对获取数据进行的格式的一个处理，然后再把处理过后我们需要的格式的数据传给x轴和y轴：
+
+    $scope.photo_result_x = rs;
+    $scope.photo_result_y = ls;
+
+但是后来会发现有一个问题，什么问题呢？我们看上面的代码可以知道，当我们每次切换数据的时候，视图都会去加载新传入的数据，而如果这个数据是我们之前就加载过的，其实这样的数据没有必要重新加载，但它还是加载了，这样会造成数据切换很慢，特别是有大量数据的时候，频繁切换就不行了。所以我们可以把这部分的数据存起来，下次再遇到这个数据就不会重新去加载了，直接从存起来的数据里面去取。
+
+所以我们可以先设置两个数组，分别用于缓存x轴和y轴的数据
+
+    //数据缓存
+    var picDataCacheX = {};
+    var picDataCacheY = {};
+
+然后函数里也做一些调整：
+
+    function qjcPicCount(num) {
+
+        if(picDataCacheX[num] && picDataCacheY[num]){
+            $scope.photo_result_x = picDataCacheX[num];
+            $scope.photo_result_y = picDataCacheY[num];
+            return;
+        }
+
+        $http.get("/svc/dakatongji/getNewestActivity").success(function (data) {
+
+            $scope.no = data.result.no;
+            $http.get("/svc/dakatongji/qjcPicCount?num=" + num).success(function (data) {
+
+                var details = data.result.details;
+                utilsService.formatDataByNo(details, $scope.no, $scope.photo.recentPhoto);
+                var rs = utilsService.getFormatData(details, "no");
+                var ls = utilsService.getFormatData(details, "count");
+
+                picDataCacheX[num] = rs;
+                picDataCacheY[num] = ls;
+
+                $scope.photo_result_x = rs;
+                $scope.photo_result_y = ls;
+
+            }).error(function (data, status) {
+                console.log("qjcPicCount in error");
+            });
+
+        }).error(function (data, status) {
+            console.log("qjcPicCount in error");
+        });
+    }
+
+
+就是在获取到数据，并对数据格式化处理以后，将x轴的数据存入到```picDataCacheX[num]```将y轴的数据存入```picDataCacheY[num]```，然后进入函数后，首先判断这两个数组有没有值，如果有的话就直接把数据传给x和y轴，然后return。这样，就不用再去请求了。
+
 ![img](./images/article/2016-3-15/5.png)
 ![img](./images/article/2016-3-15/6.png)
 ![img](./images/article/2016-3-15/7.png)
+
+上面使用了ui-bootstrap：
+
+![img]()
+
+通过tabset标签进行tab页的切换：
+
+    <tabset class="tab-container">
+        <tab>
+            <tab-heading>
+                查询用户资料
+            </tab-heading>
+            <table class="table table-striped m-b-none">
+            </table>
+        </tab>
+
+        <tab>
+            <tab-heading>
+                用户评论详情
+            </tab-heading>
+            <div class="panel panel-default text-center">
+                <div class="panel-heading" style="background-color: #3d89cc;color: #fff;font-size: 20px">
+                    用户评论详情
+                </div>
+                <div class="table-responsive">
+                    <div ng-grid="gridOptions" style="min-height:420px;"></div>
+                </div>
+            </div>
+        </tab>
+
+        <tab>
+            <tab-heading>
+                用户交作业详情
+            </tab-heading>
+            <div class="panel panel-default text-center">
+                <div class="panel-heading" style="background-color: #3d89cc;color: #fff;font-size: 20px">
+                    用户交作业详情
+                </div>
+                <div class="table-responsive">
+                    <div ng-grid="gridOptionsHomework" style="min-height:420px;"></div>
+                </div>
+            </div>
+        </tab>
+    </tabset>
+
+我们可以看到tabset标签下的每一个tab都是一个视窗，通过点击就可以切换，tab-heading是每个视窗的标题。但是这是0.xx.xx版本的使用，新版本的ui-bootstrap已经使用uib-tabset来替代tabset，uib-tab来替代tab了
+
 ![img](./images/article/2016-3-15/8.png)
