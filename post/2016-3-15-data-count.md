@@ -32,25 +32,25 @@ share: true
 
 首先在项目中引入echarts文件：
 
-	js/libs/echarts-all.js
+    js/libs/echarts-all.js
 
 创建并引入一个ui-echarts文件：
 
-	js/angualr/ui-echarts.js
+    js/angualr/ui-echarts.js
 
 上面这个文件就是我们需要写的指令所在处。
 
 我们的HTML文件是这样的：
 
-	<div class = "col-xs-12">
-		<div e-chart ui-option = "{
+    <div class = "col-xs-12">
+        <div e-chart ui-option = "{
 
-		}"</div>
-	</div>
+        }"</div>
+    </div>
 
 这个e-chart指令就是我们要调用的指令，ui-option里面是我们的echarts配置，多次调试后配了一个好看点的：
 
-	{
+    {
         color: ['#23B7E5'],//系列颜色
         title:{//图表标题
             text:'视频投票数',
@@ -145,12 +145,12 @@ share: true
 
 指令的名字按照angular的规则来：
 
-	angular.modul('ui.echarts', []).directive('eChart', [function(){
-		return {
-			restrict: 'A',
-			link: link
-		};
-	}]);
+    angular.modul('ui.echarts', []).directive('eChart', [function(){
+        return {
+            restrict: 'A',
+            link: link
+        };
+    }]);
 
 restrict: 'A'告诉angular这个指令在DOM中以属性的形式被声明。
 
@@ -158,37 +158,37 @@ link：用来创建可以操作DOM的指令，这里是我们定义的一个link
 
 完整是这样：
 
-	angular.module('ui.echarts', []).directive('eChart', [function () {
+    angular.module('ui.echarts', []).directive('eChart', [function () {
 
-	    function link($scope, element, attrs) {
+        function link($scope, element, attrs) {
 
-	        // 基于准备好的dom，初始化echarts图表
-	        var myChart = echarts.init(element[0]);//实例化一个eCharts对象
+            // 基于准备好的dom，初始化echarts图表
+            var myChart = echarts.init(element[0]);//实例化一个eCharts对象
 
-	        //监听options变化
-	        if (attrs.uiOptions) {
-	            attrs.$observe('uiOptions', function () {//监控uiOptions属性
-	                var options = $scope.$eval(attrs.uiOptions);//执行当前作用域下的表达式
-	                if (angular.isObject(options)) {
-	                    myChart.setOption(options, true);
-	                }
-	            }, true);
-	        }
-	    }
+            //监听options变化
+            if (attrs.uiOptions) {
+                attrs.$observe('uiOptions', function () {//监控uiOptions属性
+                    var options = $scope.$eval(attrs.uiOptions);//执行当前作用域下的表达式
+                    if (angular.isObject(options)) {
+                        myChart.setOption(options, true);
+                    }
+                }, true);
+            }
+        }
 
-	    return {
-	        restrict: 'A',
-	        link: link
-	    };
-	}]);
+        return {
+            restrict: 'A',
+            link: link
+        };
+    }]);
 
 一步一步说明一下：
 
-	var myChart = echarts.init(element[0]);
+    var myChart = echarts.init(element[0]);
 
 这是echarts文档给出的图表实例化方法，在这里我们实例化了这么一个echarts对象，但是在我们的表格中，我们提供了功能按钮用于不同类型的数据的选择，就是说我们的数据是会改变的，所以一开始获取到数据以后展现出图表，但是在数据变化的时候我们需要图表跟着变化，而我们的数据就是我们HTML文件里ui-option="{}"下X和Y轴的数据：
 
-	xAxis : [
+    xAxis : [
         {
             name : '最近视频期数',
             type : 'category',
@@ -215,7 +215,7 @@ XAxis里的data就是x轴的数据，这里要注意的而是Y轴的数据并不
 
 我们知道是```ui-option```里的这些数据在变化了，那么我们就要监听```ui-option```的变化。
 
-	function link($scope, element, attrs) {
+    function link($scope, element, attrs) {
 
         // 基于准备好的dom，初始化echarts图表
         var myChart = echarts.init(element[0]);//实例化一个eCharts对象
@@ -233,7 +233,7 @@ XAxis里的data就是x轴的数据，这里要注意的而是Y轴的数据并不
 
 上面attrs参数代表实例属性，是一个由定义在元素上的属性组成的标准化列表，
 
-	if (attrs.uiOptions)//如果我们定义的ui-option这个属性存在的话，执行下步
+    if (attrs.uiOptions)//如果我们定义的ui-option这个属性存在的话，执行下步
 
 ```$observe```是属性对象上的方法，它是用来监控DOM属性上的值的变化，它仅用在指令内部，当你需要在指令内部监控包含有插值表达式的DOM属性的时候，就要用到这个方法。
 
@@ -241,9 +241,11 @@ XAxis里的data就是x轴的数据，这里要注意的而是Y轴的数据并不
 
 ```angular.isObject```判断给定的对象是否为object类型。
 
-以上，就能生成我们的echarts图表了，并能实时监控图表变化。
+以上，就能生成我们的echarts图表了。
 
 ![img](./images/article/2016-3-15/4.png)
+
+下面我们要给它添加一个功能。
 
 通过左上的输入框可以选择横坐标的的间隔值，当输入框里的值改变时，视图也实时改变，思路是给这个input绑定一个ng-model="photo.recentPhoto"，在js文件中设置一个默认值
 
@@ -253,14 +255,14 @@ XAxis里的data就是x轴的数据，这里要注意的而是Y轴的数据并不
 
 然后进行监听：
 
-$scope.$watch('photo', function(newVal, oldVal){
-    if(newVal != oldVal && newVal.recentPhoto !== old.rencentPhoto){
-        if (!newVal.recentPhoto || newVal.recentPhoto < 1 || newVal.recentPhoto > $scope.no) {
-                return;
-            }
-        qjcPicCount($scope.photo.recentPhoto);
-    }
-})
+    $scope.$watch('photo', function(newVal, oldVal){
+        if(newVal != oldVal && newVal.recentPhoto !== old.rencentPhoto){
+            if (!newVal.recentPhoto || newVal.recentPhoto < 1 || newVal.recentPhoto > $scope.no) {
+                    return;
+                }
+            qjcPicCount($scope.photo.recentPhoto);
+        }
+    })
 
 以上，监听这个输入框里的值，如果有所变化，则把新值传入要执行的函数中，如果这个值大于获取的最大值或小于1的话，直接return。
 
@@ -310,7 +312,7 @@ $scope.$watch('photo', function(newVal, oldVal){
 
 具体返回的接口格式可以看接口文档，也可以在chrome调试工具里network下点击返回的js文件，在下面的preview可以查看到。
 
-![img]()
+![img](./images/article/2016-3-15/10.png)
 
 上面的```utilsService.getFormatData```是对获取数据进行的格式的一个处理，然后再把处理过后我们需要的格式的数据传给x轴和y轴：
 
@@ -319,7 +321,7 @@ $scope.$watch('photo', function(newVal, oldVal){
 
 但是后来会发现有一个问题，什么问题呢？我们看上面的代码可以知道，当我们每次切换数据的时候，视图都会去加载新传入的数据，而如果这个数据是我们之前就加载过的，其实这样的数据没有必要重新加载，但它还是加载了，这样会造成数据切换很慢，特别是有大量数据的时候，频繁切换就不行了。所以我们可以把这部分的数据存起来，下次再遇到这个数据就不会重新去加载了，直接从存起来的数据里面去取。
 
-所以我们可以先设置两个数组，分别用于缓存x轴和y轴的数据
+所以我们可以先设置两个对象，分别用于缓存x轴和y轴的数据
 
     //数据缓存
     var picDataCacheX = {};
@@ -361,7 +363,7 @@ $scope.$watch('photo', function(newVal, oldVal){
     }
 
 
-就是在获取到数据，并对数据格式化处理以后，将x轴的数据存入到```picDataCacheX[num]```将y轴的数据存入```picDataCacheY[num]```，然后进入函数后，首先判断这两个数组有没有值，如果有的话就直接把数据传给x和y轴，然后return。这样，就不用再去请求了。
+就是在获取到数据，并对数据格式化处理以后，将x轴的数据存入到```picDataCacheX[num]```，将y轴的数据存入```picDataCacheY[num]```，然后进入函数后，首先判断这两个对象有没有值，这两个对象的num属性的值就是我们传入的数组数据，如果有的话就直接把数据传给x和y轴，然后return。这样，就不用再去请求了。
 
 ![img](./images/article/2016-3-15/5.png)
 ![img](./images/article/2016-3-15/6.png)
@@ -369,9 +371,9 @@ $scope.$watch('photo', function(newVal, oldVal){
 
 上面使用了ui-bootstrap：
 
-![img]()
+![img](./images/article/2016-3-15/9.png)
 
-通过tabset标签进行tab页的切换：
+使用ui-bootstrap可以通过tabset标签进行tab页的切换：
 
     <tabset class="tab-container">
         <tab>
