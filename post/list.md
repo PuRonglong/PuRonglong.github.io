@@ -1,3 +1,8 @@
+title: 数据统计系统
+disc: 总结数据统计系统开发
+type: code
+url: 2016-3-15-data-count.md
+---------
 title: 围观人机大战
 disc: 观李世石 VS AlphaGo围棋大战直播
 type: life
