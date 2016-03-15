@@ -327,7 +327,7 @@ XAxis里的data就是x轴的数据，这里要注意的而是Y轴的数据并不
     var picDataCacheX = {};
     var picDataCacheY = {};
 
-然后函数里也做一些调整：
+然后函数里也做一些调整，如下：
 
     function qjcPicCount(num) {
 
@@ -366,10 +366,61 @@ XAxis里的data就是x轴的数据，这里要注意的而是Y轴的数据并不
 就是在获取到数据，并对数据格式化处理以后，将x轴的数据存入到```picDataCacheX[num]```，将y轴的数据存入```picDataCacheY[num]```，然后进入函数后，首先判断这两个对象有没有值，这两个对象的num属性的值就是我们传入的数组数据，如果有的话就直接把数据传给x和y轴，然后return。这样，就不用再去请求了。
 
 ![img](./images/article/2016-3-15/5.png)
-![img](./images/article/2016-3-15/6.png)
-![img](./images/article/2016-3-15/7.png)
 
-上面使用了ui-bootstrap：
+下面这种数据形式：
+
+![img](./images/article/2016-3-15/6.png)
+
+这个表格使用了```angular ui grid```
+
+![img](./images/article/2016-3-15/11.png)
+
+HTML如下：
+
+    <div ng-grid="gridOptions" style="min-height:420px;"></div>
+
+对```ui grid```进行配置：
+
+    $scope.gridOptions = {
+        data: 'myData',
+        columnDefs: $scope.columnDefs,
+        enablePaging: true,
+        showFooter: true,
+        rowHeight:60,
+        pagingOptions: $scope.pagingOptions,
+        filterOptions: $scope.filterOptions,
+        totalServerItems: 'totalServerItems',
+        multiSelect: false,
+        i18n: 'zh_cn'
+    };
+
+这里data自然是我们要返回的数据了。
+
+```pagingOptions```配置如下：
+
+    $scope.pagingOptions = {
+        pageSizes: [10, 20, 50],
+        pageSize: 10,
+        currentPage: 1
+    };
+
+```pageSize```数组是我们可以设置每一个页可以展示多少条数据，下面是默认值，currentPage表明默认显示第几页。
+
+columnDefs是我们表格的格式和样式：
+
+    $scope.columnDefs = [
+        {field: 'name', displayName: '图片', cellTemplate: '<div style="width: 110px;margin: 0 auto;"><img style="width: 100%;margin-left:10px;" src="{{row.entity.picUrl}}" /></div>'},
+        {field: 'create_date', displayName: '创建时间', cellTemplate: "<span>{{row.entity.create_date}}</span>"},
+        {field: 'end_date', displayName: '结束时间', cellTemplate: '<span>{{row.entity.end_date}}</span>'},
+        {field: 'plat_times', displayName: '播放量', cellTemplate: '<span>{{row.entity.play_times}}</span>'},
+        {field: 'total', displayName: '评论数', cellTemplate: '<span>{{row.entity.total}}</span>'},
+    ];
+
+```multiSelect```声明是否可以多选，否则只能选择一行。
+
+下面这个表格使用了ui-bootstrap：
+
+![img](./images/article/2016-3-15/7.png)
 
 ![img](./images/article/2016-3-15/9.png)
 
@@ -413,6 +464,8 @@ XAxis里的data就是x轴的数据，这里要注意的而是Y轴的数据并不
         </tab>
     </tabset>
 
-我们可以看到tabset标签下的每一个tab都是一个视窗，通过点击就可以切换，tab-heading是每个视窗的标题。但是这是0.xx.xx版本的使用，新版本的ui-bootstrap已经使用uib-tabset来替代tabset，uib-tab来替代tab了
+我们可以看到tabset标签下的每一个tab都是一个视窗，通过点击就可以切换，tab-heading是每个视窗的标题。但是这是0.xx.xx版本的使用，新版本的ui-bootstrap已经使用uib-tabset来替代tabset，uib-tab来替代tab了。
+
+echarts还有好处就是图形形式切换比较方便：通过点击右上角的柱形选项就可以把线性图转变为柱形图了。
 
 ![img](./images/article/2016-3-15/8.png)
