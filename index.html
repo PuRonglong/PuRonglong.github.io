@@ -18,17 +18,18 @@
             <div class="fe"></div>
         </div>
         <div ui-view class="main" ui-view-index></div>
+        <script src="http://cdn.bootcss.com/jquery/2.2.1/jquery.js"></script>
         <script type="text/javascript">
 
-            function load(){
-                var loadContent = document.getElementById('loading');
-
-                loadContent.style.display = "none";
-            }
+//            function load(){
+//                var loadContent = document.getElementById('loading');
+//
+//                loadContent.style.display = "none";
+//            }
 
             window.onload = function(){
 
-                setTimeout("load()", 300);
+                $('#loading').fadeOut();
 
             };
 
@@ -39,6 +40,7 @@
                 document.title = document.hidden ? '崩溃了，来看一下':'小龙龙的个人博客~'
             });
         </script>
+
         <script data-main="js/blogInit.js" src="http://cdn.bootcss.com/require.js/2.1.22/require.min.js" type="text/javascript" charset="utf-8" async defer></script>
     </body>
 </html>
