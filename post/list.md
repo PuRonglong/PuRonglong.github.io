@@ -1,5 +1,5 @@
 title: 数据统计系统
-disc: 总结数据统计系统开发
+disc: 总结一次数据统计系统页面开发——angular
 type: code
 url: 2016-3-15-data-count.md
 ---------
