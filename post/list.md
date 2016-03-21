@@ -1,3 +1,8 @@
+title: js稀疏数组
+disc: 看到这样一个题：如何不使用loop循环，创建一个长度为100的数组，并且每个元素的值等于它的下标？
+type: code
+url: 2016-3-21-js-array.md
+---------
 title: 数据统计系统
 disc: 总结一次数据统计系统页面开发——angular
 type: code
