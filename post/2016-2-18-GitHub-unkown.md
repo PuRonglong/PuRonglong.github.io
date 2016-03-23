@@ -20,7 +20,7 @@ share: true
 
 并且一天固定时间更新一波，
 
-![img](https://p.ssl.qhimg.com/t018aa9fe7b3aec78b9.png)
+![img](./images/article/2016-2-18/1.png)
 
 2.
 
