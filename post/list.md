@@ -1,3 +1,8 @@
+title: Mac下Mongodb的启动
+disc: 在启动Monggodb服务的过程中，失败了几次，看到有别的同学也遇到了相同的问题，开此一贴以示说明。
+type: code
+url: 2016-4-2-mongodb.md
+---------
 title: js稀疏数组
 disc: 看到这样一个题：如何不使用loop循环，创建一个长度为100的数组，并且每个元素的值等于它的下标？
 type: code
