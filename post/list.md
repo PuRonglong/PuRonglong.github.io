@@ -3,6 +3,11 @@ disc: 在启动Monggodb服务的过程中，失败了几次，看到有别的同
 type: code
 url: 2016-4-2-mongodb.md
 ---------
+title: jade模板引擎
+disc: 关于jade模板引擎的一些使用和总结
+type: code
+url: 2016-3-31-jade.md
+---------
 title: js稀疏数组
 disc: 看到这样一个题：如何不使用loop循环，创建一个长度为100的数组，并且每个元素的值等于它的下标？
 type: code
