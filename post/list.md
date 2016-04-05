@@ -1,7 +1,12 @@
 title: 用css实现Mac键帽
 disc: 今天在网上查找资料的时候，看到一篇博文里在介绍按键说明的时候，使用了图像来说明键位，而不是常见的符号，使用图像无疑给人的体验更好，于是研究了一下
 type: code
-url: 2016-4-2-css-keyboard.md
+url: 2016-4-5-css-keyboard.md
+---------
+title: vim笔记
+disc: vim笔记
+type: code
+url: 2016-4-3-vim.md
 ---------
 title: Mac下Mongodb的启动
 disc: 在启动Monggodb服务的过程中，失败了几次，看到网上有别的同学也遇到了相同的问题，开此一贴以示说明。
