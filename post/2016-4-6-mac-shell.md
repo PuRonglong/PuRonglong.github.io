@@ -116,7 +116,7 @@ oh-my-zsh:
 
 通过load presets选择安装的配色主题。
 
-![img](./images/article/2016-4-6/5.png)
+![img](./images/article/2016-4-6/5.jpeg)
 
 10:
 
