@@ -10,6 +10,8 @@ share: true
 
 >当使用系统自带的终端使用多了的时候，你会体会到许多不便之处，比如自动补全不够完善，比如界面单调，老早就知道iterm2+oh my zsh的组合，但知道看到一个别人的界面漂亮的不行，才终于打动我也更换成这样的搭配。
 
+主要配置：```iTerm2 + zsh + oh-my-zsh + agnoster```
+
 先来看看那幅打动我的漂亮的命令行是什么样的吧~
 
 ![img](./images/article/2016-4-6/1.png)
@@ -148,21 +150,23 @@ oh-my-zsh:
 
 2）执行指令将工程克隆到当前目录
 
-git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
+    git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
 
 3）打开.zshrc文件，在最后添加下面内容
 
-source XXX/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source XXX/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 保存文件。
 
 注意：xxx代表.zshrc所在目录
 
-4）cd ~/.oh-my-zsh/custom/plugins
+4）
+
+    cd ~/.oh-my-zsh/custom/plugins
 
 5）再次打开.zshrc文件，在最后面添加下面内容
 
-plugins=(zsh-syntax-highlighting)
+    plugins=(zsh-syntax-highlighting)
 
 完成以上以后基本上已经使用上iterm2 + oh-my-zsh了。
 
@@ -180,9 +184,9 @@ Mac OSX的ls是没有颜色的，需要设置。
 
 2、在.bash_profile里添加下面两个语句：
 
-export CLICOLOR=1
+    export CLICOLOR=1
 
-export LSCOLORS=1212121212121212121212
+    export LSCOLORS=1212121212121212121212
 
 3、LSCOLORS的具体设置看下面：
 
@@ -262,7 +266,7 @@ x     default foreground or background (透明)
 
 可是看着看着还是有点不习惯的地方就是命令行前面的前缀太长了。
 
-在终端里面当前行会显示 username@FirstName-LastnamedeMacBook-Pro ~$
+在终端里面当前行会显示```username@FirstName-LastnamedeMacBook-Pro ~$```
 
 这里的username是当先登陆的用户名，@后面是机器名称，~是当前路径。我都用的是自己的全称puronglong，这样前缀就太长了。看着也烦，早就想去掉了。
 
