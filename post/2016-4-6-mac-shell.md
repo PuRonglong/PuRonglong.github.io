@@ -286,3 +286,7 @@ x     default foreground or background (透明)
 在.zshsrc中添加这一行，引号里面要填的是你的用户名。
 
 通过以上种种，最后终于用上干净整洁功能更完善的命令行了。
+
+看看新效果：
+
+![img](./images/article/2016-4-6/6.png)
