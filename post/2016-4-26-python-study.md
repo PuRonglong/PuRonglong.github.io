@@ -156,3 +156,141 @@ from..import：
 返回当前模块的属性列表
 
 使用列表：
+
+	shoplist = ['apple', 'mango', 'carrot', 'banana']
+
+	shoplist.append()，shoplist.sort()，del shoplist[0]
+
+使用元组：
+
+	zoo = ('wolf', 'elephant', 'penguin')
+
+	len(zoo)，zoo[2]
+
+含有0个或1个项目的元组。一个空的元组由一对空的圆括号组成,如myempty=()。然而,含有单个元素的元组就不那么简单了。你必须在第一个(唯一一个)项目后跟一个逗号,这样Python才能区分元组和表达式中一个带圆括号的对象。即如果你想要的是一个包含项目2的元组的时候,你应该指明singleton=(2 , )。
+
+使用元组输出：
+
+	age = 22
+	name = 'Swaroop'
+	print '%s is %d years old' % (name, age)
+	print 'Why is %s playing with that python?' % name
+
+定制可以是%s表示字符串或%d表示整数。元组必须按照相同的顺序来对应这些定制。
+
+使用字典：
+
+	ab = { 'Swaroop' : 'swaroopch@byteofpython.info',
+	'Larry' : 'larry@wall.org',
+	'Matsumoto' : 'matz@ruby-lang.org',
+	'Spammer' : 'spammer@hotmail.com'
+	}
+	print "Swaroop's address is %s" % ab['Swaroop']
+
+	ab['Guido'] = 'guido@python.org'
+	del ab['Spammer']
+
+	for name, address in ab.items():
+	print 'Contact %s at %s' % (name, address)
+
+使用序列：
+
+	shoplist = ['apple', 'mango', 'carrot', 'banana']
+
+Python从0开始计数。
+
+索引同样可以是负数,在那样的情况下,位置是从序列尾开始计算的。因此,shoplist[-1]表示序列的最后一个元素而shoplist[-2]抓取序列的倒数第二个项目。
+
+切片操作符中的第一个数(冒号之前)表示切片开始的位置,第二个数(冒号之后)表示切片到哪里结束。如果不指定第一个数,Python就从序列首开始。如果没有指定第二个数,则Python会停止在序列尾。注意,返回的序列从开始位置开始,刚好在结束位置之前结束。即开始位置是包含在序列切片中的,而结束位置被排斥在切片外。
+
+你可以用负数做切片。负数用在从序列尾开始计算的位置。例如,shoplist[:-1]会返回除了最后一个项目外包含所有项目的序列切片。
+
+对象与参考：
+
+如果你想要复制一个列表或者类似的序列或者其他复杂的对象(不是如整数那样的简单对象),那么你必须使用切片操作符来取得拷贝。
+
+备份脚本——版本一：
+
+	time.strftime()
+
+	zip
+
+备份脚本——版本二：
+
+改变的部分主要是使用os.exists函数检验在主备份目录中是否有以当前日期作为名称的目录。如果没有,我们使用os.mkdir 函数创建。
+
+备份脚本——版本三(不工作!)：
+
+记住我们可以使用物理行尾的反斜杠来表示逻辑行在下一物理行继续。所以,我们修正了程序。这被称为修订。
+
+备份脚本——版本四：
+
+这个程序现在工作了!让我们看一下版本三中作出的实质性改进。我们使用raw_input函数得到用户的注释,然后通过len函数找出输入的长度以检验用户是否确实输入了什么东西。如果用户只是按了回车(比如这只是一个惯例备份,没有做什么特别的修改),那么我们就如之前那样继续操作。
+然而,如果提供了注释,那么它会被附加到zip归档名,就在.zip扩展名之前。注意我们把注释中的空格替换成 下划线——这是因为处理这样的文件名要容易得多。
+
+创建一个类：
+
+使用class语句后跟类名,创建一个新的类。这下面跟着一个缩进的语句块形成类体。
+
+使用对象的方法：
+
+	class Person:
+		def sayHi(self):
+			print 'Hello, how are you?'
+	p = Person()
+	p.sayHi()
+
+这里我们看到了self的用法。注意sayHi方法没有任何参数,但仍然在函数定义时有self。
+
+使用init方法：
+
+	class Person:
+		def __init__(self, name):
+			self.name = name
+		def sayHi(self):
+			print 'Hello, my name is', self.name
+	p = Person('Swaroop')
+	p.sayHi()
+
+最重要的是,我们没有专门调用init方法,只是在创建一个类的新实例的时候,把参数包括在圆括号内跟在类名后面,从而传递给init方法。这是这种方法的重要之处。
+
+使用类与对象的变量：
+
+	class Person:
+		population = 0
+		
+		def __init__(self, name):
+			self.name = name
+			print '(Initializing %s.)' % self.name
+			Person.population += 1
+
+		def __del__(self):
+			print '%s say bye.' % self.name
+
+			Person.population -= 1
+
+			if Person.population == 0 :
+				print 'del: I am the last one.'
+			else:
+				print 'There are still %d people.' % Person.population
+
+		def sayHi(self):
+			print '%s say Hi.' % self.name
+
+		def howMany(self):
+			if Person.population == 1:
+				print 'howMany: I am the last one.'
+			else:
+				print 'We have %d persons here.' % Person.population
+
+	Tom = Person('Tom')
+	Tom.sayHi()
+	Tom.howMany()
+
+	Bob = Person('Bob')
+	Bob.sayHi()
+	Bob.howMany()
+
+这是一个很长的例子,但是它有助于说明类与对象的变量的本质。这里,population属于Person类,因此是一个类的变量。name变量属于对象(它使用self赋值)因此是对象的变量。
+观察可以发现init方法用一个名字来初始化Person实例。在这个方法中,我们让population增加1,这是因为我们增加了一个人。同样可以发现,self.name的值根据每个对象指定,这表明了它作为对象的变量的本质。
+
