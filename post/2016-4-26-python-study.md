@@ -294,3 +294,84 @@ Python从0开始计数。
 这是一个很长的例子,但是它有助于说明类与对象的变量的本质。这里,population属于Person类,因此是一个类的变量。name变量属于对象(它使用self赋值)因此是对象的变量。
 观察可以发现init方法用一个名字来初始化Person实例。在这个方法中,我们让population增加1,这是因为我们增加了一个人。同样可以发现,self.name的值根据每个对象指定,这表明了它作为对象的变量的本质。
 
+使用继承：
+
+	class SchoolMember:
+		'''Represents any school member.'''
+		def __init__(self, name, age):
+			self.name = name
+			self.age = age
+			print '(Initialized SchoolMember: %s)' % self.name
+		def tell(self):
+			'''Tell my details.'''
+			print 'Name:"%s" Age:"%s"' % (self.name, self.age),
+
+	class Teacher(SchoolMember):
+		'''Represents a teacher.'''
+		def __init__(self, name, age, salary):
+			SchoolMember.__init__(self, name, age)
+			self.salary = salary
+			print '(Initialized Teacher: %s)' % self.name
+		def tell(self):
+			SchoolMember.tell(self)
+			print 'Salary: "%d"' % self.salary
+	class Student(SchoolMember):
+		'''Represents a student.'''
+		def __init__(self, name, age, marks):
+			SchoolMember.__init__(self, name, age)
+			self.marks = marks
+			print '(Initialized Student: %s)' % self.name
+		def tell(self):
+			SchoolMember.tell(self)
+			print 'Marks: "%d"' % self.marks
+
+	t = Teacher('Mrs. Shrividya', 40, 30000)
+	s = Student('Swaroop', 22, 75)
+
+	print # prints a blank line
+	members = [t, s]
+	for member in members:
+		member.tell() # works for both Teachers and Students
+
+注意,在我们使用SchoolMember类的tell方法的时候,我们把Teacher和Student的实例仅仅作为SchoolMember的实例。
+
+使用文件：
+
+	f = file('poem.txt', 'w') # open for 'w'riting
+	f.write(poem) # write text to file
+	f.close() # close the file
+	f = file('poem.txt')
+	# if no mode is specified, 'r'ead mode is assumed by default while True:
+	line = f.readline()
+	if len(line) == 0: # Zero length indicates EOF
+		break
+	print line,
+	# Notice comma to avoid automatic newline added by Python
+	f.close() # close the file
+
+我们通过指明我们希望打开的文件和模式来创建一个file类的实例。模式可以为读模式('r')、写模式('w')或追加模式('a')。
+
+在一个循环中,我们使用readline方法读文件的每一行。这个方法返回包括行末换行符的一个完整行。所以,当一个空的 字符串被返回的时候,即表示文件末已经到达了,于是我们停止循环。
+
+储存与取储存：
+
+	import cPickle as p #import pickle as p
+	shoplistfile = 'shoplist.data'
+	# the name of the file where we will store the object
+	shoplist = ['apple', 'mango', 'carrot']
+	# Write to the file
+	f = file(shoplistfile, 'w')
+	p.dump(shoplist, f) # dump the object to a file
+	f.close()
+
+	del shoplist # remove the shoplist
+	# Read back from the storage
+	f = file(shoplistfile)
+	storedlist = p.load(f)
+	print storedlist
+
+为了在文件里储存一个对象,首先以写模式打开一个file对象,然后调用储存器模块的dump函数,把对象储存到打开的文件中。这个过程称为储存。
+
+接下来,我们使用pickle模块的load函数的返回来取回对象。这个过程称为取储存 。
+
+处理异常：
