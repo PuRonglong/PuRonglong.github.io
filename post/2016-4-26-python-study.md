@@ -375,3 +375,45 @@ Python从0开始计数。
 接下来,我们使用pickle模块的load函数的返回来取回对象。这个过程称为取储存 。
 
 处理异常：
+
+	import sys
+
+	try:
+		s = raw_input('Enter something --> ')
+	except EOFError:
+		print '\nWhy did you do an EOF on me?'
+		sys.exit() # exit the program
+	except:
+		print '\nSome error/exception occurred.' # here, we are not exiting the program
+
+	print 'Done'
+
+我们把所有可能引发错误的语句放在try块中,然后在except从句/块中处理所有的错误和异常。except从句可以专门处理单一的错误或异常,或者一组包括在圆括号内的错误/异常。如果没有给出错误或异常的名称,它会处理所有的错误和异常。对于每个try从句,至少都有一个相关联的except从句。
+
+如何引发异常：
+
+这里,我们创建了我们自己的异常类型,其实我们可以使用任何预定义的异常/错误。这个新的异常类型是ShortInputException类。它有两个域——length是给定输入的长度,atleast则是程序期望的最小长度。
+
+使用sys.argv：
+
+在Python程序运行的时候,即不是在交互模式下,在sys.argv列表中总是至少有一个项目。它就是当前运行的程序名称,作为sys.argv[0]，因为Python从0开始计数。其他的命令行参数在这个项目之后。
+
+使用列表综合：
+
+	listone = [2, 3, 4]
+	listtwo = [2*i for i in listone if i > 2]
+	print listtwo
+
+这里我们为满足条件(if i > 2)的数指定了一个操作(2*i),从而导出一个新的列表。注意原来的列表并没有发生变化。
+
+使用 lambda 形式：
+
+	def make_repeater(n): 
+		return lambda s: s*n
+
+	twice = make_repeater(2)
+
+	print twice('word')
+	print twice(5)
+
+这里,我们使用了make_repeater函数在运行时创建新的函数对象,并且返回它。lambda语句用来创建函数对象。本质上,lambda需要一个参数,后面仅跟单个表达式作为函数体,而表达式的值被这个新建的函数返回。注意,即便是print语句也不能用在lambda形式中,只能使用表达式。
