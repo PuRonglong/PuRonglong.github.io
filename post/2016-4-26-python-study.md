@@ -64,6 +64,12 @@ share: true
 使用 while 语句：
 
 使用 for 语句：
+	
+	for i in range(1, 5): print i
+	else:
+	print 'The for loop is over'
+
+我们所做的只是提供两个数,range返回一个序列的数。这个序列从第一个数开始到第二个数为止。例如,range(1,5)给出序列[1,2,3,4]。默认地,range的步长为1。如果我们为range提供第三个数,那么它将成为步长。例如,range(1,5,2)给出[1,3]。记住,range向上 延伸到第二个数,即它不包含第二个数。
 
 使用 break 语句：
 
