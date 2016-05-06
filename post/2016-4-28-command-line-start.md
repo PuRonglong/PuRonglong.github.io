@@ -8,7 +8,7 @@ comments: true
 share: true
 ---
 
-在命令行中启动某个应用，需要利用Alias来简化命令。比如要在命令行中启动sublime，如下操作：
+在命令行中启动某个应用，需要利用Alias来简化命令。Alias是一种函数，功能是设置命令的别名。比如要在命令行中启动sublime，如下操作：
 
 使用vim打开配置文件：
 
