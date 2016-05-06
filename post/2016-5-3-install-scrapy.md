@@ -10,7 +10,7 @@ share: true
 
 在安装scrapy的过程中遇到了一些问题记录一下。
 
-![img]()
+![img](./images/article/2016-5-3/1.png)
 
 进入命令行，执行：
 
@@ -18,7 +18,7 @@ share: true
 
 但是执行到最后的时候报错如下：
 
-![img]()
+![img](./images/article/2016-5-3/2.png)
 
 于是安装```xcode-select```
 
@@ -32,7 +32,7 @@ share: true
 
 但是执行完毕又报错：
 
-![img]()
+![img](./images/article/2016-5-3/3.png)
 
 执行：
 
@@ -116,6 +116,9 @@ ln source dist是产生一个连结(dist)到source，至于使用硬连结或软
 
 	　　--version : 显示版本
 
+
+ln是linux中一个非常重要命令，它的功能是为某一个文件在另外一个位置建立一个不同的链接，这个命令最常用的参数是-s，具体用法是：ln –s 源文件 目标文件。
+
 范例 :
 
 将档案yy产生一个symbolic link : zz
@@ -125,3 +128,5 @@ ln source dist是产生一个连结(dist)到source，至于使用硬连结或软
 将档案yy产生一个hard link : zz
 
 	ln yy xx
+
+linux通过链接文件能共享几乎所有类型的文件。
