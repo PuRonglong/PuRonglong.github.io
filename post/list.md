@@ -1,7 +1,22 @@
-title: 简明python教程
-disc: 简明python教程笔记
+title: 安装scrapy遇到的一些问题
+disc: 在安装scrapy的过程中遇到了一些问题记录一下。
 type: code
-url: 2016-4-26-python-study.md
+url: 2016-5-3-install-scrapy.md
+---------
+title: 命令行中的下载工具Axel
+disc: 下载工具我们一般使用迅雷，但是在linux这一类的系统上没有迅雷肿么办，这时候就可以使用我们的命令行下载工具了，如wget，axel等，前者是单线程的，而且不支持断点续传，所以推荐使用后者。当然了mac作为一款unix系统，和linux这样的类unix系统还是有很多共通之处，所以mac也可以使用。
+type: code
+url: 2016-5-2-axel.md
+---------
+title: Mac显示隐藏文件
+disc: Mac显示隐藏文件
+type: code
+url: 2016-5-1-axel.md
+---------
+title: 在命令行中启动某个应用
+disc: 在命令行中启动某个应用，需要利用Alias来简化命令。Alias是一种函数，功能是设置命令的别名。
+type: code
+url: 2016-4-28-command-line-start.md
 ---------
 title: 《三体(III)死神永生》
 disc: 严锋：《三体(III)》始于一个近乎琼瑶式的爱情故事，一个人为自己暗恋的对象买一颗遥远的星星，这故事是如此的寂寞无助，浪漫彻骨。最终，这颗星星将为无尽的黑暗森林带来一丝光亮，卑微绝望的单恋也将成为播撒宇宙的大爱。
