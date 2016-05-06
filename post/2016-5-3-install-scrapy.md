@@ -167,3 +167,8 @@ google出stackoverflow上一个回答解释了这个问题：
 推荐一个linux系统命令查询的网站：
 
 http://man.linuxde.net/
+
+有兴趣的可以参考这些文档：
+
+http://www.cnblogs.com/rwxwsblog/p/4557123.html?utm_source=tuicool&utm_medium=referral
+这个楼主安装的时候也是遇到了很多问题。
