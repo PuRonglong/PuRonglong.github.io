@@ -137,11 +137,11 @@ linux通过链接文件能共享几乎所有类型的文件。
 
 的时候，会收到这样的提示：
 
-![img](./images/article/2016-5-3/5.png)
+![img](./images/article/2016-5-3/4.png)
 
 google出stackoverflow上一个回答解释了这个问题：
 
-![img](./images/article/2016-5-3/6.png)
+![img](./images/article/2016-5-3/5.png)
 
 就是添加一个-H参数。
 
