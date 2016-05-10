@@ -59,6 +59,8 @@ urllib模块提供urlretrieve()函数。urlretrieve()方法直接将远程数据
 
 xrange()接受三个参数分别是start,stop和step（其中start和step是可选的，stop是必需的）
 
+range([start,] stop[, step])，根据start与stop指定的范围以及step设定的步长，生成一个序列。xrange 用法与 range 完全相同，所不同的是生成的不是一个list对象，而是一个生成器。要生成很大的数字序列的时候，用xrange会比range性能优很多，因为不需要一上来就开辟一块很大的内存空间。
+
 抓包利器Fiddler-fidder介绍：
 
 电脑与互联网之间的通信是通过不同的数据包收发来实现的。Fiddler可以从中间对数据进行拦截。拷贝一份数据后再将数据发送给目的端。同类的还有WireShark。
