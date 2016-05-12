@@ -1,5 +1,5 @@
 layout: post
-title: eautiful Soup笔记
+title: Beautiful Soup笔记
 description: "some note"
 tags: [代码]
 image:

@@ -1,3 +1,8 @@
+title: Beautiful Soup笔记
+disc: 我们前面提到过一个xpath，今天要讲的Beautifu lSoup作用类似，它是一个可以从HTML或XML文件中提取数据的Python库。
+type: code
+url: 2016-5-12-beautiful-soup.md
+---------
 title: python中的xlwt
 disc: 我们有时候会使用python对数据进行处理，而有些数据通常会存储在excel表中，有时候呢，又需要把网上获取的数据存储到excel中，下面来看看python中如何存储excel数据吧。
 type: code
