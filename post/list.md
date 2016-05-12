@@ -1,3 +1,8 @@
+title: python中的xlwt
+disc: 我们有时候会使用python对数据进行处理，而有些数据通常会存储在excel表中，有时候呢，又需要把网上获取的数据存储到excel中，下面来看看python中如何存储excel数据吧。
+type: code
+url: 2016-5-11-xlwt.md
+---------
 title: 《嫌疑人x的献身》
 disc: 究竟爱一个人，可以爱到什么地步？究竟什么样的邂逅，可以舍命不悔？逻辑的尽头，不是理性与秩序的理想国，而是用生命奉献的爱情
 type: life
