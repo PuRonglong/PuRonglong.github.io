@@ -1,3 +1,8 @@
+title: 好烦，好烦，好烦
+disc: 好烦，好烦，好烦。有好多事堆着堆着要做没做。
+type: life
+url: 2016-5-15-todo.md
+---------
 title: Beautiful Soup笔记
 disc: 我们前面提到过一个xpath，今天要讲的Beautifu lSoup作用类似，它是一个可以从HTML或XML文件中提取数据的Python库。
 type: code
