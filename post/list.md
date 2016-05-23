@@ -1,6 +1,6 @@
 title: 制作一款jekyll主题
 disc: 制作一款jekyll主题，也记录期间遇到的问题。
-type: life
+type: code
 url: 2016-5-15-todo.md
 ---------
 title: 使用FEED43制作你的RSS源
