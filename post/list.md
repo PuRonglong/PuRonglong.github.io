@@ -1,7 +1,7 @@
 title: 制作一款jekyll主题
 disc: 制作一款jekyll主题，也记录期间遇到的问题。
 type: code
-url: 2016-5-15-todo.md
+url: 2016-5-22-jekyll-theme.md
 ---------
 title: 使用FEED43制作你的RSS源
 disc: 想知道某些新闻或某人的博客是否有更新文章，可以用RSS订阅，这样每次只需要查看rss阅读器就可以了，可是如果对方的网站没有提供RSS订阅，就需要自己制作feed了。这就要用到工具FEED43
