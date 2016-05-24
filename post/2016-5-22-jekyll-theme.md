@@ -31,7 +31,9 @@ share: true
 
 首先我引入了bootstrap。
 
-添加```readmore```按钮功能，根目录下的index页做如下修改：
+**添加```readmore```按钮功能。**
+
+根目录下的index页做如下修改：
 
 	<ul class="post-list">
 	<!-- site.posts一个按照时间倒序的所有 Posts 的清单。 -->
@@ -53,7 +55,9 @@ share: true
 
 可以看到主要的一点是if判断我们post的文章是否含```<!-- more -->```，若是包含的话，就使用过滤器将我们文章内容split为两部分，并选取第一部分显示为post.content。
 
-添加分页功能，在添加分页功能之前需要先安装```jekyll-paginate```插件：
+**添加分页功能**
+
+在添加分页功能之前需要先安装```jekyll-paginate```插件：
 
 	gem install jekyll-paginate
 
@@ -127,3 +131,28 @@ share: true
 效果如下：
 
 ![img](./images/article/2016-5-22/3.png)
+
+**分类功能**
+
+每篇文章的开头类似这样：
+
+	---
+	layout: post
+	title:  "jekyll的使用1"
+	date:   2016-03-27
+	categories: jekyll update
+	---
+
+categories就是标签，在default.html添加如下：
+
+	<div class="pull-right right-sidebar">
+		<p>标签：</p>
+		{% for category in site.categories %}
+		<p><span class="text-info category-p">{{ category | first }}</span>
+		<span>{{ category | last | size }}</span></p>
+		{% endfor %}
+	</div>
+
+{{ category | first }}会获取到所有的分类
+
+{{ category | last | size }}显示每个分类下面的文章数量。
