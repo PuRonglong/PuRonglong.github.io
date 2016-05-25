@@ -145,5 +145,77 @@ share: true
 
 开头信息力的tags存放的就是文章的标签，我们要实现的功能是页面显示部分有文章列表和标签列表。当点击标签的时候，文章列表对应当前标签下的所有文章。
 
-jekyll的云标签有多种实现，我们先来看看第一种：
+jekyll的云标签有多种实现方法，先介绍第一种：
 
+在_includes文件夹里添加tag.html，然后在页面中将其include进来。页面效果如下：
+
+img1
+
+左边文章列表右边标签列表。左边的列表其实有两个，一个是所有文章的列表，也就是对应所有标签的文章列表，还有一个是不同类型的文章列表，我们先来看第一个列表：
+
+	<ul class="post-list" post-cate="all">
+	{% for post in site.posts %}
+		<li>
+			<h2>
+				<a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+			</h2>
+			<span class="post-meta">{{ post.date | date: "%Y-%m-%d" }}</span>
+			<span class="post-meta">all</span>
+			<span class="text-info pull-right">字数：{{ page.content | number_of_words }}</span>
+			{% if post.content contains '<!-- more -->' %}
+				{{ post.content | split:'<!-- more -->' | first %}}
+				<p class="readmore-p"><a class="btn btn-info" href="{{ post.url }}">Read more</a></p>
+			{% else %}
+				{{ post.content }}
+			{% endif %}
+		</li>
+	{% endfor %}
+	</ul>
+
+这是一个带有post-cate属性并且属性值为all的ul列表，for循环遍历所有的文章。第二个列表如下：
+
+	{% for tag in site.tags %}
+	<ul class="post-list" post-cate="{{ tag | first }}">
+		{% for posts in tag %}
+			{% for post in posts %}
+				{% if post.url %}
+					<li>
+						<h2>
+							<a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+						</h2>
+						<span class="post-meta">{{ post.date | date: "%Y-%m-%d" }}</span>
+						<span class="post-meta">{{ tag | first }}</span>
+						<span class="text-info pull-right">字数：{{ page.content | number_of_words }}</span>
+						{% if post.content contains '<!-- more -->' %}
+							{{ post.content | split:'<!-- more -->' | first %}}
+							<p class="readmore-p"><a class="btn btn-info" href="{{ post.url }}">Read more</a></p>
+						{% else %}
+							{{ post.content }}
+						{% endif %}
+					</li>
+				{% endif %}
+			{% endfor %}
+		{% endfor %}
+	</ul>
+	{% endfor %}
+
+这里的一个不同是ul是放在for循环里的，循环所有的标签，
+
+index.js中有一个函数：
+
+	function categoryDisplay(){
+		// show all
+		$('.home>ul[post-cate!=all]').hide();
+
+		// show tag post list when click tag link
+		$('.categary-p').click(function(){
+			var cate = $(this).attr('cate');
+
+			$('.home>ul[post-cate!=' + cate + ']').hide(250);
+			$('.home>ul[post-cate=' + cate + ']').show(400);
+		});
+	}
+
+初始时先将post-cate属性值不为all的ul隐藏掉，也就是将第二个列表隐藏掉，当我们点击某个标签的时候，获取到当前标签的标签属性值，如果ul的post-cate这个属性的值不是点击的标签，就将其隐藏，否则显示。
+
+通过这样两个列表和点击选择属性的方法实现博客的标签功能。
