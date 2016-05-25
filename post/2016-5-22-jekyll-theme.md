@@ -132,7 +132,7 @@ share: true
 
 ![img](./images/article/2016-5-22/3.png)
 
-**分类功能**
+**文章分类功能**
 
 每篇文章的开头类似这样：
 
@@ -140,19 +140,10 @@ share: true
 	layout: post
 	title:  "jekyll的使用1"
 	date:   2016-03-27
-	categories: jekyll update
+	tags: [jekyll, demo]
 	---
 
-categories就是标签，在default.html添加如下：
+开头信息力的tags存放的就是文章的标签，我们要实现的功能是页面显示部分有文章列表和标签列表。当点击标签的时候，文章列表对应当前标签下的所有文章。
 
-	<div class="pull-right right-sidebar">
-		<p>标签：</p>
-		{% for category in site.categories %}
-		<p><span class="text-info category-p">{{ category | first }}</span>
-		<span>{{ category | last | size }}</span></p>
-		{% endfor %}
-	</div>
+jekyll的云标签有多种实现，我们先来看看第一种：
 
-{{ category | first }}会获取到所有的分类
-
-{{ category | last | size }}显示每个分类下面的文章数量。
