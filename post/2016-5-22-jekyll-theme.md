@@ -239,7 +239,7 @@ index.js中有一个函数：
 		{% for post in posts %}
 			<li>
 
-如上，循环posts输出li，这个posts就是前面通过assign定义的posts，page变量是页面专属的信息。通过YAML头文件定义的信息都可以在这里被获取到，所以这个page.tag就是post所属的tag，site来自_config.yml文件，表示全站范围的信息+配置，site.tags表示所有该标签下的文章，所以```site.tags[page.tag]```表示该标签的所有文章。
+如上，循环posts输出li，这个posts就是前面通过assign定义的posts，page变量是页面专属的信息，通过YAML头文件定义的信息都可以在这里被获取到，所以这个page.tag就是post所属的tag，site来自_config.yml文件，表示全站范围的信息+配置，site.tags表示所有该标签下的文章，所以```site.tags[page.tag]```表示该标签的所有文章。
 
 通过如下的标签就能链接到每个tag的首页了。
 
