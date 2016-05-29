@@ -281,3 +281,34 @@ index.js中有一个函数：
 	overflow-x: auto;
 
 pre值表明空白会被浏览器保留。其行为方式类似HTML中的<pre>标签。```overflow-x: auto```让x轴过长时滚动显示。
+
+pygments插件对应的md文件中写如下：
+
+	 	{% highlight html %}
+		    def show
+		    @widget = Widget(params[:id])
+		    respond_to do |format|
+		        format.html # show.html.erb
+		        format.json { render json: @widget }
+		    end
+		    end
+	    {% endhighlight %}
+
+如果想要代码块简单一点可以如下写：
+
+	```js
+	function categoryDisplay(){
+		// show all
+		$('.home>ul[post-cate!=all]').hide();
+
+		// show tag post list when click tag link
+		$('.categary-p').click(function(){
+			var cate = $(this).attr('cate');
+
+			$('.home>ul[post-cate!=' + cate + ']').hide(250);
+			$('.home>ul[post-cate=' + cate + ']').show(400);$('.home>ul[post-cate=' + cate + ']').show(400);$('.home>ul[post-cate=' + cate + ']').show(400);
+		});
+	}
+	```
+
+但是这样写的话就需要不使用pygments，而使用rouge。修改以后同样需要修改css文件里的class名。
