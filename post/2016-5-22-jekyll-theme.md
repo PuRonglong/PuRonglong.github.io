@@ -254,3 +254,30 @@ index.js中有一个函数：
 2.在_config.yml文件中新建一个gems关键字，然后把要引用的插件用数组形式存储其中即可。
 
 这两种方法可以同时使用。
+
+**jekyll代码高亮：**
+
+我们写博客的时候经常会需要放代码，如果博文中的示例代码能够高亮显示，无疑会提升读者的阅读体验。那么看看jekyll中如何让代码高亮吧。
+
+要让代码高亮需要使用到代码高亮插件，插件的原理就是查找特定的节点，然后对其赋予特定的css，也就是“上色”。
+
+以```Pygments```为例：
+
+首先安装：
+
+	pip install Pygments
+
+在_config.yml文件中配置：
+
+	highlighter: pygments
+
+表明启用pygments进行代码高亮了，但光配置了还不行，还需要添加css代码，可以在pygments网站上查找想要的css配置，方法如下，打开网页：http://pygments.org/demo/3666780/ 右边可以选择样式，选择GO就可以看见效果，而此时打开浏览器调试，可以看见其中有一个pygments.css文件，下载下来，在项目中引用即可。
+
+我选用了一个monokai的style的css，如果没有效果的话，修改一下css里的class名就可以了。
+
+代码高亮可以了。可以我们还不满足，当一段代码太长的时候，让它显示滚动条比自动换行会方便阅读很多，于是对代码块添加一下属性：
+
+	pre code { white-space: pre }
+	overflow-x: auto;
+
+pre值表明空白会被浏览器保留。其行为方式类似HTML中的<pre>标签。```overflow-x: auto```让x轴过长时滚动显示。
