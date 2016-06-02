@@ -1,0 +1,8 @@
+<div class="pull-right right-sidebar">
+	<p>标签：</p>
+	{% for tag in site.tags %}
+	<p>
+	<a class="page-link" href="/tag/{{ tag | first }}">{{ tag | first }}</a>
+	<span>（{{ tag | last | size }}）</span></p>
+	{% endfor %}
+</div>

@@ -1,46 +1,78 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-    <head>
-        <meta charset="utf-8">
-        <meta name="description" content="蒲荣龙的个人博客">
-        <title>蒲荣龙的博客</title>
-        <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="http://7vznhl.com1.z0.glb.clouddn.com/css/style.min.css">
-        <link rel="icon" href="./favicon.png" type="image/png" sizes="32x32">
-        <!--<link rel="stylesheet" href="css/style.css">-->
-        <!--<link rel="stylesheet" href="css/zenburn.css">-->
-        <link rel="stylesheet" href="http://7vznhl.com1.z0.glb.clouddn.com/css/zenburn.min.css">
+---
+layout: default
+---
 
-    </head>
-    <body>
-        <div class="layout-loading" id="loading">
-            <div class="be"></div>
-            <div class="fe"></div>
-        </div>
-        <div ui-view class="main" ui-view-index></div>
-        <script src="http://cdn.bootcss.com/jquery/2.2.1/jquery.js"></script>
-        <script type="text/javascript">
+<div class="home">
+	<!-- 文章列表，paginator.posts是每一个分页的文章 -->
+	<ul class="post-list">
+	{% for post in paginator.posts %}
+		<li>
+			<h2>
+				<a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+			</h2>
+			<span class="post-meta">{{ post.date | date: "%Y-%m-%d" }}</span>
+			{% if post.content contains '<!-- more -->' %}
+				{{ post.content | split:'<!-- more -->' | first %}}
+				<p class="readmore-p"><a class="btn btn-info" href="{{ post.url }}">Read more</a></p>
+			{% else %}
+				{{ post.content }}
+			{% endif %}
+		</li>
+	{% endfor %}
+	</ul>
+	
+	<!-- 分页链接 -->
+	<div class="text-center">
+		<ul class="pagination">
+	        <li>
+	            <a href="/">
+	                <span>首页</span>
+	            </a>
+	        </li>
+	        <li>
+	        {% if paginator.page == 1 %}
+	            <li class="disabled"><span>&laquo;</span></li>
+	        {% else %}
+	            {% if paginator.previous_page == 1 %}
+	            <a href="/">
+	            {% else %}
+	            <a href="/page{{ paginator.previous_page }}">
+	            {% endif %}
+	                <span>&laquo;</span>
+	            </a>
+	        {% endif %}
+	        </li>
+	        {% for i in (1..paginator.total_pages) limit:9 offset:{{paginator.page-1}} %}
+	            {% if paginator.page == i %}
+	        <li class="active">
+	            {% else %}
+	        <li>
+	            {% endif %}
+	            {% if i == 1 %}
+	            <a href="/">{{i}}</a>
+	            {% else %}
+	            <a href="/page{{i}}">{{i}}</a>
+	            {% endif %}
+	        </li>
+	        {% endfor %}
+	        <li>
+	            {% if paginator.page == paginator.total_pages %}
+	            <li class="disabled"><span>&raquo;</span></li>
+	            {% else %}
+	            <a href="/page{{ paginator.next_page }}">
+	                <span>&raquo;</span>
+	            </a>
+	            {% endif %}
+	        </li>
+	        <li>
+	            <a href="/page{{paginator.total_pages}}">
+	                <span>末页</span>
+	            </a>
+	        </li>
+	        <li class="disabled">
+	            <span>第{{paginator.page}}页 / 共{{paginator.total_pages}}页</span>
+	        </li>
+		</ul>
+	</div>
 
-//            function load(){
-//                var loadContent = document.getElementById('loading');
-//
-//                loadContent.style.display = "none";
-//            }
-
-            window.onload = function(){
-
-                $('#loading').fadeOut();
-
-            };
-
-            var a = "\n                                   _                                         \n _ __  _   _ _ __ ___  _ __   __ _| | ___  _ __   __ _   ___  __ _ _   _   _ \n| '_ \\| | | | '__/ _ \\| '_ \\ / _` | |/ _ \\| '_ \\ / _` | / __|/ _` | | | | (_)\n| |_) | |_| | | | (_) | | | | (_| | | (_) | | | | (_| | \\__ \\ (_| | |_| |  _ \n| .__/ \\__,_|_|  \\___/|_| |_|\\__, |_|\\___/|_| |_|\\__, | |___/\\__,_|\\__, | (_)\n|_|                          |___/               |___/             |___/     \n          _                                                                  \n  /\\  /\\ (_)                                                                 \n / /_/ / | |                                                                 \n/ __  /  | |                                                                 \n\\/ /_/   |_|            😃";
-            console.info(a);
-
-            document.addEventListener('visibilitychange', function() {
-                document.title = document.hidden ? '崩溃了，来看一下':'小龙龙的个人博客~'
-            });
-        </script>
-
-        <script data-main="js/blogInit.js" src="http://cdn.bootcss.com/require.js/2.1.22/require.min.js" type="text/javascript" charset="utf-8" async defer></script>
-    </body>
-</html>
+</div>
