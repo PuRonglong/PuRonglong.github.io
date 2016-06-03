@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>蒲荣龙的博客</title>
+	<meta name="description" content="让我们先来看一道例题：">
+
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/code.css">
+	<link rel="canonical" href="http://localhost:4000/2015/06/16/JS%E4%BD%9C%E7%94%A8%E5%9F%9F%E8%A7%A3%E6%9E%90.html">
+	<link rel="alternate" type="application/rss+xml" title="blog" href="http://localhost:4000/feed.xml">
+</head>
+
+
+	<body>
+
+		<div class="pull-right right-sidebar">
+	<p>标签：</p>
+	
+	<p>
+	<a class="page-link" href="/tag/技术">技术</a>
+	<span>（64）</span></p>
+	
+	<p>
+	<a class="page-link" href="/tag/生活">生活</a>
+	<span>（35）</span></p>
+	
+</div>
+		
+		<div class="pull-left left-sidebar">
+			<ul class="header-list">
+				<li><a class="page-link" href="/">Home</a></li>
+				<li><a class="page-link" href="/about/">About</a></li>
+				<li><a class="page-link" href="/feed.xml">RSS</a></li>
+			</ul>
+		</div>
+		<div class="page-content">
+			<div class="wrapper">
+				<article class="post home" itemscope itemtype="http://schema.org/BlogPosting">
+
+	<header class="post-header">
+		<h1 class="post-title" itemprop="name headline">JS作用域解析</h1>
+		<p class="post-meta">2015-06-16</p>
+	</header>
+
+	<div class="post-content" itemprop="articleBody">
+		<p>让我们先来看一道例题：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+    <span class="kd">function</span> <span class="nx">a</span><span class="p">(){</span><span class="nx">alert</span><span class="p">(</span><span class="mi">2</span><span class="p">);}</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+    <span class="kd">function</span> <span class="nx">a</span><span class="p">(){</span><span class="nx">alert</span><span class="p">(</span><span class="mi">4</span><span class="p">);}</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<!-- more -->
+
+<p>实际上，在正式执行代码前，JS会有一个预解析的过程。那么这个预解析它要干什么呢？其实也就是我们平时见的诸如var,function等声明或者参数提前就是在这一部分进行的。即所谓的声明提前。</p>
+
+<p>对于<code class="highlighter-rouge">var a = 3;</code>这样的一个表达式其实是分为两部分的：var a;和a = 3;前者是一个声明，后者是一个表达式。根据声明提前的原则可知，我们来把声明都提前来看，是这样的:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">a</span><span class="p">;</span>
+    <span class="kd">function</span> <span class="nx">a</span><span class="p">(){</span><span class="nx">alert</span><span class="p">(</span><span class="mi">2</span><span class="p">);}</span>
+    <span class="kd">function</span> <span class="nx">a</span><span class="p">(){</span><span class="nx">alert</span><span class="p">(</span><span class="mi">4</span><span class="p">);}</span>
+</code></pre>
+</div>
+
+<p>既然有三个对于a的声明，那么究竟是哪一个呢？实际上在JS预解析的过程中，遇到重名的声明时，会只保留一个，哪一个呢？如果一个声明有值，另一个声明了但是没有赋值，那么会保留有值的那一个，如变量和函数重名了，就只留下函数，即上面代码前两个会保留第二个，而不是根据上下文顺序来进行保留，不信可以将var声明放到函数声明后面查看结果，什么时候根据上下文来解析呢？就是上面代码中的后两个的情况。</p>
+
+<p>综上可知，JS在预解析的过程中，a最终被声明为<code class="highlighter-rouge">function a(){alert(4);}</code>这样的一个函数，所以当预解析完成，代码开始执行的时候，弹出的第一个a的值是<code class="highlighter-rouge">function a(){alert(4);}</code></p>
+
+<p>这个时候代码实际上可以看成这个样子的：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kd">function</span> <span class="nx">a</span><span class="p">(){</span><span class="nx">alert</span><span class="p">(</span><span class="mi">4</span><span class="p">);}</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+    <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+    <span class="nx">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>预解析完毕就开始逐行解读代码了，而在执行的过程中遇到<code class="highlighter-rouge">a = 1;</code>这样的表达式的时候，执行表达式，a的值被改变。</p>
+
+<p>弄懂上面的过程，那么在面对例题的变型的时候也很清晰了，比如：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+    <span class="kd">function</span> <span class="nx">a</span><span class="p">(){</span><span class="nx">alert</span><span class="p">(</span><span class="mi">2</span><span class="p">);}</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+    <span class="kd">function</span> <span class="nx">a</span><span class="p">(){</span><span class="nx">alert</span><span class="p">(</span><span class="mi">4</span><span class="p">);}</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+
+    <span class="nx">a</span><span class="p">();</span>
+</code></pre>
+</div>
+
+<p>看起来似乎最后有一行对函数的调用，但通过上面的分析我们可以知道，这个时候，其实a已经不是一个函数了，那么它是什么呢？是上面最后表达式执行后的那个3，也就是说最后一行代码其实是执行这样：3();所以最后我们看见会浏览器报错了，提示<code class="highlighter-rouge">a is not a function</code>。通过typeof打出a的类型也是Number，得证。</p>
+
+<p>我们再来看下面这一段代码：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kd">function</span> <span class="nx">fn1</span><span class="p">(){</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">fn1</span><span class="p">();</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>同样的，先是JS的一个预解析，在这个过程中，a被声明，fn1函数被声明，然后才开始执行代码，a被修改，执行到函数调用的时候，运行函数里面的代码，这个时候，函数里又被看做成一个域，同样进行外面这样一个预解析然后执行代码的过程，此时alert(a);结果为undedined,然后a值被修改，需要注意的是这里的a值是一个局部的a值，所以对它的修改并不会影响到外面的a值，所以最后弹出a值的时候，结果依然为1。</p>
+
+<p>如果对上面的代码修改如下：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kd">function</span> <span class="nx">fn1</span><span class="p">(){</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+        <span class="nx">a</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">fn1</span><span class="p">();</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>去掉var，这个时候再来运行，前面执行都是一样的，当执行的函数调用的时候，函数里面没有对a的声明，找不到a了，那么这个时候怎么办呢？就会往上找，也就是如果在子级作用域中找不到会往父级作用域中查找，这样一个从子级作用域返回父级作用域的过程，就叫做作用域链，所以这个时候alert(a)会弹出一个1，然后执行表达式a = 2;没有用var声明，所以这里是对全局变量a的一个修改，a的最终结果为2</p>
+
+<p>下面我们再来对上面的代码进行一个变型，如下</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kd">function</span> <span class="nx">fn1</span><span class="p">(</span><span class="nx">a</span><span class="p">){</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+        <span class="nx">a</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">fn1</span><span class="p">();</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>这里我们给函数传入了一个参数，而参数本质上就是一个局部变量，只是这个时候参数没有值，未定义，所以alert()的时候是undedined,然后修改了函数里面a的值，外部的a并没有改变，最后alert(a)的时候结果为1。</p>
+
+<p>我们再来对上面代码进行变型如下：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kd">function</span> <span class="nx">fn1</span><span class="p">(</span><span class="nx">a</span><span class="p">){</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+        <span class="nx">a</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">fn1</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>当进行函数调用的时候，这时有参数进来了，是a，那么这个a的值，是来自于全局，在读取参数的过程中，进行了赋值，参数也是个表达式，可以改变值的。没有传参的时候看成这种<code class="highlighter-rouge">function fn1(var a;){}</code>，有传参的时候时<code class="highlighter-rouge">function fn1(var a = 1;){}}</code>但始终记住，函数里的a和外面的a它们是两个不同的变量，不要混淆，所以修改里面的a并没有影响外面的值，两个弹出结果都是1。</p>
+
+<p>再来看一个例子：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kd">function</span> <span class="nx">fn2</span><span class="p">(){</span>
+        <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s2">"Hello World!"</span><span class="p">;</span>
+        <span class="nx">fn3</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nx">fn2</span><span class="p">();</span>
+
+    <span class="kd">function</span> <span class="nx">fn3</span><span class="p">(</span><span class="nx">a</span><span class="p">){</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>当执行fn2的时候，执行到fn3时，找不到fn3，这个时候就会去它的父级作用域中找，这个时候父级其实已经把它预解析出来了的，所以在fn2里面是可以找到外面的这个fn3函数的，也就是说在函数里面可以调用到fn3，既然能调用，可以把fn2里面的变量传参到fn3中，但是fn3(a)中的a不是fn2()函数中fn3(a)的这个a,此a非彼a,function fn3(a){}这个a是函数3里面的变量，这里即使把a改为b,c什么的都是可以的，因为是传参嘛。通过这样的方法可以把局部的东西拿到别的地方去</p>
+
+<p>下列代码：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="kc">true</span><span class="p">){</span>
+        <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>结果为undedined,通过这个例子想要说明的是类似于if，for这一类的即使有(){}它们也不是作用域,那是否意味着这样也可以呢：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="nx">alert</span><span class="p">(</span><span class="nx">fn1</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="kc">true</span><span class="p">){</span>
+        <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="kd">function</span> <span class="nx">fn1</span><span class="p">(){</span>
+            <span class="nx">alert</span><span class="p">(</span><span class="mi">123</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>在chrome中弹出fn1这个函数，唯独在火狐中就会报错，提示fn1未定义。这个例子想说明的是，一旦我们想要定义全局变量或全局函数，最好在外面定义。</p>
+
+<p>再来看看这个例子：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="nx">o</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">aBtn</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="nx">aBtn</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+            <span class="nx">alert</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+            <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">aBtn</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="nx">aBtn</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="o">=</span><span class="s2">"yellow"</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>这段代码实现的是点击一个按钮实现所有按钮的颜色改变，不过这不是我们要讲的关键，关键在于alert(i);这段代码，这里会弹出结果是多少呢？是3吗？因为我们知道执行上面的for循环以后，i的最终值已经变成了3，但运行结果却是undefined。</p>
+
+<p>原来，这里关键在于alert(i)后面的for当中已经声明了i，也就是var i;这段代码，将这个声明提前到onclick这个函数里面的前面，那么此时i即是undefined，如果里面的for循环不加一个var的话，弹出结果就是3。</p>
+
+	</div>
+
+</article>
+
+			</div>
+		</div>
+
+		<footer class="site-footer">
+
+	<div class="wrapper">
+
+		<div class="footer-col-wrapper">
+
+			<div>
+				<ul class="social-media-list">
+					
+					<li>
+						<a href="https://github.com/puronglong"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">puronglong</span></a>
+
+					</li>
+					
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+
+</footer>
+
+<script type="text/javascript">
+
+	var a = "\n                                   _                                         \n _ __  _   _ _ __ ___  _ __   __ _| | ___  _ __   __ _   ___  __ _ _   _   _ \n| '_ \\| | | | '__/ _ \\| '_ \\ / _` | |/ _ \\| '_ \\ / _` | / __|/ _` | | | | (_)\n| |_) | |_| | | | (_) | | | | (_| | | (_) | | | | (_| | \\__ \\ (_| | |_| |  _ \n| .__/ \\__,_|_|  \\___/|_| |_|\\__, |_|\\___/|_| |_|\\__, | |___/\\__,_|\\__, | (_)\n|_|                          |___/               |___/             |___/     \n          _                                                                  \n  /\\  /\\ (_)                                                                 \n / /_/ / | |                                                                 \n/ __  /  | |                                                                 \n\\/ /_/   |_|            😃";
+    console.info(a);
+
+	document.addEventListener('visibilitychange', function() {
+                document.title = document.hidden ? '崩溃了，来看一下':'小龙龙的个人博客~'
+            });
+</script>
+
+
+	</body>
+
+</html>

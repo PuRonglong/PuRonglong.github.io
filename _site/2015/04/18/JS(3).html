@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>蒲荣龙的博客</title>
+	<meta name="description" content="3.4.6 string类型">
+
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/code.css">
+	<link rel="canonical" href="http://localhost:4000/2015/04/18/JS(3).html">
+	<link rel="alternate" type="application/rss+xml" title="blog" href="http://localhost:4000/feed.xml">
+</head>
+
+
+	<body>
+
+		<div class="pull-right right-sidebar">
+	<p>标签：</p>
+	
+	<p>
+	<a class="page-link" href="/tag/技术">技术</a>
+	<span>（64）</span></p>
+	
+	<p>
+	<a class="page-link" href="/tag/生活">生活</a>
+	<span>（35）</span></p>
+	
+</div>
+		
+		<div class="pull-left left-sidebar">
+			<ul class="header-list">
+				<li><a class="page-link" href="/">Home</a></li>
+				<li><a class="page-link" href="/about/">About</a></li>
+				<li><a class="page-link" href="/feed.xml">RSS</a></li>
+			</ul>
+		</div>
+		<div class="page-content">
+			<div class="wrapper">
+				<article class="post home" itemscope itemtype="http://schema.org/BlogPosting">
+
+	<header class="post-header">
+		<h1 class="post-title" itemprop="name headline">JS:基本概念(2)</h1>
+		<p class="post-meta">2015-04-18</p>
+	</header>
+
+	<div class="post-content" itemprop="articleBody">
+		<h3 id="string">3.4.6 string类型</h3>
+
+<p>string类型用于表示由零或多个16位Unicode字符组成的字符序列，即字符串。</p>
+
+<p>与PHP中的双引号和单引号会影响对字符串的解释方式不同，ECMAScript中的这两种语法形式没有什么区别。</p>
+
+<ol>
+  <li>字符字面量</li>
+</ol>
+
+<p>string数据类型包含一些特殊的字符字面量，也叫转义序列，用于表示非打印字符，或者具有其他用途的字符。</p>
+
+<!-- more -->
+
+<p>任何字符串的长度都可以通过访问其length属性取得。如果字符串中包含双字节字符，那么length属性可能不会精确地返回字符串汇总的字符数目</p>
+
+<p>那么什么是双字节字符呢？单字节指只占一个字，是英文字符。双字是占两个字节的，中文字符都占两个字节。单字节的英文是Byte；比特是最小的数值单位。双字节字符即是包含了两个字节共16比特。一般比较好理解的就是：英文字母属于单字节字符，而汉字则属于双字节字符。因为英文字母、数字、符号等完全可以用128种不同的数值来表示，而汉字太多则不能，所以才需要扩展到双字节。</p>
+
+<ol>
+  <li>字符串的特点</li>
+</ol>
+
+<p>ECMAScript中的字符串是不可变的，也就是说，字符串一旦创建，它们的值就不能<strong>改变</strong>。要改变某个变量保存的字符串，首先要销毁原来的字符串，然后用新的字符串填充。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="kd">var</span> <span class="nx">lang</span> <span class="o">=</span> <span class="s2">"Java"</span><span class="p">;</span>
+	<span class="nx">lang</span> <span class="o">=</span> <span class="nx">lang</span> <span class="o">+</span> <span class="s2">"Script"</span><span class="p">;</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">lang</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>最后一步是销毁原来的字符串”Java”和字符串”Script”,因为这两个字符串已经没用了。这个过程是在后台发生的，而这也是在某些旧版本的浏览器中拼接字符串时速度很慢的原因所在。</p>
+
+<ol>
+  <li>转换为字符串</li>
+</ol>
+
+<p>要把一个值转换为一个字符串有两种方式。</p>
+
+<ul>
+  <li>
+    <p>tostring()方法: 数值，布尔值，对象和字符串值都有tostring()方法。但null和nudefined值没有这个方法。</p>
+  </li>
+  <li>
+    <p>在不知道要转换的值是不是null或undefined的情况下，还可以使用转型函数String(),这个函数能够将任何类型的值转换为字符串。</p>
+  </li>
+</ul>
+
+<p>一般情况下，调用toString()方法不必传递参数。但是在调用数值的toString()方法时，可以传递一个参数：输出数值的基数，用于表示将数值转换为二进制，八进制，还是十六进制。</p>
+
+<h3 id="object">3.4.7 object类型</h3>
+
+<p>ECMAScript中的对象其实就是一组数据和功能的集合。对象可以通过执行new操作符后跟要创建的对象类型的名称来创建。如<code class="highlighter-rouge">var 0 = new Object();</code>，在ECMAScript中，如果不给构造函数传递参数，则可以省略后面的那一对圆括号，如<code class="highlighter-rouge">var o = new Object;//有效，但不推荐省略圆括号</code>，但这不是推荐的做法。</p>
+
+<p>由于在ECMAScript中object是所有对象的基础，因此所有对象都具有这些基本的属性和方法。</p>
+
+<p>浏览器中的对象，比如BOM和DOM中的对象，都属于宿主对象，因为他们是由宿主实现提供和定义的。ECMA-262不负责定义宿主对象，因此宿主对象可能会也可能不会继承Object。</p>
+
+<h2 id="section">3.5 操作符</h2>
+
+<p>ECMA-262描述了一组用于操作数据值的操作符，包括算术操作符(如加号和减号),位操作符，关系操作符，和相等操作符。ECMAScript操作符的与众不同之处在于，它们能适用于很多值，例如字符串，数字值，布尔值，甚至对象。不过，在应用于对象时，相应的操作符通常都会调用对象的valueOf()和(或)toString()方法，以便取得可以操作的值。</p>
+
+<h3 id="section-1">3.5.1 一元操作符</h3>
+
+<p>只能操作一个值的操作符叫做一元操作符。</p>
+
+<ol>
+  <li>递增和递减操作符</li>
+</ol>
+
+<p>执行前置递增和递减操作时，变量的值都是在语句被求值以前改变的。(在计算机科学领域，这种情况通常被称作<strong>副效应</strong>),通过例子是看的最清楚的了</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="kd">var</span> <span class="nx">num1</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">num2</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">num3</span> <span class="o">=</span> <span class="o">--</span><span class="nx">num1</span> <span class="o">+</span> <span class="nx">num2</span><span class="p">;</span><span class="c1">//21</span>
+	<span class="kd">var</span> <span class="nx">num4</span> <span class="o">=</span> <span class="nx">num1</span> <span class="o">+</span> <span class="nx">num2</span><span class="p">;</span><span class="c1">//21</span>
+
+	<span class="kd">var</span> <span class="nx">num1</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">num2</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">num3</span> <span class="o">=</span> <span class="nx">num1</span><span class="o">--</span> <span class="o">+</span> <span class="nx">num2</span><span class="p">;</span><span class="c1">//22</span>
+	<span class="kd">var</span> <span class="nx">num4</span> <span class="o">=</span> <span class="nx">num1</span> <span class="o">+</span> <span class="nx">num2</span><span class="p">;</span><span class="c1">//21</span>
+</code></pre>
+</div>
+
+<p>所有这4个操作符对任何值都使用，也就是它们不仅适用于整数，还可以用于字符串，布尔值，浮点数值和对象。
+在应用于不同的值时，递增和递减操作符遵循以下规则。</p>
+
+<p>记规则不如看例子：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="kd">var</span> <span class="nx">s1</span> <span class="o">=</span> <span class="s2">"2"</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">s2</span> <span class="o">=</span> <span class="s2">"z"</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">f</span> <span class="o">=</span> <span class="mf">1.1</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span>
+	    <span class="na">valueOf</span><span class="p">:</span><span class="kd">function</span><span class="p">(){</span>
+	    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+	    <span class="p">}</span>
+	<span class="p">};</span>
+
+	<span class="nx">s1</span><span class="o">++</span><span class="p">;</span><span class="c1">//值变成3</span>
+	<span class="nx">s2</span><span class="o">++</span><span class="p">;</span><span class="c1">//值变成NaN</span>
+	<span class="nx">b</span><span class="o">++</span><span class="p">;</span><span class="c1">//值变成数值1</span>
+	<span class="nx">f</span><span class="o">--</span><span class="p">;</span><span class="c1">//值变成0.100000000000009(由于浮点舍入错误所致)</span>
+	<span class="nx">o</span><span class="o">--</span><span class="p">;</span><span class="c1">//值变成数值-2</span>
+</code></pre>
+</div>
+
+<ol>
+  <li>一元加和减操作符</li>
+</ol>
+
+<p>一元加操作符以一个加号(+)表示，放在数值前面，对数值不会产生任何影响。不过在对非数值应用一元加操作符时，该操作符会像Number()转型函数一样对这个值执行转换</p>
+
+<p>一元减操作符主要用于表示负数。当它应用于数值时，该值会变成负数。而当应用于非数值时，一元减操作符遵循与一元加操作符相同的规则，最后再将得到的数值转换为负数。</p>
+
+<p>一元加和减操作符主要用于基本的算术运算，也可以像前面示例所展示的一样用于转换数据类型。</p>
+
+<h3 id="section-2">3.5.2 位操作符</h3>
+
+<p>负数同样以二进制码存储，但使用的是二进制补码：</p>
+
+<ol>
+  <li>求这个数值绝对值的二进制码</li>
+  <li>求二进制反码，即将0替换为1，将1替换为0；</li>
+  <li>得到的二进制反码加1</li>
+</ol>
+
+<p>1.按位非(NOT)</p>
+
+<p>按位非操作符由一个波浪线(~)表示，执行按位非的结果就是返回数值的反码。</p>
+
+<p>这里，对25执行按位非操作，结果得到了-26。这也验证了按位非操作的本质：操作数的负值减1。即可以直接减1得到结果，但由于按位非是在数值表示的最底层执行操作，因此速度更快。</p>
+
+<p>2.按位与(AND)</p>
+
+<p>按位与操作符由一个和号字符(&amp;)表示。</p>
+
+<p>3.按位或(OR)</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>按位或操作符由一个竖线符号(</td>
+      <td>)表示。</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>4.按位异或(XOR)</p>
+
+<p>按位异或操作符由一个插入符号(^)表示。真值表：相同的话结果为0</p>
+
+<p>5.左移</p>
+
+<p>左移操作符由两个小于号(«)表示，，将数值的所有位向左移动指定的位数。原数值的右侧多出了5个空位，左移操作会以0来填充这些空位。即左移不影响符号位</p>
+
+<p>6.有符号的右移</p>
+
+<p>有符号的右移操作符由两个大于号(»)表示，这个操作符会将数值向右移动，但保留符号位</p>
+
+<p>7.无符号右移</p>
+
+<p>无符号右移操作符由3个大于号(»&gt;)表示。无符号右移操作符会把负数的二进制码当成整数的二进制码。而且，由于负数以其绝对值的二进制补码形式表示，因此就会导致无符号右移后的结果非常之大。</p>
+
+<h3 id="section-3">3.5.3 布尔操作符</h3>
+
+<p>布尔操作符一共有3个：非，与，或。</p>
+
+<p>1.逻辑非</p>
+
+<p>逻辑非操作符由一个叹号(!)表示，可以应用于ECMAScript中的任何值。无论这个值是什么数据类型，这个操作符都会返回一个布尔值。首先会将它的操作数转换为一个布尔值，然后再对其求反。</p>
+
+<p>2.逻辑与</p>
+
+<p>&amp;&amp; 表示。在有一个操作数不是布尔值的情况下，逻辑与操作就不一定返回布尔值。属于短路操作，即如果第一个操作数能够决定结果，就不会再对第二个操作数求值。</p>
+
+<p>3.逻辑或</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>两个竖线符号(</td>
+      <td> </td>
+      <td>)表示，也是短路操作符：短路操作符的特点</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="section-4">3.5.4 乘性操作符</h3>
+
+<p>ECMAScript定义了3个乘性操作符:乘法，除法和求模。这些操作符与Java,C或者Perl中的相应操作符用途类似，只不过在操作数为非数值的情况下会执行自动的类型转换。如果参与乘性计算的某个操作数不是数值，后台会使用Numver()转型函数先将其转换为数值。</p>
+
+<p>1.乘法</p>
+
+<p>如果Infinity与0相乘，则结果是NaN;</p>
+
+<p>Infinity与Infinity相乘，结果是Infinity;</p>
+
+<p>2.除法</p>
+
+<p>如果Infinity被Infinity除，则结果是NaN;</p>
+
+<p>如果是零被零除，则结果是NaN;</p>
+
+<p>3.求模</p>
+
+<p>如果被除数是有限大的数值而除数是无穷大的数值，则结果是被除数。</p>
+
+<h3 id="section-5">3.5.5 加性操作符</h3>
+
+<p>1.加法</p>
+
+<p>正无穷加负无穷结果是NaN;</p>
+
+<p>忽视加法操作符中的数据类型是ECMAScript编程中最常见的一个错误。如果想先对数值进行算术运算，可以先用括号括起来</p>
+
+<p>2.减法</p>
+
+<p>+0减-0，结果是-0;如果是-0减-0，则结果是+0;</p>
+
+<h3 id="section-6">3.5.6 关系操作符</h3>
+
+<p>&lt;,&gt;,&lt;=,&gt;=这几个操作符都返回一个布尔值</p>
+
+<p>由于大写字母的字符编码全部小于小写字母的字符编码，因此我们就会看到如下所示的奇怪现象:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="s2">"Brick"</span> <span class="o">&lt;</span> <span class="s2">"alphabet"</span><span class="p">;</span><span class="c1">//true</span>
+</code></pre>
+</div>
+
+<p>可以使用toLowerCase()将其大写转换为小写。字符串比较的是字符编码。一句规则，任何操作数与NaN进行关系比较，结果都是false.</p>
+
+<h3 id="section-7">3.5.7 相等操作符</h3>
+
+<p>ECMAScript的解决方案就是提供两组操作符:相等和不相等——先转换再比较，全等和不全等——仅比较而不转换</p>
+
+<p>1.相等和不相等，属于强制转型，书中列出了一些特殊情况及比较结果，这6个是需要注意的，在52页</p>
+
+<p>2.全等和不全等，unll==undefined会返回true,因为它们是类似的值;但null===undefined会返回false,因为它们是不同类型的值。</p>
+
+<h3 id="section-8">3.5.8 条件操作符</h3>
+
+<p>条件操作符应该算是ECMAScript中最灵活的一种操作符了，遵循与Java中的条件操作符相同的语法形式，如</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="kd">var</span> <span class="nx">max</span> <span class="o">=</span> <span class="p">(</span><span class="nx">num1</span> <span class="o">&gt;</span> <span class="nx">num2</span><span class="p">)?</span><span class="nx">num1</span><span class="p">:</span><span class="nx">num2</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<h3 id="section-9">3.5.9 赋值操作符</h3>
+
+<p>每个主要算术操作符都有对应的复合赋值操作符，如：左移：«=;有符号右移:»=;无符号右移：»&gt;=;设计这些操作符的主要目的就是简化赋值操作。使用它们不会带来任何性能的提升。</p>
+
+<h3 id="section-10">3.5.10 逗号操作符</h3>
+
+<p>可以在一条语句中执行多个操作，还可以用于赋值，返回表达式中的最后一项：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="kd">var</span> <span class="nx">num</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="c1">//num的值为0</span>
+</code></pre>
+</div>
+
+<h2 id="section-11">3.6 语句</h2>
+
+<p>ECMAScript规定了一组语句(也称为流控制语句)。语句可以很简单，例如通知函数退出;也可以比较复杂，例如指定重复执行某个命令的次数</p>
+
+<h3 id="if">3.6.1 if语句</h3>
+
+<p>if语句推崇的最佳实践是始终使用代码块</p>
+
+<h3 id="do-while">3.6.2 do-while语句</h3>
+
+<p>do-while语句是一种后测试循环语句，即只有在循环体中的代码执行之后，才会测试出口条件。像这种后测试循环语句最常用于循环体中的代码至少要被执行一次的情形。</p>
+
+<h3 id="while">3.6.3 while语句</h3>
+
+<p>while语句属于前测试语句，因此，循环体内的代码有可能永远不会被执行。</p>
+
+<h3 id="for">3.6.4 for语句</h3>
+
+<p>for语句也是一种前测试循环语句。使用while语句做不到的，使用for循环同样也做不到。for循环的变量初始化表达式汇中，也可以不使用var关键词。该变量的初始化可以在外部执行。</p>
+
+<p>由于ECMAScript中不存在块级作用域，因此在循环内部定义的变量也可以在外部访问到。</p>
+
+<p>for语句中的初始化表达式，控制表达式和循环后表达式都是可选的。将这三个表达式全部省略，就会创建一个无限循环，例如：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="k">for</span><span class="p">(;;){</span><span class="c1">//无限循环</span>
+	    <span class="nx">doSomething</span><span class="p">();</span>
+	<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>而只给出控制表达式实际上就把for循环转换成了while循环</p>
+
+<h3 id="for-in">3.6.5 for-in语句</h3>
+
+<p>for-in语句是一种精准的迭代语句，可以用来枚举对象的属性。</p>
+
+<p>ECMAScript对象的属性没有顺序。因此，通过for-in循环输出的属性名的顺序是不可预测的。返回的先后次序可能会因浏览器不同而异。</p>
+
+<h3 id="label">3.6.6 label语句</h3>
+
+<p>语句是可以添加标签的，标签是由语句前的标识符和冒号组成的。</p>
+
+<h3 id="breakcontinue">3.6.7 break和continue语句</h3>
+
+<p>这两个语句用于在循环中精确地控制代码的执行。其中break语句会立即退出循环，强制继续执行循环后面的语句。而continue语句虽然也是立即退出循环，但会开始下一次循环的执行。</p>
+
+<h3 id="with">3.6.8 with语句</h3>
+
+<p>with语句的作用是将代码的作用域设置到一个特定的对象中。定义with语句的目的主要是为了简化多次编写同一个对象的工作，也可以用一个变量声明来达到同样的效果，因为with的性能较差。</p>
+
+<h3 id="switch">3.6.9 switch语句</h3>
+
+<p>switch语句与if语句的关系最为密切，而且也是在其他语言中普遍使用的一种流控制语句。switch语句中的每一种情形的含义是：“如果表达式等于这个值，则执行后面的语句。通过为每个case后面都添加一个break语句，就可以避免同时执行多个case代码的情况。假如确实需要混合几种情形，不要忘了在代码中添加注释，说明你是有意省略了break关键字。</p>
+
+<p>switch语句在比较值时使用的是全等操作符，因此不会发生类型转换。</p>
+
+<h2 id="section-12">3.7 函数</h2>
+
+<p>函数对任何一个语言来说都是一个核心的概念。函数会在执行完return语句之后停止并立即退出。因此，位于return语句之后的任何代码都永远不会执行。</p>
+
+<p>return语句也可以不带有任何返回值。在这种情况下，函数在停止执行后将返回undefined值。这种用法一般在需要提前停止函数执行而又不需要返回值的情况下。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="kd">function</span> <span class="nx">sayHi</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">message</span><span class="p">){</span>
+	    <span class="k">return</span><span class="p">;</span>
+	    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Hello"</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">","</span> <span class="o">+</span><span class="nx">message</span><span class="p">);</span><span class="c1">//永远不会调用</span>
+	<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>推荐的做法是要么让函数始终都返回一个值，要么永远都不要返回值。</p>
+
+<h3 id="section-13">3.7.1 理解参数</h3>
+
+<p>ECMAScript函数的参数与大多数其他语言中函数的参数有所不同。ECMAScript函数不介意传递进来多少个参数，也不在乎传递进来的参数的类型。它的一个重要特点是，命名的参数只提供便利，但不是必需的。</p>
+
+<p>在函数体内可以通过arguments对象来访问这个参数数组，从而获取传递给函数的每一个参数。关于arguments的行为，有很重要的一点就是，它的值永远与应命名参数的值保持同步。</p>
+
+<p>ECMAScript中的所有参数传递的都是值，不可能通过引用传递参数。</p>
+
+<h3 id="section-14">3.7.2 没有重载</h3>
+
+<p>ECMAScript函数不能像传统意义上那样实现重载。而在其他语言中，可以为一个函数编写两个定义，只要这两个定义的前面不同即可，什么是签名呢？就是接受的参数的类型和数量，如前所述，ECMAScript函数没有签名，因为其参数是由包含零或多个值的数组来表示的。而没有函数签名，真正的重载是不可能做到的。</p>
+
+<p>如果在ECMAScript中定义了两个名字相同的函数，则该名字只属于后定义的函数。</p>
+
+<p>通过检查传入函数中参数的类型和数量并作出不同的反应，可以模仿方法的重载。</p>
+
+<h2 id="section-15">3.8 小结</h2>
+
+	</div>
+
+</article>
+
+			</div>
+		</div>
+
+		<footer class="site-footer">
+
+	<div class="wrapper">
+
+		<div class="footer-col-wrapper">
+
+			<div>
+				<ul class="social-media-list">
+					
+					<li>
+						<a href="https://github.com/puronglong"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">puronglong</span></a>
+
+					</li>
+					
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+
+</footer>
+
+<script type="text/javascript">
+
+	var a = "\n                                   _                                         \n _ __  _   _ _ __ ___  _ __   __ _| | ___  _ __   __ _   ___  __ _ _   _   _ \n| '_ \\| | | | '__/ _ \\| '_ \\ / _` | |/ _ \\| '_ \\ / _` | / __|/ _` | | | | (_)\n| |_) | |_| | | | (_) | | | | (_| | | (_) | | | | (_| | \\__ \\ (_| | |_| |  _ \n| .__/ \\__,_|_|  \\___/|_| |_|\\__, |_|\\___/|_| |_|\\__, | |___/\\__,_|\\__, | (_)\n|_|                          |___/               |___/             |___/     \n          _                                                                  \n  /\\  /\\ (_)                                                                 \n / /_/ / | |                                                                 \n/ __  /  | |                                                                 \n\\/ /_/   |_|            😃";
+    console.info(a);
+
+	document.addEventListener('visibilitychange', function() {
+                document.title = document.hidden ? '崩溃了，来看一下':'小龙龙的个人博客~'
+            });
+</script>
+
+
+	</body>
+
+</html>

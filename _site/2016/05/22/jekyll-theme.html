@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>蒲荣龙的博客</title>
+	<meta name="description" content="  制作一款jekyll主题">
+
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/code.css">
+	<link rel="canonical" href="http://localhost:4000/2016/05/22/jekyll-theme.html">
+	<link rel="alternate" type="application/rss+xml" title="blog" href="http://localhost:4000/feed.xml">
+</head>
+
+
+	<body>
+
+		<div class="pull-right right-sidebar">
+	<p>标签：</p>
+	
+	<p>
+	<a class="page-link" href="/tag/技术">技术</a>
+	<span>（64）</span></p>
+	
+	<p>
+	<a class="page-link" href="/tag/生活">生活</a>
+	<span>（35）</span></p>
+	
+</div>
+		
+		<div class="pull-left left-sidebar">
+			<ul class="header-list">
+				<li><a class="page-link" href="/">Home</a></li>
+				<li><a class="page-link" href="/about/">About</a></li>
+				<li><a class="page-link" href="/feed.xml">RSS</a></li>
+			</ul>
+		</div>
+		<div class="page-content">
+			<div class="wrapper">
+				<article class="post home" itemscope itemtype="http://schema.org/BlogPosting">
+
+	<header class="post-header">
+		<h1 class="post-title" itemprop="name headline">制作一款jekyll主题</h1>
+		<p class="post-meta">2016-05-22</p>
+	</header>
+
+	<div class="post-content" itemprop="articleBody">
+		<blockquote>
+  <p>制作一款jekyll主题</p>
+</blockquote>
+
+<p>首先是用jekyll新建一个项目，在命令行中输入：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>jekyll new jekyll-blog
+</code></pre>
+</div>
+
+<p>这样就建好了一个jekyll项目，启动：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	jekyll serve
+</code></pre>
+</div>
+
+<!-- more -->
+
+<p>命令行提示如下：</p>
+
+<p><img src="/images/article/2016-5-22/1.png" alt="img" /></p>
+
+<p>可以看到成功启动了服务并且本地地址是http://localhost:4000/。</p>
+
+<p>初始界面如下所示：</p>
+
+<p><img src="/images/article/2016-5-22/2.png" alt="img" /></p>
+
+<p>后续我们就是在这个基础上进行改动了。</p>
+
+<p>首先我引入了bootstrap。</p>
+
+<p><strong>添加<code class="highlighter-rouge">readmore</code>按钮功能。</strong></p>
+
+<p>根目录下的index页做如下修改：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"post-list"</span><span class="nt">&gt;</span>
+	<span class="c">&lt;!-- site.posts一个按照时间倒序的所有 Posts 的清单。 --&gt;</span>
+	{.% for post in site.posts %}
+		<span class="nt">&lt;li&gt;</span>
+			<span class="nt">&lt;h2&gt;</span>
+				<span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"post-link"</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;&lt;/a&gt;</span>
+			<span class="nt">&lt;/h2&gt;</span>
+			<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"post-meta"</span><span class="nt">&gt;&lt;/span&gt;</span>
+			{.% if post.content contains '<span class="c">&lt;!-- more --&gt;</span>' %}
+				
+				<span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"readmore-p"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"btn btn-info"</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;</span>Read more<span class="nt">&lt;/a&gt;&lt;/p&gt;</span>
+			{.% else %}
+				
+			{.% endif %}
+		<span class="nt">&lt;/li&gt;</span>
+	{.% endfor %}
+<span class="nt">&lt;/ul&gt;</span>
+</code></pre>
+</div>
+
+<p>可以看到主要的一点是if判断我们post的文章是否含<code class="highlighter-rouge">&lt;!-- more --&gt;</code>，若是包含的话，就使用过滤器将我们文章内容split为两部分，并选取第一部分显示为post.content。</p>
+
+<p><strong>添加分页功能</strong></p>
+
+<p>在添加分页功能之前需要先安装<code class="highlighter-rouge">jekyll-paginate</code>插件：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	gem install jekyll-paginate
+</code></pre>
+</div>
+
+<p>安装完后在_config.yml里配置插件：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	paginate: 1
+	paginate_path: "page:num"
+</code></pre>
+</div>
+
+<p>运行serve却提示报错：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	Deprecation: You appear to have pagination turned on, but you haven't included the `jekyll-paginate` gem. Ensure you have `gems: [jekyll-paginate]` in your configuration file.
+</code></pre>
+</div>
+
+<p>问题在于还要在config里添加一句<code class="highlighter-rouge">gems: [jekyll-paginate]</code>，表示调用这个插件，只有先调用，然后才是配置。</p>
+
+<p>然后是写分页链接代码如下：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!-- 分页链接 --&gt;</span>
+<span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"pagination"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;span&gt;</span>首页<span class="nt">&lt;/span&gt;</span>
+        <span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;</span>
+    {.% if paginator.page == 1 %}
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"disabled"</span><span class="nt">&gt;&lt;span&gt;</span><span class="ni">&amp;laquo;</span><span class="nt">&lt;/span&gt;&lt;/li&gt;</span>
+    {.% else %}
+        {.% if paginator.previous_page == 1 %}
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/"</span><span class="nt">&gt;</span>
+        {.% else %}
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/page"</span><span class="nt">&gt;</span>
+        {.% endif %}
+            <span class="nt">&lt;span&gt;</span><span class="ni">&amp;laquo;</span><span class="nt">&lt;/span&gt;</span>
+        <span class="nt">&lt;/a&gt;</span>
+    {.% endif %}
+    <span class="nt">&lt;/li&gt;</span>
+    {.% for i in (1..paginator.total_pages) limit:9 offset: %}
+        {.% if paginator.page == i %}
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"active"</span><span class="nt">&gt;</span>
+        {.% else %}
+    <span class="nt">&lt;li&gt;</span>
+        {.% endif %}
+        {.% if i == 1 %}
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/"</span><span class="nt">&gt;&lt;/a&gt;</span>
+        {.% else %}
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/page"</span><span class="nt">&gt;&lt;/a&gt;</span>
+        {.% endif %}
+    <span class="nt">&lt;/li&gt;</span>
+    {.% endfor %}
+    <span class="nt">&lt;li&gt;</span>
+        {.% if paginator.page == paginator.total_pages %}
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"disabled"</span><span class="nt">&gt;&lt;span&gt;</span><span class="ni">&amp;raquo;</span><span class="nt">&lt;/span&gt;&lt;/li&gt;</span>
+        {.% else %}
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/page"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;span&gt;</span><span class="ni">&amp;raquo;</span><span class="nt">&lt;/span&gt;</span>
+        <span class="nt">&lt;/a&gt;</span>
+        {.% endif %}
+    <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/page"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;span&gt;</span>末页<span class="nt">&lt;/span&gt;</span>
+        <span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"disabled"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;span&gt;</span>第页 / 共页<span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+</code></pre>
+</div>
+
+<p>如上所示，在首页的底部添加一个ul，用于存放我们的分页链接，而这个链接我们分为了五个部分，第一个li是首页；第二个li是返回上一页的，这里做判断，如果当前页是第一页，就显示一个上一页的符号，并不可点按，如果当前页的上一页是第一页的话，点击返回到首页，其它情况都返回上一页；第三个li用于产生每一页的链接标签，用了for循环，如果当前页的page和i相等，则给当前的li添加一个class的类；第四个li用于添加下一页功能，原理和上一页功能一样；第五个li是尾页。</p>
+
+<p>效果如下：</p>
+
+<p><img src="/images/article/2016-5-22/3.png" alt="img" /></p>
+
+<p><strong>文章分类功能：</strong></p>
+
+<p>每篇文章的开头类似这样：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="o">---</span>
+	<span class="ss">layout: </span><span class="n">post</span>
+	<span class="ss">title:  </span><span class="s2">"jekyll的使用1"</span>
+	<span class="ss">date:   </span><span class="mi">2016</span><span class="o">-</span><span class="mo">03</span><span class="o">-</span><span class="mi">27</span>
+	<span class="ss">tags: </span><span class="p">[</span><span class="n">jekyll</span><span class="p">,</span> <span class="n">demo</span><span class="p">]</span>
+	<span class="o">---</span>
+</code></pre>
+</div>
+
+<p>开头信息力的tags存放的就是文章的标签，我们要实现的功能是页面显示部分有文章列表和标签列表。当点击标签的时候，文章列表对应当前标签下的所有文章。</p>
+
+<p>jekyll的云标签有多种实现方法，先介绍第一种：</p>
+
+<p>在_includes文件夹里添加tag.html，然后在页面中将其include进来。页面效果如下：</p>
+
+<p><img src="/images/article/2016-5-22/4.png" alt="img" /></p>
+
+<p>左边文章列表右边标签列表。左边的列表其实有两个，一个是所有文章的列表，也就是对应所有标签的文章列表，还有一个是不同类型的文章列表，我们先来看第一个列表：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"post-list"</span> <span class="na">post-cate=</span><span class="s">"all"</span><span class="nt">&gt;</span>
+{.% for post in site.posts %}
+	<span class="nt">&lt;li&gt;</span>
+		<span class="nt">&lt;h2&gt;</span>
+			<span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"post-link"</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;&lt;/a&gt;</span>
+		<span class="nt">&lt;/h2&gt;</span>
+		<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"post-meta"</span><span class="nt">&gt;&lt;/span&gt;</span>
+		<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"post-meta"</span><span class="nt">&gt;</span>all<span class="nt">&lt;/span&gt;</span>
+		<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"text-info pull-right"</span><span class="nt">&gt;</span>字数：649<span class="nt">&lt;/span&gt;</span>
+		{.% if post.content contains '<span class="c">&lt;!-- more --&gt;</span>' %}
+			
+			<span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"readmore-p"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"btn btn-info"</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;</span>Read more<span class="nt">&lt;/a&gt;&lt;/p&gt;</span>
+		{.% else %}
+			
+		{.% endif %}
+	<span class="nt">&lt;/li&gt;</span>
+{.% endfor %}
+<span class="nt">&lt;/ul&gt;</span>
+</code></pre>
+</div>
+
+<p>这是一个带有post-cate属性并且属性值为all的ul列表，for循环遍历所有的文章。第二个列表如下：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>{.% for tag in site.tags %}
+<span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"post-list"</span> <span class="na">post-cate=</span><span class="s">""</span><span class="nt">&gt;</span>
+	{.% for posts in tag %}
+		{.% for post in posts %}
+			{.% if post.url %}
+				<span class="nt">&lt;li&gt;</span>
+					<span class="nt">&lt;h2&gt;</span>
+						<span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"post-link"</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;&lt;/a&gt;</span>
+					<span class="nt">&lt;/h2&gt;</span>
+					<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"post-meta"</span><span class="nt">&gt;&lt;/span&gt;</span>
+					<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"post-meta"</span><span class="nt">&gt;&lt;/span&gt;</span>
+					<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"text-info pull-right"</span><span class="nt">&gt;</span>字数：649<span class="nt">&lt;/span&gt;</span>
+					{.% if post.content contains '<span class="c">&lt;!-- more --&gt;</span>' %}
+						
+						<span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"readmore-p"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"btn btn-info"</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;</span>Read more<span class="nt">&lt;/a&gt;&lt;/p&gt;</span>
+					{.% else %}
+						
+					{.% endif %}
+				<span class="nt">&lt;/li&gt;</span>
+			{.% endif %}
+		{.% endfor %}
+	{.% endfor %}
+<span class="nt">&lt;/ul&gt;</span>
+{.% endfor %}
+</code></pre>
+</div>
+
+<p>这里的一个不同是ul是放在for循环里的，循环所有的标签，</p>
+
+<p>index.js中有一个函数：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">categoryDisplay</span><span class="p">(){</span>
+	<span class="c1">// show all</span>
+	<span class="nx">$</span><span class="p">(</span><span class="s1">'.home&gt;ul[post-cate!=all]'</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+
+	<span class="c1">// show tag post list when click tag link</span>
+	<span class="nx">$</span><span class="p">(</span><span class="s1">'.categary-p'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+		<span class="kd">var</span> <span class="nx">cate</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'cate'</span><span class="p">);</span>
+
+		<span class="nx">$</span><span class="p">(</span><span class="s1">'.home&gt;ul[post-cate!='</span> <span class="o">+</span> <span class="nx">cate</span> <span class="o">+</span> <span class="s1">']'</span><span class="p">).</span><span class="nx">hide</span><span class="p">(</span><span class="mi">250</span><span class="p">);</span>
+		<span class="nx">$</span><span class="p">(</span><span class="s1">'.home&gt;ul[post-cate='</span> <span class="o">+</span> <span class="nx">cate</span> <span class="o">+</span> <span class="s1">']'</span><span class="p">).</span><span class="nx">show</span><span class="p">(</span><span class="mi">400</span><span class="p">);</span>
+	<span class="p">});</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>初始时先将post-cate属性值不为all的ul隐藏掉，也就是将第二个列表隐藏掉，当我们点击某个标签的时候，获取到当前标签的标签属性值，如果ul的post-cate这个属性的值不是点击的标签，就将其隐藏，否则显示。</p>
+
+<p>通过这样两个列表和点击选择属性通过js控制显示隐藏的方法实现了博客的标签功能。</p>
+
+<p>另一种标签方法：</p>
+
+<p>通过新建文件夹tag, 然后在其中再新建各标签名文件夹, 在各文件夹下创建index.html或者index.md文件, 填写标签模板内容;
+在根目录下创建jekyll.md文件, 然后在文章头文件的基础上加上permalink: /tag/jekyll即可。原理相当于给每一个标签写个首页。</p>
+
+<p>还有一种标签方法原理和上面一样，只是各个标签文件是自动生成不是手动创建的，需要编写一段代码。因为jekyll是用ruby写的，所以这段代码是ruby代码，我是直接找一个复制的，将此段代码保存到_plugins文件夹下，当启动jekyll serve的时候会自动创建文件夹。下面来看具体过程。</p>
+
+<p>首先创建一个tag页的模板，也就是当我们点击的时候希望显示的页面，比如我在_layout文件里新建了一个tagpage.html用于存放我的tag模板。我选择了和首页的页面一样的模板，将首页的模板内容复制过来以后要注意需要修改一点。在首页里我们通过如下：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	{.% for post in site.posts %}
+		<span class="nt">&lt;li&gt;</span>
+</code></pre>
+</div>
+
+<p>来循环li，也就是对site.posts进行遍历，这样便会遍历出全站所有的posts，展示所有文章，但在tag页的首页我们要展示的只是含有某些标签的文章，所以这里遍历的对象不同，应该是遍历所有该标签的文章：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	{.% assign posts = site.tags[page.tag] %}
+		<span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"post-list"</span> <span class="na">post-cate=</span><span class="s">"all"</span><span class="nt">&gt;</span>
+		{.% for post in posts %}
+			<span class="nt">&lt;li&gt;</span>
+</code></pre>
+</div>
+
+<p>如上，循环posts输出li，这个posts就是前面通过assign定义的posts，page变量是页面专属的信息，通过YAML头文件定义的信息都可以在这里被获取到，所以这个page.tag就是post所属的tag，site来自_config.yml文件，表示全站范围的信息+配置，site.tags表示所有该标签下的文章，所以<code class="highlighter-rouge">site.tags[page.tag]</code>表示该标签的所有文章。</p>
+
+<p>通过如下的标签就能链接到每个tag的首页了。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"/tag/"</span><span class="nt">&gt;&lt;/a&gt;</span>
+</code></pre>
+</div>
+
+<p><strong>jekyll插件安装：</strong></p>
+
+<p>这里介绍两种插件安装方式：</p>
+
+<p>1.在根目录下新建<code class="highlighter-rouge">_plugins</code>文件夹，然后把对应的<code class="highlighter-rouge">*.rb</code>文件放进去。</p>
+
+<p>2.在_config.yml文件中新建一个gems关键字，然后把要引用的插件用数组形式存储其中即可。</p>
+
+<p>这两种方法可以同时使用。</p>
+
+<p><strong>jekyll代码高亮：</strong></p>
+
+<p>我们写博客的时候经常会需要放代码，如果博文中的示例代码能够高亮显示，无疑会提升读者的阅读体验。那么看看jekyll中如何让代码高亮吧。</p>
+
+<p>要让代码高亮需要使用到代码高亮插件，插件的原理就是查找特定的节点，然后对其赋予特定的css，也就是“上色”。</p>
+
+<p>以<code class="highlighter-rouge">Pygments</code>为例：</p>
+
+<p>首先安装：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	pip install Pygments
+</code></pre>
+</div>
+
+<p>在_config.yml文件中配置：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	highlighter: pygments
+</code></pre>
+</div>
+
+<p>表明启用pygments进行代码高亮了，但光配置了还不行，还需要添加css代码，可以在pygments网站上查找想要的css配置，方法如下，打开网页：http://pygments.org/demo/3666780/ 右边可以选择样式，选择GO就可以看见效果，而此时打开浏览器调试，可以看见其中有一个pygments.css文件，下载下来，在项目中引用即可。</p>
+
+<p>我选用了一个monokai的style的css，如果没有效果的话，修改一下css里的class名就可以了。</p>
+
+<p>代码高亮可以了。可以我们还不满足，当一段代码太长的时候，让它显示滚动条比自动换行会方便阅读很多，于是对代码块添加一下属性：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	pre code { white-space: pre }
+	overflow-x: auto;
+</code></pre>
+</div>
+
+<p>pre值表明空白会被浏览器保留。其行为方式类似HTML中的&lt;pre&gt;标签。<code class="highlighter-rouge">overflow-x: auto</code>让x轴过长时滚动显示。</p>
+
+<p>pygments插件对应的md文件中写如下：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>{.% highlight html %}
+def show
+@widget = Widget(params[:id])
+respond_to do |format|
+    format.html # show.html.erb
+    format.json { render json: @widget }
+end
+end
+{.% endhighlight %}
+</code></pre>
+</div>
+
+<p>如果想要代码块简单一点可以如下写：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>```js
+
+```
+</code></pre>
+</div>
+
+<p>中间存放代码块，这样使用的话就需要不使用pygments，而使用rouge。修改以后同样需要修改css文件里的class名。</p>
+
+	</div>
+
+</article>
+
+			</div>
+		</div>
+
+		<footer class="site-footer">
+
+	<div class="wrapper">
+
+		<div class="footer-col-wrapper">
+
+			<div>
+				<ul class="social-media-list">
+					
+					<li>
+						<a href="https://github.com/puronglong"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">puronglong</span></a>
+
+					</li>
+					
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+
+</footer>
+
+<script type="text/javascript">
+
+	var a = "\n                                   _                                         \n _ __  _   _ _ __ ___  _ __   __ _| | ___  _ __   __ _   ___  __ _ _   _   _ \n| '_ \\| | | | '__/ _ \\| '_ \\ / _` | |/ _ \\| '_ \\ / _` | / __|/ _` | | | | (_)\n| |_) | |_| | | | (_) | | | | (_| | | (_) | | | | (_| | \\__ \\ (_| | |_| |  _ \n| .__/ \\__,_|_|  \\___/|_| |_|\\__, |_|\\___/|_| |_|\\__, | |___/\\__,_|\\__, | (_)\n|_|                          |___/               |___/             |___/     \n          _                                                                  \n  /\\  /\\ (_)                                                                 \n / /_/ / | |                                                                 \n/ __  /  | |                                                                 \n\\/ /_/   |_|            😃";
+    console.info(a);
+
+	document.addEventListener('visibilitychange', function() {
+                document.title = document.hidden ? '崩溃了，来看一下':'小龙龙的个人博客~'
+            });
+</script>
+
+
+	</body>
+
+</html>

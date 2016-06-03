@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>蒲荣龙的博客</title>
+	<meta name="description" content="7.">
+
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/code.css">
+	<link rel="canonical" href="http://localhost:4000/2015/05/08/Mycodewars(2).html">
+	<link rel="alternate" type="application/rss+xml" title="blog" href="http://localhost:4000/feed.xml">
+</head>
+
+
+	<body>
+
+		<div class="pull-right right-sidebar">
+	<p>标签：</p>
+	
+	<p>
+	<a class="page-link" href="/tag/技术">技术</a>
+	<span>（64）</span></p>
+	
+	<p>
+	<a class="page-link" href="/tag/生活">生活</a>
+	<span>（35）</span></p>
+	
+</div>
+		
+		<div class="pull-left left-sidebar">
+			<ul class="header-list">
+				<li><a class="page-link" href="/">Home</a></li>
+				<li><a class="page-link" href="/about/">About</a></li>
+				<li><a class="page-link" href="/feed.xml">RSS</a></li>
+			</ul>
+		</div>
+		<div class="page-content">
+			<div class="wrapper">
+				<article class="post home" itemscope itemtype="http://schema.org/BlogPosting">
+
+	<header class="post-header">
+		<h1 class="post-title" itemprop="name headline">My codewars(2)</h1>
+		<p class="post-meta">2015-05-08</p>
+	</header>
+
+	<div class="post-content" itemprop="articleBody">
+		<p>7.</p>
+
+<p>Description:
+Consider an array of sheep where some sheep may be missing from their place. We need a function that counts the number of sheep present in the array (true means present).</p>
+
+<p>For example,</p>
+
+<!-- more -->
+
+<p><code class="highlighter-rouge">[true,  true,  true,  false,</code><br />
+	<code class="highlighter-rouge">true,  true,  true,  true ,</code><br />
+	<code class="highlighter-rouge">true,  false, true,  false,</code><br />
+	<code class="highlighter-rouge">true,  false, false, true ,</code><br />
+	<code class="highlighter-rouge">true,  true,  true,  true ,</code><br />
+	<code class="highlighter-rouge">false, false, true,  true]</code></p>
+
+<p>The correct answer would be 17.</p>
+
+<p>翻译过来就是如果一个数组中有true，就让num的值增加一个</p>
+
+<p>常规想到的是一个循环，在这个循环中遍历，如果找到一个true，就+1，如下:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">countSheeps</span><span class="p">(</span><span class="nx">arrayOfSheeps</span><span class="p">){</span>
+	<span class="kd">var</span> <span class="nx">num</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arrayOfSheeps</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nx">arrayOfSheeps</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="o">==</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">num</span><span class="o">++</span><span class="p">;</span>
+			<span class="p">};</span>
+	<span class="p">};</span>
+	<span class="k">return</span> <span class="nx">num</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>但是更clever的方法如下：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">countSheeps</span><span class="p">(</span><span class="nx">arrayOfSheeps</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">arrayOfSheeps</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nb">Boolean</span><span class="p">).</span><span class="nx">length</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>这个more clever的方法用到了filter,那我们来看看JS中的filter:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nx">array1</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">callbackfn</span><span class="p">[,</span> <span class="nx">thisArg</span><span class="p">])</span>
+</code></pre>
+</div>
+
+<p>这个方法的返回值为一个包含回调函数为其返回 true 的所有值的新数组。 如果回调函数为 array1 的所有元素返回 false，则新数组的长度为 0。</p>
+
+<p>8.</p>
+
+<p>Create an any? (JS: any) function that accepts an array and a block (JS: function), and returns true if the block (/function) returns true for any item in the array. If the array is empty, the function should return false.</p>
+
+<p>就是对一个数组进行一个方法，如果能够满足，那么就返回true，否则返回false</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">any</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">fun</span><span class="p">){</span>
+	<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+		<span class="k">if</span><span class="p">(</span><span class="nx">fun</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="o">===</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>  
+	<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>不过原来还有更简单的方法：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">any</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">fun</span><span class="p">){</span>
+	<span class="k">return</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">some</span><span class="p">(</span><span class="nx">fun</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>some()意指某些，指是否某些项合乎条件，而与之相对的是every()，表示每一项都要满足</p>
+
+<p>当时没有反应过来的是这个fun是它已经给好了的，不用再自己写的了</p>
+
+<p>9.</p>
+
+<p>Create a method all? (JS: all) which takes an array, and a block (JS: function), and returns true if the block (/function) returns true for every element in the array. Otherwise, it should return false. If the array is empty, it should return true, since technically nothing failed the block (/function) test.
+要求数组中的每个元素都满足方法，由上题可想到使用every()</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">all</span><span class="p">(</span> <span class="nx">arr</span><span class="p">,</span> <span class="nx">fun</span> <span class="p">){</span>
+	<span class="k">return</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span><span class="nx">fun</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>或者常见的循环：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">all</span><span class="p">(</span> <span class="nx">arr</span><span class="p">,</span> <span class="nx">fun</span> <span class="p">){</span>
+	<span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		 <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">fun</span><span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">i</span><span class="p">))</span>
+			 <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">all</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">){</span><span class="k">return</span> <span class="nx">v</span><span class="o">&gt;</span><span class="mi">9</span><span class="p">});</span><span class="c1">//false</span>
+</code></pre>
+</div>
+
+<p>10.</p>
+
+<p>We want to create a constructor function ‘NameMe’, which takes first name and last name as parameters. The function combines the first and last names and saves the value in “name” property.</p>
+
+<p>We already implemented that function, but when we actually run the code, the “name” property is accessible, but the “firstName” and “lastName” is not accessible. All the properties should be accessible. Can you find what’s wrong with it? A test fixture is also available</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">NameMe</span><span class="p">(</span><span class="nx">first</span><span class="p">,</span> <span class="nx">last</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">first</span><span class="p">;</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">lastName</span> <span class="o">=</span> <span class="nx">last</span><span class="p">;</span>
+	<span class="k">return</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="s1">' '</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="p">};</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>for example:</p>
+
+<p><code class="highlighter-rouge">var n = new NameMe('John', 'Doe');</code>
+<code class="highlighter-rouge">n.firstName //Expected: John</code>
+<code class="highlighter-rouge">n.lastName //Expected: Doe</code>
+<code class="highlighter-rouge">n.name //Expected: John Doe</code></p>
+
+<p>这里对不同的输入如firstName和lastName要有不同结果，怎么能用一个return呢，所以去掉这个return，然后再加上同前面一样加上一个this</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">NameMe</span><span class="p">(</span><span class="nx">first</span><span class="p">,</span> <span class="nx">last</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">first</span><span class="p">;</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">lastName</span> <span class="o">=</span> <span class="nx">last</span><span class="p">;</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="o">=</span><span class="nx">first</span> <span class="o">+</span> <span class="s1">' '</span> <span class="o">+</span> <span class="nx">last</span><span class="p">};</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>11.</p>
+
+<p>Description</p>
+
+<p>We need a function that can transform a string into a number. What ways of achieving this do you know?</p>
+
+<p>Note: Don’t worry, all inputs will be strings, and every string is a perfectly valid representation of an integral number.</p>
+
+<p>Examples</p>
+
+<p><code class="highlighter-rouge">stringToNumber("1234") == 1234</code><br />
+<code class="highlighter-rouge">stringToNumber("605" ) == 605</code><br />
+<code class="highlighter-rouge">stringToNumber("1405") == 1405</code><br />
+<code class="highlighter-rouge">stringToNumber("-7"  ) == -7</code></p>
+
+<p>通过描述即可知道是将一个字符串转变为数字，所以solution如下：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">stringToNumber</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">str</span><span class="p">){</span>
+	<span class="k">return</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>以为就这样就完了吗？不，让我们从这道题延伸出什么吧——看看js字符串转换成数字都有哪些方法呢？</p>
+
+<p>1.转换函数</p>
+
+<p>js提供了parseInt()和parseFloat()两个转换函数。前者把值转换成整数，后者把值转换成浮点数。只有对String类型调用这些方法，这两个函数才能正确运行；对其他类型返回的都是NaN(Not a Number)。</p>
+
+<p>2.强制类型转换</p>
+
+<p>还可使用强制类型转换（type casting）处理转换值的类型。使用强制类型转换可以访问特定的值，即使它是另一种类型的。
+ECMAScript中可用的3种强制类型转换如下：
+Boolean(value)——把给定的值转换成Boolean型；
+Number(value)——把给定的值转换成数字（可以是整数或浮点数）；
+String(value)——把给定的值转换成字符串。
+用这三个函数之一转换值，将创建一个新值，存放由原始值直接转换成的值。</p>
+
+<p>3.利用js变量弱类型转换</p>
+
+<p>你是不是想到了什么，哈哈，一起来看看例子吧~</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">str</span><span class="o">=</span> <span class="s1">'056.789 '</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">str</span><span class="o">-</span><span class="mi">0</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>没错，就是运用了JS的语言特性——弱类型，通过一个算术运算将字符串类型的值转换为数字类型的值，不过一般不推荐这种写法的。</p>
+
+<p>12.</p>
+
+<p>Who likes keywords? Nobody likes keywords, so why use them?</p>
+
+<p>You know what keyword I use too much? if! We should make a function called _if, with its arguments as a logical test and two functions/lambdas where the first function is executed if the boolean is true, and the second if it’s false, like an if/else statement, so that we don’t have to mess around with those nasty keywords! Even so, It should support truthy/falsy types just like the keyword.</p>
+
+<p>Examples:</p>
+
+<p>_if(true, function(){console.log(“True”)}, function(){console.log(“false”)})
+// Logs ‘True’ to the console.</p>
+
+<p>solution:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">_if</span><span class="p">(</span><span class="nx">bool</span><span class="p">,</span> <span class="nx">func1</span><span class="p">,</span> <span class="nx">func2</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">bool</span> <span class="p">?</span> <span class="nx">func1</span><span class="p">()</span> <span class="p">:</span> <span class="nx">func2</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>13.</p>
+
+<p>The code gives an error!</p>
+
+<p>a = 123.toString</p>
+
+<p>solution:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nb">String</span><span class="p">(</span><span class="mi">123</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">123</span><span class="p">..</span><span class="nx">toString</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">123</span> <span class="p">.</span><span class="nx">toString</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">123</span><span class="p">).</span><span class="nx">toString</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">123</span> <span class="o">+</span> <span class="s1">''</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>方法有好几种，通过这道题来总结下toString()和String()吧：toString() 方法可把一个逻辑值转换为字符串，并返回结果。如果调用该方法的对象不是 Boolean，则抛出异常 TypeError。几乎每个值都有toString()方法，除了null和undefined。但任何值都可以使用String()方法。String() 函数把对象的值转换为字符串。</p>
+
+<p>14.</p>
+
+<p>Example:</p>
+
+<p><code class="highlighter-rouge">last( [1,2,3,4] ) // =&gt; 4</code><br />
+<code class="highlighter-rouge">last( "xyz" )     // =&gt; z</code><br />
+<code class="highlighter-rouge">last( 1,2,3,4 )   // =&gt; 4</code></p>
+
+<p>In javascript and CoffeeScript a list will be an array, a string or the list of arguments.</p>
+
+<p>solution:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">last</span><span class="p">(</span><span class="nx">list</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">arguments</span><span class="p">[</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+	<span class="p">}</span>
+	<span class="k">if</span> <span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">list</span><span class="p">))</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">list</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+	<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">list</span> <span class="o">==</span> <span class="s1">'string'</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">list</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="nx">list</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">list</span><span class="p">;</span><span class="c1">//通过多次if的判断如果都不满足，直接返回list</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>或者:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">last</span><span class="p">(</span><span class="nx">list</span><span class="p">){</span>
+	<span class="kd">var</span> <span class="nx">last</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+	<span class="k">return</span> <span class="nx">last</span><span class="p">[</span><span class="nx">last</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">||</span> <span class="nx">last</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>15.</p>
+
+<p>Create a function which answers the question “Are you playing Banjo?”. If your name starts with the letter “R” or lower case “r”, you are playing Banjo!</p>
+
+<p>The function takes a name as its only argument, and returns one of the following strings:</p>
+
+<p>“[name] plays banjo”<br />
+“[name] does not play banjo”<br />
+Names given are always valid strings.</p>
+
+<p>solution:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">areYouPlayingBanjo</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">name</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">==</span><span class="s2">"r"</span><span class="o">||</span><span class="s2">"R"</span><span class="p">?</span><span class="nx">name</span> <span class="o">+</span><span class="s2">" plays banjo"</span><span class="p">:</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">" does not play banjo"</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>乍一看好像对啊没什么问题，可是问题就出在了<code class="highlighter-rouge">||</code>运算符上，来总结一下逻辑或运算符<code class="highlighter-rouge">||</code>：</p>
+
+<p>当运算符<code class="highlighter-rouge">||</code>的两个运算数都是布尔值，它对这两个运算数执行布尔OR操作。</p>
+
+<p>它先计算第一个运算数，如果这个表达式的值可以被转换成true，那么它就返回左边这个表达式的值。否则计算第二个运算数</p>
+
+<p>即使<code class="highlighter-rouge">||</code>运算符的运算数不是布尔值，任然可以将它看作布尔OR运算，因为无论它返回的值是什么类型，都可以被转换为布尔值。</p>
+
+<p>而且另一方面，对非布尔型的运算数使用了<code class="highlighter-rouge">||</code>，这是利用了它对非布尔型的值会将其返回的特性。该运算符的这一用法通常是选取一组备选值中的第一个定义了的并且非空的值（也就是说第一个不会转换为false的值）</p>
+
+<p>如果像上面这样的话，按照JS语法中的运算优先级，会先进行==运算然后是<code class="highlighter-rouge">||</code>运算，而<code class="highlighter-rouge">name.charAt(0)=="r"||"R"</code>中”R”始终为true，这就导致无论是什么运算符进去返回的结果都是true</p>
+
+<p>所以将以上改为如下:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">areYouPlayingBanjo</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">name</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">==</span><span class="s2">"r"</span><span class="o">||</span><span class="nx">name</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">==</span><span class="s2">"R"</span><span class="p">?</span><span class="nx">name</span> <span class="o">+</span><span class="s2">" plays banjo"</span><span class="p">:</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">" does not play banjo"</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>那如果像这样的代码的话，and和or又分别返回多少呢？</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">and</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span> <span class="p">;</span>
+<span class="kd">var</span> <span class="nx">or</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">||</span> <span class="nx">b</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">and</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">or</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>也许起初会认为： andflag 和orflag 的值都为 true; 毕竟 <code class="highlighter-rouge">&amp;&amp;</code> 和 <code class="highlighter-rouge">||</code> 都是求Boolean ，但实际打出来结果却是and=3,or=2;</p>
+
+<p>那么如果a,b的值为false呢？让我们打出来看看吧：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">and</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span> <span class="p">;</span>
+<span class="kd">var</span> <span class="nx">or</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">||</span> <span class="nx">b</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">and</span><span class="p">);</span><span class="c1">//false</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">or</span><span class="p">);</span><span class="c1">//0</span>
+
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">and</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span> <span class="p">;</span>
+<span class="kd">var</span> <span class="nx">or</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">||</span> <span class="nx">b</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">and</span><span class="p">);</span><span class="c1">//false</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">or</span><span class="p">);</span><span class="c1">//null</span>
+
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">and</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span> <span class="p">;</span>
+<span class="kd">var</span> <span class="nx">or</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">||</span> <span class="nx">b</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">and</span><span class="p">);</span><span class="c1">//0</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">or</span><span class="p">);</span><span class="c1">//null</span>
+
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">and</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span> <span class="p">;</span>
+<span class="kd">var</span> <span class="nx">or</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">||</span> <span class="nx">b</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">and</span><span class="p">);</span><span class="c1">//0</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">or</span><span class="p">);</span><span class="c1">//false</span>
+</code></pre>
+</div>
+
+<p>简单概括起来就两句话：</p>
+
+<p><code class="highlighter-rouge">a &amp;&amp; b</code> :如果执行a后返回true，则执行b并返回b的值；如果执行a后返回false，则整个表达式返回a的值，b不执行；<br />
+<code class="highlighter-rouge">a || b</code>:如果执行a后返回true，则整个表达式返回a的值，b不执行；如果执行a后返回false，则执行b并返回b的值；<br />
+<code class="highlighter-rouge">&amp;&amp;</code> 优先级高于 <code class="highlighter-rouge">||</code>;</p>
+
+<p>该逻辑运算符支持短路原则。什么是短路原则呢？
+如<code class="highlighter-rouge">&amp;&amp;</code>中第一个表达式为假就不会去处理第二个表达式，而||正好相反。<br />
+js也遵循上述原则。<br />
+当||时，找到为true的分项就停止处理，并返回该分项的值，否则执行完，并返回最后分项的值。<br />
+当&amp;&amp;时，找到为false的分项就停止处理，并返回该分项的值。</p>
+
+<p>分析一下语境。或，<code class="highlighter-rouge">||</code>，只有前面的不能通过，后面的语句才能执行。与，<code class="highlighter-rouge">&amp;&amp;</code>， 只有前面的能通过，后面的语句才能执行。</p>
+
+<p>根据短路原理还能这样改写：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">if</span><span class="p">(</span><span class="nx">a</span> <span class="o">&gt;=</span><span class="mi">5</span><span class="p">){</span> 
+<span class="nx">alert</span><span class="p">(</span><span class="s2">"你好"</span><span class="p">);</span> 
+<span class="p">}</span> 
+<span class="c1">//可以简成： </span>
+<span class="nx">a</span> <span class="o">&gt;=</span> <span class="mi">5</span> <span class="o">&amp;&amp;</span> <span class="nx">alert</span><span class="p">(</span><span class="s2">"你好"</span><span class="p">);</span> 
+</code></pre>
+</div>
+
+	</div>
+
+</article>
+
+			</div>
+		</div>
+
+		<footer class="site-footer">
+
+	<div class="wrapper">
+
+		<div class="footer-col-wrapper">
+
+			<div>
+				<ul class="social-media-list">
+					
+					<li>
+						<a href="https://github.com/puronglong"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">puronglong</span></a>
+
+					</li>
+					
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+
+</footer>
+
+<script type="text/javascript">
+
+	var a = "\n                                   _                                         \n _ __  _   _ _ __ ___  _ __   __ _| | ___  _ __   __ _   ___  __ _ _   _   _ \n| '_ \\| | | | '__/ _ \\| '_ \\ / _` | |/ _ \\| '_ \\ / _` | / __|/ _` | | | | (_)\n| |_) | |_| | | | (_) | | | | (_| | | (_) | | | | (_| | \\__ \\ (_| | |_| |  _ \n| .__/ \\__,_|_|  \\___/|_| |_|\\__, |_|\\___/|_| |_|\\__, | |___/\\__,_|\\__, | (_)\n|_|                          |___/               |___/             |___/     \n          _                                                                  \n  /\\  /\\ (_)                                                                 \n / /_/ / | |                                                                 \n/ __  /  | |                                                                 \n\\/ /_/   |_|            😃";
+    console.info(a);
+
+	document.addEventListener('visibilitychange', function() {
+                document.title = document.hidden ? '崩溃了，来看一下':'小龙龙的个人博客~'
+            });
+</script>
+
+
+	</body>
+
+</html>

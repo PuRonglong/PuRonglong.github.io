@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>蒲荣龙的博客</title>
+	<meta name="description" content="  介绍下最近对gulp的一些使用">
+
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/code.css">
+	<link rel="canonical" href="http://localhost:4000/2015/09/03/gulp.html">
+	<link rel="alternate" type="application/rss+xml" title="blog" href="http://localhost:4000/feed.xml">
+</head>
+
+
+	<body>
+
+		<div class="pull-right right-sidebar">
+	<p>标签：</p>
+	
+	<p>
+	<a class="page-link" href="/tag/技术">技术</a>
+	<span>（64）</span></p>
+	
+	<p>
+	<a class="page-link" href="/tag/生活">生活</a>
+	<span>（35）</span></p>
+	
+</div>
+		
+		<div class="pull-left left-sidebar">
+			<ul class="header-list">
+				<li><a class="page-link" href="/">Home</a></li>
+				<li><a class="page-link" href="/about/">About</a></li>
+				<li><a class="page-link" href="/feed.xml">RSS</a></li>
+			</ul>
+		</div>
+		<div class="page-content">
+			<div class="wrapper">
+				<article class="post home" itemscope itemtype="http://schema.org/BlogPosting">
+
+	<header class="post-header">
+		<h1 class="post-title" itemprop="name headline">gulp的使用</h1>
+		<p class="post-meta">2015-09-03</p>
+	</header>
+
+	<div class="post-content" itemprop="articleBody">
+		<blockquote>
+  <p>介绍下最近对gulp的一些使用</p>
+</blockquote>
+
+<p><img src="http://7vznhl.com1.z0.glb.clouddn.com/2015-9-3-01QQ20150912-1@2x.png" alt="img" /></p>
+
+<!-- more -->
+
+<p>gulp安装到全局：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	sudo npm install gulp -g —versose
+</code></pre>
+</div>
+
+<p>安装完了gulp还要记得进入相应目录下执行这个命令</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	npm install --save -dev
+</code></pre>
+</div>
+
+<p>把package.json里的包都安装一下，因为里面可能会有些gulp运行需要依赖的包，当然前提是拉了别人的package.json这个文件的代码。</p>
+
+<p>如果执行gulp的时候还提示<code class="highlighter-rouge">commond not found</code>可以再全局安装一下gulp，当时安装时有两次都是这种情况，可能包的安装顺序有关。</p>
+
+<p>在项目根目录下创建一个名为 gulpfile.js 的文件：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="kd">var</span> <span class="nx">gulp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'gulp'</span><span class="p">);</span>
+
+	<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'default'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+	    <span class="c1">//将你的默认的任务代码放在这</span>
+	<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>下面是js和css压缩的一个配置：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'js_daka'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">gulp</span><span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="s1">'./src/nishidaka/static/js/index.js'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">jshint</span><span class="p">())</span>
+        <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">jshint</span><span class="p">.</span><span class="nx">reporter</span><span class="p">(</span><span class="s1">'jshint-stylish'</span><span class="p">));</span>
+	<span class="p">});</span>
+
+	<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'js_nishidaka'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">gulp</span><span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="s1">'./src/nishidaka/static/js/index.js'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">uglify</span><span class="p">())</span><span class="c1">//压缩js文件</span>
+        <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">rename</span><span class="p">(</span><span class="s1">'index.min.js'</span><span class="p">))</span> <span class="c1">//重命名</span>
+        <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="s1">'./src/nishidaka/static/js'</span><span class="p">))</span><span class="c1">//目标文件夹</span>
+	<span class="p">});</span>
+
+	<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'css_nishidaka'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">gulp</span><span class="p">.</span><span class="nx">src</span><span class="p">([</span><span class="s1">'./src/nishidaka/static/css/base.css'</span><span class="p">,</span> <span class="s1">'./src/nishidaka/static/css/index.css'</span><span class="p">])</span>
+        <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">concat</span><span class="p">(</span><span class="s1">'all.css'</span><span class="p">))</span><span class="c1">//如果有多个文件的话先合起来再进行压缩</span>
+        <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">minifyCss</span><span class="p">())</span>
+        <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">rename</span><span class="p">(</span><span class="s1">'index.min.css'</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="s1">'./src/nishidaka/static/css'</span><span class="p">))</span>
+	<span class="p">});</span>
+
+	<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'nishidaka_index'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'js_daka'</span><span class="p">,</span> <span class="s1">'css_nishidaka'</span><span class="p">,</span> <span class="s1">'js_nishidaka'</span><span class="p">]);</span>
+</code></pre>
+</div>
+
+<p>第一段代码中jshint()是代码验证工具，这种工具可以检查你的代码并提供相关的代码改进意见，结果一检查就检查出代码里写的不规范的地方，一个是重复定义了一个变量，还有就是分号有些地方没有加上。确实说这个对代码规范还是很有用的。</p>
+
+<p>配置好后跑一遍：从终端里进入项目目录，执行gulp nishidaka_index</p>
+
+<p>这里还有一个小插曲，开始使用的CSS压缩插件是csso,可是显示效果有所偏差，后来改用minifyCss压缩就正常了，查看压缩后的文件原来是压缩的时候有bug，压缩后的css位置改变不正确导致的样式错乱。</p>
+
+<p>gulp的其他使用后续用到的时候再介绍下。</p>
+
+<p>官网上还有些<a href="http://www.gulpjs.com.cn/docs/recipes/">使用技巧</a></p>
+
+	</div>
+
+</article>
+
+			</div>
+		</div>
+
+		<footer class="site-footer">
+
+	<div class="wrapper">
+
+		<div class="footer-col-wrapper">
+
+			<div>
+				<ul class="social-media-list">
+					
+					<li>
+						<a href="https://github.com/puronglong"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">puronglong</span></a>
+
+					</li>
+					
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+
+</footer>
+
+<script type="text/javascript">
+
+	var a = "\n                                   _                                         \n _ __  _   _ _ __ ___  _ __   __ _| | ___  _ __   __ _   ___  __ _ _   _   _ \n| '_ \\| | | | '__/ _ \\| '_ \\ / _` | |/ _ \\| '_ \\ / _` | / __|/ _` | | | | (_)\n| |_) | |_| | | | (_) | | | | (_| | | (_) | | | | (_| | \\__ \\ (_| | |_| |  _ \n| .__/ \\__,_|_|  \\___/|_| |_|\\__, |_|\\___/|_| |_|\\__, | |___/\\__,_|\\__, | (_)\n|_|                          |___/               |___/             |___/     \n          _                                                                  \n  /\\  /\\ (_)                                                                 \n / /_/ / | |                                                                 \n/ __  /  | |                                                                 \n\\/ /_/   |_|            😃";
+    console.info(a);
+
+	document.addEventListener('visibilitychange', function() {
+                document.title = document.hidden ? '崩溃了，来看一下':'小龙龙的个人博客~'
+            });
+</script>
+
+
+	</body>
+
+</html>
