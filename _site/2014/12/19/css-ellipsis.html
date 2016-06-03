@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>蒲荣龙的博客</title>
+	<meta name="description" content="  文字超出部分显示省略号还是比较常用的一个效果,最近看到网上的一些方法亲自实践了一下,发现有些以前一些浏览器不能用的属性现在可以用了，于是总结一下：">
+
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/code.css">
+	<link rel="canonical" href="http://www.puronglong.com/2014/12/19/css-ellipsis.html">
+	<link rel="alternate" type="application/rss+xml" title="blog" href="http://www.puronglong.com/feed.xml">
+</head>
+
+
+	<body>
+
+		<div class="pull-right right-sidebar">
+	<p>标签：</p>
+	
+	<p>
+	<a class="page-link" href="/tag/技术">技术</a>
+	<span>（64）</span></p>
+	
+	<p>
+	<a class="page-link" href="/tag/生活">生活</a>
+	<span>（35）</span></p>
+	
+</div>
+		
+		<div class="pull-left left-sidebar">
+			<ul class="header-list">
+				<li><a class="page-link" href="/">Home</a></li>
+				<li><a class="page-link" href="/about/">About</a></li>
+				<li><a class="page-link" href="/feed.xml">RSS</a></li>
+			</ul>
+		</div>
+		<div class="page-content">
+			<div class="wrapper">
+				<article class="post home" itemscope itemtype="http://schema.org/BlogPosting">
+
+	<header class="post-header">
+		<h1 class="post-title" itemprop="name headline">聊聊CSS(1),关于用css实现的文字超出部分显示省略号</h1>
+		<p class="post-meta">2014-12-19</p>
+	</header>
+
+	<div class="post-content" itemprop="articleBody">
+		<blockquote>
+  <p>文字超出部分显示省略号还是比较常用的一个效果,最近看到网上的一些方法亲自实践了一下,发现有些以前一些浏览器不能用的属性现在可以用了，于是总结一下：</p>
+</blockquote>
+
+<p>我们先来看下HTML代码：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="nt">&lt;div&gt;</span>
+	    <span class="nt">&lt;p&gt;&lt;span&gt;</span>用css来实现当文字超出宽度时显示省略号的效果<span class="nt">&lt;/span&gt;&lt;/p&gt;</span>
+	<span class="nt">&lt;/div&gt;</span>
+</code></pre>
+</div>
+
+<!-- more -->
+
+<p>CSS代码：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="nt">div</span><span class="p">{</span>
+		<span class="nl">width</span><span class="p">:</span><span class="m">200px</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="nt">span</span><span class="p">{</span>
+		<span class="nl">display</span><span class="p">:</span><span class="nb">block</span><span class="p">;</span>
+		<span class="nl">width</span><span class="p">:</span><span class="m">200px</span><span class="p">;</span>
+		<span class="nl">overflow</span><span class="p">:</span><span class="nb">hidden</span><span class="p">;</span>
+		<span class="nl">white-space</span><span class="p">:</span><span class="nb">nowrap</span><span class="p">;</span><span class="err">//段落中的文本不进行换行</span>
+		<span class="nl">text-overflow</span><span class="p">:</span><span class="n">ellipsis</span><span class="p">;</span>
+	<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>我们可以看到其中用到了<code class="highlighter-rouge">text-overflow:ellipsis;</code>网上说这是一个IE特有的属性，别的浏览器不支持，经过实践，现在chrome和火狐都已经支持了，效果和版本号如下：</p>
+
+<p>在chrome下的效果：</p>
+
+<p><img src="/images/article/2014-12-19/1.png" alt="img" /></p>
+
+<p>我的chrome版本号：</p>
+
+<p><img src="/images/article/2014-12-19/2.png" alt="img" /></p>
+
+<p>在火狐下的效果：</p>
+
+<p><img src="/images/article/2014-12-19/3.png" alt="img" /></p>
+
+<p>我的火狐版本号：</p>
+
+<p><img src="/images/article/2014-12-19/4.png" alt="img" /></p>
+
+<p>查到的资料还说opera不支持<code class="highlighter-rouge">text-overflow</code>，针对Opera的话得使用<code class="highlighter-rouge">-o-text-overflow:ellipsis;</code>欧朋浏览器还没有装所以无法实践，但通过网上查找已经找到答案，有博主说自己新版的欧朋已经支持这个属性了，看博客时间是2012年，看来也是早就支持了的。</p>
+
+<p>而且CSS中的这些属性都不能少，否则不能显示省略号。可以顺着这样的思路来记，要把文本限制在一行<code class="highlighter-rouge">(white-space:nowrap;</code>（<code class="highlighter-rouge">white-space</code>属性声明建立布局过程中如何处理元素中空白符）),这一行有宽度(width)，有宽度就有超出的部分，将超出的部分隐藏起来(<code class="highlighter-rouge">overflow:hidden;</code>)，然后后面跟上省略号(<code class="highlighter-rouge">text-overflow:ellipsis;</code>)。</p>
+
+<p>还有一种<strong>非常规</strong>的方法补省略号，要用到伪对象after,思路是一个标签作内容，再加一个标签作填补省略号用，并且加起来的宽度不能超过它们容器的宽度，否则就换行。</p>
+
+<p>来看下CSS代码：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="nt">span</span><span class="p">{</span>
+		<span class="nl">display</span><span class="p">:</span><span class="nb">block</span><span class="p">;</span>
+		<span class="nl">width</span><span class="p">:</span><span class="m">200px</span><span class="p">;</span>
+		<span class="nl">overflow</span><span class="p">:</span><span class="nb">hidden</span><span class="p">;</span>
+		<span class="nl">white-space</span><span class="p">:</span><span class="nb">nowrap</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="nt">p</span><span class="p">{</span>
+		<span class="nl">clear</span><span class="p">:</span><span class="nb">both</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="nt">p</span> <span class="nt">span</span><span class="p">{</span>
+		<span class="nl">float</span><span class="p">:</span><span class="nb">left</span><span class="p">;</span>
+		<span class="nl">max-width</span><span class="p">:</span><span class="m">175px</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="nt">p</span><span class="nd">:afer</span><span class="p">{</span>
+		<span class="nl">content</span><span class="p">:</span><span class="s1">"..."</span><span class="p">;</span>
+	<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>这样能有省略号的效果，但会有小小的<strong>问题</strong>，我们一起来看下效果：</p>
+
+<p><img src="/images/article/2014-12-19/5.png" alt="img" /></p>
+
+<p>在chrome下和火狐下都是这样的效果，可见这样的方法并不完美。</p>
+
+<p>并且使用text-overflow:ellipsis来显示省略号也有好处，可以不用限定字数，对SEO也比较友好，比如我们的标题使用这个属性，标题看起来被截取了，但搜索引擎搜索的时候还是按完整的标题搜索，因为标题实际上并没有被截取，只是没有显示完全而已。</p>
+
+<p>当然这样控制的方法都有一个最大的不足就是只能控制一行，js可以控制多行，并且也不复杂，我们这里只是就事论事罢了。</p>
+
+<p>本次学习不仅学到知识，也再一次验证了那句话：<strong>实践出真知</strong>。不仅要多看，还要多写，多练，实践才是检验真理的唯一标准，因为IT技术发展迅速，不知道什么时候以前不能用的现在就可以用了，以前能用的现在就不能用了，让代码真正的在自己手上过一遍，这是作为程序员基本的一个节操。</p>
+
+	</div>
+
+</article>
+
+			</div>
+		</div>
+
+		<footer class="site-footer">
+
+	<div class="wrapper">
+
+		<div class="footer-col-wrapper">
+
+			<div>
+				<ul class="social-media-list">
+					
+					<li>
+						<a href="https://github.com/puronglong"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">puronglong</span></a>
+
+					</li>
+					
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+
+</footer>
+
+<script type="text/javascript">
+
+	var a = "\n                                   _                                         \n _ __  _   _ _ __ ___  _ __   __ _| | ___  _ __   __ _   ___  __ _ _   _   _ \n| '_ \\| | | | '__/ _ \\| '_ \\ / _` | |/ _ \\| '_ \\ / _` | / __|/ _` | | | | (_)\n| |_) | |_| | | | (_) | | | | (_| | | (_) | | | | (_| | \\__ \\ (_| | |_| |  _ \n| .__/ \\__,_|_|  \\___/|_| |_|\\__, |_|\\___/|_| |_|\\__, | |___/\\__,_|\\__, | (_)\n|_|                          |___/               |___/             |___/     \n          _                                                                  \n  /\\  /\\ (_)                                                                 \n / /_/ / | |                                                                 \n/ __  /  | |                                                                 \n\\/ /_/   |_|            😃";
+    console.info(a);
+
+	document.addEventListener('visibilitychange', function() {
+                document.title = document.hidden ? '崩溃了，来看一下':'小龙龙的个人博客~'
+            });
+</script>
+
+
+	</body>
+
+</html>

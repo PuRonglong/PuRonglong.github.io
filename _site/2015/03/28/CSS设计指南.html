@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>蒲荣龙的博客</title>
+	<meta name="description" content="第一章 HTML标记与文档结构">
+
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/code.css">
+	<link rel="canonical" href="http://www.puronglong.com/2015/03/28/CSS%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97.html">
+	<link rel="alternate" type="application/rss+xml" title="blog" href="http://www.puronglong.com/feed.xml">
+</head>
+
+
+	<body>
+
+		<div class="pull-right right-sidebar">
+	<p>标签：</p>
+	
+	<p>
+	<a class="page-link" href="/tag/技术">技术</a>
+	<span>（64）</span></p>
+	
+	<p>
+	<a class="page-link" href="/tag/生活">生活</a>
+	<span>（35）</span></p>
+	
+</div>
+		
+		<div class="pull-left left-sidebar">
+			<ul class="header-list">
+				<li><a class="page-link" href="/">Home</a></li>
+				<li><a class="page-link" href="/about/">About</a></li>
+				<li><a class="page-link" href="/feed.xml">RSS</a></li>
+			</ul>
+		</div>
+		<div class="page-content">
+			<div class="wrapper">
+				<article class="post home" itemscope itemtype="http://schema.org/BlogPosting">
+
+	<header class="post-header">
+		<h1 class="post-title" itemprop="name headline">《CSS设计指南(一)》</h1>
+		<p class="post-meta">2015-03-28</p>
+	</header>
+
+	<div class="post-content" itemprop="articleBody">
+		<h1 id="html">第一章 HTML标记与文档结构</h1>
+
+<h3 id="html-1">1.1 HTML标记基础</h3>
+
+<p>用HTML标记内容的目的是为了赋予网页语义(semantic),又牵扯到语义化的问题。</p>
+
+<!-- more -->
+
+<p>目前，HTML一共有114个标签，但按照<a href="http://baike.baidu.com/link?url=UU_UTY5BYWQPYKBCaVd7o7H5_rqGa0ilXaJsysqk9FhlxO2TyK-jaAvL8Fx2KhkOnGlfGhQTa5ZWeECBRjghBK">80/20原则</a>，使用其中25个左右的标签就可以满足80%的标记需要</p>
+
+<p>自闭合标签只是给浏览器提供一个对要显示内容的<strong>引用</strong></p>
+
+<p>视障用户使用的屏幕阅读器会大声读出alt属性的内容，因此一定要给<code class="highlighter-rouge">&lt;img&gt;</code>标签的这个alt属性添加让人一听或一看就能明白的内容。</p>
+
+<h3 id="html-2">1.2 HTML文档剖析</h3>
+
+<p>几乎所有HTML元素的display属性值要么为block，要么为inline。最明显的一个例外是table元素，它有自己特殊的display属性值。</p>
+
+<p>行内元素盒子会“收缩包裹”其内容，并且会尽可能包紧。</p>
+
+<p>HTML实体常用于生成那些键盘上没有的印刷字符。以一个和号(&amp;)开头，一个分号(;)结尾，二者之间表示实体的字符串。</p>
+
+<h3 id="section">1.3 文档对象模型</h3>
+
+<p>DOM是从<strong>浏览器的角度</strong>来观察页面中的元素以及每个元素的属性，由此得出这些元素的一个家族树。</p>
+
+<p>结构化的标签</p>
+
+<h3 id="section-1">1.4 小结</h3>
+
+<h1 id="css">第二章 CSS工作原理</h1>
+
+<h3 id="css-1">2.1 剖析CSS规则</h3>
+
+<p>为文档添加样式的三种方法：行内样式，嵌入样式，链接样式
+除了这三种，还有一种在样式表中链接其他样式表的方法，那就应用@important
+@import url(css/styles2.css)
+要注意的是，@import指令必须出现在样式表中其他样式之前，否则引用的样式表不会被加载</p>
+
+<p>层叠机制</p>
+
+<h3 id="section-2">2.2 上下文选择符</h3>
+
+<p>与分组选择符的区别</p>
+
+<h3 id="section-3">2.3 特殊的上下文选择符</h3>
+
+<p>子选择符&gt;</p>
+
+<p>紧邻同胞选择符+</p>
+
+<p>一般同胞选择符~</p>
+
+<p>通用选择符*</p>
+
+<h3 id="id">2.4 ID和类选择符</h3>
+
+<p>因为href属性值为空的链接的行为跟正常链接不一样。所以不能把该属性留空</p>
+
+<h3 id="section-4">2.5 属性选择符</h3>
+
+<p>属性名选择符</p>
+
+<p>属性值选择符</p>
+
+<h3 id="section-5">2.6 伪类</h3>
+
+<p>伪类分两种：</p>
+
+<ul>
+  <li>UI伪类：
+    <ol>
+      <li>链接伪类:顺序为LV,HA</li>
+      <li>:focus伪类</li>
+      <li>:target伪类</li>
+    </ol>
+  </li>
+  <li>结构化伪类
+:first-child和:last-child
+li:nth-child(3)</li>
+</ul>
+
+<h3 id="section-6">2.7 伪元素</h3>
+
+<p>顾名思义，伪元素就是你的文档中若有实无的元素</p>
+
+<ol>
+  <li>::first-letter 伪元素</li>
+  <li>::first-line 伪元素</li>
+  <li>::before和::after伪元素</li>
+</ol>
+
+<p>搜索引擎不会取得伪元素的信息，因为它在标记中并不存在</p>
+
+<p>为解决样式冲突，确定哪条规则“胜出”并最终被应用，CSS提供了三种机制：继承，层叠和特指。</p>
+
+<h3 id="section-7">2.8 继承</h3>
+
+<p>继承有点要注意的地方就是比如某个标签的字体大小被设置为80%，而它的一个后代的字体大小也被设置为80%，那么该后代中文本最终的字体大小将是64%。</p>
+
+<h3 id="section-8">2.9 层叠</h3>
+
+<p>层叠，就是层叠样式表中的层叠。</p>
+
+<ul>
+  <li>样式来源</li>
+  <li>层叠规则</li>
+  <li>计算特指度</li>
+</ul>
+
+<p>规则一：包含ID的选择符胜过包含类的选择符，包含类的选择符胜过包含标签名的选择符。</p>
+
+<p>规则二：如果几个不同来源都为同一个标签的同一个属性定义了样式，行内样式胜过嵌入样式，嵌入样式胜过链接样式。在链接的样式表中，具有相同特指度的样式，后声明的胜过先声明的。
+规则一胜过规则二。换句话说，如果选择符更明确(特指度更高)，无论它在哪里，都会胜出。</p>
+
+<p>规则三：设定的样式胜过继承的样式，此时不用考虑特指度(即显示设定优先)。</p>
+
+<h3 id="section-9">2.10 规则说明</h3>
+
+<p>CSS属性值主要分为以下三类：</p>
+
+<ul>
+  <li>文本值</li>
+  <li>数字值
+rem</li>
+  <li>颜色值</li>
+</ul>
+
+<h1 id="section-10">第三章 定位元素</h1>
+
+<p>position属性控制页面上元素间的位置关系，display属性控制元素时堆叠，并排还是跟本不在页面上出现，float属性提供控制的方式。</p>
+
+<h3 id="section-11">3.1 理解盒模型</h3>
+<p>每个盒子的属性也分为三种粒度</p>
+
+<p>边框border相关属性：宽度，颜色，样式
+border-radius</p>
+
+<p>叠加外边距：垂直方向上的外边距会叠加；水平外边距不叠加</p>
+
+<p>以em为单位可以让段间距随字号变化而相应增大或缩小</p>
+
+<h3 id="section-12">3.2 盒子有多大</h3>
+
+<p>添加边框会进一步减小内容区的宽度</p>
+
+<ul>
+  <li>盒模型结论二：为设定了宽度的盒子添加边框，内边距和外边距，会导致盒子扩展得<strong>更宽</strong>。实际上，盒子的width属性设定的只是盒子内容区的宽度，而非盒子要占据的水平宽度</li>
+</ul>
+
+<p>CSS3新增的box-sizing属性，通过它可以将有宽度的盒子也设定成具有默认的auto状态下的行为。
+使用CSS3的box-sizing属性切换盒子缩放方式，比如<code class="highlighter-rouge">section{box-sizing:border-box;}</code>。应用box-sizing属性后，给section添加边框和内边距都不会增大盒子，相反会导致内容变窄。</p>
+
+<h3 id="section-13">3.3 浮动与清除</h3>
+
+<p>浮动的内容已经脱离了文档流，因而无论原先在标记中包含它还是跟随它的元素其布局都会受到它的影响</p>
+
+<p>浮动非图片元素时，必须给它设定宽度，否则后果难以预料。图片无所谓，因为它本身有默认的宽度</p>
+
+<p>浮动元素脱离了文档流，其父元素也看不到它了，因而也不会包围它。这种情况有时候并非我们想要的，本节向大家传授三种围住浮动子元素的方法。</p>
+
+<p>围住浮动元素的几种方法：</p>
+
+<ol>
+  <li>为父元素添加overflow:hidden</li>
+  <li>同时浮动父元素</li>
+  <li>在父元素内容的末尾添加非浮动元素，可以直接在标记中加，也可以通过给父元素添加clearfix类来加(当然，样式表汇总得需要相应的clearfix规则)
+如下：</li>
+</ol>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">clearfix</span><span class="nd">:after</span> <span class="p">{</span>
+    <span class="nl">content</span><span class="p">:</span><span class="s1">"."</span><span class="p">;</span>
+    <span class="nl">display</span><span class="p">:</span><span class="nb">block</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span><span class="m">0</span><span class="p">;</span>
+    <span class="nl">visibility</span><span class="p">:</span><span class="nb">hidden</span><span class="p">;</span>
+    <span class="nl">clear</span><span class="p">:</span><span class="nb">both</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>这几种方法的使用要因地制宜。比如上面的添加一个类的方法可以在没有父元素但是要清除浮动的时候使用。</p>
+
+<h3 id="section-14">3.4 定位</h3>
+
+<ul>
+  <li>static:静态定位；默认定位</li>
+  <li>relative:相对定位；相对哪里定位呢？相对的是它原来在文档流中的位置(或者默认位置);使用相对定位的关键是什么呢？就是要考虑到元素原来的空间</li>
+  <li>absolute:绝对定位；定位上下文</li>
+  <li>fixed:固定定位；固定定位元素的定位上下文是视口(浏览器窗口或手持设备的屏幕)，因此不会随着页面滚动而移动。</li>
+</ul>
+
+<p>对HTML中的文本应该使用恰当的语义标签来标记，也就是所谓的标签语义化</p>
+
+<h3 id="section-15">3.5 显示属性</h3>
+
+<ul>
+  <li>块级元素，比如段落，标题，列表等，在浏览器中上下堆叠显示</li>
+  <li>行内元素，比如a,span和img,在浏览器中左右并排显示</li>
+</ul>
+
+<p>把元素的visibility设定为hidden，元素会隐藏，但它占据的页面控件仍然是“虚位以待”。</p>
+
+<h3 id="section-16">3.6 背景</h3>
+
+<p>在使用border设定边框的样式和宽度，而没有设定边框颜色的情况下，边框会使用color属性设定的字体颜色。</p>
+
+<p>关于背景重复，CSS3还规定了另外两个值：</p>
+
+<p>background-repeat:round:为确保图片不被剪切，通过调整图片大小来适应背景区域。</p>
+
+<p>background-repeat:space:为确保图片不被剪切，通过在图片间添加空白来适应背景区域</p>
+
+<p>背景位置：
+设定背景位置可以使用三种值：关键字，百分比，绝对或相对单位的数值。</p>
+
+<p>背景尺寸：
+background-size是CSS3规定的属性，用来控制背景图片的尺寸，可以给它设定的值及含义如下</p>
+
+<ul>
+  <li>50%：缩放图片，使其填充背景区的一半</li>
+  <li>100px 50px：把图片调整到100像素宽，50像素高</li>
+  <li>cover:拉大图片，使其完全填满背景区；保持宽高比</li>
+  <li>contain:缩放图片，使其恰好适应背景区；保持宽高比</li>
+</ul>
+
+<p>使用这个属性要注意，不要把本来很小的图片拉得太大，那样会导致图片质量失真。</p>
+
+<p>背景粘附：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="nt">background-attachment</span><span class="nd">:scroll</span><span class="o">;</span>
+	<span class="nt">background-attachment</span><span class="nd">:fixed</span><span class="o">;</span>
+</code></pre>
+</div>
+
+<p>其它CSS3背景属性</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	background-clip
+	background-origin
+	background-break
+</code></pre>
+</div>
+
+<p>多背景图片
+代码中先列出的图片显示在上方，或者说，更接近前景</p>
+
+<p>背景渐变
+渐变分两种，一种线性渐变，一种放射性渐变</p>
+
+<h1 id="section-17">第四章 字体和文本</h1>
+
+<p>如果说图片只是蛋糕上的糖衣，那么排版才是卓越设计的根本。</p>
+
+<h3 id="section-18">4.1 字体</h3>
+
+<p>网页中的字体有三个来源：</p>
+
+<ol>
+  <li>用户机器中安装的字体</li>
+  <li>保存在第三方网站上的字体</li>
+  <li>保存在你的Web服务器上的字体</li>
+</ol>
+
+<p>字体和文本不是一回事</p>
+
+<p>字体栈</p>
+
+<p>“X高度”指英文字母不包括(字母d和p都有的)上伸部分和下伸部分的主要区域，恰好X没有这些部分，所以就用它的高度来衡量。</p>
+
+<p>字体大小</p>
+
+<p>相对大小会逐层复合</p>
+
+<p>rem这个单位可谓集相对大小和绝对大小的优点于一身，通过它可以做到只修改根元素就成比例地调整所有字体大小，又可以避免字体大小逐层复合的连锁反应。除IE8以外，所有浏览器均已支持。</p>
+
+<p>字体粗细</p>
+
+<p>这些数字值没有什么用，对浏览器来说，它只显示font-weight属性的两个值：bold和normal。</p>
+
+<p>font-variant属性除了normal，就只有一个值,即small-caps，小写英文字母编程小型大写字母</p>
+
+<p>简写字体属性要遵守两条规则，否则浏览器无法正确解释声明的值。</p>
+
+<ul>
+  <li>规则一：必须声明font-size和font-family的值</li>
+  <li>规则二：所有值必须按顺序声明：font-weight,font-style,font-variant不分先后；然后是font-size；最后是font-family</li>
+</ul>
+
+<h3 id="section-19">4.2 文本属性</h3>
+
+<p>关于缩进：实际上你缩进的是这个文本盒子的起点位置。后续的行是不会缩进的，因为在CSS看来，它们就是一个整体。</p>
+
+<p>文本属性只应用于这个长长的，细细的，内部的文本盒子，而不是包含元素的盒子。</p>
+
+<p>字符间距：设定字符间距一定要用相对单位；letter-spacing的值是在浏览器默认基础上增加或减少的值。</p>
+
+<p>垂直对齐：vertical-align以基线为参照上下移动文本，但这个属性值影响行内元素。</p>
+
+<h3 id="web">4.3 Web字体大揭秘</h3>
+
+<p>目前，使用@font-face规则在网页中嵌入可下载字体的CSS功能，已经得到了浏览器的广泛支持。</p>
+
+<h3 id="section-20">4.4 文字版式</h3>
+
+<p>HMTL实体引用</p>
+
+<p>必须在font简写属性中同时设定字体大小，而且要使用相对单位em。</p>
+
+	</div>
+
+</article>
+
+			</div>
+		</div>
+
+		<footer class="site-footer">
+
+	<div class="wrapper">
+
+		<div class="footer-col-wrapper">
+
+			<div>
+				<ul class="social-media-list">
+					
+					<li>
+						<a href="https://github.com/puronglong"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">puronglong</span></a>
+
+					</li>
+					
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+
+</footer>
+
+<script type="text/javascript">
+
+	var a = "\n                                   _                                         \n _ __  _   _ _ __ ___  _ __   __ _| | ___  _ __   __ _   ___  __ _ _   _   _ \n| '_ \\| | | | '__/ _ \\| '_ \\ / _` | |/ _ \\| '_ \\ / _` | / __|/ _` | | | | (_)\n| |_) | |_| | | | (_) | | | | (_| | | (_) | | | | (_| | \\__ \\ (_| | |_| |  _ \n| .__/ \\__,_|_|  \\___/|_| |_|\\__, |_|\\___/|_| |_|\\__, | |___/\\__,_|\\__, | (_)\n|_|                          |___/               |___/             |___/     \n          _                                                                  \n  /\\  /\\ (_)                                                                 \n / /_/ / | |                                                                 \n/ __  /  | |                                                                 \n\\/ /_/   |_|            😃";
+    console.info(a);
+
+	document.addEventListener('visibilitychange', function() {
+                document.title = document.hidden ? '崩溃了，来看一下':'小龙龙的个人博客~'
+            });
+</script>
+
+
+	</body>
+
+</html>
