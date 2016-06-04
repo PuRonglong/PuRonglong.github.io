@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>蒲荣龙的博客</title>
+	<meta name="description" content="CSS伪类和伪元素">
+
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/code.css">
+	<link rel="canonical" href="http://www.puronglong.com/2015/09/04/CSS.html">
+	<link rel="alternate" type="application/rss+xml" title="blog" href="http://www.puronglong.com/feed.xml">
+</head>
+
+
+	<body>
+
+		<div class="pull-right right-sidebar">
+	<p>标签：</p>
+	
+	<p>
+	<a class="page-link" href="/tag/技术">技术</a>
+	<span>（66）</span></p>
+	
+	<p>
+	<a class="page-link" href="/tag/生活">生活</a>
+	<span>（35）</span></p>
+	
+</div>
+		
+		<div class="pull-left left-sidebar">
+			<ul class="header-list">
+				<li><a class="page-link" href="/">Home</a></li>
+				<li><a class="page-link" href="/about/">About</a></li>
+				<li><a class="page-link" href="/feed.xml">RSS</a></li>
+			</ul>
+		</div>
+		<div class="page-content">
+			<div class="wrapper">
+				<article class="post home" itemscope itemtype="http://schema.org/BlogPosting">
+
+	<header class="post-header">
+		<h1 class="post-title" itemprop="name headline">聊聊CSS(5)</h1>
+		<p class="post-meta">2015-09-04</p>
+	</header>
+
+	<div class="post-content" itemprop="articleBody">
+		<h3 id="css">CSS伪类和伪元素</h3>
+
+<p>之所以要说这两个是因为看到有这样的写法<code class="highlighter-rouge">::before</code>,不是应该为<code class="highlighter-rouge">:before</code>吗，原来之所以有前者这样的写法是为了区分伪类和伪元素，那么问题来了，伪类和伪元素，两者有什么区别。</p>
+
+<p>从定义上看：</p>
+
+<ul>
+  <li>CSS 伪类用于向某些选择器添加特殊的效果。常见的有:hover,:active,:visited等</li>
+  <li>CSS 伪元素用于将特殊的效果添加到某些选择器。常见的有:after,:before等</li>
+</ul>
+
+<!-- more -->
+
+<p>伪类重点在于类的作用，可用于添加样式；伪元素重点在于营造一个“伪”的元素，重点在元素上</p>
+
+<p>为了区别明显一些，在CSS3中，单冒号(:)用于CSS3伪类，双冒号(::)用于CSS3伪元素</p>
+
+<p>详细的还可参见这篇<a href="http://segmentfault.com/a/1190000000484493">详解 CSS 属性 - 伪类和伪元素的区别</a></p>
+
+<h3 id="box-sizing">box-sizing属性可以为三个值：</h3>
+
+<p>content-box，border和padding不计算入width之内</p>
+
+<p>border-box，border和padding计算入width之内，IE怪异模式就是这样计算的</p>
+
+<p>padding-box，padding计算入width内，这个貌似兼容性不好一般不考虑</p>
+
+<p>区别简单的说就是box-sizing:content-box属性不包含盒子的padding值，如果有padding则撑开盒子的宽度高度，box-sizing:border-box;包含了盒子的padding值，设置了padding值不会影响盒子的原始宽度高度。</p>
+
+<h3 id="background-attachmentfixed">background-attachment:fixed</h3>
+
+<p>background-attachment – 定义背景图片随滚动轴的移动方式</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>取值: scroll</td>
+      <td>fixed</td>
+      <td>inherit</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>scroll: 随着页面的滚动轴背景图片将移动</li>
+  <li>fixed: 随着页面的滚动轴背景图片不会移动</li>
+  <li>inherit: 继承</li>
+</ul>
+
+<p>background-attachment: fixed 是针对视口固定位置的</p>
+
+	</div>
+
+</article>
+
+			</div>
+		</div>
+
+		<footer class="site-footer">
+
+	<div class="wrapper">
+
+		<div class="footer-col-wrapper">
+
+			<div>
+				<ul class="social-media-list">
+					
+					<li>
+						<a href="https://github.com/puronglong"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">puronglong</span></a>
+
+					</li>
+					
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+
+</footer>
+
+<script type="text/javascript">
+
+	var a = "\n                                   _                                         \n _ __  _   _ _ __ ___  _ __   __ _| | ___  _ __   __ _   ___  __ _ _   _   _ \n| '_ \\| | | | '__/ _ \\| '_ \\ / _` | |/ _ \\| '_ \\ / _` | / __|/ _` | | | | (_)\n| |_) | |_| | | | (_) | | | | (_| | | (_) | | | | (_| | \\__ \\ (_| | |_| |  _ \n| .__/ \\__,_|_|  \\___/|_| |_|\\__, |_|\\___/|_| |_|\\__, | |___/\\__,_|\\__, | (_)\n|_|                          |___/               |___/             |___/     \n          _                                                                  \n  /\\  /\\ (_)                                                                 \n / /_/ / | |                                                                 \n/ __  /  | |                                                                 \n\\/ /_/   |_|            😃";
+    console.info(a);
+
+	document.addEventListener('visibilitychange', function() {
+                document.title = document.hidden ? '崩溃了，来看一下':'小龙龙的个人博客~'
+            });
+</script>
+
+
+	</body>
+
+</html>

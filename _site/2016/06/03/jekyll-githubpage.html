@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>蒲荣龙的博客</title>
+	<meta name="description" content="  在部署jekyll和github pages的时候遇到的一些问题">
+
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/code.css">
+	<link rel="canonical" href="http://www.puronglong.com/2016/06/03/jekyll-githubpage.html">
+	<link rel="alternate" type="application/rss+xml" title="blog" href="http://www.puronglong.com/feed.xml">
+</head>
+
+
+	<body>
+
+		<div class="pull-right right-sidebar">
+	<p>标签：</p>
+	
+	<p>
+	<a class="page-link" href="/tag/技术">技术</a>
+	<span>（66）</span></p>
+	
+	<p>
+	<a class="page-link" href="/tag/生活">生活</a>
+	<span>（35）</span></p>
+	
+</div>
+		
+		<div class="pull-left left-sidebar">
+			<ul class="header-list">
+				<li><a class="page-link" href="/">Home</a></li>
+				<li><a class="page-link" href="/about/">About</a></li>
+				<li><a class="page-link" href="/feed.xml">RSS</a></li>
+			</ul>
+		</div>
+		<div class="page-content">
+			<div class="wrapper">
+				<article class="post home" itemscope itemtype="http://schema.org/BlogPosting">
+
+	<header class="post-header">
+		<h1 class="post-title" itemprop="name headline">jekyll和github pages的一些问题</h1>
+		<p class="post-meta">2016-06-03</p>
+	</header>
+
+	<div class="post-content" itemprop="articleBody">
+		<blockquote>
+  <p>在部署jekyll和github pages的时候遇到的一些问题</p>
+</blockquote>
+
+<p>因为以前用过jekyll，所以以为jekyll和github pages搭配很简单，结果自己使用的过程中遇到了一些问题，使用google和stackoverflow解决了问题，有必要记录一下。</p>
+
+<!-- more -->
+
+<p><img src="/images/article/2016-6-3/1.png" alt="img" /></p>
+
+<p>使用jekyll+github pages初步搭建好博客以后，需要实现标签的功能，点击标签页面跳转到相应的页面。标签的实现我使用了插件，新建一个_plugins文件夹，在里面新建一个ruby文件build-tag.rb，这个ruby文件里的代码实现了标签功能，原理就是生成对应标签的文件，比如整个首页是一个index，插件就是为每一个标签生成一个index，这样就能现实标签页了。</p>
+
+<p>然后启动jekyll服务，jekyll serve，查看localhost://4000并没有什么问题，愉快地上传到github，却发现本地实现一切正常，放到github上标签功能却失效了。查找到问题在这里，github help里这样说的：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>You can further customize your GitHub Pages site by adding Jekyll plugins.
+
+GitHub Pages officially supports the Jekyll plugins found in the GitHub Pages gem. For the exact versions of the Jekyll plugins that GitHub Pages supports, see this list of GitHub Pages dependencies. Other plugins are not supported, so the only way to incorporate them in your site is to generate your site locally and then push your site's static files to your GitHub Pages site.
+</code></pre>
+</div>
+
+<p>意思是，通过添加插件，你可以自定义你的github pages网页，但是github pages官方只支持一些指定的插件，然后给出了支持的插件列表。其它的插件不支持，也就是说我们自己写的放在_plugins里的插件github pages是不支持的。最后告诉我们唯一的办法是在本地生成文件然后push到github pages站点上。我们知道当我们使用markdown写了博文以后，jekyll会生成整个项目的静态文件（也就是我们网页上常见的html，css这些）在<code class="highlighter-rouge">_site</code>文件夹里，因为这个目录下的文件是被build出来的，不是源码，通常git repo（乃至所有源码管理系统）不应包含非源码的内容，所以github官方才说不要把site文件夹push上去，如果使用了github pages服务，正确配置以后github pages会帮你build。</p>
+
+<p>至于为什么不支持，则是因为安全问题。</p>
+
+<p>但这时候就遇到我们上面说的情况了，它在build的时候并不会识别我们自己的插件，所以点击标签链接的时候报404错误。</p>
+
+<p>知道了问题以后，唯一的方法就是把我们编译过后的文件传上去，但不是说我们就传site里的文件就好了，因为代码管理的原则就是放源代码而不是编译后的文件，通过源码和每一次的commit信息才能看到项目一步一步是怎么建立起来的。于是我将.gitignore文件里的忽略site文件夹的配置去掉了，将其push上去，私以为github pages会自动查找site文件夹里的内容，结果当然是不行的了。</p>
+
+<p>正确的做法是把源码和编译后的文件分开。</p>
+
+<p>这个时候就要用到git强大的分支系统啦，一个分支放源码，一个分支放编译后的文件。可是又有一个问题，如果我们的站点是托管在以username.github.io命名的项目上的话：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>then GitHub Pages will always serve content from the master branch
+</code></pre>
+</div>
+
+<p>username.github.io是github一个特殊的命名，凡是以这个名字命名的项目，github pages会强制使用master分支，即使这个项目下新建有其它分支。</p>
+
+<p>对于既想要使用此项目管理博客源码又想要发布文章的人来说，有个小方法就是把site里的内容放到master分支上，然后新建一个分支，比如命名为source，这个分支上放的就是博客源码。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>git checkout -b source master
+</code></pre>
+</div>
+
+<p>上面git指令表示从这个master分支上新建一个source分支。新建了一个分支以后记得在github里的setting选项里把这个库的没人分支改为source。</p>
+
+<p>通过github的分支系统，这样我们就能在一个库里分别管理我们的源码和编译文件了。我们push了源码（source分支）之后还要push编译文件（master分支），每次手动操作，切换分支这些很繁琐，可以使用代码简化流程，新建一个rakefile.rb文件，内容如下：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">require</span> <span class="s2">"rubygems"</span>
+<span class="nb">require</span> <span class="s2">"tmpdir"</span>
+
+<span class="nb">require</span> <span class="s2">"bundler/setup"</span>
+<span class="nb">require</span> <span class="s2">"jekyll"</span>
+
+
+<span class="n">desc</span> <span class="s2">"Generate blog files"</span>
+<span class="n">task</span> <span class="ss">:generate</span> <span class="k">do</span>
+  <span class="no">Jekyll</span><span class="o">::</span><span class="no">Site</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="no">Jekyll</span><span class="p">.</span><span class="nf">configuration</span><span class="p">({</span>
+    <span class="s2">"source"</span>      <span class="o">=&gt;</span> <span class="s2">"."</span><span class="p">,</span>
+    <span class="s2">"destination"</span> <span class="o">=&gt;</span> <span class="s2">"_site"</span>
+  <span class="p">})).</span><span class="nf">process</span>
+<span class="k">end</span>
+
+
+<span class="n">desc</span> <span class="s2">"Generate and publish blog to gh-pages"</span>
+<span class="n">task</span> <span class="ss">:publish</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="ss">:generate</span><span class="p">]</span> <span class="k">do</span>
+  <span class="no">Dir</span><span class="p">.</span><span class="nf">mktmpdir</span> <span class="k">do</span> <span class="o">|</span><span class="n">tmp</span><span class="o">|</span>
+    <span class="n">cp_r</span> <span class="s2">"_site/."</span><span class="p">,</span> <span class="n">tmp</span>
+
+    <span class="n">pwd</span> <span class="o">=</span> <span class="no">Dir</span><span class="p">.</span><span class="nf">pwd</span>
+    <span class="no">Dir</span><span class="p">.</span><span class="nf">chdir</span> <span class="n">tmp</span>
+
+    <span class="nb">system</span> <span class="s2">"git init"</span>
+    <span class="nb">system</span> <span class="s2">"git add ."</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">"Site updated at </span><span class="si">#{</span><span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="si">}</span><span class="s2">"</span>
+    <span class="nb">system</span> <span class="s2">"git commit -m </span><span class="si">#{</span><span class="n">message</span><span class="p">.</span><span class="nf">inspect</span><span class="si">}</span><span class="s2">"</span>
+    <span class="nb">system</span> <span class="s2">"git remote add origin 项目的git地址"</span>
+    <span class="nb">system</span> <span class="s2">"git push origin master --force"</span>
+
+    <span class="no">Dir</span><span class="p">.</span><span class="nf">chdir</span> <span class="n">pwd</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>现在就可以使用<code class="highlighter-rouge">rake publish</code>这个命令同时compile和push我们的站点到github pages。</p>
+
+<p>但运行的时候提示报错：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>cannot load such file -- bundler/setup
+</code></pre>
+</div>
+
+<p>没有bundler，看来的安装，执行：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo gem install bundler
+</code></pre>
+</div>
+
+<p>提示：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>ERROR:  While executing gem ... (Errno::EPERM)
+    Operation not permitted - /usr/bin/bundle
+</code></pre>
+</div>
+
+<p>查找资料找到问题所在：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>No, you'll need to either change your GEM_HOME or do something like sudo gem install bundler -n /usr/local/bin because of El Cap's introduction of SIP (System Integrity Protection).
+</code></pre>
+</div>
+
+<p>上面这个bundler里issue说得很清楚，这是Mac OS El Capitan这个版本的mac系统的缘故。</p>
+
+<p>于是执行：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo gem install bundler -n /usr/local/bin
+</code></pre>
+</div>
+
+<p>成功安装。</p>
+
+<p>参考资料：</p>
+
+<p><a href="http://ixti.net/software/2013/01/28/using-jekyll-plugins-on-github-pages.html">Using Jekyll plugins on GitHub Pages</a></p>
+
+<p><a href="https://github.com/bundler/bundler/issues/4065">Unable to run gem install bundler in OS X El Capitan #4065</a></p>
+
+	</div>
+
+</article>
+
+			</div>
+		</div>
+
+		<footer class="site-footer">
+
+	<div class="wrapper">
+
+		<div class="footer-col-wrapper">
+
+			<div>
+				<ul class="social-media-list">
+					
+					<li>
+						<a href="https://github.com/puronglong"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">puronglong</span></a>
+
+					</li>
+					
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+
+</footer>
+
+<script type="text/javascript">
+
+	var a = "\n                                   _                                         \n _ __  _   _ _ __ ___  _ __   __ _| | ___  _ __   __ _   ___  __ _ _   _   _ \n| '_ \\| | | | '__/ _ \\| '_ \\ / _` | |/ _ \\| '_ \\ / _` | / __|/ _` | | | | (_)\n| |_) | |_| | | | (_) | | | | (_| | | (_) | | | | (_| | \\__ \\ (_| | |_| |  _ \n| .__/ \\__,_|_|  \\___/|_| |_|\\__, |_|\\___/|_| |_|\\__, | |___/\\__,_|\\__, | (_)\n|_|                          |___/               |___/             |___/     \n          _                                                                  \n  /\\  /\\ (_)                                                                 \n / /_/ / | |                                                                 \n/ __  /  | |                                                                 \n\\/ /_/   |_|            😃";
+    console.info(a);
+
+	document.addEventListener('visibilitychange', function() {
+                document.title = document.hidden ? '崩溃了，来看一下':'小龙龙的个人博客~'
+            });
+</script>
+
+
+	</body>
+
+</html>

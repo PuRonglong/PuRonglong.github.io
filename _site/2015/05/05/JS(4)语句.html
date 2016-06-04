@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>蒲荣龙的博客</title>
+	<meta name="description" content="  这周在讨论班讲解了一下JS中的部分语句，将PPT内容摘录如下">
+
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/code.css">
+	<link rel="canonical" href="http://www.puronglong.com/2015/05/05/JS(4)%E8%AF%AD%E5%8F%A5.html">
+	<link rel="alternate" type="application/rss+xml" title="blog" href="http://www.puronglong.com/feed.xml">
+</head>
+
+
+	<body>
+
+		<div class="pull-right right-sidebar">
+	<p>标签：</p>
+	
+	<p>
+	<a class="page-link" href="/tag/技术">技术</a>
+	<span>（66）</span></p>
+	
+	<p>
+	<a class="page-link" href="/tag/生活">生活</a>
+	<span>（35）</span></p>
+	
+</div>
+		
+		<div class="pull-left left-sidebar">
+			<ul class="header-list">
+				<li><a class="page-link" href="/">Home</a></li>
+				<li><a class="page-link" href="/about/">About</a></li>
+				<li><a class="page-link" href="/feed.xml">RSS</a></li>
+			</ul>
+		</div>
+		<div class="page-content">
+			<div class="wrapper">
+				<article class="post home" itemscope itemtype="http://schema.org/BlogPosting">
+
+	<header class="post-header">
+		<h1 class="post-title" itemprop="name headline">JS部分语句简析</h1>
+		<p class="post-meta">2015-05-05</p>
+	</header>
+
+	<div class="post-content" itemprop="articleBody">
+		<blockquote>
+  <p>这周在讨论班讲解了一下JS中的部分语句，将PPT内容摘录如下</p>
+</blockquote>
+
+<h3 id="breakcontinue">break语句和continue语句</h3>
+
+<p>这两个语句用于在循环中精确地控制代码的执行。其中
+break语句会立即退出循环，强制继续执行循环后面的语句。而continue语句虽然也是立即退出循环，但会开始下一次循环的执行。</p>
+
+<!-- more -->
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">i</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">num</span><span class="o">++</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num</span><span class="p">);</span><span class="c1">//4</span>
+</code></pre>
+</div>
+
+<h3 id="section">标签语句</h3>
+
+<p>语句是可以添加标签的，标签是由语句前的标识符和冒号组成的；</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="nx">identifier</span> <span class="err">:</span> <span class="nx">statement</span>
+</code></pre>
+</div>
+
+<p>通过给语句定义标签，就可以在程序的任何地方通过标签名引用这条语句，break和continue语句都可以与标签语句联合使用，从而返回代码中特定的位置。这种联合使用的情况多发生在循环嵌套的情况下，如下面的例子所示:</p>
+
+<h2 id="return">return</h2>
+
+<p>这里面的return含有一些细节知识：
+例如：onClick=’return add_onclick()’与 onClick=’add_onclick()’的区别</p>
+
+<p>JavaScript在事件中调用函数时用return返回值实际上是对window.event.returnvalue进行设置。
+而该值决定了当前操作是否继续。(true/false)</p>
+
+<p>而直接执行时（不用return）。将不会对window.event.returnvalue进行设置
+所以会默认地继续执行操作</p>
+
+<p>当在 <a href="abc.html" onclick="return add_onclick()">Open</a> 中
+如果函数 add_onclick() 返回 true, 那么页面就会打开 abc.html否则, (返回 false), 那么页面不会跳转到 abc.html, 只会执行你的 add_onclick() 函数里的内容.add_onclick函数中控制页面转到 abc.html除外)而 <a href="abc.htm" onclick="add_onclick()">Open</a>
+不管 add_onclick() 返回什么值, 都会在执行完 add_onclick 后打开页面 abc.html</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://www.baidu.com/"</span> <span class="na">onclick=</span><span class="s">"return ture"</span><span class="nt">&gt;</span>Open<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://www.baidu.com/"</span> <span class="na">onclick=</span><span class="s">"return false"</span><span class="nt">&gt;</span>Open<span class="nt">&lt;/a&gt;</span>
+</code></pre>
+</div>
+
+<p>函数调用是一种表达式，而所有表达式都有值。函数中的return语句即是指定函数调用后的返回值。这里是return语句的语法：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">return</span> <span class="nx">expression</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>return 语句只能在函数体内出现，如果不是的话会报语法错误。当执行到return语句的时候，函数终止执行，并返回expression的值给调用程序。</p>
+
+<p>return语句也可以单独使用而不必带expression,即可以什么都不返回</p>
+
+<h2 id="section-1">声明</h2>
+
+<p>var和function都是声明语句，它们声明或定义变量或函数。这些语句定义标识符(变量和函数名)并给其赋值，这些标识符可以在程序中任何地方使用。声明语句本身什么也不做，但它有一个重要的意义，通过创建变量和函数，可以更好地组织代码的语义。</p>
+
+<p>var：</p>
+
+<p>var语句用来声明一个或多个变量，语法如下：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">name_1</span> <span class="p">[</span><span class="o">=</span><span class="nx">value_1</span><span class="p">]</span> <span class="p">[,...,</span> <span class="nx">name_n</span><span class="p">[</span><span class="o">=</span><span class="nx">value_n</span><span class="p">]]</span>
+</code></pre>
+</div>
+
+<p>关键字var之后跟随的是要声明的变量列表，列表中的每一个变量都可以带有初始化表达式，用于指定它的初始值</p>
+
+<p>var 声明的变量无法通过delete删除的</p>
+
+<p>隐式全局变量和明确定义的全局变量间有些小的差异，就是通过delete操作符让变量未定义的能力。 <br />
+通过var创建的全局变量（任何函数之外的程序中创建）是不能被删除的。 
+无var创建的隐式全局变量（无视是否在函数中创建）是能被删除的。</p>
+
+<p>这表明，在技术上，隐式全局变量并不是真正的全局变量，但它们是全局对象的属性。属性是可以通过delete操作符删除的，而变量是不能的</p>
+
+<p>如果var语句中的变量没有指定初始化表达式，那么这个变量的值初始为undefined。</p>
+
+<p>JS如果用var在函数体中声明变量，那么此变量在且只在该函数体内有效，函数运行结束时，本地变量即可销毁了。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="s2">"Hello"</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">change</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="s2">"say"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="nx">change</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>这个例子声明了2个局部变量，change()函数里 str 变量的值改变不会影响函数外的 str 变量。例子输出：Hello</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nx">str</span> <span class="o">=</span> <span class="s2">"Hello"</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">change</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="s2">"say"</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">change</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>上面声明了一个全局变量和一个局部变量，函数里 str 的改变不会影响到函数外的 str 变量，因为它是局部的。例子输出：Hello</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="s2">"Hello"</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">change</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">str</span> <span class="o">=</span> <span class="s2">"say"</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">change</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
+
+<span class="cm">/*str = "Hello";
+function change() {
+    str = "say";
+}
+change();
+console.log(str);*/</span>
+
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="s2">"t"</span> <span class="k">in</span> <span class="nb">window</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">t</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>上面的答案是undefined,为什么呢，因为变量声明提前了，所以t是在window对象里面的，但是没有走下面的判断，所以并没有赋值，答案就是undefine。
+如果将!符号去掉则结果就是1了</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">num</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">num</span> <span class="o">=</span> <span class="nx">num</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">num</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fn</span><span class="p">());</span>
+</code></pre>
+</div>
+
+<p>以上的答案是NaN,因为在函数体内部首先把var num提前，这样在赋值的时候去的num + 1中的值是undefined，这样进行运算后答案就是NaN,<strong>记住我们找对象的时候是层级往上面找的，找不到才找外面的</strong>。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">fn</span><span class="p">();</span>
+
+    <span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">fn</span><span class="p">;</span>
+    <span class="nx">fn</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="p">})();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>以上答案是2，因为首先把var fn提前，然后函数体那样子定义也是一种函数的声明，并且函数的声明会在同名参数之前，所以就是var ,fn,fn,然后就renturn了，没有走之后的fn=3,所以答案就是2</p>
+
+<p>在讲到这里的时候大家有在讨论<code class="highlighter-rouge">fn=3</code>这个，认为它是全局的所以应该是先被执行了的，然后后来被覆盖为2了这样。而并不是说没有执行到这里，结果我们在整个函数签名把fn打出来也没有结果<code class="highlighter-rouge">console.log(fn);</code>,结果是未定义，这就表明了并没有在全局中有fn=3这样一个执行，这说明了还是那么一个点，就是如果在这样一个层级上找到了，就不会再向上找，直到找到全局的量，或者也说明，全局的变量并不是说就一开始就执行了，也还是先找低点的层级再往上走。</p>
+
+<h2 id="function">function</h2>
+
+<p>关键字function用来定义函数
+下面示例代码中体现了两种定义写法：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">f</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">){</span> <span class="k">return</span> <span class="nx">x</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="p">}</span><span class="c1">//将表达式赋值给一个变量</span>
+<span class="kd">function</span> <span class="nx">f</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="nx">x</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="p">}</span><span class="c1">//含有变量名的语句</span>
+</code></pre>
+</div>
+
+<p>函数声明语句的语法如下：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">funcname</span><span class="p">([</span><span class="nx">arg1</span><span class="p">[,</span><span class="nx">arg2</span><span class="p">[...,</span><span class="nx">argn</span><span class="p">]]]){</span>
+    <span class="nx">statements</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>funcname是要声明的函数的名称的标识符。函数名之后的圆括号中是参数列表，参数之间使用逗号分隔。当调用函数时，这些标识符则指代传入函数的实参。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">aa</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">,</span><span class="nx">c</span><span class="p">){</span>
+    <span class="kd">function</span> <span class="nx">a</span><span class="p">(){};</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">aa</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s2">"ee"</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">aa</span> <span class="o">=</span> <span class="s2">"444"</span><span class="p">;</span>
+    <span class="nx">arguments</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">aa</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">aa</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>我们在理解变量声明的时候，首先是var的，然后是函数体的，最后是参数</p>
+
+<h2 id="throw">throw</h2>
+
+<p>所谓异常(exception)是当发生了某种异常情况或错误时产生的一个信号。抛出异常，就是用信号通知发生了错误或异常状况。捕获异常是指处理这个信号，即采取必要的手段从异常中恢复。在JS中，当产生运行时错误或者程序使用throw语句时就会显示地抛出异常。使用try/catch/finally语句可以捕获异常。</p>
+
+<p>throw语句的语法如下：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">throw</span> <span class="nx">expression</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>expression的值可以是任意类型的。可以抛出一个代表错误码的数字，或者包含可读的错误消息的字符串。</p>
+
+<p>下面的例子中，当使用非法参数调用函数时就抛出一个Error对象：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">x</span><span class="p">){</span>
+    <span class="c1">//如果输入参数是非法的，则抛出一个异常</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">x</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">"x不能是负数"</span><span class="p">);</span>
+    <span class="c1">//否则，计算出一个值，并正常地返回它</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">f</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">f</span><span class="o">*=</span><span class="nx">x</span><span class="p">,</span> <span class="nx">x</span><span class="o">--</span><span class="p">)</span><span class="cm">/*empty*/</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">f</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">factorial</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+</code></pre>
+</div>
+
+<p>以上是一个阶乘函数</p>
+
+<p>同时我们可以注意到上面for循环后面的<code class="highlighter-rouge">/*empty*/</code>,这就是一个空语句，那么什么是空语句呢</p>
+
+<p>在JavaScript中，当希望多条语句被当作一条语句使用时，使用复合语句来替代。空语句则恰好相反，它允许包含0条语句的语句。空语句如下所示：</p>
+
+<p>;</p>
+
+<p>JavaScript解释器执行空语句时不会执行任何动作。但实践证明，当创建一个具有循环体的循环时，空语句有时是很有用的。例如下面的for循环：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="c1">//初始化一个数组</span>
+    <span class="k">for</span><span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="nx">i</span> <span class="o">&lt;</span><span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="o">++</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>在这个循环中，所有的操作都在表达式a[i++]=0中完成，这里并不需要任何循环体。然而JavaScript需要循环体中至少包含一条语句，因此，这里只使用了一个单独的分号来表示一条空语句</p>
+
+<h2 id="trycatchfinally">try/catch/finally</h2>
+
+<p>在JavaScript中，我们使用try…catch…finally语句来执行例外处理，即通过它来捕捉错误发生后导致的例外或者执行throw语句产生的例外。</p>
+
+<p>其中try从句定义了需要处理的异常所在的代码块。</p>
+
+<p>catch从句跟随在try从句之后，当try块内某处发生了异常时，调用catch内的代码逻辑。catch从句后跟随finally块，后者中放置清理代码，不管try块中是否产生异常，finally块内的逻辑总是会执行。</p>
+
+<p>下面代码说明了try/catch/finally的语法和使用目的：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="k">try</span> <span class="p">{</span> 
+        <span class="c1">//执行的代码，其中可能有异常。一旦发现异常，则立即跳到catch执行。否则不会执行catch里面的内容 </span>
+    <span class="p">}</span> 
+
+    <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="c1">//除非try里面执行代码发生了异常，否则这里的代码不会执行</span>
+        <span class="c1">//这里可以通过局部变量e来获得对Error对象或者抛出的其他值的引用</span>
+    <span class="p">}</span> 
+
+    <span class="k">finally</span> <span class="p">{</span> 
+        <span class="c1">//不管什么情况都会执行，包括try catch 里面用了return ,可以理解为只要执行了try或者catch，就一定会执行 finally </span>
+    <span class="p">}</span> 
+</code></pre>
+</div>
+
+<p>没有try catch的时候，如果出现异常则程序报错，加上try catch，出现异常程序正常运行，只是把错误信息存储到Exception里，所以catch是用来提取异常信息的。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">array</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+                <span class="k">try</span> <span class="p">{</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+                <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Error name: "</span> <span class="o">+</span> <span class="nx">err</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">""</span><span class="p">);</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Error message: "</span> <span class="o">+</span> <span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">finally</span><span class="p">{</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"object is null"</span><span class="p">);</span>
+                <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>以上程序执行过程：</p>
+
+<ol>
+  <li>array[0]的时候由于没有创建array数组,array是个空对象，程序中调用array[0]就会产生异常</li>
+  <li>catch(err)语句捕获到这个异常通过err.name打印了错误类型,err.message打印了错误的详细信息.</li>
+  <li>finally类似于java的finally,无论有无异常都会执行.</li>
+</ol>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>         <span class="kd">var</span> <span class="nx">s</span><span class="p">;</span>
+<span class="err">　　</span>      <span class="k">try</span> <span class="p">{</span>
+<span class="err">　　　　</span>        <span class="nx">s</span> <span class="o">=</span> <span class="s2">"one "</span><span class="p">;</span>
+<span class="err">　　　　</span>        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">"oops"</span><span class="p">);</span>
+<span class="err">　　　　</span>        <span class="nx">s</span> <span class="o">+=</span> <span class="s2">"two"</span><span class="p">;</span>
+<span class="err">　　</span>      <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">　　　　</span>        <span class="nx">s</span> <span class="o">+=</span> <span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="p">;</span>
+<span class="err">　　</span>      <span class="p">}</span>
+<span class="err">　　</span>      <span class="nx">s</span> <span class="o">+=</span> <span class="s2">" three"</span><span class="p">;</span>
+<span class="err">　　</span>      <span class="nx">alert</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>以上触发了一个例外：
+创建一个Error对象后，就可以使用throw语句来触发相应的例外。Throw的语法如下：
+throw errObj
+errObj必须是一个Error对象或者Error的子类型。在try块代码中触发一个例外后，控制将直接转入catch块。</p>
+
+<p>上面的代码中，在try块中触发了一个例外，设置例外信息为“oops”，然后控制转移到catch块。这段代码主要想说明的是如果遇到错误的话就直接跳转，不会再执行下面的<code class="highlighter-rouge">s += "two"</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="k">try</span> <span class="p">{</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">"Outer try running...&lt;br/&gt;"</span><span class="p">);</span>
+
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">"Nested try running...&lt;br/&gt;"</span><span class="p">);</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="mi">301</span><span class="p">,</span> <span class="s2">"an error"</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">write</span> <span class="p">(</span><span class="s2">"Nested catch caught "</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">message</span> <span class="o">+</span> <span class="s2">"&lt;br/&gt;"</span><span class="p">);</span>
+            <span class="k">throw</span> <span class="nx">e</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">finally</span> <span class="p">{</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">write</span> <span class="p">(</span><span class="s2">"Nested finally is running...&lt;br/&gt;"</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">write</span> <span class="p">(</span><span class="s2">"Outer catch caught "</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">message</span> <span class="o">+</span> <span class="s2">"&lt;br/&gt;"</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">finally</span> <span class="p">{</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">write</span> <span class="p">(</span><span class="s2">"Outer finally running"</span><span class="p">);</span>
+        <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>以上示例演示如何重新引发错误以及执行嵌套的 try…catch 块。 在从嵌套的 try 块引发错误时，会将错误传递给嵌套的 catch 块，这将再次引发错误。 嵌套的 finally 块运行后，外部 catch 块才处理错误，最终外部 finally 块将运行。</p>
+
+<p>在网上查找到try finally还有一个作用就是可以防止内存泄漏，我们来看下例子</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kd">function</span> <span class="nx">createButton</span><span class="p">(){</span>  
+             <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"button"</span><span class="p">);</span>  
+             <span class="nx">obj</span><span class="p">.</span><span class="nx">innerHTML</span><span class="o">=</span><span class="s2">"点我!"</span><span class="p">;</span>  
+             <span class="nx">obj</span><span class="p">.</span><span class="nx">onclick</span><span class="o">=</span><span class="kd">function</span><span class="p">(){</span>  
+             <span class="c1">//处理click事件  </span>
+             <span class="p">}</span>  
+             <span class="nx">obj</span><span class="p">.</span><span class="nx">onmouseover</span><span class="o">=</span><span class="kd">function</span><span class="p">(){</span>  
+             <span class="c1">//处理mouseover事件  </span>
+             <span class="p">}</span>  
+             <span class="k">return</span> <span class="nx">obj</span><span class="p">;</span><span class="c1">//这里由于需要返回创建的对象，所以不能把obj直接设为null. </span>
+             <span class="c1">//return 后obj是局部变量，不能在外部断开其与HTMLElement的引用.ie中将出现问题泄漏问题  </span>
+            <span class="p">}</span>   
+            
+    <span class="kd">function</span> <span class="nx">createButton</span><span class="p">(){</span>  
+             <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"button"</span><span class="p">);</span>  
+             <span class="nx">obj</span><span class="p">.</span><span class="nx">innerHTML</span><span class="o">=</span><span class="s2">"点我!"</span><span class="p">;</span>  
+             <span class="nx">obj</span><span class="p">.</span><span class="nx">onclick</span><span class="o">=</span><span class="kd">function</span><span class="p">(){</span>  
+             <span class="c1">//处理click事件  </span>
+             <span class="p">}</span>  
+             <span class="nx">obj</span><span class="p">.</span><span class="nx">onmouseover</span><span class="o">=</span><span class="kd">function</span><span class="p">(){</span>  
+             <span class="c1">//处理mouseover事件  </span>
+             <span class="p">}</span>  
+             <span class="k">try</span><span class="p">{</span>  
+             <span class="k">return</span> <span class="nx">obj</span><span class="p">;</span>  
+             <span class="p">}</span><span class="k">finally</span><span class="p">{</span>  
+             <span class="nx">obj</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span><span class="c1">//这句话在return 之后才执行,有效地解决了需在return后将obj置null的问题  </span>
+             <span class="p">}</span>  
+            <span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="with">with</h2>
+
+<p>with 语句可以方便地用来引用某个特定对象中已有的属性，但是不能用来给对象添加属性。with语句的语法如下</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kd">with</span> <span class="p">(</span><span class="nx">expression</span><span class="p">)</span> <span class="nx">statement</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>定义with 语句的目的主要是为了简化多次编写同一个对象的工作，如下面的例子</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">qs</span> <span class="o">=</span> <span class="nx">location</span><span class="p">.</span><span class="nx">search</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">hostName</span> <span class="o">=</span> <span class="nx">location</span><span class="p">.</span><span class="nx">hostname</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>上面几行代码都包含location对象。如果使用with语句，可以把上面的代码改写成如下所示：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kd">with</span><span class="p">(</span><span class="nx">location</span><span class="p">){</span>
+        <span class="kd">var</span> <span class="nx">qs</span> <span class="o">=</span> <span class="nx">search</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">hostName</span> <span class="o">=</span> <span class="nx">hostname</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">href</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>在这个重写后的例子中，使用with语句关联了location对象。这意味着在with语句的代码块内部，每个变量首先被认为是一个局部变量，而如果在局部环境中找不到该变量的定义，就会查询location对象中是否有同名的属性。如果发现了同名属性，则以location对象属性的值作为变量的值。</p>
+
+<p>严格模式下不允许使用with语句，否则将视为语法错误。</p>
+
+<p>由于大量使用with语句会导致性能下降，同时也会给调试代码造成困难，因此在开发大型应用程序时，不建议使用with语句。</p>
+
+<p>使用with语句，可以大大的缩减使用多级对象引用代码行的长度，不使用with，使用临时变量也可以达到同样的效果</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kd">with</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">forms</span><span class="p">[</span><span class="mi">0</span><span class="p">]){</span>
+    <span class="c1">//直接访问表单元素，例如：</span>
+    <span class="nx">name</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+    <span class="nx">address</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+    <span class="nx">email</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">f</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">forms</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="nx">f</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+    <span class="nx">f</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+    <span class="nx">f</span><span class="p">.</span><span class="nx">email</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+</code></pre>
+</div>
+
+	</div>
+
+</article>
+
+			</div>
+		</div>
+
+		<footer class="site-footer">
+
+	<div class="wrapper">
+
+		<div class="footer-col-wrapper">
+
+			<div>
+				<ul class="social-media-list">
+					
+					<li>
+						<a href="https://github.com/puronglong"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">puronglong</span></a>
+
+					</li>
+					
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+
+</footer>
+
+<script type="text/javascript">
+
+	var a = "\n                                   _                                         \n _ __  _   _ _ __ ___  _ __   __ _| | ___  _ __   __ _   ___  __ _ _   _   _ \n| '_ \\| | | | '__/ _ \\| '_ \\ / _` | |/ _ \\| '_ \\ / _` | / __|/ _` | | | | (_)\n| |_) | |_| | | | (_) | | | | (_| | | (_) | | | | (_| | \\__ \\ (_| | |_| |  _ \n| .__/ \\__,_|_|  \\___/|_| |_|\\__, |_|\\___/|_| |_|\\__, | |___/\\__,_|\\__, | (_)\n|_|                          |___/               |___/             |___/     \n          _                                                                  \n  /\\  /\\ (_)                                                                 \n / /_/ / | |                                                                 \n/ __  /  | |                                                                 \n\\/ /_/   |_|            😃";
+    console.info(a);
+
+	document.addEventListener('visibilitychange', function() {
+                document.title = document.hidden ? '崩溃了，来看一下':'小龙龙的个人博客~'
+            });
+</script>
+
+
+	</body>
+
+</html>

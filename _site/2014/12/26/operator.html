@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>蒲荣龙的博客</title>
+	<meta name="description" content="有些运算符不直接产生运算效果，而是用于影响运算效果，这一类运算符的操作对象通常是“表达式”，而非“表达式的值”。">
+
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/code.css">
+	<link rel="canonical" href="http://www.puronglong.com/2014/12/26/operator.html">
+	<link rel="alternate" type="application/rss+xml" title="blog" href="http://www.puronglong.com/feed.xml">
+</head>
+
+
+	<body>
+
+		<div class="pull-right right-sidebar">
+	<p>标签：</p>
+	
+	<p>
+	<a class="page-link" href="/tag/技术">技术</a>
+	<span>（66）</span></p>
+	
+	<p>
+	<a class="page-link" href="/tag/生活">生活</a>
+	<span>（35）</span></p>
+	
+</div>
+		
+		<div class="pull-left left-sidebar">
+			<ul class="header-list">
+				<li><a class="page-link" href="/">Home</a></li>
+				<li><a class="page-link" href="/about/">About</a></li>
+				<li><a class="page-link" href="/feed.xml">RSS</a></li>
+			</ul>
+		</div>
+		<div class="page-content">
+			<div class="wrapper">
+				<article class="post home" itemscope itemtype="http://schema.org/BlogPosting">
+
+	<header class="post-header">
+		<h1 class="post-title" itemprop="name headline">JavaScript语法中的运算优先级</h1>
+		<p class="post-meta">2014-12-26</p>
+	</header>
+
+	<div class="post-content" itemprop="articleBody">
+		<p>有些运算符不直接产生运算效果，而是用于影响运算效果，这一类运算符的操作对象通常是“<strong>表达式</strong>”，而非“<strong>表达式的值</strong>”。</p>
+
+<p>看下表：</p>
+
+<!-- more -->
+
+<table>
+  <thead>
+    <tr>
+      <th>运算符</th>
+      <th>作用</th>
+      <th>备注</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>void</td>
+      <td>避免表达式返回值</td>
+      <td>使表达式总是返回值undefined</td>
+    </tr>
+    <tr>
+      <td>?:</td>
+      <td>表达式分组和调整运算次序</td>
+      <td>也称优先级运算符</td>
+    </tr>
+    <tr>
+      <td>()</td>
+      <td>避免表达式返回值</td>
+      <td>使表达式总是返回值undefined</td>
+    </tr>
+    <tr>
+      <td>,</td>
+      <td>表达式顺序地连续执行</td>
+      <td>也称多重求值或条件运算符</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>这四个运算符面向表达式进行运算。其<strong>特殊性在于</strong>：普通运算符对表达式求值以获得结果，而这4个运算符并不直接对表达值进行求值运算，而是通过操作表达式去影响运算结果。例如，boid运算符，它对其后的表达式的影响就是：<strong>避免产生结果</strong></p>
+
+<p>尽管它们是以“表达式”为目标，但语义上它们仍然是运算符。因此它们与运算对象(<code class="highlighter-rouge">表达式</code>)结合的结果仍然是表达式(<strong>而非语句</strong>)。例如：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="k">void</span> <span class="kc">null</span><span class="c1">//void 是运算符，null是运算元：单值表达式</span>
+</code></pre>
+</div>
+
+<p>但运算符的后面不能是语句(很显然，这是语法规则)，所以下面的代码是不合法的：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="c1">//用{}表示的复合语句不能作为void的运算对象</span>
+    <span class="k">void</span> <span class="p">{</span>
+    	<span class="c1">//...</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>那么问题来了，既然void运算的对象是表达式，且JavaScript允许单值表达式，那么这样的代码中：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">void</span> <span class="mi">1</span><span class="o">+</span><span class="mi">2</span>
+</code></pre>
+</div>
+
+<p>void运算的对象到底是“1”这个单值表达式，还是“1+2”这个算术表达式呢？</p>
+
+<p><img src="/images/article/2014-12-26/1.png" alt="img" /></p>
+
+<p>如果是第一种情况，那么结果如上图所示</p>
+
+<p><img src="/images/article/2014-12-26/2.png" alt="img" /></p>
+
+<p>如果是第二种情况，那么结果如上图所示</p>
+
+<p>这就涉及两个例子中表达式1的运算符”<code class="highlighter-rouge">void</code>“和表达式2中的运算符”<code class="highlighter-rouge">+</code>“的优先级的问题了：谁的运算优先级更高，则先以该运算符来构成表达式并完成运算。在JavaScript中，<strong>该优先级顺序如下</strong>(序数越小，越优先运算)：</p>
+
+<p>JavaScript中运算符的优先级</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>序号</th>
+      <th>运算符</th>
+      <th>描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>. [] ()</td>
+      <td>对象成员存取，数组下标，函数调用等</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>++ - ~ ! delete new typeof void</td>
+      <td>一元运算符等</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>* / %</td>
+      <td>乘法 除法 取模</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>+ - +</td>
+      <td>加法，减法，字符串连接</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>« » »&gt;</td>
+      <td>移位</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>&lt; &lt;= &gt; &gt;= instanceof</td>
+      <td>序列检测,instanceof</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>== != === !==</td>
+      <td>等值检测</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>&amp;</td>
+      <td>按位与</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>^</td>
+      <td>按位异或</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>|</td>
+      <td>按位或</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>&amp;&amp;</td>
+      <td>逻辑与</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>||</td>
+      <td>逻辑或</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>?:</td>
+      <td>条件</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>= op=</td>
+      <td>赋值,运算赋值</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>,</td>
+      <td>多重求值</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>通过该优先级表可知：由于”void”运算符高于”+”运算符，因此应该以上述的第一种情况进行运算，其结果值为NaN</p>
+
+<p>因此如果希望以第二种情况进行运算，就需要使用强制运算符”()”来改变执行(优先级别的)顺序。下面的代码实现第二种情况的运算效果</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="k">void</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>正如我们留意到的：在”void”与”()”参与的这几个运算中，运算符并不对值进行运算，而是对表达式(<code class="highlighter-rouge">包括单值表达式</code>)的运算效果进行影响。所以我们一再强调，”void”与”()”等这些运算符的运算对象，是“<strong>表达式</strong>”而非变量/值运算元。</p>
+
+<blockquote>
+  <p>参考资料《JavaScript语言精髓和编程实践》</p>
+</blockquote>
+
+	</div>
+
+</article>
+
+			</div>
+		</div>
+
+		<footer class="site-footer">
+
+	<div class="wrapper">
+
+		<div class="footer-col-wrapper">
+
+			<div>
+				<ul class="social-media-list">
+					
+					<li>
+						<a href="https://github.com/puronglong"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">puronglong</span></a>
+
+					</li>
+					
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+
+</footer>
+
+<script type="text/javascript">
+
+	var a = "\n                                   _                                         \n _ __  _   _ _ __ ___  _ __   __ _| | ___  _ __   __ _   ___  __ _ _   _   _ \n| '_ \\| | | | '__/ _ \\| '_ \\ / _` | |/ _ \\| '_ \\ / _` | / __|/ _` | | | | (_)\n| |_) | |_| | | | (_) | | | | (_| | | (_) | | | | (_| | \\__ \\ (_| | |_| |  _ \n| .__/ \\__,_|_|  \\___/|_| |_|\\__, |_|\\___/|_| |_|\\__, | |___/\\__,_|\\__, | (_)\n|_|                          |___/               |___/             |___/     \n          _                                                                  \n  /\\  /\\ (_)                                                                 \n / /_/ / | |                                                                 \n/ __  /  | |                                                                 \n\\/ /_/   |_|            😃";
+    console.info(a);
+
+	document.addEventListener('visibilitychange', function() {
+                document.title = document.hidden ? '崩溃了，来看一下':'小龙龙的个人博客~'
+            });
+</script>
+
+
+	</body>
+
+</html>

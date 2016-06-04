@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>蒲荣龙的博客</title>
+	<meta name="description" content="最近一个选择题的小活动，分别用vue和zepto尝试了下，期间遇到了不少问题，以下：">
+
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/code.css">
+	<link rel="canonical" href="http://www.puronglong.com/2015/09/01/%E9%80%89%E6%8B%A9%E9%A2%98%E5%B0%8F%E7%BB%93.html">
+	<link rel="alternate" type="application/rss+xml" title="blog" href="http://www.puronglong.com/feed.xml">
+</head>
+
+
+	<body>
+
+		<div class="pull-right right-sidebar">
+	<p>标签：</p>
+	
+	<p>
+	<a class="page-link" href="/tag/技术">技术</a>
+	<span>（66）</span></p>
+	
+	<p>
+	<a class="page-link" href="/tag/生活">生活</a>
+	<span>（35）</span></p>
+	
+</div>
+		
+		<div class="pull-left left-sidebar">
+			<ul class="header-list">
+				<li><a class="page-link" href="/">Home</a></li>
+				<li><a class="page-link" href="/about/">About</a></li>
+				<li><a class="page-link" href="/feed.xml">RSS</a></li>
+			</ul>
+		</div>
+		<div class="page-content">
+			<div class="wrapper">
+				<article class="post home" itemscope itemtype="http://schema.org/BlogPosting">
+
+	<header class="post-header">
+		<h1 class="post-title" itemprop="name headline">选择题活动小结</h1>
+		<p class="post-meta">2015-09-01</p>
+	</header>
+
+	<div class="post-content" itemprop="articleBody">
+		<p>最近一个选择题的小活动，分别用vue和zepto尝试了下，期间遇到了不少问题，以下：</p>
+
+<!-- more -->
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nx">choose</span><span class="err">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">type</span><span class="p">){</span>
+        <span class="kd">var</span> <span class="nx">sub</span><span class="o">=</span><span class="nx">commentHtml</span><span class="p">.</span><span class="nx">commentVue</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">view</span><span class="p">.</span><span class="nx">sub</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">commentHtml</span><span class="p">.</span><span class="nx">commentVue</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">view</span><span class="p">.</span><span class="nx">page</span><span class="p">;</span>
+        <span class="k">switch</span><span class="p">(</span><span class="nx">type</span><span class="p">){</span>
+            <span class="k">case</span> <span class="mi">0</span><span class="err">:</span>
+                <span class="nx">commentHtml</span><span class="p">.</span><span class="nx">commentVue</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">view</span><span class="p">.</span><span class="nx">collected</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                <span class="nx">commentHtml</span><span class="p">.</span><span class="nx">commentVue</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">view</span><span class="p">.</span><span class="nx">sub</span> <span class="o">=</span> <span class="nx">sub</span><span class="o">+</span><span class="nx">s</span><span class="p">[</span><span class="nx">page</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">];</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="mi">1</span><span class="err">:</span>
+                <span class="nx">commentHtml</span><span class="p">.</span><span class="nx">commentVue</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">view</span><span class="p">.</span><span class="nx">collected</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="nx">commentHtml</span><span class="p">.</span><span class="nx">commentVue</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">view</span><span class="p">.</span><span class="nx">sub</span> <span class="o">=</span> <span class="nx">sub</span><span class="o">+</span><span class="nx">s</span><span class="p">[</span><span class="nx">page</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">];</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="mi">2</span><span class="err">:</span>
+                <span class="nx">commentHtml</span><span class="p">.</span><span class="nx">commentVue</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">view</span><span class="p">.</span><span class="nx">collected</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+                <span class="nx">commentHtml</span><span class="p">.</span><span class="nx">commentVue</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">view</span><span class="p">.</span><span class="nx">sub</span> <span class="o">=</span> <span class="nx">sub</span><span class="o">+</span><span class="nx">s</span><span class="p">[</span><span class="nx">page</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span>
+                <span class="k">break</span><span class="p">;</span>
+        <span class="p">};</span>
+</code></pre>
+</div>
+
+<p>用vue写的时候，开始觉得这里每一个case里面都需要加个<code class="highlighter-rouge">commentHtml.commentVue.$data.view.sub</code>,太长了，于是想在前面先定义一个<code class="highlighter-rouge">var sub=commentHtml.commentVue.$data.view.sub</code>;然后把后面的<code class="highlighter-rouge">commentHtml.commentVue.$data.view.sub</code>都用sub代替了，可是替换以后发现sub的值不会改变了，原来是js基本数据类型和引用类型的参数传递问题，初始的时候给sub赋了一个数值，它是一个基本数据类型，基本数据类型有自己独立的内存地址，改变sub的值的时候不会改变<code class="highlighter-rouge">commentHtml.commentVue.$data.view.sub</code>的值，前者只是想当于后者的副本，两者只是值相同，但并没有什么联系，而我们这里最终想要改变的是<code class="highlighter-rouge">commentHtml.commentVue.$data.view.sub</code>的值。引用和赋值的区别虽早已看过可是当实际用的时候却不知道，可见当时的了解也只是了解而已，没有掌握就并卵用，基础不扎实。</p>
+
+<p>v-with这个指令指令需要结合v-component才能使用，作用是让子ViewModel可以继承父ViewModel的数据，我们可以传入父ViewModel的属性对象的单个属性。比如有这样一个组件</p>
+
+<p><code class="highlighter-rouge">&lt;comment-template v-with="view"&gt;&lt;\/comment-template&gt;</code>，那我们在这样的组件<code class="highlighter-rouge">&lt;script type="text\/x-template" id="comment-template"&gt;&lt;\/script&gt;</code>里需要调用到</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">commentHtml</span> <span class="o">=</span> <span class="p">{</span>
+    	<span class="na">commentVue</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+    	<span class="na">commentView</span><span class="p">:</span> <span class="p">{</span>
+    	<span class="na">items</span><span class="p">:[</span><span class="err">…</span><span class="p">]</span>
+    <span class="p">};</span>
+</code></pre>
+</div>
+
+<p>这个下面的items的时候，而在模型中已经定义了</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="nx">data</span><span class="err">:</span><span class="p">{</span>
+    	<span class="nl">view</span><span class="p">:</span><span class="nx">commentHtml</span><span class="p">.</span><span class="nx">commentView</span><span class="p">,</span>
+    <span class="p">},</span>
+</code></pre>
+</div>
+
+<p>所以在这个组件里可以这样v-repeat=“items”，前面的v-with=“view”已经声明这个整个这组件里面都在这个view下面，
+而如果要在这个组件外面使用的话就需要写成v-repeat=“view.items”,这是在写的过程中经常容易忘的，
+当前使用的vue.js的版本是0.11.5，而在0.12版本中已经不建议使用v-with这样的写法了</p>
+
+<p>需要知道用户点击的是当前这道题下面的三个选项中的哪一项，传统的方法的话主要点在于要给每道题添加一个新属性用于标识，比如这里使用的index=‘1’;index=‘2’；这样，然后点击某个选项的时候返回到它的父节点去查看是不是它的父节点的index属性是否等于相应的值，如果是，那么就说明是这个题下面的这个选项，那么选择这个选项该给多少分数就给多少分数，最后把这个分数加起来，就是用户得到的总分；</p>
+
+<p>用vue.js改写的话先是把数据放到js文件中，我们有六个样式相同的页，只需要写一个页然后把数据存到一个数组放到js文件中，当需要数据的时候去循环这个数组。对于跳转的下一页是通过改变样式，然后这里需要添加一个标记，通过这个标记与当前页的index的对比来判断是否给它添加这个class，在判断选择的是某到题的某一项的时候使用了switch，分case:0,case:1,case:2三种情况，</p>
+
+<p>zepto类似jQuery一样，是去进行一些细节上的DOM操作，而Vue更多的是通过JS操作数据</p>
+
+<p>这次活动用到了CSS3的几个重要的属性，transition,transform，animation，这两个属性是CSS3动画里很重要的部分，这次用到了趁此机会另外总结总结，最主要是要知道，用它能做成什么。当有需求的时候才能用的上。</p>
+
+	</div>
+
+</article>
+
+			</div>
+		</div>
+
+		<footer class="site-footer">
+
+	<div class="wrapper">
+
+		<div class="footer-col-wrapper">
+
+			<div>
+				<ul class="social-media-list">
+					
+					<li>
+						<a href="https://github.com/puronglong"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">puronglong</span></a>
+
+					</li>
+					
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+
+</footer>
+
+<script type="text/javascript">
+
+	var a = "\n                                   _                                         \n _ __  _   _ _ __ ___  _ __   __ _| | ___  _ __   __ _   ___  __ _ _   _   _ \n| '_ \\| | | | '__/ _ \\| '_ \\ / _` | |/ _ \\| '_ \\ / _` | / __|/ _` | | | | (_)\n| |_) | |_| | | | (_) | | | | (_| | | (_) | | | | (_| | \\__ \\ (_| | |_| |  _ \n| .__/ \\__,_|_|  \\___/|_| |_|\\__, |_|\\___/|_| |_|\\__, | |___/\\__,_|\\__, | (_)\n|_|                          |___/               |___/             |___/     \n          _                                                                  \n  /\\  /\\ (_)                                                                 \n / /_/ / | |                                                                 \n/ __  /  | |                                                                 \n\\/ /_/   |_|            😃";
+    console.info(a);
+
+	document.addEventListener('visibilitychange', function() {
+                document.title = document.hidden ? '崩溃了，来看一下':'小龙龙的个人博客~'
+            });
+</script>
+
+
+	</body>
+
+</html>

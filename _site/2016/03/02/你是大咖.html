@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>蒲荣龙的博客</title>
+	<meta name="description" content="">
+
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/code.css">
+	<link rel="canonical" href="http://www.puronglong.com/2016/03/02/%E4%BD%A0%E6%98%AF%E5%A4%A7%E5%92%96.html">
+	<link rel="alternate" type="application/rss+xml" title="blog" href="http://www.puronglong.com/feed.xml">
+</head>
+
+
+	<body>
+
+		<div class="pull-right right-sidebar">
+	<p>标签：</p>
+	
+	<p>
+	<a class="page-link" href="/tag/技术">技术</a>
+	<span>（66）</span></p>
+	
+	<p>
+	<a class="page-link" href="/tag/生活">生活</a>
+	<span>（35）</span></p>
+	
+</div>
+		
+		<div class="pull-left left-sidebar">
+			<ul class="header-list">
+				<li><a class="page-link" href="/">Home</a></li>
+				<li><a class="page-link" href="/about/">About</a></li>
+				<li><a class="page-link" href="/feed.xml">RSS</a></li>
+			</ul>
+		</div>
+		<div class="page-content">
+			<div class="wrapper">
+				<article class="post home" itemscope itemtype="http://schema.org/BlogPosting">
+
+	<header class="post-header">
+		<h1 class="post-title" itemprop="name headline">微信小活动</h1>
+		<p class="post-meta">2016-03-02</p>
+	</header>
+
+	<div class="post-content" itemprop="articleBody">
+		<p><img src="/images/article/2016-3-2/1.gif" alt="img" /></p>
+
+<p>先从头部信息开始吧：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"X-UA-Compatible"</span> <span class="na">content=</span><span class="s">"IE=edge,chrome=1"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;meta</span> <span class="na">content=</span><span class="s">"telephone=no"</span> <span class="na">name=</span><span class="s">"format-detection"</span><span class="nt">&gt;</span>
+</code></pre>
+</div>
+
+<!-- more -->
+
+<p>第一行，优先使用 IE 最新版本和 Chrome。</p>
+
+<p>第二行是让网页的宽度自适应手机屏幕的宽度，避免有滑动：其中width=device-width:表示宽度是设备屏幕的宽度；minimum-scale=1.0表示最小的缩小比例；maxximum-scale=1.0：表示最大的缩放比例；user-scalbale=no：表示用户是否可以调整缩放比例；还有initial-scale=1.0：表示初始的缩放比例。</p>
+
+<p>width=device-width 会导致 iPhone 5 添加到主屏后以 WebApp 全屏模式打开页面时出现黑边。<a href="http://bigc.at/ios-webapp-viewport-meta.orz">这里</a>所以不需写这个</p>
+
+<p>第三行用于禁止数字识自动别为电话号码。</p>
+
+<p>这个页面都是在一个页面里完成的。共分为8个视图。首页，尾页加上6道选择题。我们先来说一说效果怎么实现的。</p>
+
+<p>刚开始，除了首页，其他的视图都有一个样式</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="p">.</span><span class="nx">strat_hide</span><span class="p">{</span>
+		<span class="nl">transfrom</span><span class="p">:</span> <span class="nx">translate3d</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="o">%</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+	<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>每一个视图就是都有一个item的class，当点击首页的开始测试的时候，给当前页添加一个缩小的样式：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="p">.</span><span class="nx">hide_small</span><span class="p">{</span>
+		<span class="nl">transform</span><span class="p">:</span> <span class="nx">scale</span><span class="p">(</span><span class="mf">0.8</span><span class="p">);</span>
+	<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>这样当前页会缩小，再让下一个视图的translate3d(0, 100%, 0);的Y轴距离变为0，下一个视图就能升上来了。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="p">.</span><span class="nx">show</span><span class="p">{</span>
+	    <span class="o">-</span><span class="nx">webkit</span><span class="o">-</span><span class="nx">transform</span><span class="err">:</span> <span class="nx">translate3d</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+	    <span class="nl">transform</span><span class="p">:</span> <span class="nx">translate3d</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+	<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>加上事件:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="c1">//跳转到下一页</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">swich</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">(</span><span class="nx">boxs</span><span class="p">[</span><span class="nx">swich</span><span class="o">+</span><span class="mi">1</span><span class="p">]).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'hide_small'</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="nx">boxs</span><span class="p">[</span><span class="nx">swich</span><span class="o">+</span><span class="mi">2</span><span class="p">]).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'show'</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'.comment-div'</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="nx">itemIndex</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'slideDown'</span><span class="p">);</span>
+        <span class="nx">swich</span><span class="o">++</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">swich</span><span class="o">==</span><span class="mi">6</span> <span class="p">){</span>
+            <span class="nx">$</span><span class="p">(</span><span class="s1">'.origin_div'</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>给每一个视图设置一个自己的属性index=’number’，number是在视图中的位置，用于标明是第几个视图，当点击题目的某个选项以后，添加以上样式，并取到它的index属性，根据这个index属性，确定滑动时右边指示灯第几个视图显示第几个灯亮。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="nx">$</span><span class="p">(</span><span class="s1">'.origin_div'</span><span class="p">).</span><span class="nx">children</span><span class="p">().</span><span class="nx">eq</span><span class="p">(</span><span class="nx">itemIndex</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'origin_light'</span><span class="p">).</span><span class="nx">siblings</span><span class="p">().</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">'origin_light'</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>初始时设置一个数组，用于存放正确答案在选项中的位置</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">];</span>
+</code></pre>
+</div>
+
+<p>点击选项，判断如果这个选项的编号属性和数组的一样，则给原始分数加上一个正确分数，否则加上错误的分数，最后把这个分数累加起来，就是得到的总数。</p>
+
+<p>在微信配置里定义好分享时的话语，图片，链接，分享成功时，将遮罩hide掉。</p>
+
+<p>关于更多的HTML标签，可以看一丝的<a href="https://github.com/yisibl/blog/issues/1">常用的 HTML 头部标签</a></p>
+
+	</div>
+
+</article>
+
+			</div>
+		</div>
+
+		<footer class="site-footer">
+
+	<div class="wrapper">
+
+		<div class="footer-col-wrapper">
+
+			<div>
+				<ul class="social-media-list">
+					
+					<li>
+						<a href="https://github.com/puronglong"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">puronglong</span></a>
+
+					</li>
+					
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+
+</footer>
+
+<script type="text/javascript">
+
+	var a = "\n                                   _                                         \n _ __  _   _ _ __ ___  _ __   __ _| | ___  _ __   __ _   ___  __ _ _   _   _ \n| '_ \\| | | | '__/ _ \\| '_ \\ / _` | |/ _ \\| '_ \\ / _` | / __|/ _` | | | | (_)\n| |_) | |_| | | | (_) | | | | (_| | | (_) | | | | (_| | \\__ \\ (_| | |_| |  _ \n| .__/ \\__,_|_|  \\___/|_| |_|\\__, |_|\\___/|_| |_|\\__, | |___/\\__,_|\\__, | (_)\n|_|                          |___/               |___/             |___/     \n          _                                                                  \n  /\\  /\\ (_)                                                                 \n / /_/ / | |                                                                 \n/ __  /  | |                                                                 \n\\/ /_/   |_|            😃";
+    console.info(a);
+
+	document.addEventListener('visibilitychange', function() {
+                document.title = document.hidden ? '崩溃了，来看一下':'小龙龙的个人博客~'
+            });
+</script>
+
+
+	</body>
+
+</html>

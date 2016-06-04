@@ -1,0 +1,1440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>blog</title>
+		<description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</description>
+		<link>http://www.puronglong.com/</link>
+		<atom:link href="http://www.puronglong.com/feed.xml" rel="self" type="application/rss+xml"/>
+		<pubDate>Sun, 05 Jun 2016 00:10:45 +0800</pubDate>
+		<lastBuildDate>Sun, 05 Jun 2016 00:10:45 +0800</lastBuildDate>
+		<generator>Jekyll v3.1.6</generator>
+		
+			<item>
+				<title>git忽略已经被提交的文件</title>
+				<description>&lt;blockquote&gt;
+  &lt;p&gt;git忽略已经被提交的文件&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;上次在github pages项目里修改了gitignore配置文件，提交了site文件夹，后来不准备把这个文件push上去，于是在gitignore里又添加了site，结果发现，这时候配置gitignore没有用了。&lt;/p&gt;
+
+&lt;p&gt;原因在于.gitignore文件只能作用于git没有跟踪过的文件，如果文件被git记录过，那么.gitignore对它们就没有效果了。正确的做法应该是使用正确的git指令&lt;code class=&quot;highlighter-rouge&quot;&gt;git rm&lt;/code&gt;。&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;正确指令如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git rm --cached _site
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;rm是git的一个指令：&lt;/p&gt;
+
+&lt;p&gt;git-rm - Remove files from the working tree and from the index&lt;/p&gt;
+
+&lt;p&gt;–cached是该指令的一个options选项配置：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;--cached
+   Use this option to unstage and remove paths only from the index.
+   Working tree files, whether modified or not, will be left alone.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;_site是我们需要从git里取消的文件。&lt;/p&gt;
+
+</description>
+				<pubDate>Sat, 04 Jun 2016 00:00:00 +0800</pubDate>
+				<link>http://www.puronglong.com/2016/06/04/gitignore.html</link>
+				<guid isPermaLink="true">http://www.puronglong.com/2016/06/04/gitignore.html</guid>
+				
+				<category>技术</category>
+				
+				
+			</item>
+		
+			<item>
+				<title>jekyll和github pages的一些问题</title>
+				<description>&lt;blockquote&gt;
+  &lt;p&gt;在部署jekyll和github pages的时候遇到的一些问题&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;因为以前用过jekyll，所以以为jekyll和github pages搭配很简单，结果自己使用的过程中遇到了一些问题，使用google和stackoverflow解决了问题，有必要记录一下。&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/article/2016-6-3/1.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;使用jekyll+github pages初步搭建好博客以后，需要实现标签的功能，点击标签页面跳转到相应的页面。标签的实现我使用了插件，新建一个_plugins文件夹，在里面新建一个ruby文件build-tag.rb，这个ruby文件里的代码实现了标签功能，原理就是生成对应标签的文件，比如整个首页是一个index，插件就是为每一个标签生成一个index，这样就能现实标签页了。&lt;/p&gt;
+
+&lt;p&gt;然后启动jekyll服务，jekyll serve，查看localhost://4000并没有什么问题，愉快地上传到github，却发现本地实现一切正常，放到github上标签功能却失效了。查找到问题在这里，github help里这样说的：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;You can further customize your GitHub Pages site by adding Jekyll plugins.
+
+GitHub Pages officially supports the Jekyll plugins found in the GitHub Pages gem. For the exact versions of the Jekyll plugins that GitHub Pages supports, see this list of GitHub Pages dependencies. Other plugins are not supported, so the only way to incorporate them in your site is to generate your site locally and then push your site&#39;s static files to your GitHub Pages site.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;意思是，通过添加插件，你可以自定义你的github pages网页，但是github pages官方只支持一些指定的插件，然后给出了支持的插件列表。其它的插件不支持，也就是说我们自己写的放在_plugins里的插件github pages是不支持的。最后告诉我们唯一的办法是在本地生成文件然后push到github pages站点上。我们知道当我们使用markdown写了博文以后，jekyll会生成整个项目的静态文件（也就是我们网页上常见的html，css这些）在&lt;code class=&quot;highlighter-rouge&quot;&gt;_site&lt;/code&gt;文件夹里，因为这个目录下的文件是被build出来的，不是源码，通常git repo（乃至所有源码管理系统）不应包含非源码的内容，所以github官方才说不要把site文件夹push上去，如果使用了github pages服务，正确配置以后github pages会帮你build。&lt;/p&gt;
+
+&lt;p&gt;至于为什么不支持，则是因为安全问题。&lt;/p&gt;
+
+&lt;p&gt;但这时候就遇到我们上面说的情况了，它在build的时候并不会识别我们自己的插件，所以点击标签链接的时候报404错误。&lt;/p&gt;
+
+&lt;p&gt;知道了问题以后，唯一的方法就是把我们编译过后的文件传上去，但不是说我们就传site里的文件就好了，因为代码管理的原则就是放源代码而不是编译后的文件，通过源码和每一次的commit信息才能看到项目一步一步是怎么建立起来的。于是我将.gitignore文件里的忽略site文件夹的配置去掉了，将其push上去，私以为github pages会自动查找site文件夹里的内容，结果当然是不行的了。&lt;/p&gt;
+
+&lt;p&gt;正确的做法是把源码和编译后的文件分开。&lt;/p&gt;
+
+&lt;p&gt;这个时候就要用到git强大的分支系统啦，一个分支放源码，一个分支放编译后的文件。可是又有一个问题，如果我们的站点是托管在以username.github.io命名的项目上的话：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;then GitHub Pages will always serve content from the master branch
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;username.github.io是github一个特殊的命名，凡是以这个名字命名的项目，github pages会强制使用master分支，即使这个项目下新建有其它分支。&lt;/p&gt;
+
+&lt;p&gt;对于既想要使用此项目管理博客源码又想要发布文章的人来说，有个小方法就是把site里的内容放到master分支上，然后新建一个分支，比如命名为source，这个分支上放的就是博客源码。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout -b source master
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;上面git指令表示从这个master分支上新建一个source分支。新建了一个分支以后记得在github里的setting选项里把这个库的没人分支改为source。&lt;/p&gt;
+
+&lt;p&gt;通过github的分支系统，这样我们就能在一个库里分别管理我们的源码和编译文件了。我们push了源码（source分支）之后还要push编译文件（master分支），每次手动操作，切换分支这些很繁琐，可以使用代码简化流程，新建一个rakefile.rb文件，内容如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;rubygems&quot;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;tmpdir&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;bundler/setup&quot;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;jekyll&quot;&lt;/span&gt;
+
+
+&lt;span class=&quot;n&quot;&gt;desc&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Generate blog files&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:generate&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;Jekyll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Jekyll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;configuration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;source&quot;&lt;/span&gt;      &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;destination&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;_site&quot;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;})).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;process&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+
+&lt;span class=&quot;n&quot;&gt;desc&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Generate and publish blog to gh-pages&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:publish&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:generate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;Dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;mktmpdir&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cp_r&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;_site/.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;pwd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pwd&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;Dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;chdir&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt;
+
+    &lt;span class=&quot;nb&quot;&gt;system&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;git init&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;system&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;git add .&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Site updated at &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;system&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;git commit -m &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;inspect&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;system&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;git remote add origin 项目的git地址&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;system&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;git push origin master --force&quot;&lt;/span&gt;
+
+    &lt;span class=&quot;no&quot;&gt;Dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;chdir&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pwd&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;现在就可以使用&lt;code class=&quot;highlighter-rouge&quot;&gt;rake publish&lt;/code&gt;这个命令同时compile和push我们的站点到github pages。&lt;/p&gt;
+
+&lt;p&gt;但运行的时候提示报错：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cannot load such file -- bundler/setup
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;没有bundler，看来的安装，执行：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo gem install bundler
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;提示：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ERROR:  While executing gem ... (Errno::EPERM)
+    Operation not permitted - /usr/bin/bundle
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;查找资料找到问题所在：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;No, you&#39;ll need to either change your GEM_HOME or do something like sudo gem install bundler -n /usr/local/bin because of El Cap&#39;s introduction of SIP (System Integrity Protection).
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;上面这个bundler里issue说得很清楚，这是Mac OS El Capitan这个版本的mac系统的缘故。&lt;/p&gt;
+
+&lt;p&gt;于是执行：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo gem install bundler -n /usr/local/bin
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;成功安装。&lt;/p&gt;
+
+&lt;p&gt;参考资料：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://ixti.net/software/2013/01/28/using-jekyll-plugins-on-github-pages.html&quot;&gt;Using Jekyll plugins on GitHub Pages&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/bundler/bundler/issues/4065&quot;&gt;Unable to run gem install bundler in OS X El Capitan #4065&lt;/a&gt;&lt;/p&gt;
+</description>
+				<pubDate>Fri, 03 Jun 2016 00:00:00 +0800</pubDate>
+				<link>http://www.puronglong.com/2016/06/03/jekyll-githubpage.html</link>
+				<guid isPermaLink="true">http://www.puronglong.com/2016/06/03/jekyll-githubpage.html</guid>
+				
+				<category>技术</category>
+				
+				
+			</item>
+		
+			<item>
+				<title>制作一款jekyll主题</title>
+				<description>&lt;blockquote&gt;
+  &lt;p&gt;制作一款jekyll主题&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;首先是用jekyll新建一个项目，在命令行中输入：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jekyll new jekyll-blog
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这样就建好了一个jekyll项目，启动：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	jekyll serve
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;命令行提示如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/article/2016-5-22/1.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;可以看到成功启动了服务并且本地地址是http://localhost:4000/。&lt;/p&gt;
+
+&lt;p&gt;初始界面如下所示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/article/2016-5-22/2.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;后续我们就是在这个基础上进行改动了。&lt;/p&gt;
+
+&lt;p&gt;首先我引入了bootstrap。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;添加&lt;code class=&quot;highlighter-rouge&quot;&gt;readmore&lt;/code&gt;按钮功能。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;根目录下的index页做如下修改：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-list&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- site.posts一个按照时间倒序的所有 Posts 的清单。 --&amp;gt;&lt;/span&gt;
+	{.% for post in site.posts %}
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+			&lt;span class=&quot;nt&quot;&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;
+				&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-link&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+			&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
+			&lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-meta&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+			{.% if post.content contains &#39;&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- more --&amp;gt;&lt;/span&gt;&#39; %}
+				
+				&lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;readmore-p&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;btn btn-info&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Read more&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+			{.% else %}
+				
+			{.% endif %}
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+	{.% endfor %}
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;可以看到主要的一点是if判断我们post的文章是否含&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;!-- more --&amp;gt;&lt;/code&gt;，若是包含的话，就使用过滤器将我们文章内容split为两部分，并选取第一部分显示为post.content。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;添加分页功能&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;在添加分页功能之前需要先安装&lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll-paginate&lt;/code&gt;插件：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	gem install jekyll-paginate
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;安装完后在_config.yml里配置插件：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	paginate: 1
+	paginate_path: &quot;page:num&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;运行serve却提示报错：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	Deprecation: You appear to have pagination turned on, but you haven&#39;t included the `jekyll-paginate` gem. Ensure you have `gems: [jekyll-paginate]` in your configuration file.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;问题在于还要在config里添加一句&lt;code class=&quot;highlighter-rouge&quot;&gt;gems: [jekyll-paginate]&lt;/code&gt;，表示调用这个插件，只有先调用，然后才是配置。&lt;/p&gt;
+
+&lt;p&gt;然后是写分页链接代码如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- 分页链接 --&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;pagination&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&lt;/span&gt;首页&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+    {.% if paginator.page == 1 %}
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;disabled&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;span&amp;gt;&lt;/span&gt;&lt;span class=&quot;ni&quot;&gt;&amp;amp;laquo;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+    {.% else %}
+        {.% if paginator.previous_page == 1 %}
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        {.% else %}
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/page&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        {.% endif %}
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&lt;/span&gt;&lt;span class=&quot;ni&quot;&gt;&amp;amp;laquo;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    {.% endif %}
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+    {.% for i in (1..paginator.total_pages) limit:9 offset: %}
+        {.% if paginator.page == i %}
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;active&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        {.% else %}
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+        {.% endif %}
+        {.% if i == 1 %}
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+        {.% else %}
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/page&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+        {.% endif %}
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+    {.% endfor %}
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+        {.% if paginator.page == paginator.total_pages %}
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;disabled&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;span&amp;gt;&lt;/span&gt;&lt;span class=&quot;ni&quot;&gt;&amp;amp;raquo;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+        {.% else %}
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/page&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&lt;/span&gt;&lt;span class=&quot;ni&quot;&gt;&amp;amp;raquo;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+        {.% endif %}
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/page&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&lt;/span&gt;末页&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;disabled&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&lt;/span&gt;第页 / 共页&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;如上所示，在首页的底部添加一个ul，用于存放我们的分页链接，而这个链接我们分为了五个部分，第一个li是首页；第二个li是返回上一页的，这里做判断，如果当前页是第一页，就显示一个上一页的符号，并不可点按，如果当前页的上一页是第一页的话，点击返回到首页，其它情况都返回上一页；第三个li用于产生每一页的链接标签，用了for循环，如果当前页的page和i相等，则给当前的li添加一个class的类；第四个li用于添加下一页功能，原理和上一页功能一样；第五个li是尾页。&lt;/p&gt;
+
+&lt;p&gt;效果如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/article/2016-5-22/3.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;文章分类功能：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;每篇文章的开头类似这样：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;o&quot;&gt;---&lt;/span&gt;
+	&lt;span class=&quot;ss&quot;&gt;layout: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt;
+	&lt;span class=&quot;ss&quot;&gt;title:  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;jekyll的使用1&quot;&lt;/span&gt;
+	&lt;span class=&quot;ss&quot;&gt;date:   &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2016&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;03&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;27&lt;/span&gt;
+	&lt;span class=&quot;ss&quot;&gt;tags: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;jekyll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;demo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;---&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;开头信息力的tags存放的就是文章的标签，我们要实现的功能是页面显示部分有文章列表和标签列表。当点击标签的时候，文章列表对应当前标签下的所有文章。&lt;/p&gt;
+
+&lt;p&gt;jekyll的云标签有多种实现方法，先介绍第一种：&lt;/p&gt;
+
+&lt;p&gt;在_includes文件夹里添加tag.html，然后在页面中将其include进来。页面效果如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/article/2016-5-22/4.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;左边文章列表右边标签列表。左边的列表其实有两个，一个是所有文章的列表，也就是对应所有标签的文章列表，还有一个是不同类型的文章列表，我们先来看第一个列表：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-list&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;post-cate=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;all&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+{.% for post in site.posts %}
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;
+			&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-link&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-meta&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-meta&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;all&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text-info pull-right&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;字数：649&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+		{.% if post.content contains &#39;&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- more --&amp;gt;&lt;/span&gt;&#39; %}
+			
+			&lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;readmore-p&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;btn btn-info&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Read more&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+		{.% else %}
+			
+		{.% endif %}
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+{.% endfor %}
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这是一个带有post-cate属性并且属性值为all的ul列表，for循环遍历所有的文章。第二个列表如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{.% for tag in site.tags %}
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-list&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;post-cate=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+	{.% for posts in tag %}
+		{.% for post in posts %}
+			{.% if post.url %}
+				&lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+					&lt;span class=&quot;nt&quot;&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;
+						&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-link&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+					&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
+					&lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-meta&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+					&lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-meta&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+					&lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text-info pull-right&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;字数：649&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+					{.% if post.content contains &#39;&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- more --&amp;gt;&lt;/span&gt;&#39; %}
+						
+						&lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;readmore-p&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;btn btn-info&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Read more&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+					{.% else %}
+						
+					{.% endif %}
+				&lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+			{.% endif %}
+		{.% endfor %}
+	{.% endfor %}
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
+{.% endfor %}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这里的一个不同是ul是放在for循环里的，循环所有的标签，&lt;/p&gt;
+
+&lt;p&gt;index.js中有一个函数：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;categoryDisplay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;// show all&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;.home&amp;gt;ul[post-cate!=all]&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hide&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+	&lt;span class=&quot;c1&quot;&gt;// show tag post list when click tag link&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;.categary-p&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;click&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+		&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;cate&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+		&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;.home&amp;gt;ul[post-cate!=&#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;]&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hide&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;250&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+		&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;.home&amp;gt;ul[post-cate=&#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;]&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;初始时先将post-cate属性值不为all的ul隐藏掉，也就是将第二个列表隐藏掉，当我们点击某个标签的时候，获取到当前标签的标签属性值，如果ul的post-cate这个属性的值不是点击的标签，就将其隐藏，否则显示。&lt;/p&gt;
+
+&lt;p&gt;通过这样两个列表和点击选择属性通过js控制显示隐藏的方法实现了博客的标签功能。&lt;/p&gt;
+
+&lt;p&gt;另一种标签方法：&lt;/p&gt;
+
+&lt;p&gt;通过新建文件夹tag, 然后在其中再新建各标签名文件夹, 在各文件夹下创建index.html或者index.md文件, 填写标签模板内容;
+在根目录下创建jekyll.md文件, 然后在文章头文件的基础上加上permalink: /tag/jekyll即可。原理相当于给每一个标签写个首页。&lt;/p&gt;
+
+&lt;p&gt;还有一种标签方法原理和上面一样，只是各个标签文件是自动生成不是手动创建的，需要编写一段代码。因为jekyll是用ruby写的，所以这段代码是ruby代码，我是直接找一个复制的，将此段代码保存到_plugins文件夹下，当启动jekyll serve的时候会自动创建文件夹。下面来看具体过程。&lt;/p&gt;
+
+&lt;p&gt;首先创建一个tag页的模板，也就是当我们点击的时候希望显示的页面，比如我在_layout文件里新建了一个tagpage.html用于存放我的tag模板。我选择了和首页的页面一样的模板，将首页的模板内容复制过来以后要注意需要修改一点。在首页里我们通过如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	{.% for post in site.posts %}
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;来循环li，也就是对site.posts进行遍历，这样便会遍历出全站所有的posts，展示所有文章，但在tag页的首页我们要展示的只是含有某些标签的文章，所以这里遍历的对象不同，应该是遍历所有该标签的文章：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	{.% assign posts = site.tags[page.tag] %}
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-list&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;post-cate=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;all&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+		{.% for post in posts %}
+			&lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;如上，循环posts输出li，这个posts就是前面通过assign定义的posts，page变量是页面专属的信息，通过YAML头文件定义的信息都可以在这里被获取到，所以这个page.tag就是post所属的tag，site来自_config.yml文件，表示全站范围的信息+配置，site.tags表示所有该标签下的文章，所以&lt;code class=&quot;highlighter-rouge&quot;&gt;site.tags[page.tag]&lt;/code&gt;表示该标签的所有文章。&lt;/p&gt;
+
+&lt;p&gt;通过如下的标签就能链接到每个tag的首页了。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;page-link&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/tag/&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;jekyll插件安装：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;这里介绍两种插件安装方式：&lt;/p&gt;
+
+&lt;p&gt;1.在根目录下新建&lt;code class=&quot;highlighter-rouge&quot;&gt;_plugins&lt;/code&gt;文件夹，然后把对应的&lt;code class=&quot;highlighter-rouge&quot;&gt;*.rb&lt;/code&gt;文件放进去。&lt;/p&gt;
+
+&lt;p&gt;2.在_config.yml文件中新建一个gems关键字，然后把要引用的插件用数组形式存储其中即可。&lt;/p&gt;
+
+&lt;p&gt;这两种方法可以同时使用。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;jekyll代码高亮：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;我们写博客的时候经常会需要放代码，如果博文中的示例代码能够高亮显示，无疑会提升读者的阅读体验。那么看看jekyll中如何让代码高亮吧。&lt;/p&gt;
+
+&lt;p&gt;要让代码高亮需要使用到代码高亮插件，插件的原理就是查找特定的节点，然后对其赋予特定的css，也就是“上色”。&lt;/p&gt;
+
+&lt;p&gt;以&lt;code class=&quot;highlighter-rouge&quot;&gt;Pygments&lt;/code&gt;为例：&lt;/p&gt;
+
+&lt;p&gt;首先安装：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	pip install Pygments
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;在_config.yml文件中配置：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	highlighter: pygments
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;表明启用pygments进行代码高亮了，但光配置了还不行，还需要添加css代码，可以在pygments网站上查找想要的css配置，方法如下，打开网页：http://pygments.org/demo/3666780/ 右边可以选择样式，选择GO就可以看见效果，而此时打开浏览器调试，可以看见其中有一个pygments.css文件，下载下来，在项目中引用即可。&lt;/p&gt;
+
+&lt;p&gt;我选用了一个monokai的style的css，如果没有效果的话，修改一下css里的class名就可以了。&lt;/p&gt;
+
+&lt;p&gt;代码高亮可以了。可以我们还不满足，当一段代码太长的时候，让它显示滚动条比自动换行会方便阅读很多，于是对代码块添加一下属性：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	pre code { white-space: pre }
+	overflow-x: auto;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;pre值表明空白会被浏览器保留。其行为方式类似HTML中的&amp;lt;pre&amp;gt;标签。&lt;code class=&quot;highlighter-rouge&quot;&gt;overflow-x: auto&lt;/code&gt;让x轴过长时滚动显示。&lt;/p&gt;
+
+&lt;p&gt;pygments插件对应的md文件中写如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{.% highlight html %}
+def show
+@widget = Widget(params[:id])
+respond_to do |format|
+    format.html # show.html.erb
+    format.json { render json: @widget }
+end
+end
+{.% endhighlight %}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;如果想要代码块简单一点可以如下写：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;```js
+
+```
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;中间存放代码块，这样使用的话就需要不使用pygments，而使用rouge。修改以后同样需要修改css文件里的class名。&lt;/p&gt;
+</description>
+				<pubDate>Sun, 22 May 2016 00:00:00 +0800</pubDate>
+				<link>http://www.puronglong.com/2016/05/22/jekyll-theme.html</link>
+				<guid isPermaLink="true">http://www.puronglong.com/2016/05/22/jekyll-theme.html</guid>
+				
+				<category>技术</category>
+				
+				
+			</item>
+		
+			<item>
+				<title>使用FEED43制作你的RSS源</title>
+				<description>&lt;blockquote&gt;
+  &lt;p&gt;使用FEED43制作你的RSS源&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;想知道某些新闻或某人的博客是否有更新文章，可以用RSS订阅，这样每次只需要查看rss阅读器就可以了，可是如果对方的网站没有提供RSS订阅，就需要自己制作feed了。这就要用到工具&lt;a href=&quot;http://feed43.com/&quot;&gt;FEED43&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/article/2016-5-21/1.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;（1）进入主页后点击&lt;code class=&quot;highlighter-rouge&quot;&gt;create your own feed&lt;/code&gt;，进入下一页：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/article/2016-5-21/2.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;（2）确认agree后点击continue&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/article/2016-5-21/3.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;（3）以这个人的博客网站为例，输入网址和编码格式，点击reload结果如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/article/2016-5-21/4.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;（4）然后如下输入，点击extract提取&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/article/2016-5-21/5.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这里主要主意的是填写的内容不要出错了，比如我开始的时候没有输入两者中间的&lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;符号，导致一直匹配不上，因为两者中间是有信息的不能跳过。&lt;/p&gt;
+
+&lt;p&gt;这里介绍两个重要的符号，&lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;表示你需要的动态信息，&lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;表示其他任意代码的通配符。&lt;/p&gt;
+
+&lt;p&gt;尽量写简单一点，因为这里容易错误。&lt;/p&gt;
+
+&lt;p&gt;然后点击extract提取就能进入step3了&lt;/p&gt;
+
+&lt;p&gt;（5）在输入框里输入title，link，和content，点击preview预览。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/article/2016-5-21/6.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;（6）在step4得到RSS feed地址&lt;/p&gt;
+
+&lt;p&gt;（7）复制得到的RSS feed地址，在RSS阅读器里面添加这一条RSS feed，确认后就订阅成功了。&lt;/p&gt;
+
+&lt;p&gt;我使用的RSS阅读器是Reeder，效果如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/article/2016-5-21/7.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+</description>
+				<pubDate>Sat, 21 May 2016 00:00:00 +0800</pubDate>
+				<link>http://www.puronglong.com/2016/05/21/make-rss.html</link>
+				<guid isPermaLink="true">http://www.puronglong.com/2016/05/21/make-rss.html</guid>
+				
+				<category>技术</category>
+				
+				
+			</item>
+		
+			<item>
+				<title>《你一定爱读的极简欧洲史》</title>
+				<description>&lt;p&gt;&lt;img src=&quot;http://img10.360buyimg.com/n0/jfs/t1249/215/1469856567/279513/9dc99104/57302236N6db90259.jpg&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;摘录：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这两个建议的理由很简单。读历史一定要兼读地理，否则就成了死背，对照地图，尤其若能针对古今地图，历史就是活的；同时，全球化其实一直在进行中，只不过从前很慢，现在很快。&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;译者的这个观点很赞同，读历史的时候脑海中就要有地理的概念。&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;我编写这些教材，最初的对象是澳大利亚的学生，他们懂得太多澳大利亚历史，对欧洲文明所知却太少，而他们，也是欧洲的一分子。&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;其实对澳大利亚一直很好奇，首先，它在南半球，当我们这里寒风凛冽的时候，他们那里正是烈日当头，在六大洲里面大洋洲算是一个独立的洲，但是常常又会因人口少把分到亚洲来，比如足球世界里的亚洲杯。在这个属于大洋洲，顶多算在亚洲里面的国度，却认为自己是欧洲的一分子，想必着其中一定有历史原因的，查找了一下资料是因为澳大利亚最开始由西班牙，荷兰，英国等欧洲国家移民过来的，虽然本身它有自己的土著居民的。令我惊讶的是，直到1986年，英议会通过“与澳大利亚关系法”，澳才获得完全立法权和司法终审权。&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;在他们眼里，几何学是引导人类认知宇宙本质的一个途径。当我们环顾四周，被眼前形形色色，丰富多样的世界吸引，所有事物都随机又漫无章法地出现。但希腊人相信，这一切都可用简单的道理来解释。这些多元样貌的背后，必然有几种简单，规律，有逻辑的原理在支撑，像几何学就是。&lt;/p&gt;
+
+&lt;p&gt;犹太人还有个更异乎寻常的信念，他们认为自己是上帝的选民，所以这个唯一真神会对他们特别照顾。因此，犹太人必须遵守上帝的律法uzowei回报，这套律法的基石是“十诫”，是摩西将犹太人从埃及的为奴之地带领出来时告诫他们的。&lt;/p&gt;
+
+&lt;p&gt;首领为胜利而战，战士为首领而战。&lt;/p&gt;
+
+&lt;p&gt;希腊人的观点：这是一个简单，符合逻辑，能以数学表达的世界。基督教的观点：这是个邪恶的世界，唯有耶稣能拯救它。日耳曼蛮族的观点则是：打仗是好玩的事。这些看似天差地远的元素组合在一起，造就了欧洲的文明。&lt;/p&gt;
+
+&lt;p&gt;骑士也要保护弱者，尤其是出身贵族的名门淑女。由于战斗被赋予了这种新的道德意涵，一个男人要借由一种犹如宗教的仪式才能成为骑士。他把剑放在基督教堂的圣坛上，由国王为他佩戴后，这名骑士才能拿它到外头去行善除恶。&lt;/p&gt;
+
+&lt;p&gt;保护女士，敬重女士的风范在欧洲文化中源远流长。骑士绝迹以后，演变成为“绅士”风度。绅士是基督教骑士的后裔，有女士进入屋内，即刻起身以示尊重；女士不落座，自己不可就座，见到女士必须点帽檐致意。&lt;/p&gt;
+
+&lt;p&gt;但近代的女性主义者却对这样的尊重抱有不以为然的态度。她们不希望自己被捧得高高的受人致敬，她们要的是平等。在争取平权的运动中，她们占有高度的优势——从高台上起步当然胜过从脚下的平地。由于欧洲文化原本就有这种程度的尊重，大众对女性主义可以说是相当平和地接受。&lt;/p&gt;
+
+&lt;p&gt;文艺复兴常被描述为古希腊罗马学术的发现或再发现。不过，这并不是说这些智识成就曾经遗失，而今重新被找回，虽然当时确有若干新的发现问世。它的改变在于不再使用古代知识来支持基督教会的神学，而是有许多学者，主要是在教会体系之外，向往希腊和罗马在创造这些知识时的世界样貌而意图加以拟造。他们希望像古代艺术家那样从事艺术创作，希望建造出类似他们的建筑，跟他们一样读写拉丁文，所思所想俱与他们相同。他们想回到过去那个非基督教的世界——但这样的世界已被教会藏匿起来，因为教会只把这些知识利用于遂行自己的目的上。&lt;/p&gt;
+
+&lt;p&gt;不过，文艺复兴学者并没有直接攻击基督教。他们的个人态度或有不同，但大致上对基督教采取的观点颇类似于古人的宗教观，那就是：宗教是个基本的存在，大体而言是件好事或者说有存在的必要，只是世界上还有更多的事情值得关注。宗教不该钳制生活和思想的一切，而这正是教会一贯的目的。这样的钳制一旦被打破，欧洲的思想反而变得比过去更大胆开阔、天马行空。&lt;/p&gt;
+
+&lt;p&gt;人体是完美的，这个观念是希腊的发明之一。一如艺术历史学家肯尼斯·克拉克（Kenneth Clark）所言，裸体像和裸露的身体是有分别的。裸体像本身展现的是丰富的力与美，它是一种恰到好处的状态；裸露的身体就只是没穿衣服而已，而且因为没穿衣服而显得自曝其短。&lt;/p&gt;
+
+&lt;p&gt;苏格拉底的问答法：&lt;/p&gt;
+
+&lt;p&gt;他认为应该质疑一切、任何事物不能只看表面，他认为一般人的意见并不具备理性基础。他会问这种看似简单的问题：什么叫做好人？弟子回答后，他就告诉对方，这个答案哪里有个大漏洞。对方或许会再次反驳，不过这次比较谨慎；接着是更多的询问、更多的修正。苏格拉底认为，如果你的心智清明而敏捷，终究会掌握到真理。不必上穷碧落下黄泉，或是做什么研究。真理是存在的，但你必须耕耘你的心智，才能掌握它。通常老师会使用这种方法帮助同学清楚思考。&lt;/p&gt;
+
+&lt;p&gt;柏拉图的譬喻：&lt;/p&gt;
+
+&lt;p&gt;直到今天，柏拉图依然是一个哲学核心问题的起点：我们的感官经验是不是真能引导我们走向真实？柏拉图相信，我们在世间的所见所感，只是存在于另一个崇高灵魂界中的完美形体的影子。当你身在洞里，你不可能看到真相。&lt;/p&gt;
+
+&lt;p&gt;亚里士多德的三段论：&lt;/p&gt;
+
+&lt;p&gt;将一个叙述分成三段，从两个前提（一是概述，一是明确叙述）出发，推出结论的方法。&lt;/p&gt;
+
+&lt;p&gt;文艺复兴着眼的是古希腊和罗马的智识成就，新教改革者则是频频回顾罗马教廷承袭罗马习性之前的基督教会。&lt;/p&gt;
+
+&lt;p&gt;启蒙运动的一位推动者如此归结该运动的诉求：“我希望看到最后一个国王被最后一个神父的肠子给绞死。”&lt;/p&gt;
+
+&lt;p&gt;日耳曼民族并没有接掌罗马帝国的欲望。他们只是侵略者，却不想成为征服者。他们只想分一杯羹，在这块土地上安定下来，过点舒服的日子，所以他们愿意承认罗马帝王的统治。&lt;/p&gt;
+
+&lt;p&gt;因此，“罗马的灭亡”在许多方面都有误导之嫌，而最让人误会的是宗教方面——罗马帝国的国教和教廷其实都幸存下来，甚至受到侵略者的拥抱。这是个起始点，欧洲文明就此奠基。对此我们前面已经做过表述：日耳曼人支持罗马基督教会，而罗马教会保存了古希腊罗马的学术。&lt;/p&gt;
+
+&lt;p&gt;法国人原本认为用这种武器打仗太不光彩，拒绝就范。就像第一次世界大战时大家谴责机关枪一样，法国军人一开始也谴责这些长弓手，结果兵败如山倒，不出多久，法王自己也有了长弓队。&lt;/p&gt;
+
+&lt;p&gt;欧洲的历史是从一个伟大帝国和它的崩灭开始的。欧洲从罗马帝国汲取了太多东西，欧洲的形成因此深受这个帝国的崩灭的影响。&lt;/p&gt;
+
+&lt;p&gt;在中国，权力是极其明确地集中在皇帝手里，以儒家为尊的精英文化对君权统治也支持有加。无论是个人修为或待人处世，中国人莫不以儒家思想为圭臬，它已深深扎根于整个社会和国家。统治者不管有没有合法性都得熟读四书五经，而你得通过儒家经典考试才能当上国家官员。&lt;/p&gt;
+
+&lt;p&gt;反观欧洲，权力不但分散，精英文化也是个大拼盘，与君权统治之间的系带并不牢固。中国人非常聪明，可是他们的聪明从来不会脱轨失控，纵有奇思异想，基本上都不曾造成纷扰。欧洲社会的开放则是源远流长。近代欧洲在经济上爆发力十足，智识生活百家争鸣，皆是基于一个事实：不管是好是坏，从来没有一个单一强权掌控过它、形塑过它。它多元的历史遗产因此能被充分发掘、延伸；希腊的数学观念在科学革命时期得到实现，从而建立起科技创新的一个新基础。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;摘录完&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;被分裂、被撕扯、被困惑，是欧洲的宿命。其他的文明只有单一传统，不是这种具有三重元素的大拼盘，欧洲在道德和智识生活上一直受到煎熬、困扰和瓦解。欧洲的血统来自一种非常混杂的渊源，没有一个可以称为“家”的地方。从希腊罗马开始，和宗教的崛起，日耳曼人的入侵，通过本书了解到教会在欧洲历史上的地位居然和国王的地位相当。而罗马帝国在被入侵以后，它的宗教却保留了下来。日耳曼人支持罗马基督教会，而罗马教会保存了古希腊罗马的学术。在学术方面还有一种专门的语言拉丁文。&lt;/p&gt;
+
+&lt;p&gt;穆斯林入侵欧洲导致了十字军东征，就是为了把他们赶回老家。争夺的焦点城市是耶路撒冷。&lt;/p&gt;
+
+&lt;p&gt;感觉有点小乱，主要还是时间轴有点迷，大概了解了下欧洲文化的渊源。&lt;/p&gt;
+</description>
+				<pubDate>Thu, 19 May 2016 00:00:00 +0800</pubDate>
+				<link>http://www.puronglong.com/2016/05/19/%E4%BD%A0%E4%B8%80%E5%AE%9A%E7%88%B1%E8%AF%BB%E7%9A%84%E6%9E%81%E7%AE%80%E6%AC%A7%E6%B4%B2%E5%8F%B2.html</link>
+				<guid isPermaLink="true">http://www.puronglong.com/2016/05/19/%E4%BD%A0%E4%B8%80%E5%AE%9A%E7%88%B1%E8%AF%BB%E7%9A%84%E6%9E%81%E7%AE%80%E6%AC%A7%E6%B4%B2%E5%8F%B2.html</guid>
+				
+				<category>生活</category>
+				
+				
+			</item>
+		
+			<item>
+				<title>好烦，好烦，好烦</title>
+				<description>&lt;p&gt;好烦，好烦，好烦。&lt;/p&gt;
+
+&lt;p&gt;有好多事堆着堆着想做没做，比如：&lt;/p&gt;
+
+&lt;p&gt;论文，论文，论文，啊啊啊啊啊，要写论文。&lt;/p&gt;
+
+&lt;p&gt;博客改版，想要给博客改个版，目前的版本有瑕疵。&lt;/p&gt;
+
+&lt;p&gt;有好几篇博文想要写。&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;python,python,python。&lt;/p&gt;
+
+&lt;p&gt;———2016.5.19————&lt;/p&gt;
+
+&lt;p&gt;呼~论文上交，看查重结果咯~&lt;/p&gt;
+
+&lt;p&gt;好像没那么烦了，嘻嘻~&lt;/p&gt;
+</description>
+				<pubDate>Sun, 15 May 2016 00:00:00 +0800</pubDate>
+				<link>http://www.puronglong.com/2016/05/15/todo.html</link>
+				<guid isPermaLink="true">http://www.puronglong.com/2016/05/15/todo.html</guid>
+				
+				<category>生活</category>
+				
+				
+			</item>
+		
+			<item>
+				<title>Beautiful Soup笔记</title>
+				<description>&lt;blockquote&gt;
+  &lt;p&gt;python中的Beautiful Soup&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;我们前面提到过一个xpath，今天要讲的Beautiful Soup作用类似，它是一个可以从HTML或XML文件中提取数据的Python库。&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;下面的一段HTML代码将作为例子被多次用到.这是爱丽丝梦游仙境的的一段内容(以后内容中简称为爱丽丝的文档):&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	html_doc = &quot;&quot;&quot;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;title&amp;gt;&lt;/span&gt;The Dormouse&#39;s story&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;b&amp;gt;&lt;/span&gt;The Dormouse&#39;s story&lt;span class=&quot;nt&quot;&gt;&amp;lt;/b&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;story&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Once upon a time there were three little sisters; and their names were
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://example.com/elsie&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sister&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;link1&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Elsie&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;,
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://example.com/lacie&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sister&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;link2&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Lacie&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt; and
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://example.com/tillie&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sister&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;link3&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Tillie&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;;
+	and they lived at the bottom of a well.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;story&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;...&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+	&quot;&quot;&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;我们要想使用BeautifulSoup解析这段代码，首先要得到一个BeautifulSoup的对象，然后对这个对象进行BeautifulSoup的相关操作。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	from bs4 import BeautifulSoup
+	soup = BeautifulSoup(html_doc)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;首先是引入BeautifulSoup，当然在这之前我们要先进行安装：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	pip install beautifulsoup4
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;然后实例化一个BeautifulSoup对象，打印出这个对象我们可以看到是这样的：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prettify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# &amp;lt;html&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#  &amp;lt;head&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#   &amp;lt;title&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#    The Dormouse&#39;s story&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#   &amp;lt;/title&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#  &amp;lt;/head&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#  &amp;lt;body&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#   &amp;lt;p class=&quot;title&quot;&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#    &amp;lt;b&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#     The Dormouse&#39;s story&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#    &amp;lt;/b&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#   &amp;lt;/p&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#   &amp;lt;p class=&quot;story&quot;&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#    Once upon a time there were three little sisters; and their names were&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#    &amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#     Elsie&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#    &amp;lt;/a&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#    ,&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#    &amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#     Lacie&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#    &amp;lt;/a&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#    and&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#    &amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link2&quot;&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#     Tillie&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#    &amp;lt;/a&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#    ; and they lived at the bottom of a well.&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#   &amp;lt;/p&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#   &amp;lt;p class=&quot;story&quot;&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#    ...&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#   &amp;lt;/p&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#  &amp;lt;/body&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# &amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;获取到BeautifulSoup对象后，那么有哪些方法可以操作呢？&lt;/p&gt;
+
+&lt;p&gt;（1）获取标签内容：&lt;/p&gt;
+
+&lt;p&gt;我们可以利用soup加标签名轻松地获取这些标签的内容，如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# &amp;lt;title&amp;gt;The Dormouse&#39;s story&amp;lt;/title&amp;gt;&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# u&#39;title&#39;&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# u&#39;The Dormouse&#39;s story&#39;&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# u&#39;head&#39;&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# &amp;lt;p class=&quot;title&quot;&amp;gt;&amp;lt;b&amp;gt;The Dormouse&#39;s story&amp;lt;/b&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;class&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# u&#39;title&#39;&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# &amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&amp;gt;Elsie&amp;lt;/a&amp;gt;&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find_all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;a&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&amp;gt;Elsie&amp;lt;/a&amp;gt;,&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#  &amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&amp;gt;Lacie&amp;lt;/a&amp;gt;,&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#  &amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link3&quot;&amp;gt;Tillie&amp;lt;/a&amp;gt;]&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;link3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# &amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link3&quot;&amp;gt;Tillie&amp;lt;/a&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;对于标签，它有两个重要的属性，分别是name和attrs，前者是标签名，后者是属性：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;attrs&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#{&#39;class&#39;: [&#39;title&#39;], &#39;name&#39;: &#39;dromouse&#39;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;获取属性：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;n&quot;&gt;css_soup&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BeautifulSoup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;&amp;lt;p class=&quot;body strikeout&quot;&amp;gt;&amp;lt;/p&amp;gt;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;css_soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;class&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&quot;body&quot;, &quot;strikeout&quot;]&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;css_soup&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BeautifulSoup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;&amp;lt;p class=&quot;body&quot;&amp;gt;&amp;lt;/p&amp;gt;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;css_soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;class&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&quot;body&quot;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;还可以对这些属性和内容等等进行修改：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;class&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;newClass&quot;&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#&amp;lt;p class=&quot;newClass&quot; name=&quot;dromouse&quot;&amp;gt;&amp;lt;b&amp;gt;The Dormouse&#39;s story&amp;lt;/b&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;tag的属性操作方法与字典一样。&lt;/p&gt;
+
+&lt;p&gt;（2）获取到标签内容后，想要获取标签里面的文本该怎么办呢？&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#The Dormouse&#39;s story&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;现在来了解一下搜索方法的细节:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;n&quot;&gt;find_all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attrs&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;recursive&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kwargs&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;find_all()方法搜索当前tag的所有tag子节点,并判断是否符合过滤器的条件。这里有几个例子:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find_all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;title&amp;gt;The Dormouse&#39;s story&amp;lt;/title&amp;gt;]&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find_all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;p&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;p class=&quot;title&quot;&amp;gt;&amp;lt;b&amp;gt;The Dormouse&#39;s story&amp;lt;/b&amp;gt;&amp;lt;/p&amp;gt;]&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find_all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&amp;gt;Elsie&amp;lt;/a&amp;gt;,&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#  &amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&amp;gt;Lacie&amp;lt;/a&amp;gt;,&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#  &amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link3&quot;&amp;gt;Tillie&amp;lt;/a&amp;gt;]&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find_all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;link2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&amp;gt;Lacie&amp;lt;/a&amp;gt;]&lt;/span&gt;
+
+	&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;re&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;re&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;compile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sisters&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# u&#39;Once upon a time there were three little sisters; and their names were\n&#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;find():&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;find_all()&lt;/code&gt;方法将返回文档中符合条件的所有tag,尽管有时候我们只想得到一个结果.比如文档中只有一个&amp;lt;body&amp;gt;标签,那么使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;find_all()&lt;/code&gt;方法来查找&amp;lt;body&amp;gt;标签就不太合适,使用find_all方法并设置limit=1参数不如直接使用find()方法.下面两行代码是等价的:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find_all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;title&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;limit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;title&amp;gt;The Dormouse&#39;s story&amp;lt;/title&amp;gt;]&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;title&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# &amp;lt;title&amp;gt;The Dormouse&#39;s story&amp;lt;/title&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;唯一的区别是find_all()方法的返回结果是值包含一个元素的列表,而find()方法直接返回结果。&lt;/p&gt;
+
+&lt;p&gt;soup.head.title是tag的名字方法的简写.这个简写的原理就是多次调用当前tag的find()方法:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# &amp;lt;title&amp;gt;The Dormouse&#39;s story&amp;lt;/title&amp;gt;&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;head&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# &amp;lt;title&amp;gt;The Dormouse&#39;s story&amp;lt;/title&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;按CSS搜索。&lt;/p&gt;
+
+&lt;p&gt;按照CSS类名搜索tag的功能非常实用,但标识CSS类名的关键字class在Python中是保留字,使用class做参数会导致语法错误.从BeautifulSoup的4.1.1版本开始,可以通过class_参数搜索有指定CSS类名的tag。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find_all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;class_&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sister&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&amp;gt;Elsie&amp;lt;/a&amp;gt;,&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#  &amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&amp;gt;Lacie&amp;lt;/a&amp;gt;,&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#  &amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link3&quot;&amp;gt;Tillie&amp;lt;/a&amp;gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;get_text():&lt;/p&gt;
+
+&lt;p&gt;如果只想得到tag中包含的文本内容,那么可以嗲用get_text()方法,这个方法获取到tag中包含的所有文版内容包括子孙tag中的内容,并将结果作为Unicode字符串返回:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;n&quot;&gt;markup&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;&amp;lt;a href=&quot;http://example.com/&quot;&amp;gt;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;I linked to &amp;lt;i&amp;gt;example.com&amp;lt;/i&amp;gt;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;lt;/a&amp;gt;&#39;&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BeautifulSoup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;markup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+	&lt;span class=&quot;s&quot;&gt;u&#39;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;I linked to example.com&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+	&lt;span class=&quot;s&quot;&gt;u&#39;example.com&#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;可以通过参数指定tag的文本内容的分隔符:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;c&quot;&gt;# soup.get_text(&quot;|&quot;)&lt;/span&gt;
+	&lt;span class=&quot;s&quot;&gt;u&#39;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;I linked to |example.com|&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;还可以去除获得文本内容的前后空白:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;c&quot;&gt;# soup.get_text(&quot;|&quot;, strip=True)&lt;/span&gt;
+	&lt;span class=&quot;s&quot;&gt;u&#39;I linked to|example.com&#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;编码：&lt;/p&gt;
+
+&lt;p&gt;还可以调用 BeautifulSoup 对象或任意节点的 encode() 方法,就像Python的字符串调用 encode() 方法一样:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;latin-1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# &#39;&amp;lt;p&amp;gt;Sacr\xe9 bleu!&amp;lt;/p&amp;gt;&#39;&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;utf-8&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# &#39;&amp;lt;p&amp;gt;Sacr\xc3\xa9 bleu!&amp;lt;/p&amp;gt;&#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;CSS选择器：&lt;/p&gt;
+
+&lt;p&gt;Beautiful Soup支持大部分的CSS选择器,在Tag或BeautifulSoup对象的.select()方法中传入字符串参数,即可使用CSS选择器的语法找到tag:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;title&amp;gt;The Dormouse&#39;s story&amp;lt;/title&amp;gt;]&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;p nth-of-type(3)&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;p class=&quot;story&quot;&amp;gt;...&amp;lt;/p&amp;gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;通过tag标签逐层查找:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;body a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&amp;gt;Elsie&amp;lt;/a&amp;gt;,&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#  &amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot;  id=&quot;link2&quot;&amp;gt;Lacie&amp;lt;/a&amp;gt;,&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#  &amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link3&quot;&amp;gt;Tillie&amp;lt;/a&amp;gt;]&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;html head title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;title&amp;gt;The Dormouse&#39;s story&amp;lt;/title&amp;gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;找到某个tag标签下的直接子标签:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;head &amp;gt; title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;title&amp;gt;The Dormouse&#39;s story&amp;lt;/title&amp;gt;]&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;p &amp;gt; a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&amp;gt;Elsie&amp;lt;/a&amp;gt;,&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#  &amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot;  id=&quot;link2&quot;&amp;gt;Lacie&amp;lt;/a&amp;gt;,&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#  &amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link3&quot;&amp;gt;Tillie&amp;lt;/a&amp;gt;]&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;p &amp;gt; a:nth-of-type(2)&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&amp;gt;Lacie&amp;lt;/a&amp;gt;]&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;p &amp;gt; #link1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&amp;gt;Elsie&amp;lt;/a&amp;gt;]&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;body &amp;gt; a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# []&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;找到兄弟节点标签:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;#link1 ~ .sister&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&amp;gt;Lacie&amp;lt;/a&amp;gt;,&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#  &amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot;  id=&quot;link3&quot;&amp;gt;Tillie&amp;lt;/a&amp;gt;]&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;#link1 + .sister&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&amp;gt;Lacie&amp;lt;/a&amp;gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;通过CSS的类名查找:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;.sister&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&amp;gt;Elsie&amp;lt;/a&amp;gt;,&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#  &amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&amp;gt;Lacie&amp;lt;/a&amp;gt;,&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#  &amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link3&quot;&amp;gt;Tillie&amp;lt;/a&amp;gt;]&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;[class~=sister]&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&amp;gt;Elsie&amp;lt;/a&amp;gt;,&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#  &amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&amp;gt;Lacie&amp;lt;/a&amp;gt;,&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#  &amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link3&quot;&amp;gt;Tillie&amp;lt;/a&amp;gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;通过tag的id查找:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;#link1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&amp;gt;Elsie&amp;lt;/a&amp;gt;]&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;a#link2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&amp;gt;Lacie&amp;lt;/a&amp;gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;通过是否存在某个属性来查找:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;a[href]&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&amp;gt;Elsie&amp;lt;/a&amp;gt;,&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#  &amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&amp;gt;Lacie&amp;lt;/a&amp;gt;,&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#  &amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link3&quot;&amp;gt;Tillie&amp;lt;/a&amp;gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;通过属性的值来查找:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;a[href=&quot;http://example.com/elsie&quot;]&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&amp;gt;Elsie&amp;lt;/a&amp;gt;]&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;a[href^=&quot;http://example.com/&quot;]&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&amp;gt;Elsie&amp;lt;/a&amp;gt;,&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#  &amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&amp;gt;Lacie&amp;lt;/a&amp;gt;,&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;#  &amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link3&quot;&amp;gt;Tillie&amp;lt;/a&amp;gt;]&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;a[href$=&quot;tillie&quot;]&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link3&quot;&amp;gt;Tillie&amp;lt;/a&amp;gt;]&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;soup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;a[href*=&quot;.com/el&quot;]&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# [&amp;lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&amp;gt;Elsie&amp;lt;/a&amp;gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;更多信息参考文档：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://beautifulsoup.readthedocs.io/zh_CN/latest/#&quot;&gt;Beautiful Soup文档&lt;/a&gt;&lt;/p&gt;
+</description>
+				<pubDate>Thu, 12 May 2016 00:00:00 +0800</pubDate>
+				<link>http://www.puronglong.com/2016/05/12/beautiful-soup.html</link>
+				<guid isPermaLink="true">http://www.puronglong.com/2016/05/12/beautiful-soup.html</guid>
+				
+				<category>技术</category>
+				
+				
+			</item>
+		
+			<item>
+				<title>python中的xlwt</title>
+				<description>&lt;blockquote&gt;
+  &lt;p&gt;python中的xlwt&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;我们有时候会使用python对数据进行处理，而有些数据通常会存储在excel表中，有时候呢，又需要把网上获取的数据存储到excel中，下面来看看python中如何存储excel数据吧。&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;首先是写excel文件，需要用到python中的xlwt。&lt;/p&gt;
+
+&lt;p&gt;安装：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;n&quot;&gt;pip&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xlwt&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;安装好以后再我们的项目中引入：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;xlwt&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;创建工作簿（workbook）和工作表（sheet）：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;n&quot;&gt;workbook&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xlwt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Workbook&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encoding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;utf-8&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;style_compression&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+	&lt;span class=&quot;n&quot;&gt;sheet&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;workbook&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_sheet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;data&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cell_overwrite_ok&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cell_overwrite_ok=True&lt;/code&gt;表示禁止覆盖单元格。&lt;/p&gt;
+
+&lt;p&gt;写单元格：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;n&quot;&gt;sheet&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;value&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# row, column, value &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;三个参数分别表示第几行，第几列，值。&lt;/p&gt;
+
+&lt;p&gt;对单元格应用样式：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;n&quot;&gt;style&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xlwt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;easyxf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;font: bold 1, color: blue, underline single&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;sheet&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;foobar&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;保存：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;n&quot;&gt;workbook&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;workbook.xls&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;可以看看xlwt的GitHub主页上readme的一个quik start实例：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;xlwt&lt;/span&gt;
+	&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;datetime&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;datetime&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;style0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xlwt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;easyxf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;font: name Times New Roman, color-index red, bold on&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	    &lt;span class=&quot;n&quot;&gt;num_format_str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;#,##0.00&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;style1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xlwt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;easyxf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num_format_str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;D-MMM-YY&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;wb&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xlwt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Workbook&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;ws&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_sheet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;A Test Sheet&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;ws&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1234.56&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;style0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;ws&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;datetime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;style1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;ws&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;ws&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;ws&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xlwt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Formula&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;A3+B3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;wb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;example.xls&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+				<pubDate>Wed, 11 May 2016 00:00:00 +0800</pubDate>
+				<link>http://www.puronglong.com/2016/05/11/xlwt.html</link>
+				<guid isPermaLink="true">http://www.puronglong.com/2016/05/11/xlwt.html</guid>
+				
+				<category>技术</category>
+				
+				
+			</item>
+		
+			<item>
+				<title>《嫌疑人X的献身》</title>
+				<description>&lt;blockquote&gt;
+  &lt;p&gt;请你相信我，把一切交给，我的逻辑思考。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://img14.360buyimg.com/n0/jfs/t238/100/479473658/800349/d09a461d/53ec2924N6e37d020.jpg&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;摘录：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;“花冈小姐，”石神朝她的背影呼唤。然后对着转过身的她说：“你们需要不在场证明，请你先想想这点。”&lt;/p&gt;
+
+&lt;p&gt;“不在场证明吗？可是，我们根本没有。”&lt;/p&gt;
+
+&lt;p&gt;“所以，才要制造。”石神披上从尸体拔下来的外套。“请你相信我，把一切交给，我的逻辑思考。”&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;-我靠，当我看完全书再回过头想起来这句话时简直觉得当时的石神说出这句话时帅呆了。&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;她最后的那句话，令他全身热血沸腾。滚烫的双颊被冷风一吹格外舒服。&lt;/p&gt;
+
+&lt;p&gt;那样的做法如果靠人工作业来调查，规模太过庞大，所以他们才会使用电脑吧；不过也因此无法完美判断那个证明是否正确。如果连确认都得使用电脑，那就不是真正的数学。&lt;/p&gt;
+
+&lt;p&gt;汤川结束硕士课程后的发展，石神毫无所悉。因为他自己离开了大学，就这样一别经年，任由二十多年的岁月一晃而逝。&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;-啊，一晃居然就过去了20年了，对于即将毕业的我来说感觉更加担心毕业以后的时间飞逝更快。想起一句古诗，此别经年，应是良辰好景虚设。&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;就算不是森刚，也可能是在座的某位同学，数学这门课就是为了这样的某人。在此我要声明，我现在教你们的，只不过是数学这个世界的小小入口。因为如果不知道那是在哪里，自然也就无法进入。当然，讨厌数学的人可以不用进去。我之所以要考试，只是想确认你们是否起码知道入口在哪里。不同的是这一次是摩托车，上一次是钢琴。&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;-从这里看石神还真是一个不错的老师呢。&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;石神来回凝视着神秘男子和靖子，他感到两人之间的空气隐含着某种动摇。几近焦灼的情绪在石神的胸臆扩散。&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;-其实这样的心理，想必也有人感同身受吧。&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;然而石神并不排斥森冈这种质疑的态度，对于为何要学习某种东西抱有疑问，是理所当然的。唯有当这个疑问解除了，才会产生求学的目的，也才能通往理解数学本质之路。&lt;/p&gt;
+
+&lt;p&gt;“那时你说过，看到那些游民，就觉得他们过日子像时钟一样准确。你还记得吗？”“记得。人一旦摆脱了时钟反而会那样——这是你说的吧？”&lt;/p&gt;
+
+&lt;p&gt;这个世上没有无用的齿轮，也只有齿轮本身能决定自己的用途。&lt;/p&gt;
+
+&lt;p&gt;“很有意思。”石神说，“之前你问过我一个问题：设计别人解不开的问题，和解开那个问题，何者比较难——你还记得吗？”&lt;/p&gt;
+
+&lt;p&gt;“记得。我的答案是，设计问题比较难。我向来认为，解答者应该对出题者心怀敬意。”&lt;/p&gt;
+
+&lt;p&gt;“原来如此。那，p不等于NP的问题呢？自己想出答案，和确认别人说的答案是否正确，何者比较简单？”&lt;/p&gt;
+
+&lt;p&gt;当时他还这样说：你看起来永远都这么年轻，跟我差了十万八千里。你的头发也还很茂密——说着还做出有点在意自己头发的小动作。这点让我大吃一惊，因为石神这个人，本来是个绝对不会在意外貌的男人。他从以前就坚持，一个人的价值不应该靠这种东西衡量，他绝对不会选择必须受外貌左右的人生。现在他居然对外貌耿耿于怀。他的头发的确稀薄，但他居然为了这种事到如今早已无可奈何的事情哀叹。所以我才察觉，他正处于不得不在意外表与容貌的状况——也就是恋爱了。不过话说回来，为什么他会在这种地方，贸然说出那种话？是突然在意起外表了吗？&lt;/p&gt;
+
+&lt;p&gt;怎么会有眼睛这么美的母女？他想。在那之前，他从未被什么东西的美丽吸引、感动过，也从不了解艺术的意义。然而这一瞬间，他全都懂了。他发觉那和解开数学题的美感在本质上是相同的。&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;-看到这里的时候想到上本看的讲艺术的《月亮与六便士》，其实当时我也不理解艺术的意义，难道艺术的意义就足以让画家抛家弃子了吗？艺术与人品我还是选择后者。不过话又回到这里，也许我们都期待能有这样一个找到对的人的时刻，仿佛一瞬间上帝降临。我愿意相信有这样的时刻，但并不觉得有人能碰上。&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;石神早已记不清她们是怎么打招呼了，但两人凝视他的明眸如何流转、眨动，却至今仍清晰烙印在记忆中。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;摘录完&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;就像有人说的那样，翻开第一页我们就知道作案人是谁，也知道案件的真相——那么一部完全透底的小说，又凭什么能吸引千万读者去痴痴猜测另一个“真相”？&lt;/p&gt;
+
+&lt;p&gt;数学天才石神每天都去一家小小的店买便当，只为看一眼在那里做事的邻居靖子。不可否认的是书里设的局确实精妙，就像评语说的他将骗局写到了极致。&lt;/p&gt;
+
+&lt;p&gt;汤川学在识破了石神的障眼法以后，曾对靖子说：“要告诉你这件事，我实在很为难。”事实上，他也的确痛苦地表情扭曲。“因为石神绝对不会希望我这样做。不管发生了什么事，他一定希望至少不让你发现真相。这不是为了他，而是为了你。你如果了解真相，你将会终生背负比现在更大的痛苦，但即使如此我还是不得不告诉你。因为我觉得如果不让你明白他有多爱你、是怎么把全部的人生都赌下去，那他未免牺牲得太不值了。虽然这不是他的本意，但看到你这样一无所知，我实在无法忍受。”&lt;/p&gt;
+
+&lt;p&gt;看到如此深情之人而最终未能在一起，在扼腕叹息的同时也不禁质问：为什么石神不早日吐露心事？如果富坚慎二没有出现，如果富坚慎二没有死，两个人的人生轨迹难道就这样一直平行下去？难道石神就甘心一直做一个生活的旁观者？如果他早日出现在靖子的生活中，也许就能帮助她应对富坚，也就不会有接下来的事情了。&lt;/p&gt;
+
+&lt;p&gt;并没有责怪石神的意思，也许喜欢上一个人以后也许会把自己卑微到尘埃里去，特别是像石神这样长得着急，和靖子相比就像天壤之别，曾经但求一死的他在看到靖子的时刻，终于找到生活下去的理由，这才意识生活中还有其它的美，他也许都害怕自己的加入会打破这样的美，于是选择作壁上观。&lt;/p&gt;
+
+&lt;p&gt;那么靖子呢？石神三番五次的帮助，而她也知道石神喜欢自己，但似乎靖子并没有对石神有别的想法，即使到了最后知晓真相的她面见自首的石神时，我以为至少会给他一个大大的拥抱，没想到也只是感激的跪拜。但反而是工藤的出现，让她心有所动。&lt;/p&gt;
+
+&lt;p&gt;两人的命运实在令人遗憾。我记得有看过一句话，有一个人看到一样喜欢的东西在纠结要不要买而咨询的时候，有人回答说：“买吧，我们已经很难遇到喜欢的人，何必为难自己不去买喜欢的东西。”看完此书也是同样的道理：我们已经很难遇到喜欢的人，何必为难自己不去拥有喜欢的呢？&lt;/p&gt;
+
+&lt;p&gt;在一个“当男孩遇上女孩”的故事里，总是该男孩主动出击的。&lt;/p&gt;
+</description>
+				<pubDate>Tue, 10 May 2016 00:00:00 +0800</pubDate>
+				<link>http://www.puronglong.com/2016/05/10/%E5%AB%8C%E7%96%91%E4%BA%BAx%E7%9A%84%E7%8C%AE%E8%BA%AB.html</link>
+				<guid isPermaLink="true">http://www.puronglong.com/2016/05/10/%E5%AB%8C%E7%96%91%E4%BA%BAx%E7%9A%84%E7%8C%AE%E8%BA%AB.html</guid>
+				
+				<category>生活</category>
+				
+				
+			</item>
+		
+			<item>
+				<title>scrapy笔记</title>
+				<description>&lt;blockquote&gt;
+  &lt;p&gt;记录scrapy的一些笔记&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;scrapy是python开发的一个快速web爬虫抓取框架，用于抓取web站点并从页面中提取结构化的数据。scrapy用途广泛，可以用于数据挖掘，监测和自动化测试。下面我们通过抓取豆瓣电影top排行榜来熟悉scrapy。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/article/2016-5-8/2.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;scrapy官方介绍是：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	An open source and collaborative framework for extracting the data you need from websites.
+	In a fast, simple, yet extensible way.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;首先呢，我们使用scrapy创建一个项目：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	scrapy startproject topmovie
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;然后scrapy会创建好我们的项目基本结构。&lt;/p&gt;
+
+&lt;p&gt;scrapy文件结构一般如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	scrapy.cfg
+	myproject/
+	    __init__.py
+	    items.py
+	    pipelines.py
+	    settings.py
+	    spiders/
+	        __init__.py
+	        ...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;items.py定义需要抓取并需要后期处理的数据。来看我们的items.py文件：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	from scrapy import Item, Field
+
+	class TopmovieItem(Item):
+	    title = Field()
+	    movieInfo = Field()
+	    star = Field()
+	    quote = Field()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Item就是我们保存爬取到的数据的容器。&lt;/p&gt;
+
+&lt;p&gt;title类似字典中的“键”，爬到的数据类似字典中的“值”。&lt;/p&gt;
+
+&lt;p&gt;官方手册：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	Item objects are simple containers used to collect the scraped data. They provide a dictionary-licke API with a convenient syntax for declaring their available fields.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;settings.py文件配置scrapy，从而修改user-agent，设定爬取时间间隔，设置代理，配置各种中间件等等。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	The Scrapy settings allows you to customize the behaviour of all Scrapy components, including the core, extensions, pipelines and spiders themselves.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;例如：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;n&quot;&gt;BOT_NAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;topmovie&#39;&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;SPIDER_MODULES&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;topmovie.spiders&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;NEWSPIDER_MODULE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;topmovie.spiders&#39;&lt;/span&gt;
+
+	&lt;span class=&quot;c&quot;&gt;# Crawl responsibly by identifying yourself (and your website) on the user-agent&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;USER_AGENT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.86 Safari/537.36&#39;&lt;/span&gt;
+
+	&lt;span class=&quot;c&quot;&gt;# 建一个csv文件并将爬取的信息保存到这个文件下面&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;FEED_URI&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;/Users/puronglong/Desktop/result.csv&#39;&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;FEED_FORMAT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;CSV&#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;pipeline.py用于存放执行后期数据处理的功能，从而使得数据的爬取和处理分开。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	After an item has been scraped by a spider, it is sent to the Item Pipeline which process it through several components that are executed sequentially.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;我们这里并没有进行什么操作所以使用默认的：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TopmoviePipeline&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;process_item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;spider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;了解了文件结构之后然后在spiders目录下编辑我们的爬虫代码：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;scrapy&lt;/span&gt;
+	&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;scrapy.spiders&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CrawlSpider&lt;/span&gt;
+	&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;scrapy.http&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Request&lt;/span&gt;
+	&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;scrapy.selector&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Selector&lt;/span&gt;
+	&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;topmovie.items&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TopmovieItem&lt;/span&gt;
+
+	&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Douban&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CrawlSpider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+
+	    &lt;span class=&quot;c&quot;&gt;#这个name的值定义的就是scrapy crawl name里面的name的值&lt;/span&gt;
+	    &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;topmovie&#39;&lt;/span&gt;
+	    &lt;span class=&quot;n&quot;&gt;redis_key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;topmovie:start_urls&#39;&lt;/span&gt;
+
+	    &lt;span class=&quot;c&quot;&gt;#爬虫默认入口地址&lt;/span&gt;
+	    &lt;span class=&quot;n&quot;&gt;start_urls&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;http://movie.douban.com/top250&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+	    &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;http://movie.douban.com/top250&#39;&lt;/span&gt;
+
+	    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+	        &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TopmovieItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+	        &lt;span class=&quot;n&quot;&gt;selector&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Selector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+	        &lt;span class=&quot;c&quot;&gt;#每一个电影的相关信息都在一个class为info的div下面&lt;/span&gt;
+	        &lt;span class=&quot;n&quot;&gt;Movies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xpath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;//div[@class=&quot;info&quot;]&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+	        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eachMovie&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Movies&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	            &lt;span class=&quot;n&quot;&gt;title&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eachMovie&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xpath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;div[@class=&quot;hd&quot;]/a/span/text()&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;extract&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+	            &lt;span class=&quot;n&quot;&gt;fullTitle&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;&#39;&lt;/span&gt;
+	            &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	                &lt;span class=&quot;n&quot;&gt;fullTitle&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;each&lt;/span&gt;
+
+	            &lt;span class=&quot;n&quot;&gt;MovieInfo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eachMovie&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xpath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;div[@class=&quot;bd&quot;]/p/text()&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;extract&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+	            &lt;span class=&quot;n&quot;&gt;star&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eachMovie&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xpath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;div[@class=&quot;bd&quot;]/div[@class=&quot;star&quot;]/span[@class=&quot;rating_num&quot;]/text()&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;extract&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+	            &lt;span class=&quot;n&quot;&gt;quote&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eachMovie&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xpath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;div[@class=&quot;bd&quot;]/p[@class=&quot;quote&quot;]/span/text()&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;extract&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+	            &lt;span class=&quot;c&quot;&gt;# quote可能为空，进行判断，quote是电影中的一句名言&lt;/span&gt;
+	            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quote&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	                &lt;span class=&quot;n&quot;&gt;quote&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quote&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+	            &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	                &lt;span class=&quot;n&quot;&gt;quote&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;&#39;&lt;/span&gt;
+
+				&lt;span class=&quot;c&quot;&gt;#把获取到的值赋给我们的item&lt;/span&gt;
+	            &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;title&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fullTitle&lt;/span&gt;
+	            &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;movieInfo&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MovieInfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MovieInfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+	            &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;star&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;star&lt;/span&gt;
+	            &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;quote&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quote&lt;/span&gt;
+
+	            &lt;span class=&quot;c&quot;&gt;#使用yield进行迭代&lt;/span&gt;
+	            &lt;span class=&quot;k&quot;&gt;yield&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;
+
+			&lt;span class=&quot;c&quot;&gt;#获取到下一页的链接&lt;/span&gt;
+	        &lt;span class=&quot;n&quot;&gt;nextLink&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xpath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;//span[@class=&quot;next&quot;]/link/@href&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;extract&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+	        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nextLink&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	            &lt;span class=&quot;n&quot;&gt;nextLink&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nextLink&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+	            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nextLink&lt;/span&gt;
+
+	            &lt;span class=&quot;c&quot;&gt;#获取新的链接，再次调用此函数&lt;/span&gt;
+	            &lt;span class=&quot;k&quot;&gt;yield&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nextLink&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;yield是一个类似return的关键字，只是这个函数返回的是个生成器。&lt;/p&gt;
+
+&lt;p&gt;看看爬取的结果吧：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/article/2016-5-8/1.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;取下来了，棒棒哒~&lt;/p&gt;
+</description>
+				<pubDate>Mon, 09 May 2016 00:00:00 +0800</pubDate>
+				<link>http://www.puronglong.com/2016/05/09/scrapy.html</link>
+				<guid isPermaLink="true">http://www.puronglong.com/2016/05/09/scrapy.html</guid>
+				
+				<category>技术</category>
+				
+				
+			</item>
+		
+	</channel>
+</rss>

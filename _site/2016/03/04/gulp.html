@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>蒲荣龙的博客</title>
+	<meta name="description" content="  理一理gulp的一些常用方法">
+
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/code.css">
+	<link rel="canonical" href="http://www.puronglong.com/2016/03/04/gulp.html">
+	<link rel="alternate" type="application/rss+xml" title="blog" href="http://www.puronglong.com/feed.xml">
+</head>
+
+
+	<body>
+
+		<div class="pull-right right-sidebar">
+	<p>标签：</p>
+	
+	<p>
+	<a class="page-link" href="/tag/技术">技术</a>
+	<span>（66）</span></p>
+	
+	<p>
+	<a class="page-link" href="/tag/生活">生活</a>
+	<span>（35）</span></p>
+	
+</div>
+		
+		<div class="pull-left left-sidebar">
+			<ul class="header-list">
+				<li><a class="page-link" href="/">Home</a></li>
+				<li><a class="page-link" href="/about/">About</a></li>
+				<li><a class="page-link" href="/feed.xml">RSS</a></li>
+			</ul>
+		</div>
+		<div class="page-content">
+			<div class="wrapper">
+				<article class="post home" itemscope itemtype="http://schema.org/BlogPosting">
+
+	<header class="post-header">
+		<h1 class="post-title" itemprop="name headline">gulp常用方法</h1>
+		<p class="post-meta">2016-03-04</p>
+	</header>
+
+	<div class="post-content" itemprop="articleBody">
+		<blockquote>
+  <p>理一理gulp的一些常用方法</p>
+</blockquote>
+
+<p><img src="http://7vznhl.com1.z0.glb.clouddn.com/2015-9-3-01QQ20150912-1@2x.png" alt="img" /></p>
+
+<!-- more -->
+
+<p>以前用gulp的时候写过一篇关于<a href="http://www.puronglong.com/#/blog/post/2015-9-3-gulp.md">当时的一些使用</a>，这次再把常用的一些命令捋一捋</p>
+
+<p>gulp常用的几个命令：</p>
+
+<p>gulp.src()用来获取文件，获取多个文件时可以写成数组形式。</p>
+
+<p>gulp.dest()写文件</p>
+
+<p>stream.pipe(destination, [options])，.pipe()用于将这个可读流和destination目标可写流连接起来，传入这个流中的数据将会写入到destination流中。通过在必要时暂停和恢复流，来源流和目的流得以保持同步。</p>
+
+<p>gulp.watch()监视文件变化，若监视文件有变化，则执行相应任务，如：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'uglify'</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+	  <span class="c1">//do something</span>
+	<span class="p">});</span>
+	<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'reload'</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+	  <span class="c1">//do something</span>
+	<span class="p">});</span>
+	<span class="nx">gulp</span><span class="p">.</span><span class="nx">watch</span><span class="p">(</span><span class="s1">'js/**/*.js'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'uglify'</span><span class="p">,</span><span class="s1">'reload'</span><span class="p">]);</span>
+</code></pre>
+</div>
+
+<p>gulp.task()用来定义任务。任务依赖：gulp.task(‘default’, [‘one’, ‘two’, ‘three’]);想要执行’one’，’two’，’three’三个任务，定义一个依赖这三个任务的空任务，然后执行这个任务就可以了。如果后面几个任务有依赖的话，会先执行依赖的任务，但如果如果某个任务依赖的任务是异步的话，gulp并不会等待那个异步任务完成，而是会接着执行后续的任务。</p>
+
+<p>那怎么办呢？官网给出了三种解决方法：</p>
+
+<p>1.在异步操作完成后执行一个回调</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="c1">// 在 shell 中执行一个命令</span>
+	<span class="kd">var</span> <span class="nx">exec</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'child_process'</span><span class="p">).</span><span class="nx">exec</span><span class="p">;</span>
+	<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'jekyll'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+	  <span class="c1">// 编译 Jekyll</span>
+	  <span class="nx">exec</span><span class="p">(</span><span class="s1">'jekyll build'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+	    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">return</span> <span class="nx">cb</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span> <span class="c1">// 返回 error</span>
+	    <span class="nx">cb</span><span class="p">();</span> <span class="c1">// 完成 task</span>
+	  <span class="p">});</span>
+	<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>2.定义任务时返回一个流对象</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'somename'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+	  <span class="kd">var</span> <span class="nx">stream</span> <span class="o">=</span> <span class="nx">gulp</span><span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="s1">'client/**/*.js'</span><span class="p">)</span>
+	    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">minify</span><span class="p">())</span>
+	    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="s1">'build'</span><span class="p">));</span>
+	  <span class="k">return</span> <span class="nx">stream</span><span class="p">;</span>
+	<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>3.返回一个promise对象</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	<span class="kd">var</span> <span class="nx">Q</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'q'</span><span class="p">);</span>
+
+	<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'somename'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+	  <span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">();</span>
+
+	  <span class="c1">// 执行异步的操作</span>
+	  <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+	    <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">();</span>
+	  <span class="p">},</span> <span class="mi">1</span><span class="p">);</span>
+
+	  <span class="k">return</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span><span class="p">;</span>
+	<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>以上，大概有这些：gulp.src()，gulp.dest()，gulp.task()，gulp.watch()，然后就是一些常见的插件了</p>
+
+<p>如gulp-rename(重命名)，</p>
+
+<p>gulp-uglify(压缩js)，</p>
+
+<p>gulp-jshint(检查js代码)，</p>
+
+<p>gulp-contact(合并文件)，</p>
+
+<p>gulp-minify-css(压缩css)，</p>
+
+<p>gulp-minify-html(压缩html)，</p>
+
+<p>gulp-imagemin(压缩图片)</p>
+
+<p>等等。</p>
+
+	</div>
+
+</article>
+
+			</div>
+		</div>
+
+		<footer class="site-footer">
+
+	<div class="wrapper">
+
+		<div class="footer-col-wrapper">
+
+			<div>
+				<ul class="social-media-list">
+					
+					<li>
+						<a href="https://github.com/puronglong"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">puronglong</span></a>
+
+					</li>
+					
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+
+</footer>
+
+<script type="text/javascript">
+
+	var a = "\n                                   _                                         \n _ __  _   _ _ __ ___  _ __   __ _| | ___  _ __   __ _   ___  __ _ _   _   _ \n| '_ \\| | | | '__/ _ \\| '_ \\ / _` | |/ _ \\| '_ \\ / _` | / __|/ _` | | | | (_)\n| |_) | |_| | | | (_) | | | | (_| | | (_) | | | | (_| | \\__ \\ (_| | |_| |  _ \n| .__/ \\__,_|_|  \\___/|_| |_|\\__, |_|\\___/|_| |_|\\__, | |___/\\__,_|\\__, | (_)\n|_|                          |___/               |___/             |___/     \n          _                                                                  \n  /\\  /\\ (_)                                                                 \n / /_/ / | |                                                                 \n/ __  /  | |                                                                 \n\\/ /_/   |_|            😃";
+    console.info(a);
+
+	document.addEventListener('visibilitychange', function() {
+                document.title = document.hidden ? '崩溃了，来看一下':'小龙龙的个人博客~'
+            });
+</script>
+
+
+	</body>
+
+</html>
