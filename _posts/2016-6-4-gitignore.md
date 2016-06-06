@@ -25,7 +25,9 @@ git rm --cached _site
 
 rm是git的一个指令：
 
+```
 git-rm - Remove files from the working tree and from the index
+```
 
 --cached是该指令的一个options选项配置：
 
