@@ -38,7 +38,14 @@ jQuery(document).ready(function($){
 	$(window).scroll(function(){
 		
 		($(this).scrollTop() > offsetTop) ? to_top_arrow.addClass('to-top-arrow') : to_top_arrow.removeClass('to-top-arrow');
-		console.log('2');
+	});
+
+	to_top_arrow.on('click', function(event){
+		event.preventDefault();
+		$('body,html').animate({
+			scrollTop: 0,
+			
+		});
 	});
 });
 </script>
