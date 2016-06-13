@@ -453,3 +453,11 @@ a.post-link:hover{
     visibility: visible;
     opacity: 1;
 }
+
+.article-music {
+    right: 0;
+    position: absolute;
+    height: 158px;
+    width: 235px;
+    top: 259px;
+}
