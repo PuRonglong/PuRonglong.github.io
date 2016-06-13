@@ -15,6 +15,8 @@ share: true
 
 <!-- more -->
 
+<embed src="http://www.xiami.com/widget/189502393_1775352094,_235_346_FF8719_494949_1/multiPlayer.swf" type="application/x-shockwave-flash" wmode="opaque" class="article-music">
+
 当初是为什么报的这所学校呢？从祖国的西南到东北，斜跨大半个中国。
 
 怕是以后，都不会来这么北了吧。
