@@ -179,6 +179,10 @@ share: true
 
 求学之路已然结束，求职之路即将开始，大人们总是说，快快长大，愿你也不要忘记单纯、善良，即使万物枯萎焦黄。
 
+向北
+
+去南
+
 少年啊，前路漫漫~
 
 <script type="text/javascript" src="/js/echarts.min.js"></script>
