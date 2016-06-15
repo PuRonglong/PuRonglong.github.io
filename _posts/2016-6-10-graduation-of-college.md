@@ -15,7 +15,7 @@ share: true
 
 <!-- more -->
 
-<!-- <embed src="http://www.xiami.com/widget/189502393_1775352094,_235_346_FF8719_494949_1/multiPlayer.swf" type="application/x-shockwave-flash" wmode="opaque" class="article-music"> -->
+<embed src="http://www.xiami.com/widget/189502393_1775352094,_235_346_FF8719_494949_1/multiPlayer.swf" type="application/x-shockwave-flash" wmode="opaque" class="article-music">
 
 四年的时光里，见证过东师须晴日，惟余莽莽的北国风光：
 
