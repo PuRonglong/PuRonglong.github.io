@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 写在毕业季
+title: 向北，去南——写在毕业季
 description: "写在毕业季"
 tags: [生活]
 image:
@@ -85,9 +85,13 @@ share: true
 
 一转眼，四年的时间已经过去，还有十多天就要离校了。
 
-我们宿舍一共6个人，来的时候分别从四川，甘肃，山西，内蒙古，江西，湖北，共同聚集在吉林长春（偶是寝室长）。
+我们宿舍一共6个人，宿舍号光华A517，来的时候分别从四川，甘肃，山西，内蒙古，江西，湖北，共同聚集在吉林长春（偶是寝室长）。
+
+<div id="container" style="height: 500px;width: 100%;"></div>
 
 走的时候又从长春走向各地。
+
+<div id="container2" style="height: 500px;width: 100%;"></div>
 
 四年一场梦。
 
@@ -153,6 +157,369 @@ share: true
 > 
 > 我爱你曾年少的模样
 
-求学之路已然结束，求职之路即将开始，大人们总是说，快快长大，而希望你也不要忘记单纯、善良，即使万物枯萎焦黄。
+求学之路已然结束，求职之路即将开始，大人们总是说，快快长大，愿你也不要忘记单纯、善良，即使万物枯萎焦黄。
 
 少年啊，前路漫漫~
+
+<script type="text/javascript" src="/js/echarts.min.js"></script>
+<script type="text/javascript" src="/js/china.js"></script>
+<script type="text/javascript">
+    var dom = document.getElementById("container");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+    var geoCoordMap = {
+        '上海': [121.4648,31.2891],
+        '南昌': [116.0046,28.6633],
+        '成都': [103.9526,30.7617],
+        '兰州': [103.5901,36.3043],
+        '重庆': [107.7539,30.1904],
+        '长春': [125.8154,44.2584],
+        '孝义': [111.21, 36.56],
+		'海拉尔': [119.733608, 49.214841],
+		'荆门': [111.51, 30.32],
+		'北京': [116.4551,40.2539],
+		'西安': [109.1162,34.2004],
+		'苏州': [120.6519,31.3989]
+    };
+
+    var BJData = [
+	    [{name:'成都'}, {name:'成都',value:1}],
+        [{name:'成都'}, {name:'长春',value:75}],
+		[{name:'兰州'}, {name:'长春'}],
+	    [{name:'兰州'}, {name:'兰州',value:1}],
+		[{name:'孝义'}, {name:'长春'}],
+	    [{name:'孝义'}, {name:'孝义',value:1}],	
+		[{name:'南昌'}, {name:'长春'}],
+	    [{name:'南昌'}, {name:'南昌',value:1}],
+		[{name:'海拉尔'}, {name:'长春'}],
+	    [{name:'海拉尔'}, {name:'海拉尔',value:1}],
+		[{name:'荆门'}, {name:'长春'}],
+	    [{name:'荆门'}, {name:'荆门',value:1}],
+    ];
+
+    var planePath = 'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z';
+
+    var convertData = function (data) {
+        var res = [];
+        for (var i = 0; i < data.length; i++) {
+            var dataItem = data[i];
+            var fromCoord = geoCoordMap[dataItem[0].name];
+            var toCoord = geoCoordMap[dataItem[1].name];
+            if (fromCoord && toCoord) {
+                res.push([{
+                    name: dataItem[0].name,
+                    coord: fromCoord
+                }, {
+                    name: dataItem[1].name,
+                    coord: toCoord
+                }]);
+            }
+        }
+        return res;
+    };
+
+    var color = ['#a6c84c', '#ffa022', '#46bee9'];
+    var series = [];
+    [['向北', BJData]].forEach(function (item, i) {
+        series.push({
+            name: item[0],
+            type: 'lines',
+            zlevel: 1,
+            effect: {
+                show: true,
+                period: 6,
+                trailLength: 0.7,
+                color: '#fff',
+                symbolSize: 3
+            },
+            lineStyle: {
+                normal: {
+                    color: color[i],
+                    width: 0,
+                    curveness: 0.2
+                }
+            },
+            data: convertData(item[1])
+        },
+        {
+            name: item[0],
+            type: 'lines',
+            zlevel: 2,
+            effect: {
+                show: true,
+                period: 6,
+                trailLength: 0,
+                symbol: planePath,
+                symbolSize: 15
+            },
+            lineStyle: {
+                normal: {
+                    color: color[i],
+                    width: 1,
+                    opacity: 0.4,
+                    curveness: 0.2
+                }
+            },
+            data: convertData(item[1])
+        },
+        {
+            name: item[0],
+            type: 'effectScatter',
+            coordinateSystem: 'geo',
+            zlevel: 2,
+            rippleEffect: {
+                brushType: 'stroke'
+            },
+            label: {
+                normal: {
+                    show: true,
+                    position: 'right',
+                    formatter: '{b}'
+                }
+            },
+            symbolSize: function (val) {
+                return val[2] / 8;
+            },
+            itemStyle: {
+                normal: {
+                    color: color[i]
+                }
+            },
+            data: item[1].map(function (dataItem) {
+                return {
+                    name: dataItem[1].name,
+                    value: geoCoordMap[dataItem[1].name].concat([dataItem[1].value])
+                };
+            })
+        });
+    });
+
+    option = {
+        backgroundColor: '#404a59',
+        title : {
+            text: 'A517来自省份',
+            subtext: '有缘千里来相会',
+            left: 'center',
+            textStyle : {
+                color: '#fff'
+            }
+        },
+        tooltip : {
+            trigger: 'item'
+        },
+        legend: {
+            orient: 'vertical',
+            bottom: '20',
+        	right: '20',
+            data:['向北'],
+            textStyle: {
+                color: '#fff'
+            },
+            selectedMode: 'single'
+        },
+        geo: {
+            map: 'china',
+            label: {
+                emphasis: {
+                    show: false
+                }
+            },
+            roam: true,
+            itemStyle: {
+                normal: {
+                    areaColor: '#323c48',
+                    borderColor: '#404a59'
+                },
+                emphasis: {
+                    areaColor: '#2a333d'
+                }
+            }
+        },
+        series: series
+    };;
+    if (option && typeof option === "object") {
+        var startTime = +new Date();
+        myChart.setOption(option, true);
+        var endTime = +new Date();
+        var updateTime = endTime - startTime;
+        console.log("Time used:", updateTime);
+    }
+</script>
+<script type="text/javascript">
+    var dom = document.getElementById("container2");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+    var geoCoordMap = {
+        '上海': [121.4648,31.2891],
+        '南昌': [116.0046,28.6633],
+        '成都': [103.9526,30.7617],
+        '兰州': [103.5901,36.3043],
+        '重庆': [107.7539,30.1904],
+        '长春': [125.8154,44.2584],
+        '孝义': [111.21, 36.56],
+		'海拉尔': [119.733608, 49.214841],
+		'荆门': [111.51, 30.32],
+		'北京': [116.4551,40.2539],
+		'西安': [109.1162,34.2004],
+		'苏州': [120.6519,31.3989]
+    };
+
+    var BJData = [
+        [{name:'长春'},{name:'长春',value:1}],
+	    [{name:'长春'},{name:'重庆',value:75}],
+	    [{name:'长春'},{name:'北京',value:75}],
+	    [{name:'长春'},{name:'西安',value:75}],
+	    [{name:'长春'},{name:'孝义',value:75}],
+	    [{name:'长春'},{name:'苏州',value:75}]
+    ];
+
+    var planePath = 'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z';
+
+    var convertData = function (data) {
+        var res = [];
+        for (var i = 0; i < data.length; i++) {
+            var dataItem = data[i];
+            var fromCoord = geoCoordMap[dataItem[0].name];
+            var toCoord = geoCoordMap[dataItem[1].name];
+            if (fromCoord && toCoord) {
+                res.push([{
+                    name: dataItem[0].name,
+                    coord: fromCoord
+                }, {
+                    name: dataItem[1].name,
+                    coord: toCoord
+                }]);
+            }
+        }
+        return res;
+    };
+
+    var color = ['#ffa022', '#46bee9'];
+    var series = [];
+    [['去南', BJData]].forEach(function (item, i) {
+        series.push({
+            name: item[0],
+            type: 'lines',
+            zlevel: 1,
+            effect: {
+                show: true,
+                period: 6,
+                trailLength: 0.7,
+                color: '#fff',
+                symbolSize: 3
+            },
+            lineStyle: {
+                normal: {
+                    color: color[i],
+                    width: 0,
+                    curveness: 0.2
+                }
+            },
+            data: convertData(item[1])
+        },
+        {
+            name: item[0],
+            type: 'lines',
+            zlevel: 2,
+            effect: {
+                show: true,
+                period: 6,
+                trailLength: 0,
+                symbol: planePath,
+                symbolSize: 15
+            },
+            lineStyle: {
+                normal: {
+                    color: color[i],
+                    width: 1,
+                    opacity: 0.4,
+                    curveness: 0.2
+                }
+            },
+            data: convertData(item[1])
+        },
+        {
+            name: item[0],
+            type: 'effectScatter',
+            coordinateSystem: 'geo',
+            zlevel: 2,
+            rippleEffect: {
+                brushType: 'stroke'
+            },
+            label: {
+                normal: {
+                    show: true,
+                    position: 'right',
+                    formatter: '{b}'
+                }
+            },
+            symbolSize: function (val) {
+                return val[2] / 8;
+            },
+            itemStyle: {
+                normal: {
+                    color: color[i]
+                }
+            },
+            data: item[1].map(function (dataItem) {
+                return {
+                    name: dataItem[1].name,
+                    value: geoCoordMap[dataItem[1].name].concat([dataItem[1].value])
+                };
+            })
+        });
+    });
+
+    option = {
+        backgroundColor: '#404a59',
+        title : {
+            text: 'A517去往省份',
+            subtext: '莫愁前路无知己',
+            left: 'center',
+            textStyle : {
+                color: '#fff'
+            }
+        },
+        tooltip : {
+            trigger: 'item'
+        },
+        legend: {
+            orient: 'vertical',//图例列表的布局朝向。
+            bottom: '20',
+        	right: '20',
+            data:['去南'],
+            textStyle: {
+                color: '#fff'
+            },
+            selectedMode: 'single'
+        },
+        geo: {
+            map: 'china',
+            label: {
+                emphasis: {
+                    show: false
+                }
+            },
+            roam: true,
+            itemStyle: {
+                normal: {
+                    areaColor: '#323c48',
+                    borderColor: '#404a59'
+                },
+                emphasis: {
+                    areaColor: '#2a333d'
+                }
+            }
+        },
+        series: series
+    };;
+    if (option && typeof option === "object") {
+        var startTime = +new Date();
+        myChart.setOption(option, true);
+        var endTime = +new Date();
+        var updateTime = endTime - startTime;
+        console.log("Time used:", updateTime);
+    }
+</script>
