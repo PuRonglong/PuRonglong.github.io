@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>蒲荣龙的博客</title>
+	<meta name="description" content="  git忽略已经被提交的文件">
+
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/code.css">
+	<link rel="canonical" href="http://www.puronglong.com/2016/06/04/gitignore.html">
+	<link rel="alternate" type="application/rss+xml" title="小龙龙的个人博客" href="http://www.puronglong.com/feed.xml">
+</head>
+
+
+	<body>
+
+		<div class="pull-right right-sidebar">
+	<p>标签：</p>
+	
+	<p>
+	<a class="page-link" href="/tag/技术">技术</a>
+	<span>（66）</span></p>
+	
+	<p>
+	<a class="page-link" href="/tag/生活">生活</a>
+	<span>（37）</span></p>
+	
+</div>
+		
+		<div class="pull-left left-sidebar">
+			<ul class="header-list">
+				<li><a class="page-link" href="/">Home</a></li>
+				<li><a class="page-link" href="/about/">About</a></li>
+				<li><a class="page-link" href="/feed.xml">RSS</a></li>
+			</ul>
+		</div>
+		<div class="page-content">
+			<div class="wrapper">
+				<article class="post home" itemscope itemtype="http://schema.org/BlogPosting">
+
+	<header class="post-header">
+		<h1 class="post-title" itemprop="name headline">git忽略已经被提交的文件</h1>
+		<p class="post-meta">2016-06-04</p>
+	</header>
+
+	<div class="post-content" itemprop="articleBody">
+		<blockquote>
+  <p>git忽略已经被提交的文件</p>
+</blockquote>
+
+<p>上次在<code class="highlighter-rouge">github pages</code>项目里修改了<code class="highlighter-rouge">gitignore</code>配置文件，提交了<code class="highlighter-rouge">site</code>文件夹，后来不准备把这个文件push上去，于是在<code class="highlighter-rouge">gitignore</code>里又添加了<code class="highlighter-rouge">site</code>，结果发现，这时候配置<code class="highlighter-rouge">gitignore</code>没有用了。</p>
+
+<p>原因在于<code class="highlighter-rouge">.gitignore</code>文件只能作用于git没有跟踪过的文件，如果文件被git记录过，那么<code class="highlighter-rouge">.gitignore</code>对它们就没有效果了。正确的做法应该是使用正确的git指令<code class="highlighter-rouge">git rm</code>。</p>
+
+<!-- more -->
+
+<p>正确指令如下：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>git rm --cached _site
+</code></pre>
+</div>
+
+<p>rm是git的一个指令：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>git-rm - Remove files from the working tree and from the index
+</code></pre>
+</div>
+
+<p>–cached是该指令的一个options选项配置：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>--cached
+   Use this option to unstage and remove paths only from the index.
+   Working tree files, whether modified or not, will be left alone.
+</code></pre>
+</div>
+
+<p>_site是我们需要从git里取消的文件。</p>
+
+
+	</div>
+
+</article>
+
+			</div>
+		</div>
+
+		<a href="#" class="to-top">Top</a>
+
+		<footer class="site-footer">
+
+	<div class="wrapper">
+
+		<div class="footer-col-wrapper">
+
+			<div>
+				<ul class="social-media-list">
+					
+					<li>
+						<a href="https://github.com/puronglong"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">puronglong</span></a>
+
+					</li>
+					
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+
+</footer>
+
+<script type="text/javascript" src='/js/jquery.min.js'></script>
+
+<script type="text/javascript">
+
+	var a = "\n                                   _                                         \n _ __  _   _ _ __ ___  _ __   __ _| | ___  _ __   __ _   ___  __ _ _   _   _ \n| '_ \\| | | | '__/ _ \\| '_ \\ / _` | |/ _ \\| '_ \\ / _` | / __|/ _` | | | | (_)\n| |_) | |_| | | | (_) | | | | (_| | | (_) | | | | (_| | \\__ \\ (_| | |_| |  _ \n| .__/ \\__,_|_|  \\___/|_| |_|\\__, |_|\\___/|_| |_|\\__, | |___/\\__,_|\\__, | (_)\n|_|                          |___/               |___/             |___/     \n          _                                                                  \n  /\\  /\\ (_)                                                                 \n / /_/ / | |                                                                 \n/ __  /  | |                                                                 \n\\/ /_/   |_|            😃";
+    console.info(a);
+
+	document.addEventListener('visibilitychange', function() {
+                document.title = document.hidden ? '崩溃了，来看一下':'小龙龙的个人博客~'
+            });
+</script>
+<script type="text/javascript">
+	var offsetTop = 300;
+	var to_top_arrow = $('.to-top');
+	$(window).scroll(function(){
+		
+		($(this).scrollTop() > offsetTop) ? to_top_arrow.addClass('to-top-arrow') : to_top_arrow.removeClass('to-top-arrow');
+	});
+
+	to_top_arrow.on('click', function(event){
+		event.preventDefault();
+		$('body,html').animate({
+			scrollTop: 0,
+			
+		});
+	});
+</script>
+
+
+	</body>
+
+</html>

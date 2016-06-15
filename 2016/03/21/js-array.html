@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>蒲荣龙的博客</title>
+	<meta name="description" content="  看到这样一个题：如何不使用loop循环，创建一个长度为100的数组，并且每个元素的值等于它的下标？">
+
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/code.css">
+	<link rel="canonical" href="http://www.puronglong.com/2016/03/21/js-array.html">
+	<link rel="alternate" type="application/rss+xml" title="小龙龙的个人博客" href="http://www.puronglong.com/feed.xml">
+</head>
+
+
+	<body>
+
+		<div class="pull-right right-sidebar">
+	<p>标签：</p>
+	
+	<p>
+	<a class="page-link" href="/tag/技术">技术</a>
+	<span>（66）</span></p>
+	
+	<p>
+	<a class="page-link" href="/tag/生活">生活</a>
+	<span>（37）</span></p>
+	
+</div>
+		
+		<div class="pull-left left-sidebar">
+			<ul class="header-list">
+				<li><a class="page-link" href="/">Home</a></li>
+				<li><a class="page-link" href="/about/">About</a></li>
+				<li><a class="page-link" href="/feed.xml">RSS</a></li>
+			</ul>
+		</div>
+		<div class="page-content">
+			<div class="wrapper">
+				<article class="post home" itemscope itemtype="http://schema.org/BlogPosting">
+
+	<header class="post-header">
+		<h1 class="post-title" itemprop="name headline">js稀疏数组</h1>
+		<p class="post-meta">2016-03-21</p>
+	</header>
+
+	<div class="post-content" itemprop="articleBody">
+		<blockquote>
+  <p>看到这样一个题：如何不使用loop循环，创建一个长度为100的数组，并且每个元素的值等于它的下标？</p>
+</blockquote>
+
+<p>容易想到的是这样：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="nb">Array</span><span class="p">(</span><span class="mi">100</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">){</span>
+        <span class="k">return</span> <span class="nx">x</span><span class="p">;</span>
+    <span class="p">})</span>
+</code></pre>
+</div>
+
+<p>但是以为这样就完了吗？No，上面写法的返回结果是<code class="highlighter-rouge">[undefined × 100]</code>。这里就涉及一个js中稀疏数组和密集数组的问题了。</p>
+
+<!-- more -->
+
+<p>js权威指南里这样定义，稀疏数组就是包含从0开始的不连续索引的数组。如：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="c1">//这个数组没有元素，但a.length是5</span>
+</code></pre>
+</div>
+
+<p>可以用Array()构造函数或简单地指定数组索引值大于当前数组长度来创建稀疏数组。或者可以使用delete操作符，delete掉其中一个元素来产生稀疏数组。</p>
+
+<p>如果像上面题目中那样，其实是对一个并没有元素的数组进行map操作，所以结果会是undefined。</p>
+
+<p>密集数组的数组元素之间是紧密相连的。这个紧密相连指的是数组元素的存储空间，与稀疏数组的不连续索引相对。下面这样就是创建一个密集数组：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+</code></pre>
+</div>
+
+<p>或者这样创建密集数组：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">dense</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>
+</code></pre>
+</div>
+
+<p>那么两者的主要区别是什么：</p>
+
+<p>稀疏数组：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>     <span class="kd">var</span> <span class="nx">array</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+     <span class="nx">array</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"name"</span><span class="p">;</span>
+
+     <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">a</span> <span class="k">in</span> <span class="nx">array</span><span class="p">)</span>
+     <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"index="</span> <span class="o">+</span> <span class="nx">a</span> <span class="o">+</span> <span class="s2">",value="</span> <span class="o">+</span> <span class="nx">array</span><span class="p">[</span><span class="nx">a</span><span class="p">]);</span>
+     <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>结果：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="nx">index</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="nx">value</span><span class="o">=</span><span class="nx">name</span>
+</code></pre>
+</div>
+
+<p>密集数组：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>     <span class="kd">var</span> <span class="nx">dense</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>
+     <span class="nx">dense</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"name"</span><span class="p">;</span>
+     <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">a</span> <span class="k">in</span> <span class="nx">dense</span><span class="p">)</span>
+     <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"index="</span> <span class="o">+</span> <span class="nx">a</span> <span class="o">+</span> <span class="s2">",value="</span> <span class="o">+</span> <span class="nx">dense</span><span class="p">[</span><span class="nx">a</span><span class="p">]);</span>
+     <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>结果：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="nx">index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nx">value</span><span class="o">=</span><span class="kc">undefined</span>
+    <span class="nx">index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="nx">value</span><span class="o">=</span><span class="kc">undefined</span>
+    <span class="nx">index</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="nx">value</span><span class="o">=</span><span class="nx">name</span>
+</code></pre>
+</div>
+
+<p>从上面的例子可以看出，稀疏数组如果不赋值的话其实是没有元素的。而密集数组中即使没有定义值是多少，但也是有值的，只是是undefined罢了。</p>
+
+<p>知道原因以后我们来看看上面题目的正确打开姿势：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">null</span><span class="p">,{</span><span class="na">length</span><span class="p">:</span><span class="mi">100</span><span class="p">}));</span>
+</code></pre>
+</div>
+
+<p>Object.keys()方法返回一个由给定对象的所有可枚举自身属性的属性名组成的数组。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">null</span><span class="p">,{</span><span class="na">length</span><span class="p">:</span><span class="mi">100</span><span class="p">}));</span>
+    <span class="p">[</span><span class="s2">"0"</span><span class="p">,</span> <span class="s2">"1"</span><span class="p">,</span> <span class="s2">"2"</span><span class="p">,</span> <span class="s2">"3"</span><span class="p">,</span> <span class="s2">"4"</span><span class="p">,</span> <span class="s2">"5"</span><span class="p">,</span> <span class="s2">"6"</span><span class="p">,</span> <span class="s2">"7"</span><span class="p">,</span> <span class="s2">"8"</span><span class="p">,</span> <span class="s2">"9"</span><span class="p">,</span> <span class="s2">"10"</span><span class="p">,</span> <span class="s2">"11"</span><span class="p">,</span> <span class="s2">"12"</span><span class="p">,</span> <span class="s2">"13"</span><span class="p">,</span> <span class="s2">"14"</span><span class="p">,</span> <span class="s2">"15"</span><span class="p">,</span> <span class="s2">"16"</span><span class="p">,</span> <span class="s2">"17"</span><span class="p">,</span> <span class="s2">"18"</span><span class="p">,</span> <span class="s2">"19"</span><span class="p">,</span> <span class="s2">"20"</span><span class="p">,</span> <span class="s2">"21"</span><span class="p">,</span> <span class="s2">"22"</span><span class="p">,</span> <span class="s2">"23"</span><span class="p">,</span> <span class="s2">"24"</span><span class="p">,</span> <span class="s2">"25"</span><span class="p">,</span> <span class="s2">"26"</span><span class="p">,</span> <span class="s2">"27"</span><span class="p">,</span> <span class="s2">"28"</span><span class="p">,</span> <span class="s2">"29"</span><span class="p">,</span> <span class="s2">"30"</span><span class="p">,</span> <span class="s2">"31"</span><span class="p">,</span> <span class="s2">"32"</span><span class="p">,</span> <span class="s2">"33"</span><span class="p">,</span> <span class="s2">"34"</span><span class="p">,</span> <span class="s2">"35"</span><span class="p">,</span> <span class="s2">"36"</span><span class="p">,</span> <span class="s2">"37"</span><span class="p">,</span> <span class="s2">"38"</span><span class="p">,</span> <span class="s2">"39"</span><span class="p">,</span> <span class="s2">"40"</span><span class="p">,</span> <span class="s2">"41"</span><span class="p">,</span> <span class="s2">"42"</span><span class="p">,</span> <span class="s2">"43"</span><span class="p">,</span> <span class="s2">"44"</span><span class="p">,</span> <span class="s2">"45"</span><span class="p">,</span> <span class="s2">"46"</span><span class="p">,</span> <span class="s2">"47"</span><span class="p">,</span> <span class="s2">"48"</span><span class="p">,</span> <span class="s2">"49"</span><span class="p">,</span> <span class="s2">"50"</span><span class="p">,</span> <span class="s2">"51"</span><span class="p">,</span> <span class="s2">"52"</span><span class="p">,</span> <span class="s2">"53"</span><span class="p">,</span> <span class="s2">"54"</span><span class="p">,</span> <span class="s2">"55"</span><span class="p">,</span> <span class="s2">"56"</span><span class="p">,</span> <span class="s2">"57"</span><span class="p">,</span> <span class="s2">"58"</span><span class="p">,</span> <span class="s2">"59"</span><span class="p">,</span> <span class="s2">"60"</span><span class="p">,</span> <span class="s2">"61"</span><span class="p">,</span> <span class="s2">"62"</span><span class="p">,</span> <span class="s2">"63"</span><span class="p">,</span> <span class="s2">"64"</span><span class="p">,</span> <span class="s2">"65"</span><span class="p">,</span> <span class="s2">"66"</span><span class="p">,</span> <span class="s2">"67"</span><span class="p">,</span> <span class="s2">"68"</span><span class="p">,</span> <span class="s2">"69"</span><span class="p">,</span> <span class="s2">"70"</span><span class="p">,</span> <span class="s2">"71"</span><span class="p">,</span> <span class="s2">"72"</span><span class="p">,</span> <span class="s2">"73"</span><span class="p">,</span> <span class="s2">"74"</span><span class="p">,</span> <span class="s2">"75"</span><span class="p">,</span> <span class="s2">"76"</span><span class="p">,</span> <span class="s2">"77"</span><span class="p">,</span> <span class="s2">"78"</span><span class="p">,</span> <span class="s2">"79"</span><span class="p">,</span> <span class="s2">"80"</span><span class="p">,</span> <span class="s2">"81"</span><span class="p">,</span> <span class="s2">"82"</span><span class="p">,</span> <span class="s2">"83"</span><span class="p">,</span> <span class="s2">"84"</span><span class="p">,</span> <span class="s2">"85"</span><span class="p">,</span> <span class="s2">"86"</span><span class="p">,</span> <span class="s2">"87"</span><span class="p">,</span> <span class="s2">"88"</span><span class="p">,</span> <span class="s2">"89"</span><span class="p">,</span> <span class="s2">"90"</span><span class="p">,</span> <span class="s2">"91"</span><span class="p">,</span> <span class="s2">"92"</span><span class="p">,</span> <span class="s2">"93"</span><span class="p">,</span> <span class="s2">"94"</span><span class="p">,</span> <span class="s2">"95"</span><span class="p">,</span> <span class="s2">"96"</span><span class="p">,</span> <span class="s2">"97"</span><span class="p">,</span> <span class="s2">"98"</span><span class="p">,</span> <span class="s2">"99"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>而用es6方法就更简洁了：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span><span class="nb">Array</span><span class="p">(</span><span class="mi">100</span><span class="p">)).</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">V</span><span class="p">,</span><span class="nx">F</span><span class="p">){</span><span class="k">return</span> <span class="nx">F</span><span class="p">})</span>
+</code></pre>
+</div>
+
+<p>或者精简一下：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span><span class="nb">Array</span><span class="p">(</span><span class="mi">100</span><span class="p">).</span><span class="nx">keys</span><span class="p">())</span>
+</code></pre>
+</div>
+
+<p>Array.from()方法可以将一个类数组对象或可迭代对象转换成真正的数组。</p>
+
+<p>创建一个空的密集数组的正确方式：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">({</span><span class="na">length</span><span class="p">:</span><span class="mi">100</span><span class="p">})</span>
+</code></pre>
+</div>
+
+<p>或者：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="nb">Array</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">{</span><span class="na">length</span><span class="p">:</span> <span class="mi">100</span><span class="p">});</span>
+</code></pre>
+</div>
+
+<p>Array.apply(null,{length:100})方法会加分，原因在于{length:100}这种写法属于鸭子类型，是es5才支持，老浏览器必须传一个真正的Array(100) 这样进去才行，相对比较消耗性能。</p>
+
+<p>除了map，也可以考虑用递归实现循环的思路：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kd">function</span> <span class="nx">fun1</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">n</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">n</span> <span class="o">&gt;=</span> <span class="mi">100</span><span class="p">){</span>
+            <span class="k">return</span> <span class="nx">arr</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nx">arr</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">fun1</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">arr1</span> <span class="o">=</span> <span class="nx">fun1</span><span class="p">([],</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr1</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>循环调用函数fun1，每次传<code class="highlighter-rouge">n + 1</code>进去。</p>
+
+<p>一个典型的递归函数：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kd">function</span> <span class="nx">digui</span><span class="p">(</span><span class="nx">num</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">num</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">){</span>
+            <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+            <span class="k">return</span> <span class="nx">num</span><span class="o">*</span><span class="nx">digui</span><span class="p">(</span><span class="nx">num</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+	</div>
+
+</article>
+
+			</div>
+		</div>
+
+		<a href="#" class="to-top">Top</a>
+
+		<footer class="site-footer">
+
+	<div class="wrapper">
+
+		<div class="footer-col-wrapper">
+
+			<div>
+				<ul class="social-media-list">
+					
+					<li>
+						<a href="https://github.com/puronglong"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">puronglong</span></a>
+
+					</li>
+					
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+
+</footer>
+
+<script type="text/javascript" src='/js/jquery.min.js'></script>
+
+<script type="text/javascript">
+
+	var a = "\n                                   _                                         \n _ __  _   _ _ __ ___  _ __   __ _| | ___  _ __   __ _   ___  __ _ _   _   _ \n| '_ \\| | | | '__/ _ \\| '_ \\ / _` | |/ _ \\| '_ \\ / _` | / __|/ _` | | | | (_)\n| |_) | |_| | | | (_) | | | | (_| | | (_) | | | | (_| | \\__ \\ (_| | |_| |  _ \n| .__/ \\__,_|_|  \\___/|_| |_|\\__, |_|\\___/|_| |_|\\__, | |___/\\__,_|\\__, | (_)\n|_|                          |___/               |___/             |___/     \n          _                                                                  \n  /\\  /\\ (_)                                                                 \n / /_/ / | |                                                                 \n/ __  /  | |                                                                 \n\\/ /_/   |_|            😃";
+    console.info(a);
+
+	document.addEventListener('visibilitychange', function() {
+                document.title = document.hidden ? '崩溃了，来看一下':'小龙龙的个人博客~'
+            });
+</script>
+<script type="text/javascript">
+	var offsetTop = 300;
+	var to_top_arrow = $('.to-top');
+	$(window).scroll(function(){
+		
+		($(this).scrollTop() > offsetTop) ? to_top_arrow.addClass('to-top-arrow') : to_top_arrow.removeClass('to-top-arrow');
+	});
+
+	to_top_arrow.on('click', function(event){
+		event.preventDefault();
+		$('body,html').animate({
+			scrollTop: 0,
+			
+		});
+	});
+</script>
+
+
+	</body>
+
+</html>
