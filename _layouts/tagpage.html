@@ -1,0 +1,20 @@
+---
+layout: default
+---
+
+<div class="home">
+	<h1 class="page-heading">tag：{{ page.tag }}</h1>
+
+	{% assign posts = site.tags[page.tag] %}
+	<ul class="tag-post-list">
+	{% for post in posts %}
+		<li>
+			<h2>
+				<a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+			</h2>
+			<span class="post-meta">{{ post.date | date: "%Y-%m-%d" }}</span>			
+		</li>
+	{% endfor %}
+	</ul>
+
+</div>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+	{% include head.html %}
+
+	<body>
+
+		{% include tag.html %}
+		
+		<div class="pull-left left-sidebar">
+			<ul class="header-list">
+				<li><a class="page-link" href="{{ site.baseurl }}/">Home</a></li>
+				<li><a class="page-link" href="/about/">About</a></li>
+				<li><a class="page-link" href="{{ "/feed.xml" | prepend: site.baseurl }}">RSS</a></li>
+			</ul>
+		</div>
+		<div class="page-content">
+			<div class="wrapper">
+				{{ content }}
+			</div>
+		</div>
+
+		<a href="#" class="to-top">Top</a>
+
+		{% include footer.html %}
+
+	</body>
+
+</html>

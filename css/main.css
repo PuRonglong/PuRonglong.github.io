@@ -462,3 +462,12 @@ a.post-link:hover{
     width: 235px;
     top: 259px;
 }
+
+.page-link {
+    display: inline-block;
+    color: #337ab7;
+}
+
+.tag-li-span{
+    float:right;
+}
