@@ -120,7 +120,7 @@ a:hover{
     position: absolute;
     opacity: 0;
     transition: opacity 0.4s, transform 0.4s;
-    font-size: 140%;
+    font-size: 130%;
     font-weight: 100;
     line-height: 1;
 }
