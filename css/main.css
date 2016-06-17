@@ -116,6 +116,34 @@ a:hover{
     text-decoration: none;
 }
 
+.post-content > p > a::before, .post-content > p > a::after{
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.4s, transform 0.4s;
+    font-size: 140%;
+    font-weight: 100;
+    line-height: 1;
+}
+.post-content > p > a::before{
+    content: '[';
+    transform: translateX(-200%);
+}
+.post-content > p > a::after{
+    content: ']';
+    transform: translateX(100%);
+}
+.post-content > p > a:hover::before{
+    opacity: 1;
+    transform: translateX(-100%);
+}
+.post-content > p > a:hover::after{
+    opacity: 1;
+    transform: translateX(0);
+}
+.post-content > p > a:hover{
+    color: #d04c3f;
+}
+
 /**
  * Blockquotes
  */
