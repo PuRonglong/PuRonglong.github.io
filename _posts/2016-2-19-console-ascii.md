@@ -15,13 +15,13 @@ share: true
 
 <!-- more -->
 
-![img](https://pic3.zhimg.com/1cf9e6a9a4ad685304f7ccc972e820b2_b.jpg)
+![img](/images/article/2016-2-19/1.jpg)
 
-![img](https://pic4.zhimg.com/cb50f5c4257feedab7fae8d6d954e2c3_b.jpg)
+![img](/images/article/2016-2-19/2.jpg)
 
-![img](https://pic3.zhimg.com/dfd7a0cdcb452fbe3a582bbf548f8f62_b.jpg)
+![img](/images/article/2016-2-19/3.jpg)
 
-![img](https://pic3.zhimg.com/900dc37f1fb4ed672224bf210f11cc2a_b.jpg)
+![img](/images/article/2016-2-19/4.jpg)
 
 其实呀，这些形状各异的图案，都是一个个的Ascii字符组成的，像这样的图案，我们一般把它称作字符画。
 
@@ -76,5 +76,9 @@ Uncaught SyntaxError: Unexpected token ILLEGAL
 ```
 
 OK，Nice
+
+打开控制台看看效果：
+
+![img](/images/article/2016-2-19/5.png)
 
 控制台还能玩出好多花样，除了我们这里介绍的字符画，还可以显示图片，可以是字符画动画，还能打游戏，比如贪吃蛇啊，2048啊，下次，我们接着聊~😄
