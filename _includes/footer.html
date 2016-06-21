@@ -1,9 +1,6 @@
 <footer class="site-footer">
-
 	<div class="wrapper">
-
 		<div class="footer-col-wrapper">
-
 			<div>
 				<ul class="social-media-list">
 					{% if site.github_username %}
@@ -13,11 +10,8 @@
 					{% endif %}
 				</ul>
 			</div>
-
 		</div>
-
 	</div>
-
 </footer>
 
 <script type="text/javascript" src='/js/jquery.min.js'></script>
@@ -32,6 +26,7 @@
             });
 </script>
 <script type="text/javascript">
+	//返回顶部
 	var offsetTop = 300;
 	var to_top_arrow = $('.to-top');
 	$(window).scroll(function(){
@@ -46,4 +41,11 @@
 			
 		});
 	});
+</script>
+<script type="text/javascript">
+	var ua = window.navigator.userAgent;
+	if(ua.indexOf('Android') !== -1 || ua.indexOf('iPhone') !== -1 || ua.indexOf('iPad') !== -1){//如果不为-1，则存在
+		console.log('this device is mobile!');
+		$('.device').addClass('device-reminder');
+	}
 </script>
