@@ -185,7 +185,7 @@ share: true
 
 去南
 
-少年，前路漫漫~
+前路漫漫~
 
 <script type="text/javascript" src="/js/echarts.min.js"></script>
 <script type="text/javascript" src="/js/china.js"></script>
