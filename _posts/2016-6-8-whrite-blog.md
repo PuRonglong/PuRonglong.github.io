@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 为什么写博客
-description: "为什么写博客"
+title: 不为谁而写的博
+description: "不为谁而写的博"
 tags: [生活]
 image:
   background: triangular.png
