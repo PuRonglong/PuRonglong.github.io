@@ -329,7 +329,8 @@ share: true
             left: 'center',
             textStyle : {
                 color: '#fff'
-            }
+            },
+            top: 50
         },
         tooltip : {
             trigger: 'item'
@@ -506,7 +507,8 @@ share: true
             left: 'center',
             textStyle : {
                 color: '#fff'
-            }
+            },
+            top: 50
         },
         tooltip : {
             trigger: 'item'
