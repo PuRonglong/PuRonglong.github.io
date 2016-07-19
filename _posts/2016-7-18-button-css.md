@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 让按钮和链接变得有趣
-description: "让按钮和链接变得有趣"
-tags: [技术, CSS]
+title: 让按钮变得有趣
+description: "让按钮变得有趣"
+tags: [技术]
 image:
   background: triangular.png
 comments: true
