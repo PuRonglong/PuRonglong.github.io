@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 让按钮变得有趣
-description: "让按钮变得有趣"
+title: chrome下click与extent-change的问题
+description: "chrome下click与extent-change的问题"
 tags: [技术]
 image:
   background: triangular.png
@@ -9,7 +9,7 @@ comments: true
 share: true
 ---
 
-遇到了一些问题，记录以下。
+在chrome下click与extent-change有些问题，记录一下解决方法。
 
 <!-- more -->
 
@@ -17,14 +17,14 @@ share: true
 
 这样会有什么问题呢？比如我们要点击显示该座标点的详情，但是点击却发现没有效果，因为触发的实际上是拖拽事件。
 
-后来使用的解决方案是，在一开始生成map的时候，把map.extent赋值给一个叫做oldExtent的变量，这就是每次我们移动时之前的map，当我们进行extent-change的时候，进行判断当前的视图有无变化，如果没有，说明视图并没有移动，所以就不进行查询操作，代码如下：
+后来使用的解决方案是，在一开始生成map的时候，把map.extent赋值给一个叫做oldExtent的变量，这就是每次我们移动时之前的map，当我们进行extent-change的时候，进行判断当前的视图有无变化，如果没有变化，说明当前视图并没有移动，此刻click事件不应该出发查询操作，直接return掉，代码如下：
 
 ```js
 if (oldExtent && event.extent && event.extent.xmin == oldExtent.xmin && event.extent.ymin == oldExtent.ymin && event.extent.xmax == oldExtent.xmax && event.extent.ymax && oldExtent.ymax) {
         return;
     }
+
+    oldExtent = event.extent;
 ```
 
-
-
-当我们点击的时候
+return以后，更新oldExtent。
