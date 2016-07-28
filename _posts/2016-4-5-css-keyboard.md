@@ -105,69 +105,78 @@ share: true
 
 这是css：
 
+
 ```css
-.keybtn{
-    font-size: 14px;
-    line-height: 1.5;
-    position: relative;
-    top: -3px;
-    display: inline-block;
-    margin: 2px 5px;
-    padding: 1px 4px;
-    cursor: default;
-    vertical-align: middle;
-    color: #fff;
-    border-top: 1px solid #4c4c4c;
-    border-right: 1px solid #313131;
-    border-bottom: 1px solid #1f1f1f;
-    border-left: 1px solid #313131;
-    border-radius: 4px;
-    background: #333;
-    background-image: -webkit-linear-gradient(#444, #333);
-    background-image:    -moz-linear-gradient(#444, #333);
-    background-image:     -ms-linear-gradient(#444, #333);
-    background-image:      -o-linear-gradient(#444, #333);
-    background-image:         linear-gradient(#444, #333);
-    -webkit-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
-    box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
-    text-shadow: 0 1px 0 #2e2e2e;
-}
-.keybtn.tab{
-     padding: 10px 40px 0 5px;
- }
-.keybtn.char{
-      padding: 6px 14px;
- }
-.keybtn.space{
-   padding: 5px 55px;
-}
-.keybtn.esc{
-    padding: 0 13px 2px 13px;
-}
-.keybtn.shift{
-    padding: 15px 66px 0 8px;
-}
-.keybtn.arrow{
-   font-size: 12px;
-   padding: 2px 16px;
-}
-.keybtn.control{
-   font-size: 12px;
-   padding: 16px 5px 0 2px;
-}
-.keybtn.enter-return{
-    height: 42px;
-    padding: 0 7px 0 60px;
-    text-align: right;
-}
-.keybtn.enter-return .enter{
-     font-size: 12px;
-     position: relative;
-     top: -1px;
- }
- .keybtn.enter-return .return{
-      font-size: 14px;
-      position: relative;
-      top: -5px;
- }
+    .keybtn{
+        font-size: 14px;
+        line-height: 1.5;
+        position: relative;
+        top: -3px;
+        display: inline-block;
+        margin: 2px 5px;
+        padding: 1px 4px;
+        cursor: default;
+        vertical-align: middle;
+        color: #fff;
+        border-top: 1px solid #4c4c4c;
+        border-right: 1px solid #313131;
+        border-bottom: 1px solid #1f1f1f;
+        border-left: 1px solid #313131;
+        border-radius: 4px;
+        background: #333;
+        background-image: -webkit-linear-gradient(#444, #333);
+        background-image:    -moz-linear-gradient(#444, #333);
+        background-image:     -ms-linear-gradient(#444, #333);
+        background-image:      -o-linear-gradient(#444, #333);
+        background-image:         linear-gradient(#444, #333);
+        box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
+        text-shadow: 0 1px 0 #2e2e2e;
+    }
+    .keybtn.tab{
+        padding: 10px 40px 0 5px;
+    }
+    .keybtn.char{
+        padding: 6px 14px;
+    }
+    .keybtn.space{
+        padding: 5px 55px;
+    }
+    .keybtn.esc{
+        padding: 0 13px 2px 13px;
+    }
+    .keybtn.shift{
+        padding: 15px 66px 0 8px;
+    }
+    .keybtn.arrow{
+        font-size: 12px;
+        padding: 2px 16px;
+    }
+    .keybtn.control{
+        font-size: 12px;
+        padding: 16px 5px 0 2px;
+    }
+    .keybtn.enter-return{
+        height: 42px;
+        padding: 0 7px 0 60px;
+        text-align: right;
+    }
+    .keybtn.enter-return .enter{
+        font-size: 12px;
+        position: relative;
+        top: -1px;
+    }
 ```
+
+
+```
+    .keybtn.enter-return .return{
+        font-size: 14px;
+        position: relative;
+        top: -5px;
+    }
+ ```
+
+ 可以查看codepen地址：
+
+ <p data-height="265" data-theme-id="dark" data-slug-hash="mEKgKL" data-default-tab="result" data-user="puronglong" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/puronglong/pen/mEKgKL/">css-mac-keybord</a> by puronglong (<a href="http://codepen.io/puronglong">@puronglong</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>

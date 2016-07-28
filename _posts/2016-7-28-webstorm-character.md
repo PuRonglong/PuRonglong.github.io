@@ -15,6 +15,8 @@ webstorm11输入中文标点符号的时候有问题，比如，即使你切换�
 
 ![img](/images/article/2016-7-28/2.png)
 
+<link rel="stylesheet" href="/css/keybtn.css">
+
 问题出在JDK，什么是JDK呢，百科上说，JDK是java语言的软件开发工具包，是整个java开发的核心，它包含了java的运行环境，java工具和java基础的类库。
 
 JDK(Java Development Kit) 是 Java 语言的软件开发工具包(SDK)。<br  />
@@ -30,7 +32,9 @@ webstorm11内置的jdk版本有问题，存在中文标点输入后被转成英�
 
 方法一：
 
-在webstorm中按下快捷键：commond + shift + a，在调出的输入框中输入jdk，回车，选择我们刚安装的8u45就好了，重启，然后就能愉快地输入了。
+在webstorm中按下快捷键：<span class='keybtn char'>commond</span> + <span class='keybtn char'>shift</span> + <span class='keybtn char'>a</span>
+
+在调出的输入框中输入jdk，回车，选择我们刚安装的8u45就好了，重启，然后就能愉快地输入了。
 
 ![img](/images/article/2016-7-28/1.png)
 
