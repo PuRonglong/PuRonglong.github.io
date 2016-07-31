@@ -1,24 +1,12 @@
 /**
  * Reset some basic elements
  */
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-hr,
-dl,
-dd,
-ol,
-ul,
-figure{
+body,h1,h2,h3,h4,h5,h6,p,blockquote,pre,hr,dl,dd,ol,ul,figure{
     margin: 0;
     padding: 0;
+}
+a {
+    text-decoration: none;
 }
 
 /**
@@ -39,20 +27,7 @@ figure{
 /**
  * Set `margin-bottom` to maintain vertical rhythm
  */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-ul,
-ol,
-dl,
-figure,
-.highlight{
+h1,h2,h3,h4,h5,h6,p,blockquote,pre,ul,ol,dl,figure,.highlight{
     margin-bottom: 15px;
 }
 
@@ -103,12 +78,7 @@ li > ol{
 /**
  * Headings
  */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6{
+h1,h2,h3,h4,h5,h6{
     font-weight: 400;
 }
 
@@ -462,28 +432,45 @@ a.post-link:hover{
 }
 
 .to-top {
+    text-align: center;
+    height: 56px;
+    width: 56px;
     display: inline-block;
-    height: 40px;
-    width: 40px;
+    border-radius: 50%;
     position: fixed;
     bottom: 40px;
-    right: 30px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-    /* image replacement properties */
-    overflow: hidden;
-    text-indent: 100%;
-    white-space: nowrap;
-    background: rgba(232, 98, 86, 0.8) url(/images/cd-top-arrow.svg) no-repeat center 50%;
-    visibility: hidden;
+    right: 40px;
+    background-color: #E40A5D;
     opacity: 0;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
+    transform: scale(0);
     transition: all 0.3s;
+    color: #f1f1f1;
 }
 
 .to-top-arrow {
-    visibility: visible;
     opacity: 1;
+    transform: scale(1);
+    transition-timing-function: cubic-bezier(0.68, -0.55, 0.15, 1.99);
+}
+
+.icon {
+    font-size: 26px;
+    line-height: 56px;
+    width: 100%;
+    text-align: center;
+}
+
+a.to-top:link {
+color: #f1f1f1;
+text-decoration: none;
+}
+a.to-top:visited {
+color: #f1f1f1;
+text-decoration: none;
+}
+a.to-top:hover {
+color: #f1f1f1; 
+text-decoration: none;
 }
 
 .article-music {
