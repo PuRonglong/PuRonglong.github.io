@@ -433,8 +433,8 @@ a.post-link:hover{
 
 .to-top {
     text-align: center;
-    height: 56px;
-    width: 56px;
+    height: 50px;
+    width: 50px;
     display: inline-block;
     border-radius: 50%;
     position: fixed;
@@ -454,8 +454,8 @@ a.post-link:hover{
 }
 
 .icon {
-    font-size: 26px;
-    line-height: 56px;
+    font-size: 25px;
+    line-height: 50px;
     width: 100%;
     text-align: center;
 }
