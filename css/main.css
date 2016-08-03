@@ -431,20 +431,13 @@ a.post-link:hover{
     position: fixed;
 }
 
-.to-top {
-    text-align: center;
-    height: 50px;
-    width: 50px;
-    display: inline-block;
-    border-radius: 50%;
+.to-top-button {
     position: fixed;
     bottom: 40px;
     right: 40px;
-    background-color: #E40A5D;
     opacity: 0;
     transform: scale(0);
     transition: all 0.3s;
-    color: #f1f1f1;
 }
 
 .to-top-arrow {
