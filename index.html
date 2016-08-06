@@ -13,7 +13,7 @@ layout: default
 			<span class="post-meta">{{ post.date | date: "%Y-%m-%d" }}</span>
 			{% if post.content contains '<!-- more -->' %}
 				{{ post.content | split:'<!-- more -->' | first %}}
-				<p class="readmore-p"><a class="button-border button-readmore" href="{{ post.url }}">Read more</a></p>
+				<p class="readmore-p"><a class="button-readmore waves-effect waves-light" href="{{ post.url }}">Read more</a></p>
 			{% else %}
 				{{ post.content }}
 			{% endif %}
@@ -57,5 +57,4 @@ layout: default
 
 		</ul>
 	</div>
-
 </div>

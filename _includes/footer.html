@@ -14,8 +14,8 @@
 	</div>
 </footer>
 
-<script type="text/javascript" src='/js/jquery.min.js'></script>
-<script type="text/javascript" src='/js/materialize.min.js'></script>
+<script type="text/javascript" src='js/jquery.min.js'></script>
+<script type="text/javascript" src='js/materialize.min.js'></script>
 
 <script type="text/javascript">
 
@@ -45,7 +45,7 @@
 	var ua = window.navigator.userAgent;
 	if(ua.indexOf('Android') !== -1 || ua.indexOf('iPhone') !== -1 || ua.indexOf('iPad') !== -1){//如果不为-1，则存在
 		console.log('this device is mobile!');
-		$('.device').addClass('device-reminder');
+		$('.judge-mobile-device').addClass('mobile-device-reminder');
 		$('body').on('touchstart', function(ev){
         ev.preventDefault();
     });

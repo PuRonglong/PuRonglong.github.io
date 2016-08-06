@@ -9,6 +9,10 @@ a {
     text-decoration: none;
 }
 
+html{
+	height: 100%;
+}
+
 /**
  * Basic styling
  */
@@ -285,7 +289,7 @@ blockquote > :last-child{
         width:         calc(50% - (30px / 2));
     }
 
-footer-col-3{
+.footer-col-3{
         width: -webkit-calc(100% - (30px / 2));
         width:         calc(100% - (30px / 2));
     }
@@ -429,6 +433,7 @@ a.post-link:hover{
 
 .left-sidebar{
     position: fixed;
+	z-index: 9999;
 }
 
 .to-top-button {
@@ -483,11 +488,13 @@ text-decoration: none;
     float:right;
 }
 
-.device{
+/*判断是否是移动设备*/
+
+.judge-mobile-device{
     display: none;
 }
 
-.device-reminder{
+.mobile-device-reminder{
     display: block;
     width: 100%;
     height: 100%;
@@ -502,16 +509,12 @@ text-decoration: none;
 
 .button-readmore{
     color: #5bc0de;
-    border-color: #46b8da;
+	border: 1px solid #46b8da;
     background: none;
     padding: 6px 7px;
     position: relative;
     z-index: 1;
     vertical-align: middle;
-}
-
-.button-border{
-    border: 1px solid;
 }
 
 .button-readmore::before{
@@ -532,6 +535,7 @@ text-decoration: none;
 .button-readmore:hover{
     color: #ffffff;
     border-color: #46b8da;
+	overflow: visible;
 }
 
 .button-readmore:hover::before{
