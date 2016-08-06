@@ -433,7 +433,7 @@ a.post-link:hover{
 
 .left-sidebar{
     position: fixed;
-	z-index: 9999;
+	z-index: 999;
 }
 
 .to-top-button {
