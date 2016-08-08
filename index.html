@@ -1,60 +1,48 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8' />
+        <link href="http://cdn.bootcss.com/material-design-icons/2.2.3/iconfont/material-icons.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/materialize.min.css">
+        <link rel="stylesheet" href="css/ionicons.min.css">
+        <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="css/index.css">
+        <title>materialize practice</title>
+    </head>
+    <body>
+        <div class="slider fullscreen">
+            <ul class="slides">
+                <li>
+                    <img src="img/2.jpg">
+                </li>
+                <li>
+                    <img src="img/8.jpg">
+                    <div class="caption left-align">
+                        <!--<h3>Hello World!</h3>-->
+                    </div>
+                </li>
+                <li>
+                    <img src="img/4.jpg">
+                    <div class="caption right-align">
+                        <!--<h3>Nice to meet you!</h3>-->
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div id="menu" class="">
+            <p class="menu-title">puronglong`s blog</p>
+            <p class="menu-link">
+                <span class="menu-sign">»</span>
+                <a href="javascript:;">博客</a>
+                <a href="javascript:;">标签</a>
+                <a href="javascript:;">关于</a>
+            </p>
+        </div>
 
-<div class="home">
-	<!-- 文章列表，paginator.posts是每一个分页的文章 -->
-	<ul class="post-list">
-	{% for post in paginator.posts %}
-		<li>
-			<h2>
-				<a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-			</h2>
-			<span class="post-meta">{{ post.date | date: "%Y-%m-%d" }}</span>
-			{% if post.content contains '<!-- more -->' %}
-				{{ post.content | split:'<!-- more -->' | first %}}
-				<p class="readmore-p"><a class="button-readmore waves-effect waves-light" href="{{ post.url }}">Read more</a></p>
-			{% else %}
-				{{ post.content }}
-			{% endif %}
-		</li>
-	{% endfor %}
-	</ul>
-	
-	<!-- 分页链接 -->
-	<div class="text-center">
-		<ul class="pagination">
-
-	        {% if paginator.page == 1 %}
-            <li class="disabled"><a href="javascript:;"><i class="material-icons">chevron_left</i></a></li>
-	        {% else %}
-	            {% if paginator.previous_page == 1 %}
-            <li class="waves-effect"><a href="/"><i class="material-icons">chevron_left</i></a></li>
-	            {% else %}
-            <li class="waves-effect"><a hhref="/page{{ paginator.previous_page }}"><i class="material-icons">chevron_left</i></a></li>
-	            {% endif %}
-	        {% endif %}
-
-	        {% for i in (1..paginator.total_pages) limit:9 offset:{{paginator.page-1}} %}
-	            {% if paginator.page == i %}
-	        <li class="active">
-	            {% else %}
-	        <li class="waves-effect">
-	            {% endif %}
-	            {% if i == 1 %}
-	            <a href="/">{{i}}</a>
-	            {% else %}
-	            <a href="/page{{i}}">{{i}}</a>
-	            {% endif %}
-	        </li>
-	        {% endfor %}
-
-            {% if paginator.page == paginator.total_pages %}
-            <li class="disabled"><a href="javascript:;"><i class="material-icons">chevron_right</i></a></li>
-            {% else %}
-            <li class="waves-effect"><a href="/page{{ paginator.next_page }}"><i class="material-icons">chevron_right</i></a></li>
-            {% endif %}
-
-		</ul>
-	</div>
-</div>
+        <i class="icon ion-chevron-left button-previous-left"></i>
+        <i class="icon ion-chevron-right button-previous-right"></i>
+        <script src='js/jquery.min.js'></script>
+        <script src='js/materialize.min.js'></script>
+        <script src='js/index.js'></script>
+    </body>
+</html>
