@@ -21,7 +21,7 @@ $(document).ready(function () {
 
 	setTimeout(function () {
 		$('#menu').addClass('menu animated bounceInDown');
-	}, 1000);
+	}, 700);
 });
 
 
