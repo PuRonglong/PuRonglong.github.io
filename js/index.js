@@ -2,8 +2,10 @@
  * author: puronglong
  */
 
-$(document).ready(function () {
-	'use strict';
+ /*当页面加载完之后执行*/
+window.onload = function(){
+	// $('#loading').css('display', 'none');
+	$('#loading').fadeOut();
 	$('.slider').slider({
 		full_width: true,
 		indicators: true,  // 导航标识
@@ -18,11 +20,6 @@ $(document).ready(function () {
 	$('.button-previous-right').on('click', function () {
 		$('.slider').slider('next');
 	});
-
-	setTimeout(function () {
-		$('#menu').addClass('menu animated bounceInDown');
-	}, 700);
-});
-
-
-
+	$('#menu').addClass('menu animated bounceInDown');
+	
+};

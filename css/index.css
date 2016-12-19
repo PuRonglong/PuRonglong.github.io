@@ -9,7 +9,7 @@ html, body{
 
 .menu {
 	display: block !important;
-	z-index: 9999;
+	z-index: 9998;
 	position: absolute;
 	left: 50%;
 	top: 40%;
@@ -49,7 +49,7 @@ html, body{
 .button-previous-left{
 	position: absolute;
 	color: #eeeeee;
-	z-index: 9999;
+	z-index: 9998;
 	top: 50%;
 	font-size: 33px;
 	width: 50px;
@@ -62,7 +62,7 @@ html, body{
 .button-previous-right{
 	position: absolute;
 	color: #eeeeee;
-	z-index: 9999;
+	z-index: 9998;
 	top: 50%;
 	font-size: 33px;
 	width: 50px;
