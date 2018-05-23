@@ -99,11 +99,11 @@
       <div id="disqus_thread"></div>
     </section>
   </section>
-  <section style="text-align: center;margin-bottom: 10px;">
+  <!-- <section style="text-align: center;margin-bottom: 10px;">
     {% if site.comments.disqus %}
     <a href="#" onclick="disqus();return false;">评论功能需要科学上网，点击加载</a>
     {% endif %}
-  </section>
+  </section> -->
 
   {% include footer.html %}
 
@@ -127,13 +127,13 @@
       {% if page.comments %}
       var disqus_loaded = false;
 
-function disqus() {
-    if (!disqus_loaded) {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '{{site.comments.disqus_url}}';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }
-}
+// function disqus() {
+//     if (!disqus_loaded) {
+//         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+//         dsq.src = '{{site.comments.disqus_url}}';
+//         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+//     }
+// }
 
 // window.onscroll = function (e) {
 //     if ((window.innerHeight + window.scrollY)
