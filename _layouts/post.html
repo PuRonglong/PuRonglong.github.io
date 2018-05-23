@@ -99,6 +99,11 @@
       <div id="disqus_thread"></div>
     </section>
   </section>
+  <section style="text-align: center;margin-bottom: 10px;">
+    {% if site.comments.disqus %}
+    <a href="#" onclick="disqus();return false;">评论功能需要科学上网，点击加载</a>
+    {% endif %}
+  </section>
 
   {% include footer.html %}
 
@@ -118,7 +123,24 @@
   </script>
 
   <script>
-    {% if site.comments.disqus and post.comments %}
+    {% if site.comments.disqus %}
+      {% if page.comments %}
+      var disqus_loaded = false;
+
+function disqus() {
+    if (!disqus_loaded) {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '{{site.comments.disqus_url}}';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }
+}
+
+// window.onscroll = function (e) {
+//     if ((window.innerHeight + window.scrollY)
+//         >= document.body.offsetHeight) {
+//         if (!disqus_loaded) disqus();
+//     }
+// };
     /**
      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
@@ -128,14 +150,15 @@
     this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     */
-    (function() { // DON'T EDIT BELOW THIS LINE
-      var d = document,
-        s = d.createElement('script');
-      s.src = '{{ site.comments.disqus_url }}';
-      s.setAttribute('data-timestamp', +new Date());
+    // (function() { // DON'T EDIT BELOW THIS LINE
+    //   var d = document,
+    //     s = d.createElement('script');
+    //   s.src = '{{ site.comments.disqus_url }}';
+    //   s.setAttribute('data-timestamp', +new Date());
 
-      (d.head || d.body).appendChild(s);
-    })();
+    //   (d.head || d.body).appendChild(s);
+    // })();
+    {% endif %}
     {% endif %}
   </script>
 
