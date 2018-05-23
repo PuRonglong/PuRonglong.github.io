@@ -2,7 +2,7 @@
 title: '蒲荣龙的独立博客'
 description: '很高兴能在这里与你分享我对技术和生活的思考。'
 keyword: '蒲荣龙, 蒲荣龙的独立博客, 蒲荣龙的博客, 前端, 前端开发, 前端博客, javascript, vuejs, nodejs, 设计'
-url: 'http://www.puronglong.com/blog' # your host
+url: 'http://www.puronglong.com' # your host
 
 # if you don't need baseurl, you should leave this value blank.
 baseurl: ''
