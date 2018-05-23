@@ -4,7 +4,7 @@ title: css 中的 inline-bock
 description: "css 中的 inline-bock"
 tags: [技术]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---

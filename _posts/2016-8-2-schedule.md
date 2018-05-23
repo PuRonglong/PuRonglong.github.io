@@ -4,7 +4,7 @@ title: 365天，用一个习惯播种另一个习惯
 description: "365天，用一个习惯播种另一个习惯"
 tags: [生活]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---

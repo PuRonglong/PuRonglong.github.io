@@ -4,7 +4,7 @@ title: Mac下Mongodb的启动
 description: "记Mac下Mongodb的启动"
 tags: [技术]
 image:
-background: triangular.png
+
 comments: true
 share: true
 ---

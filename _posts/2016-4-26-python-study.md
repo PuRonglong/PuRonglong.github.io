@@ -4,7 +4,7 @@ title: 简明python教程
 description: "简明python教程"
 tags: [技术]
 image:
-background: triangular.png
+
 comments: true
 share: true
 ---

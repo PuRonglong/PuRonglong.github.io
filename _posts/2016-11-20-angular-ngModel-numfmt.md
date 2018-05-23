@@ -4,7 +4,7 @@ title: angularJS tips(1) ：报错[ngModel:numfmt]
 description: "angularJS tips(1) ：报错 [ngModel:numfmt]"
 tags: [技术]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---

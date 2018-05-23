@@ -4,7 +4,7 @@ title: Mother's Day
 description: "生活"
 tags: [生活]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---

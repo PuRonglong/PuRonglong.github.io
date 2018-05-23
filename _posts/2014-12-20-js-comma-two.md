@@ -4,7 +4,7 @@ title: js语法中运算符的二义性之逗号“,”的二义性
 description: "js语法中逗号的二义性"
 tags: [技术]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---

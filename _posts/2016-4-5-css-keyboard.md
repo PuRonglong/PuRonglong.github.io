@@ -4,7 +4,7 @@ title: 使用css创建Mac键帽
 description: "使用css创建键帽"
 tags: [技术]
 image:
-background: triangular.png
+
 comments: true
 share: true
 ---

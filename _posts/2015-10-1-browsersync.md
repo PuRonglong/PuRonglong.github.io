@@ -4,7 +4,7 @@ title: 用browsersync提高效率
 description: "工具"
 tags: [技术]
 image:
-background: triangular.png
+
 comments: true
 share: true
 ---

@@ -4,7 +4,7 @@ title: echarts2迁移图
 description: "echarts2迁移图"
 tags: [技术]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---

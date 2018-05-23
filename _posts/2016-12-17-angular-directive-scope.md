@@ -4,7 +4,7 @@ title: angular tips(3):directive之scope
 description: "angular tips(3):directive之scope"
 tags: [技术]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---

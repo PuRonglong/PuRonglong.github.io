@@ -4,7 +4,7 @@ title: 向北，去南——写在毕业季
 description: "写在毕业季"
 tags: [生活]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---

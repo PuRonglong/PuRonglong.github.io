@@ -4,7 +4,7 @@ title: 《榨干百度谷歌——搜索引擎广告大赢家》
 description: "主要讲了什么是SEM，如何通过搜索引擎进行网络营销"
 tags: [生活]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---

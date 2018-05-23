@@ -4,7 +4,7 @@ title: 聊聊CSS(1),关于用css实现的文字超出部分显示省略号
 description: "CSS"
 tags: [技术]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---

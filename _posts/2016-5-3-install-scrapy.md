@@ -4,7 +4,7 @@ title: 安装scrapy遇到的一些问题
 description: "some note"
 tags: [技术]
 image:
-background: triangular.png
+
 comments: true
 share: true
 ---

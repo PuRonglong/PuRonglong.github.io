@@ -4,7 +4,7 @@ title: 一个css3实现的简单场景
 description: "一个css3实现的简单场景"
 tags: [技术]
 image:
-background: triangular.png
+
 comments: true
 share: true
 ---

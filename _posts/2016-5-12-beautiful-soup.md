@@ -4,7 +4,7 @@ title: Beautiful Soup笔记
 description: "some note"
 tags: [技术]
 image:
-background: triangular.png
+
 comments: true
 share: true
 ---

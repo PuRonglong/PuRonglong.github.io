@@ -4,7 +4,7 @@ title: 《失业的程序员》
 description: "作者沈逸。根据真实的创业经历改编，加入小说的描写手法"
 tags: [生活]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---

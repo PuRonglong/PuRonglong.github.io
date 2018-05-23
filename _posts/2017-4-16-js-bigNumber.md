@@ -4,7 +4,7 @@ title: js中的最大数
 description: "js中的最大数"
 tags: [技术]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---

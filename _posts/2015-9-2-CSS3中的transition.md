@@ -4,7 +4,7 @@ title: 聊聊CSS(4):CSS3中的transition
 description: "CSS3:transition"
 tags: [技术]
 image:
-background: triangular.png
+
 comments: true
 share: true
 ---

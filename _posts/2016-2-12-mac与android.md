@@ -4,7 +4,7 @@ title: Mac,Android,Google play
 description: "记一次Mac连接安卓的笔记"
 tags: [技术]
 image:
-background: triangular.png
+
 comments: true
 share: true
 ---

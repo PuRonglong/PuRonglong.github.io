@@ -4,7 +4,7 @@ title: angular养成记(一)ngSwitch
 description: "angular养成记(一)ngSwitch"
 tags: [技术]
 image:
-background: triangular.png
+
 comments: true
 share: true
 ---

@@ -4,7 +4,7 @@ title: angular养成记(二)ngModel
 description: "angular养成记(二)ngModel"
 tags: [技术]
 image:
-background: triangular.png
+
 comments: true
 share: true
 ---

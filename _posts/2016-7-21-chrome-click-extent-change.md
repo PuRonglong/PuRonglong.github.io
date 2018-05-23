@@ -4,7 +4,7 @@ title: chrome下click与extent-change的问题
 description: "chrome下click与extent-change的问题"
 tags: [技术]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---

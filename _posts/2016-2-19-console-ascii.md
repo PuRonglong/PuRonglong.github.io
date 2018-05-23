@@ -4,7 +4,7 @@ title: 在浏览器控制台输出字符画
 description: "记一次在控制台输出字符画"
 tags: [技术]
 image:
-background: triangular.png
+
 comments: true
 share: true
 ---

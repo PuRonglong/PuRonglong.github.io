@@ -4,7 +4,7 @@ title: 不为谁而写的博
 description: "不为谁而写的博"
 tags: [生活]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---

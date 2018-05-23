@@ -4,7 +4,7 @@ title: angular(4):指令中的隔离作用域
 description: "angular(4):指令中的隔离作用域"
 tags: [技术]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---

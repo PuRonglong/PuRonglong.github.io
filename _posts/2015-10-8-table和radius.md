@@ -4,7 +4,7 @@ title: 在table中使用borderradius
 description: "在table中使用borderradius"
 tags: [技术]
 image:
-background: triangular.png
+
 comments: true
 share: true
 ---

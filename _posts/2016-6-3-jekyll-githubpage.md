@@ -4,7 +4,7 @@ title: jekyll和github pages的一些问题
 description: "some note"
 tags: [技术]
 image:
-background: triangular.png
+
 comments: true
 share: true
 ---

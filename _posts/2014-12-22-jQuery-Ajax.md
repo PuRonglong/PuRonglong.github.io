@@ -4,7 +4,7 @@ title: jQuery中的Ajax学习笔记
 description: "主要讲jQuery中的Ajax的一些相关用法"
 tags: [技术]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---

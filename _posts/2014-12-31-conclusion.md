@@ -4,7 +4,7 @@ title: 回首2014，展望2015
 description: ""
 tags: [生活]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---

@@ -4,7 +4,7 @@ title: Head First jQuery笔记
 description: "第一次尝试着读英文读物"
 tags: [技术]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---

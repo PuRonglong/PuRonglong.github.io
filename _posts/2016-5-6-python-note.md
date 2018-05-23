@@ -4,7 +4,7 @@ title: python笔记
 description: "python笔记"
 tags: [技术]
 image:
-background: triangular.png
+
 comments: true
 share: true
 ---

@@ -4,7 +4,7 @@ title: My codewars(1)
 description: "codewars"
 tags: [技术]
 image:
-background: triangular.png
+
 comments: true
 share: true
 ---

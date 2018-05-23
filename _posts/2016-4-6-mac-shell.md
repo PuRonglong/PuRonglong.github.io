@@ -4,7 +4,7 @@ title: 如何让终端优雅地装X
 description: "如何让终端优雅地装X"
 tags: [技术]
 image:
-background: triangular.png
+
 comments: true
 share: true
 ---

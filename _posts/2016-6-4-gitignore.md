@@ -4,7 +4,7 @@ title: git忽略已经被提交的文件
 description: "git忽略已经被提交的文件"
 tags: [技术]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---

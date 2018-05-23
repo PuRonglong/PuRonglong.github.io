@@ -4,7 +4,7 @@ title: 在命令行中启动某个应用
 description: "some note"
 tags: [技术]
 image:
-background: triangular.png
+
 comments: true
 share: true
 ---

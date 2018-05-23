@@ -4,7 +4,7 @@ title: Mac显示隐藏文件
 description: "some note"
 tags: [技术]
 image:
-background: triangular.png
+
 comments: true
 share: true
 ---

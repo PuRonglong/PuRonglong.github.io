@@ -4,7 +4,7 @@ title: 《打造Facebook》
 description: "《打造Facebook》读书笔记"
 tags: [生活]
 image:
-background: triangular.png
+
 comments: true
 share: true
 ---

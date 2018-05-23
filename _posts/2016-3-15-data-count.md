@@ -4,7 +4,7 @@ title: 数据统计系统
 description: "总结数据统计系统开发"
 tags: [技术]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---

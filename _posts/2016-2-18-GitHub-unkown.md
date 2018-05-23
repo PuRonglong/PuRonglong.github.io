@@ -4,7 +4,7 @@ title: Github上都有哪些有用但不为大家熟知的小功能？
 description: "记我的一次知乎回答"
 tags: [技术]
 image:
-background: triangular.png
+
 comments: true
 share: true
 ---

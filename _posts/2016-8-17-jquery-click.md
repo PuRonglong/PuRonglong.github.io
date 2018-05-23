@@ -4,7 +4,7 @@ title: jquery,echarts,postal的一些知识点
 description: "jquery,echarts,postal的一些知识点"
 tags: [技术]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---

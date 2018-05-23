@@ -4,7 +4,7 @@ title: jquery tips(1):判断DOM对象是否为空
 description: "jquery tips(1):判断DOM对象是否为空"
 tags: [技术]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---

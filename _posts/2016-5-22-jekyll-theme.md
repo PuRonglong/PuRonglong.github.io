@@ -4,7 +4,7 @@ title: 制作一款jekyll主题
 description: "制作一款jekyll主题"
 tags: [技术]
 image:
-background: triangular.png
+
 comments: true
 share: true
 ---

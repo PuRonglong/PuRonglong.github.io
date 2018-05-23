@@ -4,7 +4,7 @@ title: HTML+CSS九宫格
 description: "HTML+CSS九宫格"
 tags: [技术]
 image:
-background: triangular.png
+
 comments: true
 share: true
 ---

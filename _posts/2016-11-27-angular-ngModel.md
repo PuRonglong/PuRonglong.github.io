@@ -4,7 +4,7 @@ title: angularJS tips(2)：ng-model过滤
 description: "angularJS tips(2)： ng-model过滤"
 tags: [技术]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---

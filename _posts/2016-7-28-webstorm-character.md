@@ -4,7 +4,7 @@ title: WebStorm11输入中文标点符号的问题
 description: "WebStorm11输入中文标点符号的问题"
 tags: [技术]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---

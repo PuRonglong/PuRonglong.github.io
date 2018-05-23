@@ -4,7 +4,7 @@ title: css3制作loading
 description: "css制作loading"
 tags: [技术]
 image:
-background: triangular.png
+
 comments: true
 share: true
 ---

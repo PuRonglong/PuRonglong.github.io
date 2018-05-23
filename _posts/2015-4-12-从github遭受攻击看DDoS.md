@@ -4,7 +4,7 @@ title: 从GitHub遭受攻击看DDoS
 description: "Git"
 tags: [技术]
 image:
-  background: triangular.png
+  
 comments: true
 share: true
 ---
