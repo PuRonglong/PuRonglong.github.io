@@ -115,7 +115,7 @@ $(document).ready(function(){
         var total = parseInt($('#total_pages').val());
         var current = parseInt($('#current_pages').val());
         var baseUrl = $('#base_url').val();
-        var limit = 3;
+        var limit = 7;
 
         var link_html = '';
 
