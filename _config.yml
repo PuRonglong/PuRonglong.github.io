@@ -1,7 +1,7 @@
 # Site settings 配置站点
 title: '小龙龙的博客'
 description: '很高兴能在这里与你分享我对技术和生活的思考。'
-keyword: '蒲荣龙, 蒲荣龙的独立博客, 蒲荣龙的博客, 前端, 前端开发, 前端博客, javascript, vuejs, nodejs, 设计'
+keyword: '蒲荣龙, 蒲荣龙的独立博客, 蒲荣龙的博客'
 url: 'http://www.puronglong.com' # your host
 
 # if you don't need baseurl, you should leave this value blank.
@@ -19,7 +19,7 @@ footer:
 # Author 配置博主信息
 author: '小龙龙'
 nickname: '小龙龙'
-bio: '论如何做一只咸鱼'
+bio: 'All those moments will be lost in time, like tears in rain'
 avatar: '/assets/img/profile.png'
 
 # Search
@@ -51,7 +51,6 @@ postPatterns: 'circuitBoard'
 sns:
   weibo: '//weibo.com/puronglong'
   instagram: '//www.instagram.com/puronglong93'
-  github: '//github.com/puronglong'
   douban: 'https://www.douban.com/people/puronglong'
 
 # Tags 设置标签
