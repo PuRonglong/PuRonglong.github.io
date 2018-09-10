@@ -242,4 +242,6 @@ $(document).ready(function(){
             setClipboardData(txt);
         }
     });
+
+    $("a").attr("target", "_blank");
 });
