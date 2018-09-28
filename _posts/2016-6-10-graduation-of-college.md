@@ -3,10 +3,9 @@ layout: post
 title: 向北，去南——写在毕业季
 description: "写在毕业季"
 tags: [生活]
-image:
-  
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2018-09-28-124744.jpg
 ---
 
 > 我爱你曾年少的模样
@@ -15,31 +14,31 @@ share: true
 
 <!-- more -->
 
-<embed src="http://music.163.com/style/swf/widget.swf?sid=36895984&type=2&auto=1&width=320&height=66" width="340" height="86"  allowNetworking="all">
-四年的时光里，见证过东师须晴日，惟余莽莽的北国风光：
+点击播放背景音：
 
-<figure>
-    <img src="{{site.url}}images/article/2016-6-10/10.jpg" alt="img" />
-    <figcaption>柳园小径</figcaption>
-</figure>
+<iframe src="//player.bilibili.com/player.html?aid=3313748&cid=5239163&page=1" scrolling="no" border="0" width="100%" height="400" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
+四年的时光里，见过东师须晴日，惟余莽莽的北国风光：
+
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2018-09-28-10.jpg)
 
 也看过关不住的满园春色：
 
-![img]({{site.url}}images/article/2016-6-10/11.jpg)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2018-09-28-11.jpg)
 
 既有蓦然回首，灯火阑珊：
 
-![img]({{site.url}}images/article/2016-6-10/12.jpg)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2018-09-28-12.jpg)
 
 也有夕阳无限好的美丽黄昏：
 
-![img]({{site.url}}images/article/2016-6-10/9.jpg)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2018-09-28-9.jpg)
 
 再回首，当初是为什么报的这所学校呢？从祖国的西南到东北，斜跨大半个中国。
 
 怕是以后，都不会来这么北了吧。火车直达需要47小时44分钟。
 
-![img]({{site.url}}images/article/2016-6-10/3.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2018-09-28-3.png)
 
 时间回到高考后不久。
 
@@ -77,9 +76,9 @@ share: true
 
 剩下的日子就是搬离租的学区房了。妈妈要上班，我和妹妹就骑着爷爷的电动三轮车从新都到竹友搬东西。
 
-![img]({{site.url}}images/article/2016-6-10/1.jpg)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2018-09-28-1.jpg)
 
-车子造型类似于这样（等等，画风有哪里不对），但颜色是红色的，且稍微宽一些，因为要搭上妹妹所以一车其实装不了多少，要来回跑几趟。然后一般我们在车上聊的更多的是以后去大学以后要怎样怎样。
+车子造型类似于这样（画风有哪里不对），但颜色是红色的，且稍微宽一些，因为要搭上妹妹所以一车其实装不了多少，要来回跑几趟。然后一般我们在车上聊的更多的是以后去大学以后要怎样怎样。
 
 转眼就到了开学的日子，因为一般开学都是9月嘛，家里就老妈能有时间，所以就决定送妹妹去上学，我就自己去了。在加上有一个隔壁班的也在同一所学校上学，于是联系好了一起走，也就不用那么担心了，是位女同学，说是车站还有认识的人。
 
@@ -97,10 +96,7 @@ share: true
 
 抱着一张大学录取通知书来睡觉，醒来后发现通知书变成了毕业证。
 
-<figure>
-    <img src="{{site.url}}images/article/2016-6-10/2.jpg" alt="img" />
-    <figcaption>图片来自网络，侵删。</figcaption>
-</figure>
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2018-09-28-2.jpg)
 
 四年一场梦。
 
@@ -118,19 +114,19 @@ share: true
 
 几天前，6个人一起去了净月潭玩：
 
-![img]({{site.url}}images/article/2016-6-10/7.jpg)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2018-09-28-7.jpg)
 
 少有的一次6个人一起出去玩，怎能不来张合照：
 
-![img]({{site.url}}images/article/2016-6-10/4.jpg)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2018-09-28-4.jpg)
 
 虽然寝室上床下桌的设计再也没有了睡在上铺的我的兄弟：
 
-![img]({{site.url}}images/article/2016-6-10/6.jpg)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2018-09-28-6.jpg)
 
 但是那些年一起“同居”的日子里你们的欢声笑语，嬉笑怒骂，皆是风景。
 
-![img]({{site.url}}images/article/2016-6-10/5.jpg)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2018-09-28-5.jpg)
 
 对于即将毕业的你，没什么可送的，送一首诗给你吧：
 
