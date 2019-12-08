@@ -1,7 +1,7 @@
 # Site settings 配置站点
-title: '蒲荣龙的博客'
+title: '小白的博客'
 description: '很高兴能在这里与你分享我对技术和生活的思考。'
-keyword: '蒲荣龙, 蒲荣龙的独立博客, 蒲荣龙的博客'
+keyword: '小白, 小白的独立博客, 小白的博客'
 url: 'http://www.puronglong.com/' # your host
 
 # if you don't need baseurl, you should leave this value blank.
@@ -17,7 +17,7 @@ footer:
   since: 2014
 
 # Author 配置博主信息
-author: '蒲荣龙'
+author: '小白'
 nickname: '小龙龙'
 bio: 'All those moments will be lost in time, like tears in rain'
 avatar: '/assets/img/profile.png'
