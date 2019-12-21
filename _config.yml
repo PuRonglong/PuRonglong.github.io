@@ -1,7 +1,7 @@
 # Site settings 配置站点
-title: '小白的博客'
+title: '小白的记事本'
 description: '很高兴能在这里与你分享我对技术和生活的思考。'
-keyword: '小白, 小白的独立博客, 小白的博客'
+keyword: '小白, 小白的独立博客, 小白的记事本'
 url: 'http://www.puronglong.com/' # your host
 
 # if you don't need baseurl, you should leave this value blank.
