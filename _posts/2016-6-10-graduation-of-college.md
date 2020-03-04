@@ -10,13 +10,14 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2018-09-28-1247
 
 > 我爱你曾年少的模样
 
-四年的时光，有好多东西要说，太多的太多，却又不知从何说起。领取大学录取通知书的时候的场景依然历历在目，要不就从头开始说起吧，也许以后就会慢慢想不起大学的模样，想不起室友的模样，忘记了学校的校训，忘记了在这片土地的点点滴滴。当老花镜代替了近视眼镜，当岁月的皱纹代替青涩的脸庞，当牙齿逐渐松动，再也吃不了好吃的，当脚步逐渐沉重，再也无法长途跋涉，我是否还会想起，在祖国东北角的日子，每年漫长的冬季，鹅毛的大雪，食堂难吃的饭菜，当然还有师范学校特有的风景线。
-
 <!-- more -->
+
+四年的时光，有好多东西要说，太多的太多，却又不知从何说起。领取大学录取通知书的时候的场景依然历历在目，要不就从头开始说起吧，也许以后就会慢慢想不起大学的模样，想不起室友的模样，忘记了学校的校训，忘记了在这片土地的点点滴滴。当老花镜代替了近视眼镜，当岁月的皱纹代替青涩的脸庞，当牙齿逐渐松动，再也吃不了好吃的，当脚步逐渐沉重，再也无法长途跋涉，我是否还会想起，在祖国东北角的日子，每年漫长的冬季，鹅毛的大雪，食堂难吃的饭菜，当然还有师范学校特有的风景线。
 
 点击播放背景音：
 
-<iframe src="//player.bilibili.com/player.html?aid=3313748&cid=5239163&page=1" scrolling="no" border="0" width="100%" height="400" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+<iframe src="//player.bilibili.com/player.html?aid=3313748&cid=5239163&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"
+width="100%" height="500"></iframe>
 
 四年的时光里，见过东师须晴日，惟余莽莽的北国风光：
 
