@@ -18,10 +18,6 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2020-02-29-0913
 
 2018-01-27 更：
 
-On      my     god！
-
-I like it!!!!!
-
 炒鸡喜欢这部剧。
 
 超级喜欢杰克，大概已经成了我以后想成为的丈夫榜样，父亲榜样的那种。
