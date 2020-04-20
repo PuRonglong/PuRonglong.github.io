@@ -3,15 +3,14 @@ layout: post
 title: Head First jQuery笔记
 description: "第一次尝试着读英文读物"
 tags: [技术]
-image:
-  
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420173314.png
 ---
 
 > 第一次尝试读全英文书籍
 
-![img](http://img30.ddimg.cn/32/15/22775180-1_u_1.jpg)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420173314.png)
 
 《深入浅出jQuery(影印版)》
 
@@ -25,15 +24,15 @@ share: true
 
 这本书看的时候还比较囫囵吞枣，因为jQuery的知识点都还了解，讲解部分知识瞄了瞄，干货也没有什么，主要是做下本书中的题，因为提形式多样，需要手写，别的书还没有遇到过要手写的，就当是锻炼笔试了。
 
-![img](http://7vznhl.com1.z0.glb.clouddn.com/2015-1-11.jpg)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420173132.jpg)
 
 像这样的填空题比较多
 
-![img](http://7vznhl.com1.z0.glb.clouddn.com/2015-1-14.jpg)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420173226.jpg)
 
 每章后面都有道这种题
 
-![img](http://7vznhl.com1.z0.glb.clouddn.com/2015-1-16.jpg)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420173238.jpg)
 
 别人家的讲解
 

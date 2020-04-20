@@ -3,17 +3,17 @@ layout: post
 title: jQuery中的Ajax学习笔记
 description: "主要讲jQuery中的Ajax的一些相关用法"
 tags: [技术]
-image:
-  
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420172836.png
 ---
 
 > 前段时间学习了《锋利的jQuery第六章》jQuery与Ajax应用，现做如下笔记：
 
-![img](http://img11.360buyimg.com/n0/g6/M04/06/1C/rBEGDFD2UYIIAAAAAAGrx67MlCIAABWBAKB-WkAAavf388.jpg)
-
 <!-- more -->
+
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420172836.png)
+
 
 ## 什么是Ajax呢？
 

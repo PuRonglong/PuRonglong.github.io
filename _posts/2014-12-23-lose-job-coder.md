@@ -2,18 +2,18 @@
 layout: post
 title: 《失业的程序员》
 description: "作者沈逸。根据真实的创业经历改编，加入小说的描写手法"
-tags: [生活]
-image:
-  
+tags: [生活, 读书]
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420172707.png
 ---
 
 >《失业的程序员》作者沈逸。这本书通过诙谐幽默的语言很好的阐述了当代中国这个大环境下的IT从业者的创业囧途。
 
-![img](http://img10.360buyimg.com/n0/g15/M05/1A/0A/rBEhWlNeMqAIAAAAAAfAlTHd_yQAAMmBgKIoAUAB8Ct223.jpg)
-
 <!-- more -->
+
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420172707.png)
+
 
 **人脉资源怎么积累？**
 

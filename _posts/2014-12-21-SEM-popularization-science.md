@@ -2,20 +2,20 @@
 layout: post
 title: 《榨干百度谷歌——搜索引擎广告大赢家》
 description: "主要讲了什么是SEM，如何通过搜索引擎进行网络营销"
-tags: [生活]
-image:
-  
+tags: [生活, 读书]
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420172927.png
 ---
 
 > 这是一个开口谷歌，闭口百度的时代；<br  />
 > 这是一个人人都想和搜索框后世界对话的时代；<br  /> 
 > 这是一个价值多元，个性张扬的时代。 
 
-![img](http://img10.360buyimg.com/n0/g15/M03/02/16/rBEhWFHKSUgIAAAAAAKzL-pq1JEAAAh4gLO0zYAArNH039.jpg)
-
 <!-- more -->
+
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420172927.png)
+
 
 **关于本书**： 
 

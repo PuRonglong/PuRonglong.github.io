@@ -3,10 +3,9 @@ layout: post
 title: js语法中运算符的二义性之逗号“,”的二义性
 description: "js语法中逗号的二义性"
 tags: [技术]
-image:
-  
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420173027.png
 ---
 
 > 看到《js语言精髓与编程实践》中讲解的js语法中运算符的二义性之逗号的二义性，做些笔记 

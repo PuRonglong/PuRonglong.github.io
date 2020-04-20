@@ -3,10 +3,9 @@ layout: post
 title: 聊聊CSS(1),关于用css实现的文字超出部分显示省略号
 description: "CSS"
 tags: [生活]
-image:
-  
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420170428.png
 ---
 
 > 文字超出部分显示省略号还是比较常用的一个效果,最近看到网上的一些方法亲自实践了一下,发现有些以前一些浏览器不能用的属性现在可以用了，于是总结一下：
