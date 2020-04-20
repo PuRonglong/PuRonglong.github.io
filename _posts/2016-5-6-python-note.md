@@ -3,10 +3,9 @@ layout: post
 title: python笔记
 description: "python笔记"
 tags: [技术]
-image:
-
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420154359.png
 ---
 
 > 记录python的一些笔记
