@@ -3,10 +3,9 @@ layout: post
 title: Github上都有哪些有用但不为大家熟知的小功能？
 description: "记我的一次知乎回答"
 tags: [技术]
-image:
-
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420115014.png
 ---
 
 > 有些小功能是从书中看到的，有些是自己结合使用的一些插件，目前共收集了十多个，分享给大家：
@@ -23,7 +22,7 @@ share: true
 
 并且一天固定时间更新一波，
 
-![img]({{site.url}}images/article/2016-2-18/1.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420115045.png)
 
 2.
 
@@ -31,7 +30,7 @@ share: true
 
 在各个页面下按下shift+/也就是？都可以打开键盘快捷键一览表，很贴心有木有：
 
-![img]({{site.url}}images/article/2016-2-18/2.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420115111.png)
 
 3.
 
@@ -39,7 +38,7 @@ share: true
 
 听说过github pages,可知还有一个github jobs吗？面向全世界招聘程序员的职位公告板，450美元可以发布30天招聘公告。想必全球性公司的猎头爱死这个功能了
 
-![img]({{site.url}}images/article/2016-2-18/3.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420140629.png)
 
 4.
 
@@ -47,7 +46,7 @@ share: true
 
 触摸板上双手一滑就能查看GitHub的消息，你说好不好？
 
-![img]({{site.url}}images/article/2016-2-18/4.jpg)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420140646.jpg)
 
 5.
 
@@ -57,13 +56,13 @@ ZenHub is more than “integrated”: it runs natively in GitHub’s interface. 
 
 上述英文翻译过来就是：与github完美融合
 
-![img]({{site.url}}images/article/2016-2-18/5.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420140700.png)
 
 6.
 
 **将GitHub的仓库作为Subversion仓库使用——论GitHub的正确使用方式**
 
-![img]({{site.url}}images/article/2016-2-18/6.jpg)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420140717.jpg)
 
 7.
 
@@ -71,7 +70,7 @@ ZenHub is more than “integrated”: it runs natively in GitHub’s interface. 
 
 一款优秀的软件并不会一味地增加代码，在经过重构之后，代码量往往会降低。通过这张图，我们可以直观地把握相应信息。
 
-![img]({{site.url}}images/article/2016-2-18/7.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420140731.png)
 
 8.
 
@@ -79,7 +78,7 @@ ZenHub is more than “integrated”: it runs natively in GitHub’s interface. 
 
 还在想为什么有些人有那么多时间建立那么多开源项目吗？去看看别人的punchcard吧，你会找到答案。
 
-![img]({{site.url}}images/article/2016-2-18/8.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420140745.png)
 
 9.
 
@@ -89,7 +88,7 @@ ZenHub is more than “integrated”: it runs natively in GitHub’s interface. 
 
 ```https://github.com/rails/rails/compare/4-0-0stable...3-2-stable```
 
-![img]({{site.url}}images/article/2016-2-18/9.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420140758.png)
 
 <<<<<<<<<<<<<<<<<2016.1.17二更>>>>>>>>>>>>>>>>>
 
@@ -107,9 +106,9 @@ GitHub的搬运工在找文件时，再也不用担心各种文件之间跳转�
 
 (如此贴心简直要感动哭有木有)
 
-![img]({{site.url}}images/article/2016-2-18/10.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420140813.png)
 
-![img]({{site.url}}images/article/2016-2-18/11.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420140824.png)
 
 ---------2016.2.18三更---------
 
@@ -127,6 +126,6 @@ GitHub的搬运工在找文件时，再也不用担心各种文件之间跳转�
 
 [Issue and Pull Request templates · GitHub](https://github.com/blog/2111-issue-and-pull-request-templates)
 
-![img]({{site.url}}images/article/2016-2-18/12.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420140837.png)
 
 以上就是自己整理的一些Github上都有哪些有用但不为大家熟知的小功能。以后，GitHub肯定还会推出更多的功能，我们拭目以待吧 O(∩_∩)O
