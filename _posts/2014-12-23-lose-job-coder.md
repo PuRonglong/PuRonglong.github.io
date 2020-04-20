@@ -119,7 +119,7 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420172707.
 我认为一个程序员新人从不靠谱到靠谱只能靠逼、靠鞭笞，更重要的是要咬牙给他们一次机会，否则`新人永远只会是新人`；
 而我打算来承担这个手执横鞭给予机会的人。我比较担心的是如果外派时间过长大部分员工都会产生抵触心理。
 
-![img](http://7vznhl.com1.z0.glb.clouddn.com/2014-12-23sign.jpg)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420174027.jpg)
 
 第一次有一本有作者亲自签名的书
 
