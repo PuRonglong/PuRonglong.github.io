@@ -3,10 +3,9 @@ layout: post
 title: My codewars(1)
 description: "codewars"
 tags: [技术]
-image:
-
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420174406.png
 ---
 
 > 这是我的codewars系列，用于收集codewars上遇到的一些题目,先从第8层开始咯~

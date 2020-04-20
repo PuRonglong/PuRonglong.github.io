@@ -3,10 +3,9 @@ layout: post
 title: My codewars(4)
 description: "codewars"
 tags: [技术]
-image:
-
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420174406.png
 ---
 
 24.
