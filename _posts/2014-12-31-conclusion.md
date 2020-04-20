@@ -3,10 +3,9 @@ layout: post
 title: 回首2014，展望2015
 description: ""
 tags: [生活]
-image:
-  
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420174725.png
 ---
 
 > 人只是一根芦苇，是自然界最为脆弱的，但他却是一根会思考的芦苇。——帕斯卡
