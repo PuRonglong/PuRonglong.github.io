@@ -3,10 +3,9 @@ layout: post
 title: jquery tips(1):判断DOM对象是否为空
 description: "jquery tips(1):判断DOM对象是否为空"
 tags: [技术]
-image:
-  
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420173533.png
 ---
 
 我们在用jquery操作DOM对象的时候，有时需要判断DOM对象是否为空：
