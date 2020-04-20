@@ -3,10 +3,9 @@ layout: post
 title: Mac下Mongodb的启动
 description: "记Mac下Mongodb的启动"
 tags: [技术]
-image:
-
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420153407.png
 ---
 
 > 在启动Monggodb服务的过程中，失败了几次，看到有别的同学也遇到了相同的问题，开此一贴以示说明。
@@ -21,7 +20,7 @@ share: true
 
 <!-- more -->
 
-![img]({{site.url}}images/article/2016-4-2/1.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420153332.png)
 
 别看提示这么长，其实就是说连不上我们的```mongodb```了。道理很简单，我们的项目依赖```mongodb```，那在启动项目前是不是应该先启动我们的```mongodb```服务呢。搜噶。下面来启动我们的```mongodb```：
 
@@ -33,7 +32,7 @@ share: true
 
 结果：
 
-![img]({{site.url}}images/article/2016-4-2/2.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420153349.png)
 
 咦，怎么又报错了捏？
 
@@ -51,7 +50,7 @@ share: true
 
 运行结果：
 
-![img]({{site.url}}images/article/2016-4-2/3.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420153358.png)
 
 怎么还有错呢？
 
@@ -69,6 +68,6 @@ share: true
 
 如果能在localhost://27017里打开，看到如下内容，就说明启动成功啦~
 
-![img]({{site.url}}images/article/2016-4-2/4.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420153407.png)
 
 OK，启动数据库服务成功。

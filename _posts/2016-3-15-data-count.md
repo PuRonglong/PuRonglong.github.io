@@ -3,10 +3,9 @@ layout: post
 title: 数据统计系统
 description: "总结数据统计系统开发"
 tags: [技术]
-image:
-  
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420153012.png
 ---
 
 > 和凯明大大一起做完一个数据统计系统，总结一下~
@@ -15,11 +14,11 @@ share: true
 
 <!-- more -->
 
-![img]({{site.url}}images/article/2016-3-15/1.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420152754.png)
 
 但是在使用的过程中常常发现一些问题，比如一般会出现这样的图表展示：
 
-![img]({{site.url}}images/article/2016-3-15/2.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420152806.png)
 
 一般来说，图表展示横纵坐标都会有标签名的，用于告诉用户这个坐标是干什么用的，可是在jquery.flot里没有发现这一项配置，照理来说这样的功能应该是图表都应该有的吧，查找了一遍发现居然没有这项配置，无奈只得找找有没有解决办法了，google出来一个这个[flot-axislabels](https://github.com/markrcote/flot-axislabels)。
 
@@ -29,7 +28,7 @@ share: true
 
 就在找解决办法的时候，发现了别人在使用```eCharts```这个百度开源的一项图表展示工具。了解了一下发现一方面自定义程度高，一方面图表的动画效果不错，并且界面整洁，体验大大提高，于是决定采用这个图表库了。
 
-![img]({{site.url}}images/article/2016-3-15/3.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420152815.png)
 
 下一步的问题就是如何把eCharts集成到项目中去。项目是使用的angular框架，那么问题就是如何在angular项目的适当位置使用我们的echarts呢？大概的想法应该是从angular的directive入手，以属性的方式自定义一个指令，在需要使用echarts的地方调用这个指令。
 
@@ -265,7 +264,7 @@ XAxis里的data就是x轴的数据，这里要注意的而是Y轴的数据并不
 
 以上，就能生成我们的echarts图表了。
 
-![img]({{site.url}}images/article/2016-3-15/4.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420152826.png)
 
 下面我们要给它添加一个功能。
 
@@ -342,7 +341,7 @@ XAxis里的data就是x轴的数据，这里要注意的而是Y轴的数据并不
 
 具体返回的接口格式可以看接口文档，也可以在chrome调试工具里network下点击返回的js文件，在下面的preview可以查看到。
 
-![img]({{site.url}}images/article/2016-3-15/10.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420152914.png)
 
 上面的```utilsService.getFormatData```是对获取数据进行的格式的一个处理，然后再把处理过后我们需要的格式的数据传给x轴和y轴：
 
@@ -400,15 +399,15 @@ XAxis里的data就是x轴的数据，这里要注意的而是Y轴的数据并不
 
 就是在获取到数据，并对数据格式化处理以后，将x轴的数据存入到```picDataCacheX[num]```，将y轴的数据存入```picDataCacheY[num]```，然后进入函数后，首先判断这两个对象有没有值，这两个对象的num属性的值就是我们传入的数组数据，如果有的话就直接把数据传给x和y轴，然后return。这样，就不用再去请求了。
 
-![img]({{site.url}}images/article/2016-3-15/5.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420152848.png)
 
 下面这种数据形式：
 
-![img]({{site.url}}images/article/2016-3-15/6.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420152926.png)
 
 这个表格使用了```angular ui grid```
 
-![img]({{site.url}}images/article/2016-3-15/11.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420152938.png)
 
 HTML如下：
 
@@ -463,9 +462,9 @@ columnDefs是我们表格的格式和样式：
 
 下面这个表格使用了ui-bootstrap：
 
-![img]({{site.url}}images/article/2016-3-15/7.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420152950.png)
 
-![img]({{site.url}}images/article/2016-3-15/9.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420153000.png)
 
 使用ui-bootstrap可以通过tabset标签进行tab页的切换：
 
@@ -513,4 +512,4 @@ columnDefs是我们表格的格式和样式：
 
 echarts还有好处就是图形形式切换比较方便：通过点击右上角的柱形选项就可以把线性图转变为柱形图了。
 
-![img]({{site.url}}images/article/2016-3-15/8.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420153012.png)

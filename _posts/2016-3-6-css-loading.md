@@ -3,19 +3,18 @@ layout: post
 title: css3制作loading
 description: "css制作loading"
 tags: [技术]
-image:
-
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420151920.gif
 ---
 
 > 讨论最近看到的一个loading动效
 
 先来看一看效果图吧~
 
-![img]({{site.url}}images/article/2016-3-6/1.gif)
-
 <!-- more -->
+
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420151920.gif)
 
 让我们一步一步来制作：
 
@@ -73,15 +72,15 @@ CSS:
 
 如下：
 
-![img]({{site.url}}images/article/2016-3-6/5.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420151934.png)
 
 width和height两个属性决定两点大小，box-shadow决定两点位置和颜色，总共这两个点有三个位置四种状态，分别是这三个位置，
 
-![img]({{site.url}}images/article/2016-3-6/2.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420151947.png)
 
-![img]({{site.url}}images/article/2016-3-6/3.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420151956.png)
 
-![img]({{site.url}}images/article/2016-3-6/4.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420152006.png)
 
 三个位置是左中右，四种状态是点线点点，拿上面那个点作为例子，当这个点到达中的位置的时候，对应这时的状态要把点的width加长，变为线，过了这个状态到达左边位置的时候状态又变为点，最后的状态时，把位置又定位到初始的时候，这样，一个点的一个动画就算完成了，其他四个点主要就是位置和颜色的不同了
 

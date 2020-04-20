@@ -3,19 +3,18 @@ layout: post
 title: HTML+CSS九宫格
 description: "HTML+CSS九宫格"
 tags: [技术]
-image:
-
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420152143.png
 ---
 
 > 使用 HTML+CSS 实现如图布局，border-widht 5px，一个格子大小是 50*50，hover时候边框变为红色
 
 先来看一看效果图吧~
 
-![img]({{site.url}}images/article/2016-3-8/8.gif)
-
 <!-- more -->
+
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420152151.gif)
 
 让我们一步一步来制作：
 
@@ -34,11 +33,11 @@ share: true
 
 看起来很美好，如下：
 
-![img]({{site.url}}images/article/2016-3-8/1.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420152028.png)
 
 可是当我们hover一个li的时候才发现，实际上是这样的：
 
-![img]({{site.url}}images/article/2016-3-8/2.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420152049.png)
 
 想到为什么了吗？
 
@@ -56,7 +55,7 @@ hover的时候让border变为红色，这一步没有错，以九宫格所示的
 
 w3c中position列出了下面几个属性值：
 
-![img]({{site.url}}images/article/2016-3-8/3.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420152059.png)
 
 absolute是脱离文档流的，用在这里肯定会出问题，而relative是没有脱离文档流的。代码如下：
 
@@ -69,11 +68,11 @@ absolute是脱离文档流的，用在这里肯定会出问题，而relative是�
 
 来来来，试试。
 
-![img]({{site.url}}images/article/2016-3-8/4.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420152111.png)
 
 O(∩_∩)O哈哈~，加上一个left更能看的清楚一些：
 
-![img]({{site.url}}images/article/2016-3-8/5.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420152120.png)
 
 可以在这里看实际例子：
 
@@ -87,7 +86,7 @@ margin的负值还是挺有用的，常用的比如还可以用来实现多列�
 
 原图如下：
 
-![img]({{site.url}}images/article/2016-3-8/6.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420152132.png)
 
 我们可以看到，左右不等高的时候左列会有空窗。使用margin-bottom负值如下：
 
@@ -105,7 +104,7 @@ margin的负值还是挺有用的，常用的比如还可以用来实现多列�
 
 显示效果：
 
-![img]({{site.url}}images/article/2016-3-8/7.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420152143.png)
 
 可以在这里看实际例子：
 

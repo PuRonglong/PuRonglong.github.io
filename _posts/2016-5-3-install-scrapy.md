@@ -1,19 +1,18 @@
 ---
 layout: post
 title: 安装scrapy遇到的一些问题
-description: "some note"
+description: "安装scrapy遇到的一些问题"
 tags: [技术]
-image:
-
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420154518.png
 ---
 
 > 在安装scrapy的过程中遇到了一些问题记录一下。安装这个确实挺多人遇到了问题的，虽然大家遇到的问题可能不同，但大部分可能都是缺少某些包
 
 <!-- more -->
 
-![img]({{site.url}}images/article/2016-5-3/1.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420154518.png)
 
 进入命令行，执行：
 
@@ -23,7 +22,7 @@ share: true
 
 但是执行到最后的时候报错如下：
 
-![img]({{site.url}}images/article/2016-5-3/2.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420154530.png)
 
 于是安装```xcode-select```
 
@@ -41,7 +40,7 @@ share: true
 
 但是执行完毕又报错：
 
-![img]({{site.url}}images/article/2016-5-3/3.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420154539.png)
 
 执行：
 
@@ -173,11 +172,11 @@ linux通过链接文件能共享几乎所有类型的文件。
 
 的时候，会收到这样的提示：
 
-![img]({{site.url}}images/article/2016-5-3/4.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420154549.png)
 
 google出stackoverflow上一个回答解释了这个问题：
 
-![img]({{site.url}}images/article/2016-5-3/5.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420154603.png)
 
 就是添加一个-H参数。
 

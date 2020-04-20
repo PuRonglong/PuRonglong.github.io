@@ -3,10 +3,9 @@ layout: post
 title: 如何让终端优雅地装X
 description: "如何让终端优雅地装X"
 tags: [技术]
-image:
-
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420154006.png
 ---
 
 >当使用系统自带的终端使用多了的时候，你会体会到许多不便之处，比如自动补全不够完善，比如界面单调，老早就知道iterm2+oh my zsh的组合，但知道看到一个别人的界面漂亮的不行，才终于打动我也更换成这样的搭配。
@@ -15,7 +14,7 @@ share: true
 
 先来看看那幅打动我的漂亮的命令行是什么样的吧~
 
-![img]({{site.url}}images/article/2016-4-6/1.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420153842.png)
 
 <!-- more -->
 
@@ -27,7 +26,7 @@ share: true
 
 当然是下载我们的iterm2啦~
 
-![img]({{site.url}}images/article/2016-4-6/2.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420153853.png)
 
 2：
 
@@ -39,11 +38,11 @@ share: true
 
 oh-my-zsh:
 
-![img]({{site.url}}images/article/2016-4-6/3.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420153901.png)
 
 在iterm2中输入以下：
 
-![img]({{site.url}}images/article/2016-4-6/4.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420153913.png)
 
 这里我装了几次都不行，连接有问题，进度一直是0%，愁死了，然后官网里给的另外一个方法需要使用wget，结果mac系统又没有自带wget命令，有需要先安装了wget，找了以下发现安装wget好麻烦，需要先下载wget，然后在命令行里进行解压，安装，看起来好麻烦我也就没有用wget安装oh-my-zsh了，还是试了多次第一种安装方法，终于有一次不知道怎么就连接上了，然后就装上了。PS：这里其实蠢了以下，后来才知道wget可以不用手动安装这么麻烦，我们有homebrew啊，执行：
 
@@ -139,7 +138,7 @@ oh-my-zsh:
 
 通过load presets选择安装的配色主题。
 
-![img]({{site.url}}images/article/2016-4-6/5.jpeg)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420153928.jpeg)
 
 10:
 
@@ -334,6 +333,6 @@ x     default foreground or background (透明)
 
 看看新效果：
 
-![img]({{site.url}}images/article/2016-4-6/6.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420154006.png)
 
 终于折腾完了~

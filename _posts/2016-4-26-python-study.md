@@ -3,15 +3,16 @@ layout: post
 title: 简明python教程
 description: "简明python教程"
 tags: [技术]
-image:
-
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420154359.png
 ---
 
 > 开启python之旅！
 
 使用带提示符的 Python 解释器：
+
+<!-- more -->
 
 ```python
 	~ python
@@ -20,8 +21,6 @@ share: true
 	Type "help", "copyright", "credits" or "license" for more information.
 	>>>
 ```
-
-<!-- more -->
 
 使用源文件：
 
