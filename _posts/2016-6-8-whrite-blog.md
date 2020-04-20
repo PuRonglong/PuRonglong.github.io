@@ -5,7 +5,7 @@ description: "不为谁而写的博"
 tags: [生活]
 comments: true
 share: true
-cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420160729.png
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420161819.png
 ---
 
 > 如果一件事坚持了太久，是否会成为一种习惯。
