@@ -3,10 +3,9 @@ layout: post
 title: angularJS tips(1) ：报错[ngModel:numfmt]
 description: "angularJS tips(1) ：报错 [ngModel:numfmt]"
 tags: [技术]
-image:
-  
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420163837.png
 ---
 
 使用angular 1.x版本遇到报错[ngModel:numfmt]问题。
@@ -15,11 +14,11 @@ share: true
 
 如图：
 
-![img]({{site.url}}images/article/2016-11-20/1.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420163759.png)
 
 浏览器里报了这个错，什么原因导致的呢？又如何解决？先来复现一下当时的场景吧，如图所示，有上下两个div，
 
-![img]({{site.url}}images/article/2016-11-20/2.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420163808.png)
 
 下面的div刚开始ng-show的值是false的，点击上面的编辑按钮让下面的div显示，并将上面的值赋给下面div中的空格里，错误就是在点击的时候报的，那么这个编辑按钮都进行了哪些操作呢？如下：
 

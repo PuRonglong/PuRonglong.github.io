@@ -3,10 +3,9 @@ layout: post
 title: angularJS tips(2)：ng-model过滤
 description: "angularJS tips(2)： ng-model过滤"
 tags: [技术]
-image:
-  
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420163837.png
 ---
 
 angular tips。
@@ -38,7 +37,7 @@ AngularJs Error: [ngModel:nonassign]
 
 官网对这个错误是这么解释的：
 
-![img]({{site.url}}images/article/2016-11-27/1.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420164031.png)
 
 This error occurs when expression the ngModel directive is bound to is a non-assignable expression.
 
@@ -143,7 +142,7 @@ To create an ng-model formatter, you create a directive that does require: 'ngMo
 
 并且ng-bind可以使用过滤器，用一个demo来更直观说明：
 
-![img]({{site.url}}images/article/2016-11-27/2.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420164045.png)
 
 上面的问答说明了ng-bind和ng-model两者的内在区别，但两者在应用中的区别还得提一下。
 

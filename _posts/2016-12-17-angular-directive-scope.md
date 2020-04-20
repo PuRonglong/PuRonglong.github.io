@@ -3,10 +3,9 @@ layout: post
 title: angular tips(3):directive之scope
 description: "angular tips(3):directive之scope"
 tags: [技术]
-image:
-  
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420163837.png
 ---
 
 指令是angular的强大功能之一，指令作用域则是指令中一个重要的点。
