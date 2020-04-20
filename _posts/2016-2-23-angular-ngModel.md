@@ -3,10 +3,9 @@ layout: post
 title: angular养成记(二)ngModel
 description: "angular养成记(二)ngModel"
 tags: [技术]
-image:
-
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420163837.png
 ---
 
 > 聊聊angular中的ngModel

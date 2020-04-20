@@ -3,10 +3,9 @@ layout: post
 title: 用browsersync提高效率
 description: "工具"
 tags: [技术]
-image:
-
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420170842.png
 ---
 
 > 一个高效的用于“实时刷新”的工具

@@ -5,7 +5,7 @@ description: "记Mac下Mongodb的启动"
 tags: [技术]
 comments: true
 share: true
-cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420153407.png
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420170111.png
 ---
 
 > 在启动Monggodb服务的过程中，失败了几次，看到有别的同学也遇到了相同的问题，开此一贴以示说明。
