@@ -3,10 +3,9 @@ layout: post
 title: echarts2迁移图
 description: "echarts2迁移图"
 tags: [技术]
-image:
-  
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420162738.png
 ---
 
 最近又在使用echarts2.0了（虽然已经出了3），工具这种东西呀，日新月异，变化太快，这里把echart2使用中遇到的一些点总结一下，免得其他同学遇到同样问题又去查文档，查资料了。
@@ -15,13 +14,13 @@ share: true
 
 echarts里面迁移图是比较常用的一个实例了，比如这样：
 
-![img]({{site.url}}images/article/2016-9-1/1.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420162819.png)
 
 从一个地方迁移到多个其他地方，我们姑且叫做迁出吧。但实际中常常还有另一个场景，叫迁入，也就是多个目标迁入到一个地点。
 
 结果成了这样:
 
-![img]({{site.url}}images/article/2016-9-1/2.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420162826.png)
 
 每条线的数据量都聚集到一起了，无法看清。这时候应该让数据显示在出发地而不是目的地。
 

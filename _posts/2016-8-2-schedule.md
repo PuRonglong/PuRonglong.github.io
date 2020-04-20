@@ -3,10 +3,9 @@ layout: post
 title: 365天，用一个习惯播种另一个习惯
 description: "365天，用一个习惯播种另一个习惯"
 tags: [生活]
-image:
-  
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2020-03-04-3.png
 ---
 
 > 明知道闹钟已经对我失去作用<br  />

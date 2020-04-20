@@ -3,10 +3,9 @@ layout: post
 title: 让按钮变得有趣
 description: "让按钮变得有趣"
 tags: [技术]
-image:
-  
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420162244.png
 ---
 
 最近在zealer网站上看到一个有趣的动画效果，分析并实现了下，讲讲过程。
@@ -22,7 +21,7 @@ share: true
 
 通过拆解这组动画会发现，其实原本是像下面这样的：
 
-![img]({{site.url}}images/article/2016-7-18/1.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420162208.png)
 
 原来这个按钮的前面有一个一样大小的span，鼠标移动到按钮上的时候改变span的right属性，让它往右移动，在按钮的background和文字之间加了一个span，从而形成我们看到的效果。
 

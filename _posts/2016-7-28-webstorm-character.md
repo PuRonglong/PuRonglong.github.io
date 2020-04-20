@@ -3,17 +3,16 @@ layout: post
 title: WebStorm11输入中文标点符号的问题
 description: "WebStorm11输入中文标点符号的问题"
 tags: [技术]
-image:
-  
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420162434.png
 ---
 
 webstorm11输入中文标点符号的时候有问题，比如，即使你切换到中文输入法下输入标点符号，结果还是输出的还是英文字符，以前还一直奇怪难道没有人遇到这个问题么，先前解决了这个问题，今天重装webstorm后又遇到这个问题，所以这里记录一下。
 
 <!-- more -->
 
-![img]({{site.url}}images/article/2016-7-28/2.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420162434.png)
 
 <link rel="stylesheet" href="/css/keybtn.css">
 
@@ -36,7 +35,7 @@ webstorm11内置的jdk版本有问题，存在中文标点输入后被转成英�
 
 在调出的输入框中输入jdk，回车，选择我们刚安装的8u45就好了，重启，然后就能愉快地输入了。
 
-![img]({{site.url}}images/article/2016-7-28/1.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420162420.png)
 
 方法二：
 
