@@ -3,10 +3,9 @@ layout: post
 title: js中的最大数
 description: "js中的最大数"
 tags: [技术]
-image:
-  
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420164650.png
 ---
 
 js中最大的数字是多少？
@@ -25,7 +24,7 @@ js中最大的数字是多少？
 
 双精度浮点数（double）是计算机使用的一种数据类型，它使用 64 位（8字节）来存储一个浮点数，格式如下：
 
-![](/images/article/2017-4-16/1.png)
+![](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420164556.png)
 
 * sign bit(符号): 用来表示正负号，占1位
 * exponent(指数): 用来表示次方数，占11位
@@ -35,7 +34,7 @@ js中最大的数字是多少？
 
 我们知道, 任何一个二进制浮点数可以如下表示:
 
-![](/images/article/2017-4-16/2.png)
+![](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420164607.png)
 
 参考资料：https://www.zhihu.com/question/24423421
 

@@ -3,10 +3,9 @@ layout: post
 title: angular(4):指令中的隔离作用域
 description: "angular(4):指令中的隔离作用域"
 tags: [技术]
-image:
-  
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420163837.png
 ---
 
 书上看到angular隔离作用域的一个例子，敲了下遇到一个困惑问题。
@@ -17,11 +16,11 @@ share: true
 
 示例一：
 
-![](/images/article/2017-3-10/1.png)
+![]https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420164457.png)
 
 示例二：
 
-![](/images/article/2017-3-10/2.png)
+![](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420164508.png)
 
 上图中的例子只是引用了两种版本angular，rc(release candidate)表示候选发行版，数字表示候选版号，一般来说候选版和正式版没有多大区别的，但是在这个截图里，我想要试试angular中的隔离作用域的时候，却发现两者的结果不一样，
 
@@ -31,10 +30,10 @@ share: true
 
 找到问题了，如图，示例三：
 
-![](/images/article/2017-3-10/3.png)
+![](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420164518.png)
 
 把示例三进行如下修改：
 
-![](/images/article/2017-3-10/4.png)
+![](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420164526.png)
 
 因为平时都是用的template链接模板这种方式，可能没遇到这个问题，所以被一开始示例一二的两种结果给困惑到了，但现在问题解决了。
