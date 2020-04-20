@@ -3,10 +3,9 @@ layout: post
 title: 聊聊CSS(4):CSS3中的transition
 description: "CSS3:transition"
 tags: [技术]
-image:
-
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420170428.png
 ---
 
 > 聊聊CSS3中的transition

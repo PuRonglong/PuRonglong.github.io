@@ -2,18 +2,18 @@
 layout: post
 title: 《打造Facebook》
 description: "《打造Facebook》读书笔记"
-tags: [生活]
-image:
-
+tags: [生活, 读书]
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420173835.png
 ---
 
 > 这个题目很嚣张——“打造Facebooke”。谁有资格可以说这句话呢？当然，扎克伯格最有资格，但他不会亲自来告诉你。我想强调的是团队。而让团队凝聚在一起并充满战斗力的，是其文化。
 
-![img](http://img13.360buyimg.com//n0/g8/M01/11/07/rBEHZ1DT8fgIAAAAAAoS5o1I_6UAADXaAAf7cMAChL-935.jpg)
-
 <!-- more -->
+
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420173835.png)
+
 
 Facebook成为如此伟大的公司既有偶然也有必然，既需要运气但更需要实力。我们不需要过多关注其运气，就好像在国际象棋界中有句名言“只有好的棋手才会走运(Only th good players are lucky)”。
 
