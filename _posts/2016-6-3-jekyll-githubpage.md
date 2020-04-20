@@ -3,10 +3,9 @@ layout: post
 title: jekyll和github pages的一些问题
 description: "some note"
 tags: [技术]
-image:
-
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420160807.png
 ---
 
 > 在部署jekyll和github pages的时候遇到的一些问题
@@ -15,7 +14,7 @@ share: true
 
 <!-- more -->
 
-![img]({{site.url}}images/article/2016-6-3/1.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420160807.png)
 
 使用```jekyll```+```github pages```初步搭建好博客以后，需要实现标签的功能，点击标签页面跳转到相应的页面。标签的实现我使用了插件，新建一个_plugins文件夹，在里面新建一个ruby文件build-tag.rb，这个ruby文件里的代码实现了标签功能，原理就是生成对应标签的文件，比如整个首页是一个index，插件就是为每一个标签生成一个index，这样就能现实标签页了。
 

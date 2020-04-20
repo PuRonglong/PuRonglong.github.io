@@ -3,10 +3,9 @@ layout: post
 title: 制作一款jekyll主题
 description: "制作一款jekyll主题"
 tags: [技术]
-image:
-
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420160807.png
 ---
 > 制作一款jekyll主题
 
@@ -26,13 +25,13 @@ jekyll new jekyll-blog
 
 命令行提示如下：
 
-![img]({{site.url}}images/article/2016-5-22/1.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420161059.png)
 
 可以看到成功启动了服务并且本地地址是http://localhost:4000/。
 
 初始界面如下所示：
 
-![img]({{site.url}}images/article/2016-5-22/2.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420161111.png)
 
 后续我们就是在这个基础上进行改动了。
 
@@ -42,7 +41,7 @@ jekyll new jekyll-blog
 
 根目录下的index页做如下修改：
 
-![img]({{site.url}}images/article/2016-5-22/5.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420161122.png)
 
 可以看到主要的一点是if判断我们post的文章是否含```more```的一段信息，若是包含的话，就使用过滤器将我们文章内容split为两部分，并选取第一部分显示为post.content。
 
@@ -129,7 +128,7 @@ jekyll new jekyll-blog
 
 效果如下：
 
-![img]({{site.url}}images/article/2016-5-22/3.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420161134.png)
 
 **文章分类功能：**
 
@@ -150,15 +149,15 @@ jekyll的云标签有多种实现方法，先介绍第一种：
 
 在_includes文件夹里添加tag.html，然后在页面中将其include进来。页面效果如下：
 
-![img]({{site.url}}images/article/2016-5-22/4.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420161143.png)
 
 左边文章列表右边标签列表。左边的列表其实有两个，一个是所有文章的列表，也就是对应所有标签的文章列表，还有一个是不同类型的文章列表，我们先来看第一个列表：
 
-![img]({{site.url}}images/article/2016-5-22/6.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420161154.png)
 
 这是一个带有post-cate属性并且属性值为all的ul列表，for循环遍历所有的文章。第二个列表如下：
 
-![img]({{site.url}}images/article/2016-5-22/7.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420161202.png)
 
 这里的一个不同是ul是放在for循环里的，循环所有的标签，
 

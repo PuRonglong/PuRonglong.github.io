@@ -3,10 +3,9 @@ layout: post
 title: 不为谁而写的博
 description: "不为谁而写的博"
 tags: [生活]
-image:
-  
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420160729.png
 ---
 
 > 如果一件事坚持了太久，是否会成为一种习惯。
@@ -21,7 +20,7 @@ share: true
 
 我们在做一件事的时候通常会考虑它有什么用，那么写博客有什么用呢？
 
-![img]({{site.url}}images/article/2016-6-8/7.jpg)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420160617.jpg)
 
 刚开始的时候我是这么认为的，首先会有技术上的提升，至于提升多少，看了解和深入掌握的程度。同时它还能成为技术的练兵厂，有些东西可以先在自己的网站上做实验，此外博客能增加知名度，作为一名程序员，我一直提倡有时候要能够跳出技术之外去看问题，如何去推广自己，打造自己的品牌，是每一位程序员都要学会的推销自己的方式。闷声钻研我不提倡也不反对。
 
@@ -59,7 +58,7 @@ share: true
 
 虽然大家都说好，但是坚持本身就是一件很难的事，而花费时间去写内容也是一件很难的事，比如以我的项目名为```puronglong```的博客项目为例，如下：
 
-![img]({{site.url}}images/article/2016-6-8/6.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420160602.png)
 
 图中```_posts/2016-6-8-whrite-blog.md```和```_posts/2016-6-3-jekyll-githubpage.md```就是两篇博文，前面统计花费写的时间分别是4个多小时和2个多小时，当然这两篇博文写作时间也比我平时写一篇博文的时间长。
 
@@ -87,7 +86,7 @@ share: true
 
 在博客园开的博文，选择的原因是觉得在社区写博客容易吸引更多的人的注意，一开始也许不会有人注意，但是高质量或高数量的博文总会引起一些人的注意的，或者可以写系列形式的博文，看到有人说喜欢这种，只要有一点人注意，后续关注的人会越来越多的。到了一定的瓶颈就说明你的质量需要上一个新的台阶了。如下：
 
-![img]({{site.url}}images/article/2016-6-8/1.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420160453.png)
 
 版本二：
 
@@ -95,7 +94,7 @@ share: true
 
 但是一直觉得博客园的界面好丑，虽然其实可自定义的权限还是比较大的，再加上逼格不够高，后来接触到了github，接触了jekyll+github pages的于是使用了别人的一套主题，使用markdown写博客。于是便有了第二个版本，如下：
 
-![img]({{site.url}}images/article/2016-6-8/2.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420160524.png)
 
 版本三：
 
@@ -103,9 +102,9 @@ share: true
 
 别人的主题使用久了以后还是想自己设计，这一版本参考了一位网友的博客，使用angular搭建的静态界面，一方面是熟悉angular的使用，一方面是想要实现更多的自定义功能，比如使用angular-animate在切换界面时的动态效果，从中也去实现一个单页面应用。
 
-![img]({{site.url}}images/article/2016-6-8/3.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420160534.png)
 
-![img]({{site.url}}images/article/2016-6-8/4.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420160543.png)
 
 关于界面的设计很早之前就想要设计一个类似左右分割的布局，主要是觉得有写技术博客和生活博客的需求，但将两个放在一起有点混乱，正所谓：左手代码，右手诗，这个诗我理解为诗意的生活，就是说，身为码农，掌握技术知识是一方面，但不可因此放弃对诗意生活的追求。我挺佩服那些既能写好代码，又能写好文字的码农。而背景依然选择了狗和飞机的图片，寓意小小的天，有大大的梦想，主色调为黑白相间，就像以前的自己，认为这个世界很多东西不是白的就是黑的，非黑即白的观念在后来受到冲击，逐渐会发现每个人都会有每个人的故事，即使是一个坏人，也有时会表现出好的一面，我们要做的不是一巴掌拍死它，而是正确地对待它身上好的和坏的。妈妈说，看人要看他的优点，才会找到学习的地方。
 
@@ -115,13 +114,13 @@ share: true
 
 但后来发现一个问题，每次进入网站开始项目初始化的时候都会报错，需要重新刷新一下才好。貌似是angular和require使用的缘故。单页应用不好的一点是看完一篇文章滚动以后返回首页它的位置是滚动后的位置而不是开始时的位置。而且这个版本虽然是使用markdown写作，但原理是解析文章的每一行，将其当作字符串处理。这样导致的结果就是换行没有效果。所以看起来有些混乱，区分不明显。因为原理是将每一行使用markdown解析，所以要在其中添加一些东西如外连接什么的就不行了。综上问题后来还是决定使用jekyll写博客，只不过这一次使用自己的主题了。如下：
 
-![img]({{site.url}}images/article/2016-6-8/5.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420160552.png)
 
 依然使用了简洁的界面，添加了标签功能。
 
 我有一只三年的博客，希望在以后的日子里也能照顾好它，么么哒~
 
-![img]({{site.url}}images/article/2016-6-8/8.jpg)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420160629.jpg)
 
 <br  />
 **不是有了希望才去坚持，而是坚持了才有希望。**
