@@ -3,10 +3,9 @@ layout: post
 title: 从GitHub遭受攻击看DDoS
 description: "Git"
 tags: [技术]
-image:
-  
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420174240.png
 ---
 
 >3月底，GitHub遭受了有史以来最为严重的DDoS攻击
