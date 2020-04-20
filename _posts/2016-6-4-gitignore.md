@@ -3,10 +3,9 @@ layout: post
 title: git忽略已经被提交的文件
 description: "git忽略已经被提交的文件"
 tags: [技术]
-image:
-  
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420162013.png
 ---
 
 > git忽略已经被提交的文件
