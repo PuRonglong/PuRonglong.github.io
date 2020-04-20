@@ -27,7 +27,7 @@ demo1:
 
 HTML:
 
-![img]({{site.url}}images/article/2016-2-23/1.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420151521.png)
 
 ```ng-model```为```greeting```的这个input中输入的值就是下面p标签中```greeting```的对应值。
 

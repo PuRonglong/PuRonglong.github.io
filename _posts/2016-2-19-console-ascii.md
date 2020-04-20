@@ -3,10 +3,9 @@ layout: post
 title: 在浏览器控制台输出字符画
 description: "记一次在控制台输出字符画"
 tags: [技术]
-image:
-
 comments: true
 share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420151417.png
 ---
 
 > 对于一张网页，我们有时能在打开浏览器控制台的时候看到输出的各种图案，下面说说我的了解过程吧~
@@ -15,13 +14,13 @@ share: true
 
 <!-- more -->
 
-![img]({{site.url}}images/article/2016-2-19/1.jpg)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420150845.jpg)
 
-![img]({{site.url}}images/article/2016-2-19/2.jpg)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420150900.jpg)
 
-![img]({{site.url}}images/article/2016-2-19/3.jpg)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420150917.jpg)
 
-![img]({{site.url}}images/article/2016-2-19/4.jpg)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420150929.jpg)
 
 其实呀，这些形状各异的图案，都是一个个的Ascii字符组成的，像这样的图案，我们一般把它称作字符画。
 
@@ -79,6 +78,6 @@ OK，Nice
 
 打开控制台看看效果：
 
-![img]({{site.url}}images/article/2016-2-19/5.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420150939.png)
 
 控制台还能玩出好多花样，除了我们这里介绍的字符画，还可以显示图片，可以是字符画动画，还能打游戏，比如贪吃蛇啊，2048啊，下次，我们接着聊~😄
