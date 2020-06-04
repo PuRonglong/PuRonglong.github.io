@@ -1,0 +1,79 @@
+---
+layout: post
+title: 谁说我结不了婚
+description: "谁说我结不了婚"
+tags: [生活]
+comments: true
+share: true
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604110617.png
+---
+
+<!-- more -->
+
+呃，这部剧的名字取的有点，羞耻。反正，剧名取的不咋的。
+
+刷微博的时候刷到剧里的片段“眼神开车”所以开始看这部剧。
+
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604110911.png)
+
+故事的主角是三个闺蜜，讲述了她们三人的都市感情生活。作为一部都市情感剧，它的三个女主的背景都是大龄剩女，整部剧也是围绕大龄剩女的主题展开。
+
+故事的亮点我觉得在于，1，虽然剧名憨憨的，但剧中金句频出，2，大龄剩女话题本身的争议性。缺点认为是，三个人的条件都挺优秀，会觉得在现实生活中，大部分这样的条件都是脱单了的，所以剧里的人物只能代表一小部分群体。大龄剩女本身就是小部分群体，优秀的大龄剩女又是这部分小群体中的小群体。所以在某些时候的认同感不强。
+
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604111419.png)
+
+先讲讲故事简介吧。
+
+34岁的女编剧程璐（童瑶 饰）一直坚信，自己单身多年的原因不是结不了婚，只是不想结而已。无独有偶，她的闺蜜女律师田蕾（陈数 饰）、美容院老板娘丁诗雅（许芳铱 饰）同样单身，工作、生活条件优渥的三人对年龄增长所带来的婚恋压力嗤之以鼻。然而当程璐遇到社会心理学教授魏书（潘粤明 饰）后，情况悄然发生改变。背景各异的男人们出现在这三位女性面前，不同观念激烈碰撞，到底谁可以打动谁？应该怎样收获属于自己的幸福？一场关于爱情与婚姻的探索就此展开……
+
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604111533.png)
+
+再说说这个魏书啊，作为一个大学教授，还单身，现实中可能性太小了吧。如果现实中有，更多的可能性是保持单身方便撩女大学生吧。
+
+还有这个周晨宇，富二代，他给丁诗雅关于和物业打交道的经验是，我重新换了套房子。你听听，这是人话吗？现实中这样的人离我们太遥远。
+
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604114827.png)
+
+来看看剧里的金句吧。
+
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604112455.png)
+
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604112742.png)
+
+我觉得意义在于：谁不想，一份快乐变成双倍快乐，一份悲伤化为半份悲伤呢？其实谁都想，但大部分人的问题是，能找到吗？大家普遍的问题在于，你喜欢的不喜欢你，喜欢你的你不喜欢。
+
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604113628.png)
+
+作为一个男生，根据我接触的情况来看，我赞同。
+
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604114000.png)
+
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604155335.png)
+
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604160038.png)
+
+另外，程璐作为魏书的研究对象，填写的择偶标准排序，供参考：
+
+第一性格，当然是性格最重要了。结婚不就是，我为对方考虑吗？可是我为对方考虑，其实是违背人性的，像我们这一代，谁都是父母宠着养大的，谁还不是个宝宝呢。所以结婚首先要看性格；
+
+第二职业，因为有稳定的收入，才有更多，生活方式的选择权；
+
+第三外貌，虽然长得帅不能当饭吃，但是长得太丑了，也让人吃不下饭吧；
+
+第四学历，因为有相同的教育背景，才有共同的聊天话题啊；
+
+第五家庭背景；
+
+第六年龄，大我十岁我都能接受；
+
+其他的星座，属相，血型，身高，我都不在乎；
+
+当然了，每个人有自己的择偶标准排序，而且，即使一个人在自己不同年龄段，择偶标准排序也有变化。
+
+此外，有人要问了，大龄剩男的问题就没有人管了吗？
+
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604172705.png)
+
+这倒不是不管，而是只要不是一无是处的男生，总能脱单的。因为本身男生的向下兼容性强一些，，比如一个6分男，找不到6分女，可以找1，2，3，4，5分女，而6分女，一般找7，8分男，9，10分的不在我们圈子里不讨论。可选择项多一些，相较之下更容易脱单。
+
+<iframe src="//player.bilibili.com/player.html?aid=75418007&bvid=BV1JE411e7qS&cid=129008315&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="100%" height="500"></iframe>
