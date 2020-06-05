@@ -28,7 +28,7 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604110617.
 
 ![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604111533.png)
 
-再说说这个魏书啊，作为一个大学教授，还单身，现实中可能性太小了吧。如果现实中有，更多的可能性是保持单身方便撩女大学生吧。
+再说说这个魏书啊，单身的大学教授，现实中太少碰到了。
 
 还有这个周晨宇，富二代，他给丁诗雅关于和物业打交道的经验是，我重新换了套房子。你听听，这是人话吗？现实中这样的人离我们太遥远。
 
@@ -74,6 +74,10 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604110617.
 
 ![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604172705.png)
 
-这倒不是不管，而是只要不是一无是处的男生，总能脱单的。因为本身男生的向下兼容性强一些，，比如一个6分男，找不到6分女，可以找1，2，3，4，5分女，而6分女，一般找7，8分男，9，10分的不在我们圈子里不讨论。可选择项多一些，相较之下更容易脱单。
+这倒不是不管，而是大龄剩男较少，只要不是一无是处的男生，总能脱单的（农村剩男市另外一个问题）。因为本身男生的向下兼容性强一些，比如一个6分男，找不到6分女，可以依次降低标准找5，4，3，2，1分女，而6分女，一般找7，8分男，9，10分的不在我们圈子里不讨论。因为可选择项多一些，相较之下更容易脱单。不过话说回来，如果仅仅脱单并不难，难的是，找到合适的。
+
+时间真是一件很神奇的东西，15岁的一天和25岁的一天，长度是不同的。我今年27岁，我发现，经常难以相信，自己的人生已经过了快30年了。
+
+所以，男孩子要加油啦，不说了，复习考证去了。
 
 <iframe src="//player.bilibili.com/player.html?aid=75418007&bvid=BV1JE411e7qS&cid=129008315&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="100%" height="500"></iframe>
