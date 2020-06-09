@@ -48,7 +48,24 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604110617.
 
 ![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604114000.png)
 
+```
+那你还记得重庆森林里
+有一句台词吗
+每天你都有机会
+和很多人擦身而过
+有些人可能会成为
+你的朋友或知己
+所以我从来没有放弃过
+与人摩擦的机会
+就算是碰得头破血流
+管他呢 开心就好
+```
+
 ![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604155335.png)
+
+```
+不得不承认，最后起到关键作用的，不一定是能力，可这样的不公平，是我们每一个人都在承受的。我希望你努力去追的，是在这个制度里，守住宝贵的自己。不要被别人同化，去让别人感受到不公平。
+```
 
 ![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604160038.png)
 
