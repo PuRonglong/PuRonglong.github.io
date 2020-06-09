@@ -36,6 +36,27 @@
 
     <article class="markdown-body">
       {{ page.content }}
+
+      {% if page.comments %}
+      <!-- 来必力City版安装代码 -->
+      <div id="lv-container" data-id="city" data-uid="MTAyMC81MDQzNy8yNjkyNA==">
+        <script type="text/javascript">
+        (function(d, s) {
+            var j, e = d.getElementsByTagName(s)[0];
+
+            if (typeof LivereTower === 'function') { return; }
+
+            j = d.createElement(s);
+            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+            j.async = true;
+
+            e.parentNode.insertBefore(j, e);
+        })(document, 'script');
+        </script>
+        <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+      </div>
+      <!-- City版安装代码已完成 -->
+      {% endif %}
     </article>
 
     <!-- {% if site.social-share %}
@@ -43,6 +64,8 @@
       <div class="social-share"></div>
     </div>
     {% endif %} -->
+
+
   </div>
 
   <section class="author-detail">
@@ -99,68 +122,8 @@
       <div id="disqus_thread"></div>
     </section>
   </section>
-  <!-- <section style="text-align: center;margin-bottom: 10px;">
-    {% if site.comments.disqus %}
-    <a href="#" onclick="disqus();return false;">评论功能需要科学上网，点击加载</a>
-    {% endif %}
-  </section> -->
 
   {% include footer.html %}
-
-  <script src="https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/js/social-share.min.js"></script>
-  <script>
-    socialShare('.social-share', {
-      sites: [
-        {% for i in site.social-share-items %}
-          '{{ i }}'
-          {% if forloop.last == false %},
-          {% endif %}
-        {% endfor %}
-      ],
-      wechatQrcodeTitle: "分享到微信朋友圈",
-      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
-    });
-  </script>
-
-  <script>
-    {% if site.comments.disqus %}
-      {% if page.comments %}
-      var disqus_loaded = false;
-
-// function disqus() {
-//     if (!disqus_loaded) {
-//         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-//         dsq.src = '{{site.comments.disqus_url}}';
-//         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-//     }
-// }
-
-// window.onscroll = function (e) {
-//     if ((window.innerHeight + window.scrollY)
-//         >= document.body.offsetHeight) {
-//         if (!disqus_loaded) disqus();
-//     }
-// };
-    /**
-     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-    /*
-    var disqus_config = function () {
-    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    */
-    // (function() { // DON'T EDIT BELOW THIS LINE
-    //   var d = document,
-    //     s = d.createElement('script');
-    //   s.src = '{{ site.comments.disqus_url }}';
-    //   s.setAttribute('data-timestamp', +new Date());
-
-    //   (d.head || d.body).appendChild(s);
-    // })();
-    {% endif %}
-    {% endif %}
-  </script>
 
   <script src="https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/js/prism.js"></script>
   <script src="https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/js/index.min.js"></script>

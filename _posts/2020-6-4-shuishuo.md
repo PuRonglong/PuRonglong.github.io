@@ -95,6 +95,10 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604110617.
 
 时间真是一件很神奇的东西，15岁的一天和25岁的一天，长度是不同的。我今年27岁，我发现，经常难以相信，自己的人生已经过了快30年了。
 
-所以，男孩子要加油啦，不说了，复习考证去了。
+站在 27 岁的关头看着 30 多岁人的生活，是否自己到了那个时候也会这样：依然看不清未来的路，没有稳定的生活，或者忙于应付夫妻，孩子，工作，三者关系，那个时候，你是否有能力妥善地处理。
 
-<iframe src="//player.bilibili.com/player.html?aid=75418007&bvid=BV1JE411e7qS&cid=129008315&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="100%" height="500"></iframe>
+我们从小到大都会接触到很多人，会见证很多对恋人，目睹很多段婚姻，从中对你的感情有什么帮助。
+
+所以，男孩子加油啦，不说了，复习考证去了。
+
+<iframe src="//player.bilibili.com/player.html?aid=243451274&bvid=BV1Kv41167rD&cid=197742753&page=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="100%" height="500"></iframe>
