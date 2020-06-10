@@ -38,6 +38,15 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604110617.
 
 ![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604112455.png)
 
+```
+两个人在一起激情过后
+就是一日三餐 柴米油盐
+如果不是相爱的人
+真的很难很难
+去过这样的
+繁复的 平淡的生活
+```
+
 ![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604112742.png)
 
 我觉得意义在于：谁不想，一份快乐变成双倍快乐，一份悲伤化为半份悲伤呢？其实谁都想，但大部分人的问题是，能找到吗？大家普遍的问题在于，你喜欢的不喜欢你，喜欢你的你不喜欢。
