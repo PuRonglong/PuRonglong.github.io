@@ -80,6 +80,49 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604110617.
 
 ![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604160038.png)
 
+
+```
+其实这段时间
+我又重新思考了一下
+婚姻还是有很多其它意义
+你看
+现在我妈生活在国外
+我身边的朋友
+又各忙各的
+遇到这种事
+你说如果身边
+能有一个人
+为你放下一切
+不顾一切地陪在你身边
+那我想
+以后的生活
+就应该没什么
+害怕的了吧
+
+
+是啊
+有些人庸庸碌碌一辈子
+也找不到一个这样的人
+有些人好不容易找到了
+但却抓不住
+人活一世
+父母会逝去
+子女会离开
+真正能陪你走到最后的
+就是这么一个人
+
+
+所以
+我期待的那个人
+一定见过我
+最糟糕的一面
+是我的边界
+也见过我最好的一面
+是我最真实的观众
+```
+
+在36集还是37集，丁诗雅和周晨宇在雨中吵架那一段太真实了。
+
 另外，程璐作为魏书的研究对象，填写的择偶标准排序，供参考：
 
 第一性格，当然是性格最重要了。结婚不就是，我为对方考虑吗？可是我为对方考虑，其实是违背人性的，像我们这一代，谁都是父母宠着养大的，谁还不是个宝宝呢。所以结婚首先要看性格；
@@ -110,6 +153,6 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200604110617.
 
 我们从小到大都会接触到很多人，会见证很多对恋人，目睹很多段婚姻，从中对你的感情有什么帮助。
 
-所以，男孩子加油啦，不说了，复习考证去了。
+所以，要加油啦，不说了，复习考证去了。
 
 <iframe src="//player.bilibili.com/player.html?aid=243451274&bvid=BV1Kv41167rD&cid=197742753&page=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="100%" height="500"></iframe>
