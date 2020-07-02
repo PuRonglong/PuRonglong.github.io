@@ -4,8 +4,6 @@
  */
 /*** Parameters ***/
 /*** Mixins ***/
-/** Font **/
-
 /*** Base ***/
 html, body {
   height: 100%; }
@@ -110,7 +108,7 @@ a {
         .g-header .g-nav > ul > li > a:hover {
           opacity: 1; }
   .g-header .nav-default a:hover {
-    color: #1494FB !important; }
+    color: #595d61 !important; }
   .g-header .nav-pink a:hover {
     color: #FC6794 !important; }
 
@@ -169,7 +167,7 @@ a {
   background: linear-gradient(100deg, #FFCE69, #FA709A); }
 
 .themeColor-default {
-  background-color: #1494FB; }
+  background-color: #595d61; }
 
 .themeColor-pink {
   background-color: #FC6794; }
@@ -559,7 +557,7 @@ a {
     z-index: -2; }
 
 .bgcolor-default {
-  background-color: #1494FB; }
+  background-color: #595d61; }
 
 .bgcolor-pink {
   background-color: #FC6794; }

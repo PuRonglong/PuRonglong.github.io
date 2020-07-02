@@ -37,7 +37,7 @@ $(document).ready(function(){
                     header.addClass('headerUp');
                 }
                 header.css({
-                    'background-color': 'rgba(255, 255, 255, .98)',
+                    'background-color': 'rgba(255, 255, 255, .8)',
                     'box-shadow': '0 1px 12px rgba(0, 0, 0, .08)'
                 });
                 logo.css({
