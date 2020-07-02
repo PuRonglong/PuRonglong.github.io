@@ -39,19 +39,19 @@ CSS代码：
 
 在chrome下的效果：
 
-![img]({{site.url}}images/article/2014-12-19/1.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200702091129.png)
 
 我的chrome版本号：
 
-![img]({{site.url}}images/article/2014-12-19/2.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200702091214.png)
 
 在火狐下的效果：
 
-![img]({{site.url}}images/article/2014-12-19/3.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200702091214.png)
 
 我的火狐版本号：
 
-![img]({{site.url}}images/article/2014-12-19/4.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200702091239.png)
 
 查到的资料还说opera不支持`text-overflow`，针对Opera的话得使用`-o-text-overflow:ellipsis;`欧朋浏览器还没有装所以无法实践，但通过网上查找已经找到答案，有博主说自己新版的欧朋已经支持这个属性了，看博客时间是2012年，看来也是早就支持了的。
 
@@ -82,7 +82,7 @@ CSS代码：
 
 这样能有省略号的效果，但会有小小的**问题**，我们一起来看下效果：
 
-![img]({{site.url}}images/article/2014-12-19/5.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200702091251.png)
 
 在chrome下和火狐下都是这样的效果，可见这样的方法并不完美。
 
