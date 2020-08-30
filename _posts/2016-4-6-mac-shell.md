@@ -2,7 +2,7 @@
 layout: post
 title: 如何让终端优雅地装X
 description: "如何让终端优雅地装X"
-tags: [技术]
+tags: [技术, 生活]
 comments: true
 share: true
 cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420154006.png
@@ -331,7 +331,7 @@ x     default foreground or background (透明)
 
 通过以上种种，最后终于用上干净整洁功能更完善的命令行了。
 
-看看新效果：
+看看我的新效果，哇哦~
 
 ![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420154006.png)
 
