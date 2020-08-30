@@ -10,7 +10,7 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420174240.
 
 >3月底，GitHub遭受了有史以来最为严重的DDoS攻击
 
-![img](http://7vznhl.com1.z0.glb.clouddn.com/2015-4-12-GitHub-DDoS.PNG)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2020-08-30-062340.png)
 
 GitHub官方微博的声明。
 
@@ -50,7 +50,7 @@ Call到你手机没电：这被称为系统资源消耗攻击
 
 在现实中的攻击一般是这样，如图，
 
-![img](http://7vznhl.com1.z0.glb.clouddn.com/2015-4-12-DDoS.PNG)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2020-08-30-070055.jpg)
 
 攻击者通过一个服务器节点，下发命令到所有的客户机上，然后来攻击这一个网站使其瘫痪，这就是一个最常见的DDoS案例，著名的攻击者有如：ANONYMOUS(匿名者)组织
 
@@ -72,7 +72,7 @@ Lyft是 Uber 的竞争对手。去在2014年某段时间 Lyft的司机收到很�
 
 例子5：
 
-![img](http://7vznhl.com1.z0.glb.clouddn.com/2015-4-12-freebuf.png)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2020-08-30-070225.jpg)
 
 这个段子很形象
 
