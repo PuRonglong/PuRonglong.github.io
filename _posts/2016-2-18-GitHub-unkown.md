@@ -2,7 +2,7 @@
 layout: post
 title: Github上都有哪些有用但不为大家熟知的小功能？
 description: "记我的一次知乎回答"
-tags: [技术]
+tags: [技术, 生活]
 comments: true
 share: true
 cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420115014.png
