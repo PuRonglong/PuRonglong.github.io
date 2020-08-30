@@ -2,7 +2,7 @@
 layout: post
 title: 从GitHub遭受攻击看DDoS
 description: "Git"
-tags: [技术]
+tags: [技术, 生活]
 comments: true
 share: true
 cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420174240.png
