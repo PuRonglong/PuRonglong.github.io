@@ -21,7 +21,7 @@ header-img: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2020070209
 <main class="g-container home-content">
     <div class="article-list">
         {% for post in paginator.posts %}
-            <article class="article-item">
+            <article class="article-item heti">
                 {% if post.cover %}
                 <div class="post-cover">
                     <a class="post-link" href="{{ post.url | prepend: site.baseurl }}" title="{{ post.title }}"></a>
