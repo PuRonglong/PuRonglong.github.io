@@ -450,7 +450,7 @@ li p:nth-child(2) {
 }
 
 .markdown-body blockquote {
-  padding: 0 1em;
+  padding: 8px 1em;
   color: #6a737d;
   border-left: 0.25em solid #dfe2e5;
 }
