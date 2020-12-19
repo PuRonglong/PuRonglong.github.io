@@ -150,5 +150,16 @@ class CursorSpecialEffects {
   }
 }
 
+// 鼠标点击爆炸效果
 const cursorSpecialEffects = new CursorSpecialEffects()
 cursorSpecialEffects.init()
+
+// 览器切换标签离开当前页面时改变title提示
+document.addEventListener('visibilitychange', function() {
+  if (document.visibilityState == 'hidden') {
+    normal_title = document.title;
+    document.title = '呀！奔溃了~快回来看看';
+  } else {
+    document.title = normal_title;
+  }
+});

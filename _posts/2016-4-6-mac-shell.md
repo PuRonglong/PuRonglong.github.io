@@ -46,7 +46,7 @@ oh-my-zsh:
 
 这里我装了几次都不行，连接有问题，进度一直是0%，愁死了，然后官网里给的另外一个方法需要使用wget，结果mac系统又没有自带wget命令，有需要先安装了wget，找了以下发现安装wget好麻烦，需要先下载wget，然后在命令行里进行解压，安装，看起来好麻烦我也就没有用wget安装oh-my-zsh了，还是试了多次第一种安装方法，终于有一次不知道怎么就连接上了，然后就装上了。PS：这里其实蠢了以下，后来才知道wget可以不用手动安装这么麻烦，我们有homebrew啊，执行：
 
-```
+```text
     brew install wget
 ```
 
@@ -70,13 +70,13 @@ oh-my-zsh:
 
 启动iTerm 2 默认使用dash改用zsh解决方法：
 
-```
+```text
     chsh -s /bin/zsh
 ```
 
 以为这样就切换为zsh了，结果我还是天真了，知道看到好几次dash提示才知道我这还是dash，原来还要输入
 
-```
+```text
     zsh
 ```
 
@@ -86,13 +86,13 @@ oh-my-zsh:
 
 安装Powerline：
 
-```
+```text
     pip install powerline-status
 ```
 
 如果没有，则先执行安装pip指令
 
-```
+```text
     sudo easy_install pip
 ```
 
@@ -102,19 +102,19 @@ oh-my-zsh:
 
 下载安装字体库：
 
-```
+```text
     git clone https://github.com/powerline/fonts.git ~/powerline-fonts
 ```
 
 上面只是下载了字体，下载下来后需要cd到install.sh文件所在目录，执行安装命令，弄了半天都不知道install.sh在哪里。。。最后终于找到了：
 
-```
+```text
     source ~/powerline-fonts/install.sh
 ```
 
 安装完成后提示所有字体均已下载到```/Users/superdanny/Library/Fonts```路径，如下：
 
-```
+```text
     All Powerline fonts installed to /Users/superdanny/Library/Fonts
 ```
 
@@ -130,7 +130,7 @@ oh-my-zsh:
 
 要先下载：
 
-```
+```text
     $ git clone git://github.com/altercation/solarized.git
 ```
 
@@ -148,7 +148,7 @@ oh-my-zsh:
 
 这里开始的时候还不知道怎么找.zshrc，原来.开头的文件mac都会默认将他们隐藏，这时候又得去查找怎么找到隐藏的文件，在终端输入：
 
-```
+```text
     defaults write com.apple.finder AppleShowAllFiles -bool true//显示
 
     defaults write com.apple.finder AppleShowAllFiles -bool false//隐藏
@@ -156,7 +156,7 @@ oh-my-zsh:
 
 注意执行完显示隐藏后要重启finder才生效。怎么重启finder呢？
 
-```
+```text
     killalll Finder
 ```
 
@@ -174,13 +174,13 @@ oh-my-zsh:
 
 2）执行指令将工程克隆到当前目录
 
-```
+```text
     git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
 ```
 
 3）打开.zshrc文件，在最后添加下面内容
 
-```
+```text
     source XXX/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ```
 
@@ -190,13 +190,13 @@ oh-my-zsh:
 
 4）
 
-```
+```text
     cd ~/.oh-my-zsh/custom/plugins
 ```
 
 5）再次打开.zshrc文件，在最后面添加下面内容
 
-```
+```text
     plugins=(zsh-syntax-highlighting)
 ```
 
@@ -216,7 +216,7 @@ Mac OSX的ls是没有颜色的，需要设置。
 
 2、在.bash_profile里添加下面两个语句：
 
-```
+```text
     export CLICOLOR=1
 
     export LSCOLORS=1212121212121212121212
@@ -294,7 +294,7 @@ x     default foreground or background (透明)
 
 最后，我用的颜色设置为：
 
-```
+```text
     export LSCOLORS=exfxaxdxcxegedabagacad #指定颜色
 ```
 
@@ -308,7 +308,7 @@ x     default foreground or background (透明)
 
 找到一个以下方法：
 
-```
+```text
     vim .profile
     # append
     PS1="\W $ "
@@ -323,7 +323,7 @@ x     default foreground or background (透明)
 
 最后找到这个方法：
 
-```
+```text
     DEFAULT_USER="puronglong"  #增加这一项，可以隐藏掉路径前面那串用户名
 ```
 

@@ -71,7 +71,7 @@ $scope.settingSend_hour = $scope.getHour;
 
 在查资料过程中看到一个点这里也提一下：
 
-```
+```text
 "ng-show" just hide and show the element and the element is still render,
 when using "ng-if" the element would be removed or don't exist in the DOM when false.
 ```

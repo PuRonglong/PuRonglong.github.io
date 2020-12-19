@@ -114,7 +114,7 @@ link中的function就是让我们的数据显示两位的方法，并且查看�
 
 在查找资料的时候看到一个关于ng-model和ng-bind的探讨，有必要提一下：
 
-```
+```text
 What's the difference between ng-model and ng-bind?
 ```
 

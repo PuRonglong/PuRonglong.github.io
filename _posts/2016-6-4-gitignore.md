@@ -18,19 +18,19 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420162013.
 
 正确指令如下：
 
-```
+```text
 git rm --cached _site
 ```
 
 rm是git的一个指令：
 
-```
+```text
 git-rm - Remove files from the working tree and from the index
 ```
 
 --cached是该指令的一个options选项配置：
 
-```
+```text
 --cached
    Use this option to unstage and remove paths only from the index.
    Working tree files, whether modified or not, will be left alone.
