@@ -3,6 +3,7 @@ layout: post
 title: css 中的 inline-bock
 description: "css 中的 inline-bock"
 tags: [技术]
+cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2020-12-19-074215.jpg
 comments: true
 share: true
 ---
@@ -13,19 +14,22 @@ share: true
 
 事情是这样的，想要实现并排的两个div，但是却如下显示：
 
-![image.png](http://upload-images.jianshu.io/upload_images/165092-d768980d4da83da1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2020-12-19-073702.jpg)
 
 经过检查是设置的display:inline-block这个css属性导致的，但是同样的样式，改变以上文字数量就可以并列显示呢？如下：
 
-![image.png](http://upload-images.jianshu.io/upload_images/165092-bcd8fc8f4ea5c136.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2020-12-19-073745.jpg)
 
 先来看看display:inline-block属性的定义：
 
-![image.png](http://upload-images.jianshu.io/upload_images/165092-3d16a6c7b6ad266f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2020-12-19-073811.jpg)
 
 实际上是定义了一个行内块元素，行内元素有个vertical-align属性：
 
-![image.png](http://upload-images.jianshu.io/upload_images/165092-0a1b34c1518eec01.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+```css
+The vertical-align CSS property specifies the vertical alignment 
+of an inline or table-cell box. -- MDN
+```
 
 该属性定义行内元素的基线相对于该元素所在行的基线的垂直对齐方式。如果没有给该属性赋值会使用默认值baseline，也就是基线。
 
@@ -35,11 +39,11 @@ share: true
 
 以上得知，如果两个div里是空的，这两个div应该也能正常对齐：
 
-![image.png](http://upload-images.jianshu.io/upload_images/165092-34465cd5e13fed1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2020-12-19-074118.jpg)
 
 或者给overflow设置一个值也是可以的：
 
-![image.png](http://upload-images.jianshu.io/upload_images/165092-a6d9e58f1fdbb09a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2020-12-19-074136.jpg)
 
 而且我们回头看第一张图，第一个div的第二行字和第二个div的第一行字的确是在同一个基准线上的。如果第一个div有三行，那后面的就会以第三行为基准对齐。
 
@@ -49,10 +53,10 @@ share: true
 
 为什么代码里的换行会在浏览器里显示成有间隙呢？这个间隙实际是字符问题，我们可以通过改变父级font-size值的大小间隙随之改变可以看出，那么去掉字符大小应该就没有间隙了，所以可以对父级div使用font-size:0px效果如图：
 
-![image.png](http://upload-images.jianshu.io/upload_images/165092-0f7e0917709cd610.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2020-12-19-074157.jpg)
 
 最后附上一张基线图：
 
-![image.png](http://upload-images.jianshu.io/upload_images/165092-1d8e4037623e9b30.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2020-12-19-074215.jpg)
 
 以上。
