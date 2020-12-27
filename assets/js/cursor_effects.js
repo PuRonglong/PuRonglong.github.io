@@ -158,7 +158,7 @@ cursorSpecialEffects.init()
 document.addEventListener('visibilitychange', function() {
   if (document.visibilityState == 'hidden') {
     normal_title = document.title;
-    document.title = '呀！奔溃了~快回来看看';
+    document.title = '客官别走呀！快回来看看~';
   } else {
     document.title = normal_title;
   }
