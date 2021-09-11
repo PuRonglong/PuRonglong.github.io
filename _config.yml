@@ -19,7 +19,8 @@ footer:
 # Author 配置博主信息
 author: "小 pu"
 nickname: "小 pu"
-bio: "我有一只 7 年的博客<br><br>在这里分享我对世界的看法"
+bio: "我有一只 7 年的博客"
+introduction: "在这里分享我对世界的看法、思考、记录"
 avatar: "https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2019-12-29-13.jpg"
 
 # Search
