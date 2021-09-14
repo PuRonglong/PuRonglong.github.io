@@ -10,13 +10,14 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420115014.
 
 > 有些小功能是从书中看到的，有些是自己结合使用的一些插件，目前共收集了十多个，分享给大家：
 
+<!-- more -->
+
 ---------2015.11.2一更---------
 
 1.
 
 **浩如烟海的库中，如何知道哪些语言有哪些优秀的库，有哪些优秀的开发者，github官方贴心出品**
 
-<!-- more -->
 
 这里[Trending repositories on GitHub today · GitHub](https://github.com/trending)
 
