@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 回首2014，展望2015
-description: ""
-tags: [生活]
+title: 2014 年终总结
+description: "2014 年终总结"
+tags: [生活, 年终]
 comments: true
 share: true
 cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420174725.png
@@ -10,10 +10,13 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420174725.
 
 > 人只是一根芦苇，是自然界最为脆弱的，但他却是一根会思考的芦苇。——帕斯卡
 
-回首过去的2014年，最大的收获，就是确认了自己的方向——前端，过去的日子里，接触到很多新奇的东西，也了解到很多新知识：
-Bootstrap,Fondation,Sass,Less,GruntJS,Yeoman,Bower,Angular,Backbone,seajs,extJS,zepto,kissy,avlon,Git,CoffeeScript等等，正是这些好用的不好用的，好玩的不好玩的，或框架或技术，组成了前端五彩缤纷的世界。
+回首2014，展望2015
 
 <!-- more -->
+
+回首过去的2014年，最大的收获，就是确认了自己的方向——前端，过去的日子里，接触到很多新奇的东西，也了解到很多新知识：
+
+Bootstrap,Fondation,Sass,Less,GruntJS,Yeoman,Bower,Angular,Backbone,seajs,extJS,zepto,kissy,avlon,Git,CoffeeScript等等，正是这些好用的不好用的，好玩的不好玩的，或框架或技术，组成了前端五彩缤纷的世界。
 
 开始学着写博客，开始记录自己，开始了解更大的世界
 
