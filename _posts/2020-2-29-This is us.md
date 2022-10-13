@@ -2,7 +2,7 @@
 layout: post
 title: 《This is us》
 description: "《This is us》"
-tags: [生活, 美剧]
+tags: [生活, 影视]
 comments: true
 share: true
 cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2020-02-29-091345.jpg
