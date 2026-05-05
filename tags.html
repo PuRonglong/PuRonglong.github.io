@@ -23,7 +23,7 @@ layout: default
         
         {% for tag in site.tags %}
         <li>
-            <span class="tag-name" id="{{ tag[0] }}">「{{ tag[0] }}」</span>
+            <span class="tag-name" id="{{ tag[0] }}">「{{ tag[0] }}」（{{ tag | last | size }}篇）</span>
             {% for post in tag[1] %}
             <a class="tag-post" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}
                 <span>----{{post.date | date:"%Y-%m-%d"}}</span>
