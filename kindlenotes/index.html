@@ -16,6 +16,7 @@
         --blue-soft: #e8f2ff;
         --red: #ff3b30;
         --shadow: 0 16px 40px rgba(0, 0, 0, 0.07);
+        --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%236e6e73' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
       }
       * {
         box-sizing: border-box;
@@ -147,12 +148,37 @@
       }
       .book-sort {
         min-width: 0;
-        max-width: 110px;
-        border: 0;
-        background: transparent;
-        color: var(--muted);
-        font-size: 11px;
+        max-width: 130px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background-color: var(--card);
+        color: var(--ink);
+        font-family: inherit;
+        font-size: 13px;
+        padding: 6px 26px 6px 9px;
         outline: none;
+        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: var(--select-arrow);
+        background-repeat: no-repeat;
+        background-position: right 8px center;
+        background-size: 11px 11px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        transition:
+          border-color 0.18s ease,
+          box-shadow 0.18s ease,
+          background-color 0.18s ease;
+      }
+      .book-sort:hover {
+        border-color: #b7b7bc;
+      }
+      .book-sort:focus {
+        border-color: var(--blue);
+        box-shadow: 0 0 0 3px #007aff22;
       }
       .count {
         background: #e9e9ed;
@@ -292,8 +318,7 @@
         color: var(--muted);
         font-size: 15px;
       }
-      .field input,
-      .toolbar select {
+      .field input {
         width: 100%;
         border: 1px solid var(--line);
         border-radius: 10px;
@@ -305,10 +330,55 @@
       .field input {
         padding-left: 34px;
       }
+      .toolbar select {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background-color: var(--card);
+        color: var(--ink);
+        font-family: inherit;
+        font-size: 13px;
+        padding: 9px 30px 9px 11px;
+        outline: none;
+        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: var(--select-arrow);
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 12px 12px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        transition:
+          border-color 0.18s ease,
+          box-shadow 0.18s ease,
+          background-color 0.18s ease;
+      }
+      .toolbar select:hover {
+        border-color: #b7b7bc;
+      }
       .field input:focus,
       .toolbar select:focus {
         border-color: var(--blue);
         box-shadow: 0 0 0 3px #007aff22;
+      }
+      .toolbar select option,
+      .book-sort option {
+        background-color: var(--card);
+        color: var(--ink);
+        padding: 8px 12px;
+      }
+      .toolbar select option:hover,
+      .book-sort option:hover {
+        background-color: #f0f0f3;
+      }
+      .toolbar select option:checked,
+      .book-sort option:checked {
+        background-color: var(--blue-soft);
+        color: var(--blue);
+        font-weight: 600;
       }
       .stats {
         color: var(--muted);
@@ -563,6 +633,51 @@
         border-color: var(--blue);
         color: #fff;
       }
+      .trend-chart {
+        margin-top: 12px;
+      }
+      .trend-chart svg {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .trend-range {
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .tc-grid {
+        stroke: var(--line);
+        stroke-width: 1;
+      }
+      .tc-ylab,
+      .tc-xlab {
+        fill: var(--muted);
+        font-size: 11px;
+      }
+      .tc-ylab {
+        text-anchor: end;
+      }
+      .tc-xlab {
+        text-anchor: middle;
+      }
+      .tc-line {
+        fill: none;
+        stroke: var(--blue);
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .tc-dot {
+        fill: #fff;
+        stroke: var(--blue);
+        stroke-width: 2;
+        transition: r 0.15s ease;
+        cursor: pointer;
+      }
+      .tc-dot:hover {
+        r: 4.6;
+      }
       .heatmap {
         display: grid;
         grid-template-columns: repeat(16, 1fr);
@@ -649,6 +764,26 @@
         flex-wrap: wrap;
         margin-top: 10px;
       }
+      .profile-rhythm {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        margin-top: 14px;
+        padding-top: 14px;
+        border-top: 1px solid #e2ecfb;
+      }
+      .profile-rhythm div {
+        text-align: center;
+      }
+      .profile-rhythm strong {
+        display: block;
+        font-size: 15px;
+        color: var(--ink);
+      }
+      .profile-rhythm span {
+        font-size: 11px;
+        color: #8a8a8e;
+      }
       .radar {
         width: 145px;
         height: 145px;
@@ -686,52 +821,182 @@
       .modal {
         position: fixed;
         inset: 0;
-        background: #0005;
-        display: none;
-        place-items: center;
-        padding: 20px;
-        z-index: 5;
+        background: rgba(0, 0, 0, 0.28);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 25vh 20px 20px;
+        z-index: 50;
+        overflow-y: auto;
+        visibility: hidden;
+        opacity: 0;
+        transition:
+          opacity 0.22s ease,
+          visibility 0.22s ease;
       }
       .modal.show {
-        display: grid;
+        visibility: visible;
+        opacity: 1;
       }
       .dialog {
         width: min(560px, 100%);
-        background: #fff;
+        background: var(--card);
+        border: 1px solid var(--line);
         border-radius: 18px;
         padding: 22px;
         box-shadow: var(--shadow);
+        transform: translateY(12px) scale(0.98);
+        opacity: 0;
+        transition:
+          transform 0.22s ease,
+          opacity 0.22s ease;
+      }
+      .modal.show .dialog {
+        transform: translateY(0) scale(1);
+        opacity: 1;
       }
       .dialog h2 {
         margin: 0 0 16px;
         font-size: 19px;
-      }
-      .dialog textarea {
-        width: 100%;
-        min-height: 150px;
-        border: 1px solid var(--line);
-        border-radius: 10px;
-        padding: 11px;
-        resize: vertical;
-        outline-color: var(--blue);
+        letter-spacing: -0.3px;
       }
       .dialog label {
         display: block;
         font-size: 12px;
         font-weight: 600;
         margin: 13px 0 6px;
+        color: var(--muted);
       }
+      .dialog textarea,
       .dialog input {
         width: 100%;
         border: 1px solid var(--line);
-        border-radius: 9px;
-        padding: 9px;
+        border-radius: 10px;
+        padding: 11px;
+        font: inherit;
+        color: var(--ink);
+        background: var(--card);
+        outline: none;
+        transition:
+          border-color 0.18s ease,
+          box-shadow 0.18s ease;
+      }
+      .dialog textarea {
+        min-height: 150px;
+        resize: vertical;
+      }
+      .dialog input {
+        padding: 9px 11px;
+      }
+      .dialog textarea:focus,
+      .dialog input:focus {
+        border-color: var(--blue);
+        box-shadow: 0 0 0 3px #007aff22;
       }
       .dialog-actions {
         display: flex;
         justify-content: flex-end;
         gap: 8px;
         margin-top: 17px;
+      }
+      .toast {
+        position: fixed;
+        top: 25vh;
+        left: 50%;
+        transform: translate(-50%, -8px);
+        z-index: 60;
+        max-width: min(90vw, 440px);
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 12px 18px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        color: var(--ink);
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.45;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition:
+          opacity 0.22s ease,
+          transform 0.22s ease,
+          visibility 0.22s ease;
+      }
+      .toast.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(-50%, 0);
+      }
+      .toast .check {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--blue);
+        color: #fff;
+        font-size: 12px;
+        flex: none;
+      }
+      .toast.error {
+        border-color: #ffd0cd;
+      }
+      .toast.error .check {
+        background: #ff3b30;
+      }
+      .export-wrap {
+        position: relative;
+      }
+      .menu {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        min-width: 168px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        padding: 6px;
+        display: none;
+        z-index: 50;
+        animation: menu-in 0.16s ease;
+      }
+      .menu.show {
+        display: block;
+      }
+      @keyframes menu-in {
+        from {
+          opacity: 0;
+          transform: translateY(-6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .menu button {
+        display: block;
+        width: 100%;
+        text-align: left;
+        border: 0;
+        background: transparent;
+        color: var(--ink);
+        font: inherit;
+        font-size: 13px;
+        padding: 9px 11px;
+        border-radius: 9px;
+        cursor: pointer;
+        transition: background 0.16s ease;
+      }
+      .menu button:hover {
+        background: #f0f0f3;
       }
       @media (max-width: 760px) {
         body {
@@ -893,8 +1158,15 @@
               <p id="bookAuthor" class="author"></p>
             </div>
             <div class="actions">
-              <button class="btn" id="copyBtn">复制笔记</button
-              ><button class="btn primary" id="exportBtn">导出 ▾</button>
+              <button class="btn" id="copyBtn">复制笔记</button>
+              <div class="export-wrap">
+                <button class="btn primary" id="exportBtn">导出 ▾</button>
+                <div id="exportMenu" class="menu" role="menu" aria-label="导出格式">
+                  <button data-type="md" data-name="Markdown">Markdown（.md）</button>
+                  <button data-type="csv" data-name="CSV">CSV（.csv）</button>
+                  <button data-type="json" data-name="JSON">JSON（.json）</button>
+                </div>
+              </div>
             </div>
           </header>
           <section class="toolbar">
@@ -902,9 +1174,9 @@
               <span>⌕</span><input id="search" type="search" placeholder="搜索书名、作者或标注内容" />
             </div>
             <select id="sort">
+              <option value="loc" selected>位置排序（阅读顺序）</option>
               <option value="new">最新优先</option>
-              <option value="old">最早优先</option>
-              <option value="loc">位置排序</option></select
+              <option value="old">最早优先</option></select
             ><span id="stats" class="stats"></span>
           </section>
           <section id="noteList" class="note-list" aria-live="polite"></section>
@@ -918,10 +1190,14 @@
           <div id="metricGrid" class="metric-grid"></div>
           <div class="analysis-grid">
             <section class="panel">
-              <h2>年份活跃趋势</h2>
-              <p class="panel-sub">按年份汇总的标注记录</p>
-              <div id="timeBars" class="bars"></div>
-              <div id="barLabels" class="bar-labels"></div>
+              <h2>阅读活跃趋势</h2>
+              <p class="panel-sub">按时间段统计的标注量</p>
+              <div class="heat-switch" id="trendSwitch">
+                <button data-trend="year" class="active">年</button><button data-trend="month">月</button
+                ><button data-trend="week">周</button>
+              </div>
+              <div id="trendChart" class="trend-chart"></div>
+              <div id="trendRange" class="trend-range"></div>
             </section>
             <section class="panel">
               <h2>高亮最多的书籍</h2>
@@ -941,18 +1217,21 @@
               <div id="heatRange" class="heat-range"></div>
             </section>
             <section class="panel">
-              <h2>周中活跃情况</h2>
-              <p class="panel-sub">按星期统计的标注量</p>
-              <div id="weekDays" class="weekday-row"></div>
-            </section>
-          </div>
-          <div class="analysis-grid">
-            <section class="panel">
               <h2>作者榜单</h2>
               <p class="panel-sub">均统计前十位</p>
               <div id="authorRanking" class="ranking"></div>
             </section>
-            <section class="panel">
+          </div>
+          <div class="analysis-grid">
+            <section class="panel" style="grid-column: 1 / -1">
+              <h2>一天中的活跃时段</h2>
+              <p class="panel-sub">按 24 小时统计的标注量，看看你通常在哪个时间段阅读</p>
+              <div id="hourChart" class="trend-chart"></div>
+              <div id="hourRange" class="trend-range"></div>
+            </section>
+          </div>
+          <div class="analysis-grid">
+            <section class="panel" style="grid-column: 1 / -1">
               <h2>年度与活跃概览</h2>
               <p class="panel-sub">阅读节奏一目了然</p>
               <div id="overviewGrid" class="overview-grid"></div>
@@ -975,6 +1254,7 @@
         </div>
       </div>
     </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
     <script>
       const savedNotes = (JSON.parse(localStorage.getItem("kindle-notes-v2") || "[]") || []).filter(
         (n) => !String(n.id || "").startsWith("sample-") && !["n1", "n2", "n3", "n4", "n5"].includes(n.id),
@@ -985,6 +1265,8 @@
       let notes = savedNotes,
         selectedBook = "",
         editingId = null;
+      let trendData = { year: [], month: [], week: [] },
+        trendMode = "year";
       const $ = (s) => document.querySelector(s),
         esc = (s) =>
           String(s ?? "").replace(
@@ -1051,7 +1333,7 @@
         );
         arr.sort((a, b) =>
           sort === "loc"
-            ? a.location - b.location
+            ? a.location - b.location || dateValue(a.date) - dateValue(b.date)
             : sort === "old"
               ? dateValue(a.date) - dateValue(b.date)
               : dateValue(b.date) - dateValue(a.date),
@@ -1087,10 +1369,21 @@
         });
         document.querySelectorAll("[data-tag]").forEach((b) => (b.onclick = () => edit(b.dataset.tag)));
       }
+      function extractTime(s) {
+        const m = String(s || "").match(/(\d{1,2})[:：](\d{1,2})(?::(\d{1,2}))?/);
+        return m ? [+m[1], +m[2], m[3] ? +m[3] : 0] : null;
+      }
+      function hasTime(value) {
+        return extractTime(value) !== null;
+      }
       function dateValue(value) {
-        const cn = String(value || "").match(/(\d{4})年\s*(\d{1,2})月\s*(\d{1,2})日/);
-        if (cn) return new Date(+cn[1], +cn[2] - 1, +cn[3]).getTime();
-        const d = Date.parse(value);
+        const s = String(value || "");
+        const cn = s.match(/(\d{4})年\s*(\d{1,2})月\s*(\d{1,2})日/);
+        if (cn) {
+          const tm = extractTime(s);
+          return new Date(+cn[1], +cn[2] - 1, +cn[3], tm ? tm[0] : 0, tm ? tm[1] : 0, tm ? tm[2] : 0).getTime();
+        }
+        const d = Date.parse(s);
         return Number.isNaN(d) ? 0 : d;
       }
       function monthKey(value) {
@@ -1205,6 +1498,28 @@
           genres = tally(notes, (n) => genreOf(n.book)).slice(0, 10),
           week = Array.from({ length: 7 }, (_, i) => 0);
         dated.forEach((n) => week[new Date(dateValue(n.date)).getDay()]++);
+        const hourArr = Array(24).fill(0);
+        let datedWithTime = 0;
+        dated.forEach((n) => {
+          if (hasTime(n.date)) {
+            const h = new Date(dateValue(n.date)).getHours();
+            if (!Number.isNaN(h)) {
+              hourArr[h]++;
+              datedWithTime++;
+            }
+          }
+        });
+        const topHour = hourArr.indexOf(Math.max(...hourArr, 0));
+        const timeTag =
+          datedWithTime === 0
+            ? "时间未记录"
+            : topHour < 6
+              ? "深夜阅读者"
+              : topHour < 12
+                ? "晨间阅读者"
+                : topHour < 18
+                  ? "午后阅读者"
+                  : "夜晚阅读者";
         const bestWeek = week.indexOf(Math.max(...week)),
           weekNames = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
           topMonth = months[0]?.name || "—",
@@ -1220,15 +1535,6 @@
               `<div class="metric"><div class="metric-label">${x[0]}</div><div class="metric-value">${x[1]}</div><div class="metric-hint">${x[2]}</div></div>`,
           )
           .join("");
-        const maxYear = Math.max(...years.map((x) => x.count), 1);
-        $("#timeBars").innerHTML =
-          years
-            .map(
-              (x) =>
-                `<div class="bar-wrap"><div class="bar" style="height:${Math.max(5, (x.count / maxYear) * 100)}%" data-count="${x.count}"></div></div>`,
-            )
-            .join("") || '<span class="panel-sub">暂未识别可用的标注日期</span>';
-        $("#barLabels").innerHTML = years.map((x) => `<span>${x.name}</span>`).join("");
         $("#bookRanking").innerHTML = rankHTML(topBooks);
         $("#authorRanking").innerHTML =
           '<h2 style="margin:0 0 11px">看的最多的作者</h2>' +
@@ -1236,13 +1542,16 @@
           '<h2 style="margin:18px 0 11px">标注笔记最多的作者</h2>' +
           rankHTML(noteAuthors);
         $("#genreRanking").innerHTML = rankHTML(genres);
-        const maxWeek = Math.max(...week, 1);
-        $("#weekDays").innerHTML = week
-          .map(
-            (x, i) =>
-              `<div class="weekday"><b style="--h:${Math.max(5, (x / maxWeek) * 100)}%"></b><span>${weekNames[i]}<br>${x}</span></div>`,
-          )
-          .join("");
+        trendData.year = years.map((x) => ({ label: x.name, value: x.count }));
+        trendData.month = months
+          .slice()
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .map((x) => ({ label: x.name, value: x.count }));
+        trendData.week = week.map((v, i) => ({ label: weekNames[i], value: v }));
+        trendData.hour = hourArr.map((v, i) => ({ label: String(i).padStart(2, "0"), value: v }));
+        document.querySelectorAll("#trendSwitch button").forEach((x) => x.classList.toggle("active", x.dataset.trend === trendMode));
+        renderTrend(trendMode);
+        renderTrend("hour", $("#hourChart"), $("#hourRange"));
         $("#overviewGrid").innerHTML = [
           ["最长看书月份", topMonth],
           ["最活跃年份", topYear],
@@ -1256,14 +1565,19 @@
         renderHeat(document.querySelector("[data-heat].active")?.dataset.heat || "day");
         const density = notes.length / Math.max(uniqueBooks, 1),
           profile = uniqueBooks >= 30 ? "跨领域思考者" : density >= 12 ? "深度研读者" : "持续积累者",
+          timeHint =
+            datedWithTime === 0
+              ? ""
+              : ` 你常在 ${timeTag.replace("阅读者", "")} 时段沉浸阅读（高峰约 ${String(topHour).padStart(2, "0")}:00）。`,
           desc =
-            profile === "跨领域思考者"
+            (profile === "跨领域思考者"
               ? "你的输入范围广，且会把高亮沉淀成跨主题的知识网络。"
               : profile === "深度研读者"
                 ? "你能在一本书里连续深挖，形成高密度的个人理解。"
-                : "你以稳定的记录习惯，将阅读转化为可回看的知识资产。",
+                : "你以稳定的记录习惯，将阅读转化为可回看的知识资产。") + timeHint,
           tags = [
             profile,
+            timeTag,
             genres[0]?.name || "综合阅读",
             noteAuthors[0]?.name || "多元作者",
             weekNames[bestWeek] + "阅读",
@@ -1291,12 +1605,109 @@
               .slice(0, 6),
           ];
         $("#readerProfile").innerHTML =
-          `<svg class="radar" viewBox="0 0 144 144" role="img" aria-label="阅读能力雷达"><polygon points="72,20 121,56 102,114 42,114 23,56" fill="#e9f4ff" stroke="#8cc7ff"/><polygon points="${pts}" fill="#007aff55" stroke="#007aff" stroke-width="2"/><text x="72" y="12" text-anchor="middle" font-size="9" fill="#6e6e73">广度</text><text x="134" y="57" text-anchor="middle" font-size="9" fill="#6e6e73">深度</text><text x="111" y="132" text-anchor="middle" font-size="9" fill="#6e6e73">持续</text><text x="32" y="132" text-anchor="middle" font-size="9" fill="#6e6e73">多样</text><text x="10" y="57" text-anchor="middle" font-size="9" fill="#6e6e73">标注</text></svg><div><h2>读者画像 · ${profile}</h2><p>${desc}</p><div class="profile-tags">${tags.map((t, i) => `<span class="tag ${i === 0 ? "blue" : ""}">${esc(t)}</span>`).join("")}</div><div class="cloud">${words
+          `<svg class="radar" viewBox="0 0 144 144" role="img" aria-label="阅读能力雷达"><polygon points="72,20 121,56 102,114 42,114 23,56" fill="#e9f4ff" stroke="#8cc7ff"/><polygon points="${pts}" fill="#007aff55" stroke="#007aff" stroke-width="2"/><text x="72" y="12" text-anchor="middle" font-size="9" fill="#6e6e73">广度</text><text x="134" y="57" text-anchor="middle" font-size="9" fill="#6e6e73">深度</text><text x="111" y="132" text-anchor="middle" font-size="9" fill="#6e6e73">持续</text><text x="32" y="132" text-anchor="middle" font-size="9" fill="#6e6e73">多样</text><text x="10" y="57" text-anchor="middle" font-size="9" fill="#6e6e73">标注</text></svg><div><h2>读者画像 · ${profile}</h2><p>${desc}</p><div class="profile-tags">${tags.map((t, i) => `<span class="tag ${i === 0 ? "blue" : ""}">${esc(t)}</span>`).join("")}</div><div class="profile-rhythm"><div><strong>${datedWithTime ? String(topHour).padStart(2, "0") + ":00" : "—"}</strong><span>高峰时段</span></div><div><strong>${weekNames[bestWeek]}</strong><span>活跃星期</span></div><div><strong>${topMonth}</strong><span>最爱月份</span></div><div><strong>${topYear}</strong><span>最活跃年</span></div></div><div class="cloud">${words
             .slice(0, 9)
             .map((w, i) => `<span class="w${(i % 3) + 1}">${esc(w)}</span>`)
             .join("")}</div></div>`;
         $("#dashboardIntro").textContent =
           `已分析 ${uniqueBooks} 本书、${notes.length} 条标注与 ${activeDays.size} 个活跃日。`;
+      }
+      function smoothPath(pts) {
+        if (pts.length < 2) return "";
+        let d = `M ${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
+        for (let i = 0; i < pts.length - 1; i++) {
+          const p0 = pts[i - 1] || pts[i];
+          const p1 = pts[i];
+          const p2 = pts[i + 1];
+          const p3 = pts[i + 2] || p2;
+          const cp1x = p1[0] + (p2[0] - p0[0]) / 6;
+          const cp1y = p1[1] + (p2[1] - p0[1]) / 6;
+          const cp2x = p2[0] - (p3[0] - p1[0]) / 6;
+          const cp2y = p2[1] - (p3[1] - p1[1]) / 6;
+          d += ` C ${cp1x.toFixed(1)} ${cp1y.toFixed(1)}, ${cp2x.toFixed(1)} ${cp2y.toFixed(1)}, ${p2[0].toFixed(1)} ${p2[1].toFixed(1)}`;
+        }
+        return d;
+      }
+      function renderTrend(mode, wrap, range) {
+        const isTrend = !wrap;
+        if (isTrend) trendMode = mode;
+        const w = wrap || $("#trendChart");
+        const r = range || $("#trendRange");
+        const data = trendData[mode] || [];
+        const unit = { year: "年", month: "个月", week: "天", hour: "时" }[mode];
+        if (data.length < 1 || data.every((d) => d.value === 0)) {
+          w.innerHTML =
+            '<div class="panel-sub" style="padding:34px 0;text-align:center">' +
+            (data.length < 1 ? "暂无足够数据绘制趋势" : "暂无时间数据，无法统计时段分布") +
+            "</div>";
+          if (r) r.textContent = "";
+          return;
+        }
+        const W = 600,
+          H = 220,
+          pl = 38,
+          pr = 14,
+          pt = 16,
+          pb = 30;
+        const maxV = Math.max(...data.map((d) => d.value), 1);
+        const innerW = W - pl - pr,
+          innerH = H - pt - pb;
+        const n = data.length;
+        const xAt = (i) => (n === 1 ? pl + innerW / 2 : pl + (innerW * i) / (n - 1));
+        const yAt = (v) => pt + innerH * (1 - v / maxV);
+        const pts = data.map((d, i) => [xAt(i), yAt(d.value)]);
+        const short = (lab) => (mode === "month" ? lab.split("-")[1] : lab);
+        if (n < 2) {
+          const cx = pts[0][0],
+            cy = pts[0][1];
+          w.innerHTML =
+            `<svg viewBox="0 0 ${W} ${H}" class="tc-svg" role="img" aria-label="阅读活跃趋势">` +
+            `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="4" class="tc-dot"><title>${esc(data[0].label)}：${data[0].value} 条</title></circle>` +
+            `<text x="${cx.toFixed(1)}" y="${H - 10}" class="tc-xlab">${esc(data[0].label)}</text></svg>`;
+          if (r) r.textContent = `时间段：${data[0].label} · 共 1 ${unit}`;
+          return;
+        }
+        const line = smoothPath(pts);
+        const area =
+          line +
+          ` L ${pts[n - 1][0].toFixed(1)},${(pt + innerH).toFixed(1)} L ${pts[0][0].toFixed(1)},${(pt + innerH).toFixed(1)} Z`;
+        const grid = [0, maxV / 2, maxV]
+          .map((v) => {
+            const gy = yAt(v);
+            return `<line x1="${pl}" y1="${gy.toFixed(1)}" x2="${W - pr}" y2="${gy.toFixed(1)}" class="tc-grid"/><text x="${pl - 6}" y="${(gy + 3).toFixed(1)}" class="tc-ylab">${Math.round(v)}</text>`;
+          })
+          .join("");
+        const dots = pts
+          .map(
+            (p, i) =>
+              `<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="3.2" class="tc-dot"><title>${esc(data[i].label)}：${data[i].value} 条</title></circle>`,
+          )
+          .join("");
+        const step = n <= 12 ? 1 : Math.ceil(n / 6);
+        const xlabels = data
+          .map((d, i) =>
+            i % step === 0 || i === n - 1
+              ? `<text x="${pts[i][0].toFixed(1)}" y="${H - 10}" class="tc-xlab">${esc(short(d.label))}</text>`
+              : "",
+          )
+          .join("");
+        w.innerHTML =
+          `<svg viewBox="0 0 ${W} ${H}" class="tc-svg" role="img" aria-label="阅读活跃趋势折线图">` +
+          `<defs><linearGradient id="tcFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#007aff" stop-opacity="0.22"/><stop offset="100%" stop-color="#007aff" stop-opacity="0"/></linearGradient></defs>` +
+          grid +
+          `<path d="${area}" fill="url(#tcFill)" stroke="none"/>` +
+          `<path d="${line}" class="tc-line"/>` +
+          dots +
+          xlabels +
+          `</svg>`;
+        if (r) {
+          if (mode === "hour") {
+            const peak = data.reduce((a, b) => (b.value > a.value ? b : a), data[0]);
+            r.textContent = `活跃时段：约 ${peak.label}:00 最活跃 · 共 ${data.reduce((s, d) => s + d.value, 0)} 条含时间记录`;
+          } else {
+            r.textContent = `时间段：${data[0].label} ～ ${data[n - 1].label} · 共 ${n} ${unit}`;
+          }
+        }
       }
       function setView(view) {
         const dashboard = view === "dashboard";
@@ -1378,21 +1789,39 @@
         a.click();
         URL.revokeObjectURL(a.href);
       }
-      $("#exportBtn").onclick = () => {
-        const type = prompt("请输入导出格式：markdown、csv 或 json", "markdown");
-        if (["markdown", "md"].includes((type || "").toLowerCase())) exportData("md");
-        else if (["csv", "json"].includes((type || "").toLowerCase())) exportData(type.toLowerCase());
+      const exportMenu = $("#exportMenu");
+      $("#exportBtn").onclick = (e) => {
+        e.stopPropagation();
+        exportMenu.classList.toggle("show");
       };
+      exportMenu.querySelectorAll("button").forEach((b) => {
+        b.onclick = () => {
+          exportMenu.classList.remove("show");
+          exportData(b.dataset.type);
+          showToast("已导出 " + b.dataset.name);
+        };
+      });
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".export-wrap")) exportMenu.classList.remove("show");
+      });
+      function showToast(msg, type = "success") {
+        const t = $("#toast");
+        const icon = type === "error" ? "✕" : type === "info" ? "i" : "✓";
+        t.classList.toggle("error", type === "error");
+        t.innerHTML = '<span class="check">' + icon + "</span><span>" + esc(msg) + "</span>";
+        t.classList.add("show");
+        clearTimeout(t._timer);
+        t._timer = setTimeout(() => t.classList.remove("show"), 1800);
+      }
       $("#copyBtn").onclick = async () => {
         const text = current()
           .map((n) => n.text)
           .join("\n\n");
         try {
           await navigator.clipboard.writeText(text);
-          $("#copyBtn").textContent = "已复制";
-          setTimeout(() => ($("#copyBtn").textContent = "复制笔记"), 1300);
+          showToast("复制成功");
         } catch {
-          alert("复制失败，请检查浏览器权限");
+          showToast("复制失败，请检查浏览器权限");
         }
       };
       function extractBookAuthor(head) {
@@ -1422,7 +1851,7 @@
             meta = lines[1] || "";
           if (!/Highlight|标注|Note|笔记/i.test(meta)) continue;
           const { book, author } = extractBookAuthor(head);
-          ((pos = (meta.match(/(?:Location|位置)\s*#?(\d+)/i) || [])[1] || ""),
+          ((pos = (meta.match(/(?:Location|位置)\s*#?(\d[\d,]*)/i) || [])[1] || ""),
             (date = (meta.match(/(?:Added on|添加于)\s*(.+)$/i) || [])[1] || new Date().toLocaleString("zh-CN")),
             (text = lines.slice(2).join("\n").trim()));
           if (text)
@@ -1431,7 +1860,7 @@
               book,
               author,
               text,
-              location: +pos || 0,
+              location: +String(pos).replace(/,/g, "") || 0,
               date,
               tags: [],
             });
@@ -1446,7 +1875,7 @@
         try {
           const added = parseClippings(await f.text());
           if (!added.length) {
-            alert("未识别到标注。请确认文件是 Kindle 的 My Clippings.txt。");
+            showToast("未识别到标注，请确认文件是 Kindle 的 My Clippings.txt", "error");
             return;
           }
           const seen = new Set();
@@ -1458,18 +1887,27 @@
           });
           const dup = added.length - fresh.length;
           notes = fresh;
-          selectedBook = fresh[0]?.book || "";
+          selectedBook = fresh[fresh.length - 1]?.book || fresh[0]?.book || "";
           save();
           setView("notes");
           render();
           $(".main").scrollTo({ top: 0, behavior: "smooth" });
-          alert(`已替换并导入 ${fresh.length} 条标注${dup ? ` · 已跳过文件内 ${dup} 条重复` : ""}（原笔记库已清空）`);
+          showToast(
+            `已导入 ${fresh.length} 条标注，并展示最新书籍` + (dup ? ` · 已跳过文件内 ${dup} 条重复` : ""),
+          );
         } catch (err) {
-          alert("读取文件失败：" + ((err && err.message) || err));
+          showToast("读取文件失败：" + ((err && err.message) || err), "error");
         }
       };
       document.querySelectorAll("[data-view]").forEach((b) => (b.onclick = () => setView(b.dataset.view)));
       document.querySelectorAll("[data-heat]").forEach((b) => (b.onclick = () => renderHeat(b.dataset.heat)));
+      document.querySelectorAll("#trendSwitch button").forEach(
+        (b) =>
+          (b.onclick = () => {
+            document.querySelectorAll("#trendSwitch button").forEach((x) => x.classList.toggle("active", x === b));
+            renderTrend(b.dataset.trend);
+          }),
+      );
       const mainEl = $(".main");
       function syncToTop() {
         const y = mainEl ? mainEl.scrollTop : 0;
@@ -1485,6 +1923,7 @@
           window.scrollTo({ top: 0, behavior: "smooth" });
         };
       syncToTop();
+      if (notes.length && !selectedBook) selectedBook = books()[0]?.book || "";
       render();
     </script>
   </body>
