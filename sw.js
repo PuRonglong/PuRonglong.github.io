@@ -1,0 +1,70 @@
+/* Service Worker - 提升重复访问速度（保守策略） */
+var CACHE = 'puronglong-v1';
+var CORE = [
+  '/',
+  '/index.html',
+  '/assets/vendor/normalize.min.css',
+  '/assets/css/app.min.css',
+  '/assets/css/github-markdown.css',
+  '/assets/js/index.min.js',
+  '/assets/js/cursor_effects.js'
+];
+
+self.addEventListener('install', function (e) {
+  self.skipWaiting();
+  e.waitUntil(caches.open(CACHE).then(function (c) {
+    return c.addAll(CORE.map(function (u) { return new Request(u, { cache: 'reload' }); }));
+  }).catch(function () {}));
+});
+
+self.addEventListener('activate', function (e) {
+  e.waitUntil(caches.keys().then(function (keys) {
+    return Promise.all(keys.map(function (k) {
+      if (k !== CACHE) return caches.delete(k);
+    }));
+  }).then(function () { return self.clients.claim(); }));
+});
+
+self.addEventListener('fetch', function (e) {
+  var req = e.request;
+  if (req.method !== 'GET') return;
+  var url = new URL(req.url);
+
+  // 页面导航：network-first，失败回退缓存
+  if (req.mode === 'navigate') {
+    e.respondWith(fetch(req).catch(function () {
+      return caches.match(req).then(function (r) { return r || caches.match('/index.html'); });
+    }));
+    return;
+  }
+
+  // 同源静态资源：cache-first，后台更新
+  if (url.origin === self.location.origin) {
+    e.respondWith(caches.match(req).then(function (cached) {
+      var network = fetch(req).then(function (res) {
+        if (res && res.status === 200) {
+          var cp = res.clone();
+          caches.open(CACHE).then(function (c) { c.put(req, cp); });
+        }
+        return res;
+      }).catch(function () {
+        return cached || caches.match(req); // 网络失败回退缓存
+      });
+      return cached || network;
+    }));
+    return;
+  }
+
+  // 跨域（OSS 图片等）：仅对图片做 no-cors 缓存，脚本/统计等放行
+  if (req.destination === 'image' || url.hostname.indexOf('aliyuncs.com') > -1) {
+    e.respondWith(caches.open(CACHE).then(function (c) {
+      return c.match(req).then(function (cached) {
+        var net = fetch(req, { mode: 'no-cors' }).then(function (res) {
+          c.put(req, res.clone());
+          return res;
+        }).catch(function () { return cached; });
+        return cached || net;
+      });
+    }));
+  }
+});

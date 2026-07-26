@@ -37,7 +37,7 @@ jekyll new jekyll-blog
 
 首先我引入了bootstrap。
 
-**添加```readmore```按钮功能。**
+**添加`readmore`按钮功能。**
 
 根目录下的index页做如下修改：
 

@@ -3,8 +3,8 @@ Author: Ray-Eldath
 refer to:
  - http://docs.mathjax.org/en/latest/options/index.html
 -->
-{% if site.mathjax %}
-	<script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+{% if page.mathjax or page.content contains '$$' %}
+	<script type="text/javascript" async src="https://cdn.staticfile.org/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML" onerror="this.onerror=null;document.write('<script type=\'text/javascript\' async src=\'https://cdn.jsdelivr.net/npm/mathjax@2.7.2/MathJax.js?config=TeX-MML-AM_CHTML\'><\/script>')"></script>
 	
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({

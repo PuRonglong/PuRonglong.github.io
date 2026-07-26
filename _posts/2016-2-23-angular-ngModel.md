@@ -22,9 +22,7 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420163837.
 
 ```ng-model```比较常见的就是用于input标签的双向数据绑定
 
-demo1:
 
-HTML:
 
 ![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420151521.png)
 

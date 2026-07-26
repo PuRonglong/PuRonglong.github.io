@@ -34,8 +34,7 @@ comments:
   disqus: false
   disqus_url: ""
 
-# MathJax 公式支持 by Ray-Eldath
-mathjax: true
+# MathJax 公式支持（按文章启用：在文章 front matter 加 `mathjax: true`）
 
 # Share
 social-share: false

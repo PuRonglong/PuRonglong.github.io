@@ -9,7 +9,10 @@
     <div class="visible">
       {{ content }}
     </div>
-    <script src="https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/js/prism.js"></script>
-    <script src="https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/js/index.min.js"></script>
+    {% if content contains '<pre' %}
+    <script defer src="{{ '/assets/js/prism.js' | relative_url }}"></script>
+    {% endif %}
+    <script defer src="{{ '/assets/js/index.min.js' | relative_url }}"></script>
+    {% include back-to-top.html %}
 </body>
 </html>

@@ -70,9 +70,9 @@
 
   <section class="author-detail">
     <section class="post-footer-item author-card">
-      <div class="avatar">
-        <img src="{{ site.avatar | absolute_url }}" alt="">
-      </div>
+        <div class="avatar">
+          <img src="{{ site.avatar | absolute_url }}" alt="" loading="lazy" decoding="async">
+        </div>
       <div class="author-name" rel="author">{{ site.author }}</div>
       <div class="bio">
         <p>{{ site.bio }}</p>
@@ -100,7 +100,7 @@
         </section>
         {% if page.next.cover %}
         <div class="filter"></div>
-        <img src="{{ page.next.cover }}" alt="">
+        <img src="{{ page.next.cover }}" alt="" loading="lazy" decoding="async">
         {% endif %}
      </div>
       {% endif %}
@@ -112,10 +112,10 @@
             <span>{{ page.previous.title }}</span>
             <p>{{ page.previous.excerpt | strip_html | strip_newlines | truncate: 60}}</p>
           </section>
-          {% if page.previous.cover %}
-          <div class="filter"></div>
-          <img src="{{ page.previous.cover }}" alt="">
-          {% endif %}
+        {% if page.previous.cover %}
+        <div class="filter"></div>
+        <img src="{{ page.previous.cover }}" alt="" loading="lazy" decoding="async">
+        {% endif %}
       </div>
       {% endif %}
     </section>
@@ -126,8 +126,11 @@
 
   {% include footer.html %}
 
-  <script src="https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/js/prism.js"></script>
-  <script src="https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/js/index.min.js"></script>
+  {% if page.prism or page.content contains '<pre' %}
+  <script defer src="{{ '/assets/js/prism.js' | relative_url }}"></script>
+  {% endif %}
+  <script defer src="{{ '/assets/js/index.min.js' | relative_url }}"></script>
+  {% include back-to-top.html %}
 </body>
 
 </html>
