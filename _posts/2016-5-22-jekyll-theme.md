@@ -43,11 +43,11 @@ jekyll new jekyll-blog
 
 ![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420161122.png)
 
-可以看到主要的一点是if判断我们post的文章是否含```more```的一段信息，若是包含的话，就使用过滤器将我们文章内容split为两部分，并选取第一部分显示为post.content。
+可以看到主要的一点是if判断我们post的文章是否含`more`的一段信息，若是包含的话，就使用过滤器将我们文章内容split为两部分，并选取第一部分显示为post.content。
 
 **添加分页功能**
 
-在添加分页功能之前需要先安装```jekyll-paginate```插件：
+在添加分页功能之前需要先安装`jekyll-paginate`插件：
 
 ```
 	gem install jekyll-paginate
@@ -66,7 +66,7 @@ jekyll new jekyll-blog
 	Deprecation: You appear to have pagination turned on, but you haven't included the `jekyll-paginate` gem. Ensure you have `gems: [jekyll-paginate]` in your configuration file.
 ```
 
-问题在于还要在config里添加一句```gems: [jekyll-paginate]```，表示调用这个插件，只有先调用，然后才是配置。
+问题在于还要在config里添加一句`gems: [jekyll-paginate]`，表示调用这个插件，只有先调用，然后才是配置。
 
 然后是写分页链接代码如下：
 
@@ -205,7 +205,7 @@ function categoryDisplay(){
 			<li>
 ```
 
-如上，循环posts输出li，这个posts就是前面通过assign定义的posts，page变量是页面专属的信息，通过YAML头文件定义的信息都可以在这里被获取到，所以这个page.tag就是post所属的tag，site来自_config.yml文件，表示全站范围的信息+配置，site.tags表示所有该标签下的文章，所以```site.tags[page.tag]```表示该标签的所有文章。
+如上，循环posts输出li，这个posts就是前面通过assign定义的posts，page变量是页面专属的信息，通过YAML头文件定义的信息都可以在这里被获取到，所以这个page.tag就是post所属的tag，site来自_config.yml文件，表示全站范围的信息+配置，site.tags表示所有该标签下的文章，所以`site.tags[page.tag]`表示该标签的所有文章。
 
 通过如下的标签就能链接到每个tag的首页了。
 
@@ -217,7 +217,7 @@ function categoryDisplay(){
 
 这里介绍两种插件安装方式：
 
-1.在根目录下新建```_plugins```文件夹，然后把对应的```*.rb```文件放进去。
+1.在根目录下新建`_plugins`文件夹，然后把对应的`*.rb`文件放进去。
 
 2.在_config.yml文件中新建一个gems关键字，然后把要引用的插件用数组形式存储其中即可。
 
@@ -229,7 +229,7 @@ function categoryDisplay(){
 
 要让代码高亮需要使用到代码高亮插件，插件的原理就是查找特定的节点，然后对其赋予特定的css，也就是“上色”。
 
-以```Pygments```为例：
+以`Pygments`为例：
 
 首先安装：
 
@@ -254,7 +254,7 @@ function categoryDisplay(){
 	overflow-x: auto;
 ```
 
-pre值表明空白会被浏览器保留。其行为方式类似HTML中的<pre>标签。```overflow-x: auto```让x轴过长时滚动显示。
+pre值表明空白会被浏览器保留。其行为方式类似HTML中的<pre>标签。`overflow-x: auto`让x轴过长时滚动显示。
 
 pygments插件对应的md文件中写如下：
 

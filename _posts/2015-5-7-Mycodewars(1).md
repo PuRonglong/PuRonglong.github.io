@@ -11,19 +11,16 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420174406.
 > 这是我的codewars系列，用于收集codewars上遇到的一些题目,先从第8层开始咯~
 
 编程codewars是个很好的东西，现在做的题目虽然简单，还没有涉及到深层次的数据结构和算法等问题，但是对知识点是一个很好的复习和熟悉，类似的网站还有比如fightcode，光是听这个名字就知道了是干什么的啦，通过和两个人的code的一个fight来相互竞争着解决一个问题，看谁更快解决问题，如果把语言看做一把剑的话，它就是用js这把剑去和持有c，java的剑的人去fight咯
-
-![img](http://7vznhl.com1.z0.glb.clouddn.com/2015-5-7-mycodewarscodewars.jpg)
-
 <!-- more -->
-
+![img](http://7vznhl.com1.z0.glb.clouddn.com/2015-5-7-mycodewarscodewars.jpg)
 1.
 Write a function that flattens an Array of Array objects into a flat Array. Your function must only do one level of flattening.
 
 Examples
 
-```flatten([1,2,3]) // => [1,2,3]```
-```flatten([[1,2,3],["a","b","c"],[1,2,3]])  // => [1,2,3,"a","b","c",1,2,3]```
-```flatten([[[1,2,3]]]) // => [[1,2,3]]```
+`flatten([1,2,3]) // => [1,2,3]`
+`flatten([[1,2,3],["a","b","c"],[1,2,3]])  // => [1,2,3,"a","b","c",1,2,3]`
+`flatten([[[1,2,3]]]) // => [[1,2,3]]`
 
 从这道题的例子就可以看出这是一道对数组合并的考察，这就涉及到JS中的关于数组的一些操作如reduce,comcat等，那么让我们来好好捋一捋哒：
 
@@ -120,11 +117,11 @@ Given an integral number of watermelons w (1 ≤ w ≤ 100; 1 ≤ w 
 
 Examples
 
-```divide(2) === false // 2 = 1 + 1```
-```divide(3) === false // 3 = 1 + 2```
-```divide(4) === true  // 4 = 2 + 2```
-```divide(5) === false // 5 = 2 + 3```
-```divide(6) === true  // 6 = 2 + 4```
+`divide(2) === false // 2 = 1 + 1`
+`divide(3) === false // 3 = 1 + 2`
+`divide(4) === true  // 4 = 2 + 2`
+`divide(5) === false // 5 = 2 + 3`
+`divide(6) === true  // 6 = 2 + 4`
 
 刚开始看的时候会被这道题目的长度给吓到，但实际分析不难发现，问题就是求这个西瓜能不能分成两个人手上的都是偶数，而知只有偶数才能分成两个加数都是偶数，显而易见每人分一份这样是不行的，排除掉偶数2，所以问题就转变成了求分成的数是不是偶数并且这个数不能是2
 
@@ -176,8 +173,8 @@ Return the results as an array (or list in Python or Haskell.)
 
 Examples:
 
-```countBy(1,10) === [1,2,3,4,5,6,7,8,9,10]```
-```countBy(2,5) === [2,4,6,8,10]```
+`countBy(1,10) === [1,2,3,4,5,6,7,8,9,10]`
+`countBy(2,5) === [2,4,6,8,10]`
 
 可以得知，题目要求这个函数有两个参数，第一个参数是起始值，后面的值是个数，然后输出是要求每个数都是前一个数加上一个起始值，便想到了用一个循环执行这样一个相加的过程，然后返回一个数组
 

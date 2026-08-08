@@ -10,17 +10,18 @@
 - **文章分页**：基于 `jekyll-paginate`，每页 15 篇，分页路径 `page:num`（如 `/page2`）。
 - **代码高亮**：Rouge 语法高亮；代码块相关样式/脚本按正文是否含 `<pre>` **按需加载**。
 - **数学公式**：MathJax 按需加载（文章 front matter 设 `mathjax: true`，或正文含 `$$` 自动启用）。
-- **站内搜索**：基于 `search.json` 的客户端全文检索（配置 `search: true`）。
-- **夜间模式**：右上角一键切换，状态记录在 `body.night-mode`。
+- **站内搜索**：基于 `search.json` 的客户端全文检索（标题 + 标签 + 摘要匹配，配置 `search: true`）。
+- **夜间模式**：右下角一键切换（localStorage 记忆），状态记录在 `body.night-mode`；未手动设置时按 `nightMode` 配置自动（23 点至 6 点）。
 - **回到顶部**：右下角悬浮按钮，滚动超过 400px 出现，点击平滑滚动至顶部（原生 JS，无第三方依赖）。
 - **标签 / 标签云**：侧栏推荐标签 + 独立 `/tags.html` 页面。
 - **社交链接**：微博、Instagram、豆瓣（见 `_config.yml` 的 `sns`）。
 - **PWA 离线缓存**：`sw.js` 对静态资源缓存优先、页面网络优先，支持离线访问。
 - **性能优化（相对原版 H2O 的改动）**：
-  - jQuery 升级至 **3.7.1**，改为 **CDN 加载**（国内源优先 + 失败回退）；
-  - 移除 **Font Awesome**，改用内联 SVG 图标（`currentColor` 跟随主题色）；
+  - 移除 **jQuery**，交互脚本（导航/搜索/分页/夜间模式/版权保护）全部改为**原生 JS** 重写，零第三方依赖，消除首屏渲染阻塞；
+  - 第三方库 CDN 统一为**国内双源**（staticfile → bootcdn 两级回退），不使用 jsdelivr 等国外源；
+  - 移除 Font Awesome，改用内联 SVG 图标（`currentColor` 跟随主题色）；
   - 移除第三方访客统计（不蒜子 / busuanzi），不再加载外部统计脚本；
-  - CSS 合并压缩为单一 `bundle.min.css`（原 `app.min.css` / `github-markdown.css` / `prism.css` 合并，并剥离 `github-markdown.css` 内嵌的 octicons base64 字体）；
+  - CSS 合并压缩为单一 `bundle.min.css`（normalize + `github-markdown.css` + `app.min.css` 合并，并剥离 `github-markdown.css` 内嵌的 octicons base64 字体；`prism.css` 仍独立、按正文是否含代码块条件加载）；
   - 新增 `sitemap.xml` / `feed.xml`（jekyll-sitemap / jekyll-feed）与 `robots.txt`，SEO 与订阅能力开箱即用；
   - favicon 多分辨率优化（16/32/48，约 5KB）；
   - 清理无用旧资源（social-share、util.js、hero.jpg、profile.png 等）。
@@ -60,7 +61,7 @@ git push origin master
 .
 ├── _config.yml          # 站点配置
 ├── _layouts/            # 页面布局（default / post / page）
-├── _includes/           # 复用片段（head、header、footer、author-card、back-to-top、anchor、mathjax、lazyload …）
+├── _includes/           # 复用片段（head、header、footer、author-card、back-to-top、anchor、mathjax …）
 ├── _posts/              # 博客文章（Markdown）
 ├── assets/              # 样式 assets/css、脚本 assets/js、字体 assets/fonts、图片
 ├── index.html           # 首页（分页文章列表）
@@ -72,6 +73,8 @@ git push origin master
 ```
 
 > 搜索脚本可读源位于 `dev/js/index.js`；项目已无 gulp 构建链，编辑该源文件不会自动更新 `assets/js/index.min.js`（需手动同步）。`dev/` 已在 `_config.yml` 的 `exclude` 中，不会被 Jekyll 发布。
+>
+> 隐私说明：6 个分析报告页（`shs/ jjs/ jls/ gjjjs/ zxs/ sjs/`）与 `kindlenotes/` 为私人内容，已通过 `robots.txt` Disallow + 页面 `<meta name="robots" content="noindex">` 双重手段阻止搜索引擎收录。
 
 ## 配置
 
@@ -86,6 +89,7 @@ git push origin master
 | `paginate` / `paginate_path` | 分页数量与路径（默认 15，`page:num`） |
 | `search` | 是否开启站内搜索 |
 | `nightMode` | 默认是否启用夜间模式 |
+| `showNightToggle` | 是否显示右下角夜间模式切换按钮（默认 true） |
 | `theme-color` | 主题色 `default` / `pink` |
 | `postPatterns` | 文章头图图案（circuitBoard / seaOfClouds / food …） |
 | `sns` | 社交账号（weibo / instagram / douban …） |

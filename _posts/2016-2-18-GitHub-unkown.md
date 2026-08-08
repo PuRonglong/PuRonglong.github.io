@@ -87,7 +87,7 @@ ZenHub is more than “integrated”: it runs natively in GitHub’s interface. 
 
 比如想查看4-0-stable分支与3-2-stable分支之间的差别，可以像下面这样将分支名加到URL里。
 
-```https://github.com/rails/rails/compare/4-0-0stable...3-2-stable```
+`https://github.com/rails/rails/compare/4-0-0stable...3-2-stable`
 
 ![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420140758.png)
 

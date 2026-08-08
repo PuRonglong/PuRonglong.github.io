@@ -24,7 +24,7 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420154518.
 
 ![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420154530.png)
 
-于是安装```xcode-select```
+于是安装`xcode-select`
 
 执行：
 
@@ -112,7 +112,7 @@ wget ftp://xmlsoft.org/libxml2/libxml2-git-snapshot.tar.gz//下载
 	/usr/bin/python
 ```
 
-所以需要执行上面的```ln -s```命令，
+所以需要执行上面的`ln -s`命令，
 
 那么这个命令是什么意思呢？Linux/Unix 档案系统中，有所谓的连结(link)，我们可以将其视为档案的别名，而连结又可分为两种 : 硬连结(hard link)与软连结(symbolic link)，硬连结的意思是一个档案可以有多个名称，而软连结的方式则是产生一个特殊的档案，该档案的内容是指向另一个档案的位置。硬连结是存在同一个档案系统中，而软连结却可以跨越不同的档案系统。
 

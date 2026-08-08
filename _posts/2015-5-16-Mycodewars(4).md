@@ -20,7 +20,7 @@ Create a funciton which translates a given DNA string into RNA.
 
 For example:
 
-```DNAtoRNA("GCAT") returns ("GCAU")```
+`DNAtoRNA("GCAT") returns ("GCAU")`
 
 solution:
 
@@ -149,11 +149,11 @@ If no arguments are given, ball objects should instantiate with a "ball type" of
 
 for example:
 
-```ball1 = new Ball();```
-```ball2 = new Ball("super");```
+`ball1 = new Ball();`
+`ball2 = new Ball("super");`
 
-```ball1.ballType     //=> "regular"```
-```ball2.ballType     //=> "super"```
+`ball1.ballType     //=> "regular"`
+`ball2.ballType     //=> "super"`
 
 solution:
 
@@ -187,8 +187,8 @@ Write a method smash that takes an array of words and smashes them together into
 
 Example
 
-```var words = ['hello', 'world', 'this', 'is', 'great'];```
-```smash(words); // returns "hello world this is great"```
+`var words = ['hello', 'world', 'this', 'is', 'great'];`
+`smash(words); // returns "hello world this is great"`
 
 solution:
 

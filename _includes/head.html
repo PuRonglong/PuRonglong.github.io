@@ -1,40 +1,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#151515">
+  <meta name="theme-color" content="#ffffff">
   <link rel="icon" href="{{ '/favicon.ico' | relative_url }}">
   {% seo %}
+  {% if site.keywords %}<meta name="keywords" content="{{ site.keywords | escape }}">{% endif %}
   {% if page.cover and page.image == nil %}<meta property="og:image" content="{{ page.cover | absolute_url }}">{% endif %}
   {% feed_meta %}
-  <!-- 预连接：加速第三方域名建连 -->
-  <link rel="preconnect" href="https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com" crossorigin>
+  <!-- 预连接：加速第三方域名建连（国内 CDN + OSS 图片） -->
+  <link rel="preconnect" href="https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com">
   <link rel="preconnect" href="https://cdn.staticfile.net" crossorigin>
   <link rel="preconnect" href="https://cdn.bootcdn.net" crossorigin>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <!-- 合并样式：normalize + github-markdown + app（减少 HTTP 请求数） -->
-  <link rel="stylesheet" href="{{ '/assets/css/bundle.min.css' | relative_url }}">
+  <!-- 合并样式：normalize + github-markdown + app（减少 HTTP 请求数）；v= 为构建时间，用于绕过 SW/浏览器缓存 -->
+  {% assign ver = site.time | date: '%Y%m%d%H%M%S' %}
+  <link rel="stylesheet" href="{{ '/assets/css/bundle.min.css?v=' | append: ver | relative_url }}">
   {% if page.prism or page.content contains '<pre' %}
-  <link rel="stylesheet" href="{{ '/assets/css/prism.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/prism.css?v=' | append: ver | relative_url }}">
   {% endif %}
-  <!-- jQuery 3.7.1：国内 CDN 优先多级回退（修复 3.2.1 的 CVE-2020-11022/11023） -->
-  <!-- 注意：保持同步加载，因为 index.min.js 等内联脚本依赖 $ -->
-  <script src="https://cdn.staticfile.net/jquery/3.7.1/jquery.min.js" onerror="window.__jqFallback()"></script>
-  <script>
-    window.__jqFallback = function () {
-      if (window.jQuery) return;
-      var cdns = [
-        'https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js',
-        'https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js'
-      ];
-      (function load(i) {
-        if (i >= cdns.length || window.jQuery) return;
-        var s = document.createElement('script');
-        s.src = cdns[i];
-        s.onerror = function () { load(i + 1); };
-        document.head.appendChild(s);
-      })(0);
-    };
-  </script>
   {% if page.mathjax or page.content contains '$$' %}
   {% include mathjax.html %}
   {% endif %}
@@ -42,7 +24,19 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
-        navigator.serviceWorker.register('{{ '/sw.js' | relative_url }}').catch(function () {});
+        navigator.serviceWorker.register('{{ '/sw.js' | relative_url }}')
+          .then(function (reg) {
+            reg.update();
+            reg.addEventListener('updatefound', function () {
+              var worker = reg.installing;
+              worker.addEventListener('statechange', function () {
+                if (worker.state === 'installed' && navigator.serviceWorker.controller) {
+                  worker.postMessage({ type: 'SKIP_WAITING' });
+                }
+              });
+            });
+          })
+          .catch(function () {});
       });
     }
   </script>

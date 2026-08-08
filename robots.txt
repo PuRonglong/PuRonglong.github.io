@@ -2,5 +2,12 @@
 ---
 User-agent: *
 Allow: /
+Disallow: /shs/
+Disallow: /jjs/
+Disallow: /jls/
+Disallow: /gjjjs/
+Disallow: /zxs/
+Disallow: /sjs/
+Disallow: /kindlenotes/
 
 Sitemap: {{ site.url }}/sitemap.xml

@@ -28,7 +28,7 @@ layout: default
   <h2 class="post-subtitle">{{ page.subtitle }}</h2>
   {% endif %}
 
-  <article class="markdown-body heti">
+  <article class="markdown-body">
     {{ content | replace: '<img ', '<img loading="lazy" decoding="async" ' }}
 
     {% if site.comments.disqus %}

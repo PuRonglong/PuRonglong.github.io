@@ -10,12 +10,10 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420173314.
 
 > 第一次尝试读全英文书籍
 
-![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420173314.png)
 
 《深入浅出jQuery(影印版)》
-
 <!-- more -->
-
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420173314.png)
 水平有限，并没有像读中文书那样细读。
 
 个人观点：作为入门的话没有必要为了接触原汁原味的技术而去读英文原版书，倒不是因为书的内容难，而是英文看起来会比较慢，消化语句就会花费很多时间，不利于尽快入门，此时，中文会更具亲和力。当然英文爆好的除外。

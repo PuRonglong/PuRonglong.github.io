@@ -4,21 +4,21 @@ sitemap: false
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+<meta name="robots" content="noindex, nofollow"/>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>四川省 2026 监理工程师考试拟取得资格人员 · 分析报告</title>
-<!-- ECharts：国内 CDN 优先 → 国外 CDN 兜底 → 本地文件最终降级（任一加载成功即停止，防公共 CDN 停服/篡改） -->
+<!-- ECharts：国内 CDN（staticfile → bootcdn）两级加载，任一成功即停止 -->
 <link rel="preconnect" href="https://cdn.staticfile.net" crossorigin>
 <link rel="dns-prefetch" href="https://cdn.staticfile.net">
 <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
 <script>
-/* ECharts 异步非阻塞加载：本地文件优先 → 国内CDN → 国外CDN兜底，每源限时10s，不阻塞页面渲染 */
+/* ECharts 异步非阻塞加载：国内 CDN（staticfile → bootcdn）两级，每源限时10s，不阻塞页面渲染 */
 window.__EC_READY=new Promise(function(resolve,reject){
   var srcs=[
-    // 'assets/echarts.min.js',
+    
     'https://cdn.staticfile.net/echarts/5.5.0/echarts.min.js',
-    'https://cdn.bootcdn.net/ajax/libs/echarts/5.5.0/echarts.min.js',
-    'https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js'
+    'https://cdn.bootcdn.net/ajax/libs/echarts/5.5.0/echarts.min.js'
   ];
   var i=0, localFailed=false;
   function tryNext(){
@@ -678,9 +678,7 @@ window.__EC_READY.then(function(){
   _pendingCharts.splice(0).forEach(_doInit);
 }).catch(function(err){
   _ecFailed=true;
-  var msg = (err&&err.localMissing)
-    ? '图表库加载失败：本地 assets/echarts.min.js 缺失，且各 CDN 也无法访问，请检查文件或网络'
-    : '图表库加载失败：网络无法连接 CDN，且本地 assets/echarts.min.js 不存在';
+  var msg = '图表库加载失败：网络无法连接 CDN，请检查网络后刷新';
   Object.keys(CHART_FNS).forEach(function(id){
     const el=document.getElementById(id); if(!el) return;
     el.classList.remove('lazy-pending');

@@ -10,12 +10,10 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420174240.
 
 >3月底，GitHub遭受了有史以来最为严重的DDoS攻击
 
-![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2020-08-30-062340.png)
 
 GitHub官方微博的声明。
-
 <!-- more -->
-
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2020-08-30-062340.png)
 由于网站是托管在GitHub上的，所以也受到了影响，即使现在GitHub恢复了，也有时不稳定。
 
 别的一些DDoS攻击案例，比如暴雪战网，Valve Steam和EA Origin都遭受过大规模DDoS攻击，致使大批玩家无法登陆进行游戏。(战网，steam,origin都是著名的游戏平台)

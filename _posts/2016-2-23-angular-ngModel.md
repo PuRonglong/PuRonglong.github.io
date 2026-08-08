@@ -10,9 +10,9 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420163837.
 
 > 聊聊angular中的ngModel
 
-先来看看angular权威指南中对```ng-model```的定义：
+先来看看angular权威指南中对`ng-model`的定义：
 
-```ng-model```指令用来将```input,select,text area```或自定义表单控件同包含他们的作用域中的属性进行绑定。它可以提供并处理表单验证功能，在元素上设置相关的CSS类(ng-valid,ng-invalid等)，并负责在父表单中注册控件。
+`ng-model`指令用来将`input,select,text area`或自定义表单控件同包含他们的作用域中的属性进行绑定。它可以提供并处理表单验证功能，在元素上设置相关的CSS类(ng-valid,ng-invalid等)，并负责在父表单中注册控件。
 
 <!-- more -->
 
@@ -20,15 +20,15 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420163837.
 
 我们应该始终用ngModel来绑定$scope上一个数据模型内的属性，而不是$scope上的属性，这可以避免在作用域或后代作用域中发生属性覆盖。
 
-```ng-model```比较常见的就是用于input标签的双向数据绑定
+`ng-model`比较常见的就是用于input标签的双向数据绑定
 
 
 
 ![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420151521.png)
 
-```ng-model```为```greeting```的这个input中输入的值就是下面p标签中```greeting```的对应值。
+`ng-model`为`greeting`的这个input中输入的值就是下面p标签中`greeting`的对应值。
 
-结合上次的```ng-switch```，若```ng-model```的值和```ng-switch```的值相等，则可以通过```ng-model```控制```ng-switch```内容的显示
+结合上次的`ng-switch`，若`ng-model`的值和`ng-switch`的值相等，则可以通过`ng-model`控制`ng-switch`内容的显示
 
 demo2:
 
@@ -104,11 +104,11 @@ HTML:
 	</form>
 ```
 
-用```ng-pattern```匹配一个正则表达式，当input输入框为empty的时候，输入框的背景是绿色，输入非纯数字时样式为```.myinput.ng-invalid```，
+用`ng-pattern`匹配一个正则表达式，当input输入框为empty的时候，输入框的背景是绿色，输入非纯数字时样式为`.myinput.ng-invalid`，
 
 demo4:
 
-联系上次说到的```ng-switch```，```stackoverflow上```有个问题说，当在ng-switch里有一个ng-model，可是在console.log这个ng-model的值的时候打不出来，这个问题还是有价值的，这里说一下，他的代码如下：
+联系上次说到的`ng-switch`，`stackoverflow上`有个问题说，当在ng-switch里有一个ng-model，可是在console.log这个ng-model的值的时候打不出来，这个问题还是有价值的，这里说一下，他的代码如下：
 
 HTML：
 
@@ -162,7 +162,7 @@ JS：
 
 原来是ng-switch创建了他自己的作用域。所以事实上是在ng-switch里创建了一个子作用域。在ngSwitch指令下的作用域中存在另一个test原型。当input中输入value然后点击按钮想要打印父作用域的原型时，实际上子作用域上的改变不能change父作用域上的原型。
 
-ng-model里的是子作用域的原型，而想要打印的是父作用域的原型，所以会出现```noting is binded for the scope attribute $scope.test```
+ng-model里的是子作用域的原型，而想要打印的是父作用域的原型，所以会出现`noting is binded for the scope attribute $scope.test`
 
 解决方法：
 

@@ -8,6 +8,13 @@
         </a>
     </div>
     <i id="menu-toggle" class="iconfont icon-menu" role="button" tabindex="0" aria-label="切换导航菜单"></i>
+    {% if site.showNightToggle != false %}
+    <button id="nm-toggle" type="button" aria-label="切换夜间模式" title="切换夜间模式">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4 2.26 5.4 5.4 0 0 1-3.5-9.4A8.96 8.96 0 0 0 12 3z"/>
+        </svg>
+    </button>
+    {% endif %}
     <nav class="g-nav">
         <ul>
             {% for i in site.data.nav %}

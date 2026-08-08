@@ -9,8 +9,10 @@ description: "Sorry, Page Not Found :("
     <div class="post-wrapper">
         <h1>404</h1>
         <span class="subheading">{{ page.description }}</span>
-        <a href="{{ site.nav.home }}" class="btn">Back to home</a>
+        <a href="{{ "/" | relative_url }}" class="btn">Back to home</a>
     </div>
 </header>
+
+{% include footer.html %}
 
 

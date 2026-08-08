@@ -70,7 +70,6 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420162244.
 
 可以看到现在的效果是这样的：
 
-![img]({{site.url}}images/article/2016-7-18/1.png)
 
 那么后面就是重要的一步，添加行为，我们使用jQuery实现：
 

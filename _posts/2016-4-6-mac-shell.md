@@ -10,14 +10,11 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420154006.
 
 >当使用系统自带的终端使用多了的时候，你会体会到许多不便之处，比如自动补全不够完善，比如界面单调，老早就知道iterm2+oh my zsh的组合，但知道看到一个别人的界面漂亮的不行，才终于打动我也更换成这样的搭配。
 
-主要配置：```iTerm2 + zsh + oh-my-zsh + agnoster```
+主要配置：`iTerm2 + zsh + oh-my-zsh + agnoster`
 
 先来看看那幅打动我的漂亮的命令行是什么样的吧~
-
-![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420153842.png)
-
 <!-- more -->
-
+![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420153842.png)
 讲真，这个命令行界面美哭了。而且iterm2又是免费的，简直良心有木有。于是决定动手换成这样，折腾起来却碰到不少坑，花了一天才配好，也把遇到的坑说明一下以作参考。
 
 下面我将一步一步讲解配置过程：
@@ -58,7 +55,7 @@ oh-my-zsh:
 
 在iterm2的偏好设置的profile里，有一个window选项，在这里设置背景图和透明度，还有宽高和停靠选项。示例这里，用了一张雨水滴在窗户的图片为背景，透明度是30+，背景色为黑色，字体默认，字色大概为橙黄，停靠在bottom。
 
-然后去```bing```搜索了找到了示例里的背景图，打开iterm2和示例对比，也没有太大区别了。
+然后去`bing`搜索了找到了示例里的背景图，打开iterm2和示例对比，也没有太大区别了。
 
 后来发现橙色现在看起来好看，但当命令多了以后，就有点乱了。
 
@@ -80,7 +77,7 @@ oh-my-zsh:
     zsh
 ```
 
-执行一下才算切换，好几个文章里都没有说明这点让我一直以为执行```chsh -s /bin/zsh```就行了。
+执行一下才算切换，好几个文章里都没有说明这点让我一直以为执行`chsh -s /bin/zsh`就行了。
 
 6：
 
@@ -96,7 +93,7 @@ oh-my-zsh:
     sudo easy_install pip
 ```
 
-这里开始还以为这样就可以了结果发现界面还是乱码，原来弄错了一点powerline是一款非常好的代码提示状态栏，但是我们并没有装好powerline字体，原来这是两码东西啊，还以为我们```pip install powerline-status```就是字体呢。
+这里开始还以为这样就可以了结果发现界面还是乱码，原来弄错了一点powerline是一款非常好的代码提示状态栏，但是我们并没有装好powerline字体，原来这是两码东西啊，还以为我们`pip install powerline-status`就是字体呢。
 
 7：
 
@@ -112,7 +109,7 @@ oh-my-zsh:
     source ~/powerline-fonts/install.sh
 ```
 
-安装完成后提示所有字体均已下载到```/Users/superdanny/Library/Fonts```路径，如下：
+安装完成后提示所有字体均已下载到`/Users/superdanny/Library/Fonts`路径，如下：
 
 ```text
     All Powerline fonts installed to /Users/superdanny/Library/Fonts
@@ -120,9 +117,9 @@ oh-my-zsh:
 
 8：
 
-设置iTerm 2的```Regular Font```和```Non-ASCII Font```：
+设置iTerm 2的`Regular Font`和`Non-ASCII Font`：
 
-安装完字体库之后，把iTerm 2的设置里的Profile中的Text 选项卡中里的Regular Font和Non-ASCII Font的字体都设置成 Powerline的字体，我设置的字体是```12pt Meslo LG S DZ Regular for Powerline```
+安装完字体库之后，把iTerm 2的设置里的Profile中的Text 选项卡中里的Regular Font和Non-ASCII Font的字体都设置成 Powerline的字体，我设置的字体是`12pt Meslo LG S DZ Regular for Powerline`
 
 9：
 
@@ -134,7 +131,7 @@ oh-my-zsh:
     $ git clone git://github.com/altercation/solarized.git
 ```
 
-进入上面下载的工程的```solarized/iterm2-colors-solarized```下双击```Solarized Dark.itermcolors```和```Solarized Light.itermcolors```两个文件就可以把配置文件导入到iTerm2里.
+进入上面下载的工程的`solarized/iterm2-colors-solarized`下双击`Solarized Dark.itermcolors`和`Solarized Light.itermcolors`两个文件就可以把配置文件导入到iTerm2里.
 
 通过load presets选择安装的配色主题。
 
@@ -144,7 +141,7 @@ oh-my-zsh:
 
 使用agnoster主题。字体没有安装好的话使用这个主题会乱码。
 
-进入~/.zshrc打开.zshrc文件，然后将```ZSH_THEME```后面的字段改为```agnoster```。ZSH_THEME="agnoster"（agnoster即为要设置的主题）。
+进入~/.zshrc打开.zshrc文件，然后将`ZSH_THEME`后面的字段改为`agnoster`。ZSH_THEME="agnoster"（agnoster即为要设置的主题）。
 
 这里开始的时候还不知道怎么找.zshrc，原来.开头的文件mac都会默认将他们隐藏，这时候又得去查找怎么找到隐藏的文件，在终端输入：
 
@@ -166,7 +163,7 @@ oh-my-zsh:
 
 11:
 
-增加指令高亮效果——```zsh-syntax-highlighting```。
+增加指令高亮效果——`zsh-syntax-highlighting`。
 
 指令高亮效果作用是当用户输入正确命令时指令会绿色高亮，错误时命令红色高亮。
 
@@ -212,7 +209,7 @@ oh-my-zsh:
 
 Mac OSX的ls是没有颜色的，需要设置。
 
-1、打开～目录下的```.bash_profile```（没有此文件的话新建一个，注意前景有.，是隐藏文件）：vim .bash_profile
+1、打开～目录下的`.bash_profile`（没有此文件的话新建一个，注意前景有.，是隐藏文件）：vim .bash_profile
 
 2、在.bash_profile里添加下面两个语句：
 
@@ -302,7 +299,7 @@ x     default foreground or background (透明)
 
 可是看着看着还是有点不习惯的地方就是命令行前面的前缀太长了。
 
-在终端里面当前行会显示```username@FirstName-LastnamedeMacBook-Pro ~$```
+在终端里面当前行会显示`username@FirstName-LastnamedeMacBook-Pro ~$`
 
 这里的username是当先登陆的用户名，@后面是机器名称，~是当前路径。我都用的是自己的全称puronglong，这样前缀就太长了。看着也烦，早就想去掉了。
 

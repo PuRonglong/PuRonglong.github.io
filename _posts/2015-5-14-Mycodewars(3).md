@@ -47,8 +47,8 @@ Ghost objects are instantiated without any arguments.
 
 Ghost objects are given a random color attribute of white" or "yellow" or "purple" or "red" when instantiated
 
-```ghost = new Ghost();```<br  />
-```ghost.color //=> "white" or "yellow" or "purple" or "red"```
+`ghost = new Ghost();`<br  />
+`ghost.color //=> "white" or "yellow" or "purple" or "red"`
 
 solution:
 
@@ -76,10 +76,10 @@ None of zese codevarriors seemz to remember hiz own name !
 
 Kould you help ?
 
-```var albert = new Warrior("Al")```<br  />
-```var boris  = new Warrior("Boris")```
+`var albert = new Warrior("Al")`<br  />
+`var boris  = new Warrior("Boris")`
 
-```albert.toString() // "Hi! my name's Boris" ```
+`albert.toString() // "Hi! my name's Boris" `
 
 example:
 
@@ -145,8 +145,8 @@ Description:
 
 Write the definition of the function "say" such that calling this:
 
-```say("Hello")("World")```<br  />
-```returns "Hello World"```
+`say("Hello")("World")`<br  />
+`returns "Hello World"`
 
 solution:
 
@@ -164,8 +164,8 @@ Description:
 
 Given an input n, write a function always that returns a function which returns n. Ruby should return a lambda or a proc.
 
-```var three = always(3);```<br  />
-```three(); // return 3```
+`var three = always(3);`<br  />
+`three(); // return 3`
 
 solution:
 
@@ -182,8 +182,8 @@ Write a function that can return the smallest value of an array or the index of 
 
 Assume the first parameter will always be an array filled with at least 1 number and no duplicates. Assume the second parameter will be a string holding one of two values: 'value' and 'index'.
 
-```min([1,2,3,4,5], 'value') // => 1```<br  />
-```min([1,2,3,4,5], 'index') // => 0```
+`min([1,2,3,4,5], 'value') // => 1`<br  />
+`min([1,2,3,4,5], 'index') // => 0`
 
 solution:
 
@@ -208,7 +208,7 @@ function min(arr, toReturn) {
 }
 ```
 
-这道题用到了求数组中最小值，简要总结一下JS中获取数组中最大(最小)值的方法。除了上面用到的```Math.min.apply()```方法,还可以使用sort()方法，如：
+这道题用到了求数组中最小值，简要总结一下JS中获取数组中最大(最小)值的方法。除了上面用到的`Math.min.apply()`方法,还可以使用sort()方法，如：
 
 ```js
     var arr = [7,3,4,6,10]; 

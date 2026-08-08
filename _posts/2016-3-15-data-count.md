@@ -22,11 +22,11 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420153012.
 
 一般来说，图表展示横纵坐标都会有标签名的，用于告诉用户这个坐标是干什么用的，可是在jquery.flot里没有发现这一项配置，照理来说这样的功能应该是图表都应该有的吧，查找了一遍发现居然没有这项配置，无奈只得找找有没有解决办法了，google出来一个这个[flot-axislabels](https://github.com/markrcote/flot-axislabels)。
 
-这是一个```Axis Labels Plugin for Flot```，
+这是一个`Axis Labels Plugin for Flot`，
 
 还有当底部X横坐标刻度上的介绍比较长的时候，这时就不能横向展示了，否则会太拥挤，我们可以考虑将其竖着显示出来，可是呢，考虑到竖着的显示效果有点别扭，还是斜着放置比较合适，可是jquery.flot在这方面的处理又不太好，自定义程度不够。
 
-就在找解决办法的时候，发现了别人在使用```eCharts```这个百度开源的一项图表展示工具。了解了一下发现一方面自定义程度高，一方面图表的动画效果不错，并且界面整洁，体验大大提高，于是决定采用这个图表库了。
+就在找解决办法的时候，发现了别人在使用`eCharts`这个百度开源的一项图表展示工具。了解了一下发现一方面自定义程度高，一方面图表的动画效果不错，并且界面整洁，体验大大提高，于是决定采用这个图表库了。
 
 ![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420152815.png)
 
@@ -230,7 +230,7 @@ link：用来创建可以操作DOM的指令，这里是我们定义的一个link
 
 XAxis里的data就是x轴的数据，这里要注意的而是Y轴的数据并不是在yAxis里面定义，而是在series下的data里，这是容易犯错的一个地方。
 
-我们知道是```ui-option```里的这些数据在变化了，那么我们就要监听```ui-option```的变化。
+我们知道是`ui-option`里的这些数据在变化了，那么我们就要监听`ui-option`的变化。
 
 ```js
     function link($scope, element, attrs) {
@@ -256,11 +256,11 @@ XAxis里的data就是x轴的数据，这里要注意的而是Y轴的数据并不
     if (attrs.uiOptions)//如果我们定义的ui-option这个属性存在的话，执行下步
 ```
 
-```$observe```是属性对象上的方法，它是用来监控DOM属性上的值的变化，它仅用在指令内部，当你需要在指令内部监控包含有插值表达式的DOM属性的时候，就要用到这个方法。
+`$observe`是属性对象上的方法，它是用来监控DOM属性上的值的变化，它仅用在指令内部，当你需要在指令内部监控包含有插值表达式的DOM属性的时候，就要用到这个方法。
 
-```$eval``` 即```scope.$eval```，是执行当前作用域下的表达式，如：```scope.$eval('a+b'); ```而这个里的```a,b```是来自 ```scope = {a: 2, b:3};```
+`$eval` 即`scope.$eval`，是执行当前作用域下的表达式，如：`scope.$eval('a+b'); `而这个里的`a,b`是来自 `scope = {a: 2, b:3};`
 
-```angular.isObject```判断给定的对象是否为object类型。
+`angular.isObject`判断给定的对象是否为object类型。
 
 以上，就能生成我们的echarts图表了。
 
@@ -291,7 +291,7 @@ XAxis里的data就是x轴的数据，这里要注意的而是Y轴的数据并不
 
 以上，监听这个输入框里的值，如果有所变化，则把新值传入要执行的函数中，如果这个值大于获取的最大值或小于1的话，直接return。
 
-那么我们要执行的函数是什么呢？当然了，这个函数里要执行的操作就是我们需要通过接口获取到的x轴和y轴的数据，然后把这个值传给我们html文件的echarts的配置文件里的```photo_result_x```和```photo_result_y```
+那么我们要执行的函数是什么呢？当然了，这个函数里要执行的操作就是我们需要通过接口获取到的x轴和y轴的数据，然后把这个值传给我们html文件的echarts的配置文件里的`photo_result_x`和`photo_result_y`
 
 ```js
     xAxis : [
@@ -343,7 +343,7 @@ XAxis里的data就是x轴的数据，这里要注意的而是Y轴的数据并不
 
 ![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420152914.png)
 
-上面的```utilsService.getFormatData```是对获取数据进行的格式的一个处理，然后再把处理过后我们需要的格式的数据传给x轴和y轴：
+上面的`utilsService.getFormatData`是对获取数据进行的格式的一个处理，然后再把处理过后我们需要的格式的数据传给x轴和y轴：
 
 ```js
     $scope.photo_result_x = rs;
@@ -397,7 +397,7 @@ XAxis里的data就是x轴的数据，这里要注意的而是Y轴的数据并不
     }
 ```
 
-就是在获取到数据，并对数据格式化处理以后，将x轴的数据存入到```picDataCacheX[num]```，将y轴的数据存入```picDataCacheY[num]```，然后进入函数后，首先判断这两个对象有没有值，这两个对象的num属性的值就是我们传入的数组数据，如果有的话就直接把数据传给x和y轴，然后return。这样，就不用再去请求了。
+就是在获取到数据，并对数据格式化处理以后，将x轴的数据存入到`picDataCacheX[num]`，将y轴的数据存入`picDataCacheY[num]`，然后进入函数后，首先判断这两个对象有没有值，这两个对象的num属性的值就是我们传入的数组数据，如果有的话就直接把数据传给x和y轴，然后return。这样，就不用再去请求了。
 
 ![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420152848.png)
 
@@ -405,7 +405,7 @@ XAxis里的data就是x轴的数据，这里要注意的而是Y轴的数据并不
 
 ![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420152926.png)
 
-这个表格使用了```angular ui grid```
+这个表格使用了`angular ui grid`
 
 ![img](https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420152938.png)
 
@@ -415,7 +415,7 @@ HTML如下：
     <div ng-grid="gridOptions" style="min-height:420px;"></div>
 ```
 
-对```ui grid```进行配置：
+对`ui grid`进行配置：
 
 ```js
     $scope.gridOptions = {
@@ -434,7 +434,7 @@ HTML如下：
 
 这里data自然是我们要返回的数据了。
 
-```pagingOptions```配置如下：
+`pagingOptions`配置如下：
 
 ```js
     $scope.pagingOptions = {
@@ -444,7 +444,7 @@ HTML如下：
     };
 ```
 
-```pageSize```数组是我们可以设置每一个页可以展示多少条数据，下面是默认值，currentPage表明默认显示第几页。
+`pageSize`数组是我们可以设置每一个页可以展示多少条数据，下面是默认值，currentPage表明默认显示第几页。
 
 columnDefs是我们表格的格式和样式：
 
@@ -458,7 +458,7 @@ columnDefs是我们表格的格式和样式：
     ];
 ```
 
-```multiSelect```声明是否可以多选，否则只能选择一行。
+`multiSelect`声明是否可以多选，否则只能选择一行。
 
 下面这个表格使用了ui-bootstrap：
 

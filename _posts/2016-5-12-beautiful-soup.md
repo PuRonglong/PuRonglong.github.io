@@ -185,7 +185,7 @@ find_all()方法搜索当前tag的所有tag子节点,并判断是否符合过滤
 ```
 find():
 
-```find_all()```方法将返回文档中符合条件的所有tag,尽管有时候我们只想得到一个结果.比如文档中只有一个<body>标签,那么使用 ```find_all()```方法来查找<body>标签就不太合适,使用find_all方法并设置limit=1参数不如直接使用find()方法.下面两行代码是等价的:
+`find_all()`方法将返回文档中符合条件的所有tag,尽管有时候我们只想得到一个结果.比如文档中只有一个<body>标签,那么使用 `find_all()`方法来查找<body>标签就不太合适,使用find_all方法并设置limit=1参数不如直接使用find()方法.下面两行代码是等价的:
 
 ```python
 	soup.find_all('title', limit=1)

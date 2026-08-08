@@ -4,10 +4,6 @@ home-title: Stay before every beautiful thoughts
 description: 在每一个美好的思想前停留
 header-img: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200702094817.jpg
 ---
-<!-- header-img: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2020-03-01-060442.jpg -->
-
-<!-- header-img: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/cover/dog.jpg -->
-
 {% include header.html %}
 
 <div style="background: #2f3139;" class="g-banner home-banner {{ site.theme-color | prepend: 'banner-theme-' }}" data-theme="{{ site.theme-color }}">
@@ -21,11 +17,11 @@ header-img: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2020070209
 <main class="g-container home-content">
     <div class="article-list">
         {% for post in paginator.posts %}
-            <article class="article-item heti">
+            <article class="article-item">
                 {% if post.cover %}
                 <div class="post-cover">
                     <a class="post-link" href="{{ post.url | prepend: site.baseurl }}" title="{{ post.title }}"></a>
-                    <img src="{{ post.cover }}" href="{{ post.url | prepend: site.baseurl }}" alt="" loading="lazy" decoding="async">
+                    <img src="{{ post.cover }}" alt="" loading="lazy" decoding="async">
                 </div>
                 {% endif %}
                 <section class="post-preview">

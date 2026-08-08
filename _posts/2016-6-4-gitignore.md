@@ -10,9 +10,9 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420162013.
 
 > git忽略已经被提交的文件
 
-上次在```github pages```项目里修改了```gitignore```配置文件，提交了```site```文件夹，后来不准备把这个文件push上去，于是在```gitignore```里又添加了```site```，结果发现，这时候配置```gitignore```没有用了。
+上次在`github pages`项目里修改了`gitignore`配置文件，提交了`site`文件夹，后来不准备把这个文件push上去，于是在`gitignore`里又添加了`site`，结果发现，这时候配置`gitignore`没有用了。
 
-原因在于```.gitignore```文件只能作用于git没有跟踪过的文件，如果文件被git记录过，那么```.gitignore```对它们就没有效果了。正确的做法应该是使用正确的git指令```git rm```。
+原因在于`.gitignore`文件只能作用于git没有跟踪过的文件，如果文件被git记录过，那么`.gitignore`对它们就没有效果了。正确的做法应该是使用正确的git指令`git rm`。
 
 <!-- more -->
 

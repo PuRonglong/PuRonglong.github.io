@@ -17,12 +17,14 @@ For example,
 
 <!-- more -->
 
-```[true,  true,  true,  false,```<br  />
-	```true,  true,  true,  true ,```<br  />
-	```true,  false, true,  false,```<br  />
-	```true,  false, false, true ,```<br  />
-	```true,  true,  true,  true ,```<br  />
-	```false, false, true,  true]```
+`[true,  true,  true,  false,`<br  />
+```
+`true,  true,  true,  true ,`<br  />
+`true,  false, true,  false,`<br  />
+`true,  false, false, true ,`<br  />
+`true,  true,  true,  true ,`<br  />
+`false, false, true,  true]`
+```
 
 The correct answer would be 17.
 
@@ -129,10 +131,10 @@ function NameMe(first, last) {
 
 for example:
 
-```var n = new NameMe('John', 'Doe');```
-```n.firstName //Expected: John```
-```n.lastName //Expected: Doe```
-```n.name //Expected: John Doe```
+`var n = new NameMe('John', 'Doe');`
+`n.firstName //Expected: John`
+`n.lastName //Expected: Doe`
+`n.name //Expected: John Doe`
 
 这里对不同的输入如firstName和lastName要有不同结果，怎么能用一个return呢，所以去掉这个return，然后再加上同前面一样加上一个this
 
@@ -154,10 +156,10 @@ Note: Don't worry, all inputs will be strings, and every string is a perfectly v
 
 Examples
 
-```stringToNumber("1234") == 1234```<br  />
-```stringToNumber("605" ) == 605```<br  />
-```stringToNumber("1405") == 1405```<br  />
-```stringToNumber("-7"  ) == -7```
+`stringToNumber("1234") == 1234`<br  />
+`stringToNumber("605" ) == 605`<br  />
+`stringToNumber("1405") == 1405`<br  />
+`stringToNumber("-7"  ) == -7`
 
 通过描述即可知道是将一个字符串转变为数字，所以solution如下：
 
@@ -234,9 +236,9 @@ var a = 123 + '';
 
 Example:
 
-```last( [1,2,3,4] ) // => 4```<br  />
-```last( "xyz" )     // => z```<br  />
-```last( 1,2,3,4 )   // => 4```
+`last( [1,2,3,4] ) // => 4`<br  />
+`last( "xyz" )     // => z`<br  />
+`last( 1,2,3,4 )   // => 4`
 
 In javascript and CoffeeScript a list will be an array, a string or the list of arguments.
 
@@ -284,17 +286,17 @@ function areYouPlayingBanjo(name) {
 }
 ```
 
-乍一看好像对啊没什么问题，可是问题就出在了```||```运算符上，来总结一下逻辑或运算符```||```： 
+乍一看好像对啊没什么问题，可是问题就出在了`||`运算符上，来总结一下逻辑或运算符`||`： 
 
-当运算符```||```的两个运算数都是布尔值，它对这两个运算数执行布尔OR操作。 
+当运算符`||`的两个运算数都是布尔值，它对这两个运算数执行布尔OR操作。 
 
 它先计算第一个运算数，如果这个表达式的值可以被转换成true，那么它就返回左边这个表达式的值。否则计算第二个运算数 
 
-即使```||```运算符的运算数不是布尔值，任然可以将它看作布尔OR运算，因为无论它返回的值是什么类型，都可以被转换为布尔值。 
+即使`||`运算符的运算数不是布尔值，任然可以将它看作布尔OR运算，因为无论它返回的值是什么类型，都可以被转换为布尔值。 
 
-而且另一方面，对非布尔型的运算数使用了```||```，这是利用了它对非布尔型的值会将其返回的特性。该运算符的这一用法通常是选取一组备选值中的第一个定义了的并且非空的值（也就是说第一个不会转换为false的值）
+而且另一方面，对非布尔型的运算数使用了`||`，这是利用了它对非布尔型的值会将其返回的特性。该运算符的这一用法通常是选取一组备选值中的第一个定义了的并且非空的值（也就是说第一个不会转换为false的值）
 
-如果像上面这样的话，按照JS语法中的运算优先级，会先进行==运算然后是```||```运算，而```name.charAt(0)=="r"||"R"```中"R"始终为true，这就导致无论是什么运算符进去返回的结果都是true
+如果像上面这样的话，按照JS语法中的运算优先级，会先进行==运算然后是`||`运算，而`name.charAt(0)=="r"||"R"`中"R"始终为true，这就导致无论是什么运算符进去返回的结果都是true
 
 所以将以上改为如下:
 
@@ -315,7 +317,7 @@ console.log(and);
 console.log(or);
 ```
 
-也许起初会认为： andflag 和orflag 的值都为 true; 毕竟 ```&&``` 和 ```||``` 都是求Boolean ，但实际打出来结果却是and=3,or=2;
+也许起初会认为： andflag 和orflag 的值都为 true; 毕竟 `&&` 和 `||` 都是求Boolean ，但实际打出来结果却是and=3,or=2;
 
 那么如果a,b的值为false呢？让我们打出来看看吧：
 
@@ -351,17 +353,17 @@ console.log(or);//false
 
 简单概括起来就两句话：
 
-```a && b``` :如果执行a后返回true，则执行b并返回b的值；如果执行a后返回false，则整个表达式返回a的值，b不执行；<br  />
-```a || b```:如果执行a后返回true，则整个表达式返回a的值，b不执行；如果执行a后返回false，则执行b并返回b的值；<br  />
-```&&``` 优先级高于 ```||```;
+`a && b` :如果执行a后返回true，则执行b并返回b的值；如果执行a后返回false，则整个表达式返回a的值，b不执行；<br  />
+`a || b`:如果执行a后返回true，则整个表达式返回a的值，b不执行；如果执行a后返回false，则执行b并返回b的值；<br  />
+`&&` 优先级高于 `||`;
 
 该逻辑运算符支持短路原则。什么是短路原则呢？
-如```&&```中第一个表达式为假就不会去处理第二个表达式，而||正好相反。<br  />
+如`&&`中第一个表达式为假就不会去处理第二个表达式，而||正好相反。<br  />
 js也遵循上述原则。<br  />
 当||时，找到为true的分项就停止处理，并返回该分项的值，否则执行完，并返回最后分项的值。<br  />
 当&&时，找到为false的分项就停止处理，并返回该分项的值。
 
-分析一下语境。或，```||```，只有前面的不能通过，后面的语句才能执行。与，```&&```， 只有前面的能通过，后面的语句才能执行。
+分析一下语境。或，`||`，只有前面的不能通过，后面的语句才能执行。与，`&&`， 只有前面的能通过，后面的语句才能执行。
 
 根据短路原理还能这样改写：
 

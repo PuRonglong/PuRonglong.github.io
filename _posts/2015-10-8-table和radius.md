@@ -10,11 +10,8 @@ share: true
 ---
 
 > 先来看看设计图吧：
-
-![img](http://7vznhl.com1.z0.glb.clouddn.com/2015-10-8-01Snip20151028_2.png)
-
 <!-- more -->
-
+![img](http://7vznhl.com1.z0.glb.clouddn.com/2015-10-8-01Snip20151028_2.png)
 拿到图，先想到还是表格，table标签，可是，table表格是矩形的，没关系，我们有border-radius呀，结果如下：
 
 <p data-height="268" data-theme-id="20434" data-slug-hash="LVGvoX" data-default-tab="result" data-user="puronglong" class='codepen'>See the Pen <a href='http://codepen.io/puronglong/pen/LVGvoX/'>table&&border-radius</a> by puronglong (<a href='http://codepen.io/puronglong'>@puronglong</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
@@ -29,7 +26,7 @@ share: true
 
 嗯？怎么和想象的不一样捏，左右上角的直线角还在呢，而底部的圆角并没有效果
 
-后来找到问题是：```CSS3's border-radius property and border-collapse:collapse don't mix.```
+后来找到问题是：`CSS3's border-radius property and border-collapse:collapse don't mix.`
 
 如此看来collapse是用不了了，那使用border-collapse: separate呢，如下:
 

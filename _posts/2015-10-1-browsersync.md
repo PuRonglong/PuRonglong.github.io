@@ -34,7 +34,7 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420170842.
     browser-sync start --server --files "css/*.css"
 ```
 
-这里的start和server其实就是browser起了一个服务，默认端口可以在终端中看到，后面的files表示监听文件的改变，```css/*.css```指监听哪些文件的改变，如果只是想项目做出改变就有所监听的话可以使用```--files "**"```
+这里的start和server其实就是browser起了一个服务，默认端口可以在终端中看到，后面的files表示监听文件的改变，`css/*.css`指监听哪些文件的改变，如果只是想项目做出改变就有所监听的话可以使用`--files "**"`
 
 如果本地通过php,node,nginx等起了服务，对于这些动态站点使用代理模式：
 

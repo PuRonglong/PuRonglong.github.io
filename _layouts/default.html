@@ -2,18 +2,15 @@
 <html lang="zh-CN">
 {% include head.html %}
 <body>
-    <!--[if lt IE 10]>
-<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
-<![endif]-->
     <input id="nm-switch" type="hidden" value="{{ site.nightMode }}">
     <div class="visible">
       {{ content }}
     </div>
+    {% assign ver = site.time | date: '%Y%m%d%H%M%S' %}
     {% if content contains '<pre' or page.prism %}
-    <script defer src="{{ '/assets/js/prism.js' | relative_url }}"></script>
+    <script defer src="{{ '/assets/js/prism.js?v=' | append: ver | relative_url }}"></script>
     {% endif %}
-    <script defer src="{{ '/assets/js/index.min.js' | relative_url }}"></script>
+    <script defer src="{{ '/assets/js/index.min.js?v=' | append: ver | relative_url }}"></script>
     {% include back-to-top.html %}
-    {% include lazyload.html %}
 </body>
 </html>

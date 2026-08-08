@@ -154,12 +154,13 @@ class CursorSpecialEffects {
 const cursorSpecialEffects = new CursorSpecialEffects()
 cursorSpecialEffects.init()
 
-// 览器切换标签离开当前页面时改变title提示
+// 浏览器切换标签离开当前页面时改变title提示
+var normal_title = null;
 document.addEventListener('visibilitychange', function() {
   if (document.visibilityState == 'hidden') {
     normal_title = document.title;
     document.title = '客官别走呀！快回来看看~';
-  } else {
+  } else if (normal_title !== null) {
     document.title = normal_title;
   }
 });

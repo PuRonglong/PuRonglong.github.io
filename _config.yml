@@ -1,7 +1,7 @@
 # Site settings 配置站点
 title: "蒲荣龙的博客"
 description: "很高兴能在这里与你分享我对生活和技术的思考。"
-keyword: "蒲荣龙, 蒲荣龙的独立博客, 蒲荣龙的博客, 蒲荣龙"
+keywords: "蒲荣龙, 蒲荣龙的独立博客, 蒲荣龙的博客, 蒲荣龙"
 url: "https://www.puronglong.com" # your host
 
 # if you don't need baseurl, you should leave this value blank.
@@ -28,6 +28,8 @@ search: true
 
 # Night mode
 nightMode: false
+# 是否显示右下角夜间模式切换按钮（true 显示 / false 隐藏）
+showNightToggle: false
 
 # Comments 评论功能
 comments:
@@ -63,10 +65,14 @@ paginate_path: "page:num"
 exclude:
   [
     "node_modules",
+    "dev",
     ".gitignore",
     "README.md",
     "LICENSE",
     ".jshintrc",
+    "gem_install.log",
+    "assets/echarts.min.js",
+    "assets/js/snowstorm.js",
   ]
 
 # Markdown
@@ -76,7 +82,7 @@ kramdown:
   input: GFM
 
 # RSS
-RSS: false
+# 注：RSS 由 jekyll-feed 插件生成 feed.xml（不读取 RSS 键），此处不再重复声明。
 
 # Permalink
 # See: https://github.com/kaeyleo/jekyll-theme-H2O/issues/35

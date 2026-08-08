@@ -13,10 +13,8 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420170428.
 先让我们来看看一个实际例子吧：
 
 举一个网上看到的例子，火箭起飞，通过下面的gif图片我们能看到当鼠标移入太空的时候，火箭升空并倾斜，鼠标移除恢复原样
-![img](http://7vznhl.com1.z0.glb.clouddn.com/2015-9-1-02)
-
 <!-- more -->
-
+![img](http://7vznhl.com1.z0.glb.clouddn.com/2015-9-1-02)
 W3C标准中对CSS3的transition是这样描述的：
 
 CSS的transition允许CSS的属性值在一定的时间区间内平滑地过渡。这种效果可以在鼠标单击，获得焦点，被点击或对元素任何改变中触发，并圆滑地以动画效果改变CSS的属性值。简洁点说就是当元素从一种样式变换为另一种样式时为元素添加效果。
@@ -38,10 +36,10 @@ transition主要有***四个属性***，那这四个属性怎么记呢？变换�
 
 当我们想要同时改变几个属性值的时候，我们可以用all，比如
 
-```transition: all 0.6s ease-in-out;```
+`transition: all 0.6s ease-in-out;`
 
 可是这样的话，所有属性值的改变时间，速率，延迟都是一样的，如果想要这几个不同的属性改变时的时间，速率，延迟不一样，也可以分别指定，如：
-```transition: width 0.6s ease-in-out 1s,height 0.6s ease-in-out;```
+`transition: width 0.6s ease-in-out 1s,height 0.6s ease-in-out;`
 
 那么更关键的在于实际应用中能有什么新的体验呢？
 
@@ -86,12 +84,12 @@ div.rocket img {
 
 而这里transform只是定义状态而已，过渡动画是靠transition完成的，不过貌似现在animation用的比较多些。
 
-这里```background-position:50% 50%;```可以用来定义背景图片居中，左上角是0,0;右下角是100,100;想要说的是这里的百分比定位的点是容器和容器内元素的百分比的点重合的位置，不是左上角。可看官网上的解释[background-position](http://www.w3.org/TR/css3-background/#the-background-position)
+这里`background-position:50% 50%;`可以用来定义背景图片居中，左上角是0,0;右下角是100,100;想要说的是这里的百分比定位的点是容器和容器内元素的百分比的点重合的位置，不是左上角。可看官网上的解释[background-position](http://www.w3.org/TR/css3-background/#the-background-position)
 
 在某篇文章中看到这样的效果：
 
 ![img](http://7vznhl.com1.z0.glb.clouddn.com/2015-9-2-01demo.gif)
 
-这里其实是两张图片，通过```background-position```将两张图定位重合，对背景色的图片开始height:0,当:hover的时候再给height一个值，中间用transition,这样当height变化时,因为定位重合，看起来就好像是从底部“长”出来一样。
+这里其实是两张图片，通过`background-position`将两张图定位重合，对背景色的图片开始height:0,当:hover的时候再给height一个值，中间用transition,这样当height变化时,因为定位重合，看起来就好像是从底部“长”出来一样。
 
 这些是transition部分，以后再聊聊transform,animation等~
