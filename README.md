@@ -17,10 +17,11 @@
 - **社交链接**：微博、Instagram、豆瓣（见 `_config.yml` 的 `sns`）。
 - **PWA 离线缓存**：`sw.js` 对静态资源缓存优先、页面网络优先，支持离线访问。
 - **性能优化（相对原版 H2O 的改动）**：
-  - jQuery 改为 **CDN 加载**（国内源优先 + 失败回退），并以 `defer` 非阻塞方式引入；
+  - jQuery 升级至 **3.7.1**，改为 **CDN 加载**（国内源优先 + 失败回退）；
   - 移除 **Font Awesome**，改用内联 SVG 图标（`currentColor` 跟随主题色）；
-  - 移除 **Google Analytics**，仅保留不蒜子（busuanzi）访客统计；
-  - CSS 压缩（`app.min.css` / `github-markdown.css` / `prism.css`），并剥离 `github-markdown.css` 内嵌的 octicons base64 字体；
+  - 移除第三方访客统计（不蒜子 / busuanzi），不再加载外部统计脚本；
+  - CSS 合并压缩为单一 `bundle.min.css`（原 `app.min.css` / `github-markdown.css` / `prism.css` 合并，并剥离 `github-markdown.css` 内嵌的 octicons base64 字体）；
+  - 新增 `sitemap.xml` / `feed.xml`（jekyll-sitemap / jekyll-feed）与 `robots.txt`，SEO 与订阅能力开箱即用；
   - favicon 多分辨率优化（16/32/48，约 5KB）；
   - 清理无用旧资源（social-share、util.js、hero.jpg、profile.png 等）。
 
@@ -59,7 +60,7 @@ git push origin master
 .
 ├── _config.yml          # 站点配置
 ├── _layouts/            # 页面布局（default / post / page）
-├── _includes/           # 复用片段（head、header、footer、post-head、back-to-top、anchor、mathjax …）
+├── _includes/           # 复用片段（head、header、footer、author-card、back-to-top、anchor、mathjax、lazyload …）
 ├── _posts/              # 博客文章（Markdown）
 ├── assets/              # 样式 assets/css、脚本 assets/js、字体 assets/fonts、图片
 ├── index.html           # 首页（分页文章列表）
@@ -68,11 +69,9 @@ git push origin master
 ├── sw.js                # Service Worker（PWA 离线缓存）
 ├── search.json          # 站内搜索索引（构建时生成）
 ├── favicon.ico          # 站点图标
-├── gulpfile.js          # 开发构建：dev/sass → assets/css，dev/js → assets/js
-└── package.json         # 开发依赖（gulp 等）
 ```
 
-> 开发态源文件位于 `dev/`（SCSS / JS 源码），通过 `gulp` 编译压缩到 `assets/`。`dev/`、`node_modules`、`package.json`、`gulpfile.js` 已在 `_config.yml` 的 `exclude` 中，不会被 Jekyll 发布。
+> 搜索脚本可读源位于 `dev/js/index.js`；项目已无 gulp 构建链，编辑该源文件不会自动更新 `assets/js/index.min.js`（需手动同步）。`dev/` 已在 `_config.yml` 的 `exclude` 中，不会被 Jekyll 发布。
 
 ## 配置
 
@@ -83,7 +82,7 @@ git push origin master
 | `title` / `description` | 站点标题与简介 |
 | `url` / `baseurl` | 站点域名；GitHub Pages 用户页 `baseurl` 留空 |
 | `author` / `nickname` / `bio` / `avatar` | 博主信息（显示在侧栏） |
-| `nav` | 导航链接（`home` / `tags`） |
+| `nav` | 导航链接定义于 `_data/nav.yml`（`home` / `tags`） |
 | `paginate` / `paginate_path` | 分页数量与路径（默认 15，`page:num`） |
 | `search` | 是否开启站内搜索 |
 | `nightMode` | 默认是否启用夜间模式 |
