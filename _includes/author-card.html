@@ -1,0 +1,21 @@
+<section class="author-card{% if include.footer %} post-footer-item{% endif %}">
+    <div class="avatar">
+        <img src="{{ site.avatar | absolute_url }}" alt="{{ site.author }}" loading="lazy" decoding="async">
+    </div>
+    <div class="author-name" rel="author">{{ site.author }}</div>
+    <div class="bio">
+        <p>{{ site.bio }}</p>
+        <p style="margin-top: 6px;">{{ site.introduction }}</p>
+    </div>
+    {% if include.show_sns and site.sns.size > 0 %}
+    <ul class="sns-links">
+        {% for s in site.sns %}
+        <li>
+            <a href="{{ s[1] }}" target="_blank" rel="noopener">
+                <i class="iconfont icon-{{ s[0] }}"></i>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</section>

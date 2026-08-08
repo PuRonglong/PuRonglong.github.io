@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 {% include head.html %}
 <body>
     <!--[if lt IE 10]>
@@ -9,10 +9,11 @@
     <div class="visible">
       {{ content }}
     </div>
-    {% if content contains '<pre' %}
+    {% if content contains '<pre' or page.prism %}
     <script defer src="{{ '/assets/js/prism.js' | relative_url }}"></script>
     {% endif %}
     <script defer src="{{ '/assets/js/index.min.js' | relative_url }}"></script>
     {% include back-to-top.html %}
+    {% include lazyload.html %}
 </body>
 </html>

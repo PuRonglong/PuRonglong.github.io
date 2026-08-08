@@ -14,7 +14,7 @@ header-img: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2020070209
     <h2>{{ page.home-title }}</h2>
     <h3>{{ page.description }}</h3>
     {% if page.header-img %}
-    <img class="header-img" src="{{ page.header-img | prepend: site.baseurl }}" alt="">
+    <img class="header-img" src="{{ page.header-img }}" alt="" fetchpriority="high">
     {% endif %}
 </div>
 
@@ -59,27 +59,7 @@ header-img: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2020070209
 
     <aside class="g-sidebar-wrapper">
         <div class="g-sidebar">
-            <section class="author-card">
-                <div class="avatar">
-                    <img src="{{ site.avatar | prepend: site.baseurl }}" alt="" loading="lazy" decoding="async">
-                </div>
-                <div class="author-name" rel="author">{{ site.author }}</div>
-                <div class="bio" >
-                    <p>{{ site.bio }}</p>
-                    <p style="margin-top: 6px;">{{ site.introduction }}</p>
-                </div>
-                <!-- {% if site.sns.size > 0 %}
-                <ul id="sns-links" class="sns-links">
-                    {% for s in site.sns %}
-                    <li>
-                        <a href="{{ s[1] }}" target="_blank">
-                            <i class="iconfont icon-{{ s[0] }}"></i>
-                        </a>
-                    </li>
-                    {% endfor %}
-                </ul>
-                {% endif %} -->
-            </section>
+            {% include author-card.html %}
 
             {% if site.recommend-tags and site.tags.size>0 %}
             <section class="tags-card">
@@ -95,7 +75,7 @@ header-img: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/2020070209
 
         {% if site.search %}
         <div class="search-card">
-            <input id="search_input" type="text" placeholder="Search...">
+            <input id="search_input" type="text" placeholder="Search..." aria-label="站内搜索">
             <i class="iconfont icon-search"></i>
             <div class="search_result"></div>
         </div>

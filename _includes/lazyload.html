@@ -1,0 +1,16 @@
+<script>
+  (function () {
+    function lazyImages() {
+      var imgs = document.querySelectorAll('.markdown-body img:not([loading])');
+      for (var i = 0; i < imgs.length; i++) {
+        imgs[i].setAttribute('loading', 'lazy');
+        if (!imgs[i].hasAttribute('decoding')) imgs[i].setAttribute('decoding', 'async');
+      }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', lazyImages);
+    } else {
+      lazyImages();
+    }
+  })();
+</script>

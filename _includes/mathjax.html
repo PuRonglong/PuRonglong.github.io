@@ -1,20 +1,31 @@
-<!--
-Author: Ray-Eldath
-refer to:
- - http://docs.mathjax.org/en/latest/options/index.html
--->
 {% if page.mathjax or page.content contains '$$' %}
-	<script type="text/javascript" async src="https://cdn.staticfile.org/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML" onerror="this.onerror=null;document.write('<script type=\'text/javascript\' async src=\'https://cdn.jsdelivr.net/npm/mathjax@2.7.2/MathJax.js?config=TeX-MML-AM_CHTML\'><\/script>')"></script>
-	
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-		jax: ["input/TeX", "output/HTML-CSS"],
-		tex2jax: {
-			inlineMath: [ ["$", "$"] ],
-			displayMath: [ ["$$", "$$"] ],
-			skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-		},
-		"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
-      });
-    </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]]
+      },
+      options: {
+        skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]
+      }
+    };
+  </script>
+  <script>
+    (function () {
+      var cdns = [
+        "https://cdn.staticfile.net/mathjax/3.2.2/es5/tex-mml-chtml.js",
+        "https://cdn.bootcdn.net/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js",
+        "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+      ];
+      (function load(i) {
+        if (i >= cdns.length) return;
+        if (window.MathJax && window.MathJax.startup) return;
+        var s = document.createElement("script");
+        s.src = cdns[i];
+        s.async = true;
+        s.onerror = function () { load(i + 1); };
+        document.head.appendChild(s);
+      })(0);
+    })();
+  </script>
 {% endif %}

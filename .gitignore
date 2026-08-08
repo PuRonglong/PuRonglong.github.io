@@ -2,3 +2,9 @@ _site
 .DS_Store
 .jekyll-cache
 node_modules
+.sass-cache/
+*.log
+.bundle/
+vendor/bundle/
+.idea/
+.vscode/
