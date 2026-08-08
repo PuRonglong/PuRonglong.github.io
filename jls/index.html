@@ -719,17 +719,17 @@ let scope='tiynei', page=1, sortKey='', sortAsc=true; const PAGE=60;
 const COLS=[
   {k:'_idx',label:'序号',w:56,fixed:true},
   {k:'name',label:'姓名',w:84,fixed:true},
-  {k:'id',label:'证件（前6后4）',w:158},
+  {k:'sex',label:'性别(解析)',w:92},
+  {k:'unit',label:'工作单位',w:300},
+  {k:'nature',label:'单位性质',w:104},
+  {k:'worky',label:'工作年限',w:88},
+  {k:'majy',label:'专业年限',w:88},
   {k:'city',label:'报名地市',w:150},
   {k:'level',label:'报考级别',w:96},
   {k:'major',label:'报考专业',w:116},
-  {k:'worky',label:'工作年限',w:88},
-  {k:'majy',label:'专业年限',w:88},
-  {k:'unit',label:'工作单位',w:300},
-  {k:'nature',label:'单位性质',w:104},
-  {k:'sex',label:'性别(解析)',w:92},
   {k:'prov',label:'户籍省份',w:96},
   {k:'native_pref',label:'户籍地市',w:130},
+  {k:'id',label:'证件（前6后4）',w:158},
   {k:'anomaly',label:'异常',w:130}
 ];
 let colOrder=COLS.map(c=>c.k);

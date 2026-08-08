@@ -728,16 +728,16 @@ let scope='tiynei', page=1, sortKey='', sortAsc=true; const PAGE=60;
 const COLS=[
   {k:'_idx',label:'序号',w:62,fixed:true},
   {k:'name',label:'姓名',w:92,fixed:true},
-  {k:'id_masked',label:'证件（前6后4）',w:158},
+  {k:'gender_parsed',label:'性别(解析)',w:92},
+  {k:'unit',label:'工作单位',w:300},
+  {k:'unit_type',label:'单位性质',w:90},
+  {k:'major_years',label:'专业年限',w:88},
   {k:'city',label:'报名地市',w:110},
   {k:'level',label:'级别',w:66},
   {k:'exempt',label:'免一科',w:80},
-  {k:'major_years',label:'专业年限',w:88},
-  {k:'unit',label:'工作单位',w:300},
-  {k:'unit_type',label:'单位性质',w:90},
-  {k:'gender_parsed',label:'性别(解析)',w:92},
   {k:'native_prov',label:'户籍省市',w:150},
   {k:'local_remote',label:'本地/异地',w:92},
+  {k:'id_masked',label:'证件（前6后4）',w:158},
   {k:'anomaly',label:'异常',w:150}
 ];
 let colOrder=COLS.map(c=>c.k);

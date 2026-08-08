@@ -608,10 +608,10 @@ window.__EC_READY.then(function(){
 }).catch(function(){document.querySelectorAll('.chart').forEach(c=>{c.classList.add('err');});});
 
 // ---------- 表格 ----------
-const COLS=[{k:'name',t:'姓名',w:90},{k:'sex',t:'性别',w:48},{k:'id',t:'证件号',w:150},
-  {k:'level',t:'报考级别',w:120},{k:'city',t:'报名地市',w:110},{k:'unit',t:'工作单位',w:230},
-  {k:'nature',t:'单位性质',w:130},{k:'worky',t:'工作年限',w:70},{k:'majy',t:'专业年限',w:70},
-  {k:'prov',t:'户籍',w:64},{k:'anomaly',t:'异常',w:50}];
+const COLS=[{k:'_idx',t:'序号',w:50},{k:'name',t:'姓名',w:90},{k:'sex',t:'性别',w:48},
+  {k:'unit',t:'工作单位',w:230},{k:'nature',t:'单位性质',w:130},{k:'worky',t:'工作年限',w:70},
+  {k:'majy',t:'专业年限',w:70},{k:'level',t:'报考级别',w:120},{k:'city',t:'报名地市',w:110},
+  {k:'prov',t:'户籍',w:64},{k:'id',t:'证件号',w:150},{k:'anomaly',t:'异常',w:50}];
 let scope='all',page=1,PAGE=60,sortKey='',sortAsc=true,filtered=[];
 const NAT_TAG={'党政部门':'gov','事业单位':'inst','学校':'sch','医院':'hos','银行及非银行金融机构':'bank','国有企业':'soe','民营企业':'priv','社会组织':'soc','基层群众自治组织':'auto','外商投资企业及港澳台投资企业':'for','其他':'unk'};
 
@@ -642,13 +642,14 @@ function applyFilter(){
 function render(){
   const thr=document.getElementById('thr');thr.innerHTML='';
   COLS.forEach(c=>{const th=document.createElement('th');th.textContent=c.t;th.style.width=c.w+'px';
-    th.onclick=()=>{if(sortKey===c.k)sortAsc=!sortAsc;else{sortKey=c.k;sortAsc=true;}applyFilter();};
+    if(c.k!=='_idx'){th.onclick=()=>{if(sortKey===c.k)sortAsc=!sortAsc;else{sortKey=c.k;sortAsc=true;}applyFilter();};}
     thr.appendChild(th);});
   const tb=document.getElementById('tbody');tb.innerHTML='';
   const start=(page-1)*PAGE,end=Math.min(start+PAGE,filtered.length);
   for(let i=start;i<end;i++){const r=filtered[i];const tr=document.createElement('tr');
     COLS.forEach(c=>{const td=document.createElement('td');
-      if(c.k==='sex')td.innerHTML=r.sex==='女'?'<span class="tag f">女</span>':'<span class="tag m">男</span>';
+      if(c.k==='_idx')td.textContent=i+1;
+      else if(c.k==='sex')td.innerHTML=r.sex==='女'?'<span class="tag f">女</span>':'<span class="tag m">男</span>';
       else if(c.k==='nature')td.innerHTML=`<span class="tag ${NAT_TAG[r.nature]||'unk'}">${r.nature}</span>`;
       else if(c.k==='anomaly')td.innerHTML=r.anomaly?'<span class="tag anom">异常</span>':'';
       else td.textContent=r[c.k];
