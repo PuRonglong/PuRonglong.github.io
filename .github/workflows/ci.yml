@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          # 关闭 frozen 缓存，避免 Windows 生成的 lockfile 在 Linux 上解析失败
+          bundler-cache: false
+
+      - name: Ensure Linux platform in lockfile
+        run: bundle lock --add-platform x86_64-linux || true
+
+      - name: Install dependencies
+        run: bundle install --jobs 4
+
+      - name: Build site with Jekyll
+        run: bundle exec jekyll build --trace
