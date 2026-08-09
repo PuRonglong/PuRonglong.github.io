@@ -16,18 +16,43 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Ruby
+      # GitHub Pages 线上用 Jekyll 3.9 工具链构建，这里用官方 github-pages gem
+      # 保持与线上完全一致的依赖版本，避免"本地 Jekyll 4 通过、线上 3.9 出问题"。
+      - name: Set up Ruby 3.0 (compatible with github-pages gem)
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.3'
-          # 关闭 frozen 缓存，避免 Windows 生成的 lockfile 在 Linux 上解析失败
+          ruby-version: '3.0'
           bundler-cache: false
 
-      - name: Ensure Linux platform in lockfile
-        run: bundle lock --add-platform x86_64-linux || true
+      - name: Install github-pages gem (mirrors Pages toolchain)
+        run: gem install github-pages --no-document
 
-      - name: Install dependencies
-        run: bundle install --jobs 4
+      - name: Build site with Jekyll 3.9 (Pages toolchain)
+        run: |
+          # 项目 Gemfile 锁定 Jekyll 4.4.1（本地预览用），构建前临时移开，
+          # 避免 jekyll 3.9 启动时 Bundler 加载 Jekyll 4 造成版本混乱。
+          mv Gemfile Gemfile.bak
+          if [ -f Gemfile.lock ]; then mv Gemfile.lock Gemfile.lock.bak; fi
+          jekyll build --trace
+          status=$?
+          mv -f Gemfile.bak Gemfile
+          if [ -f Gemfile.lock.bak ]; then mv -f Gemfile.lock.bak Gemfile.lock; fi
+          exit $status
 
-      - name: Build site with Jekyll
-        run: bundle exec jekyll build --trace
+      # jekyll-paginate 1.1.0 在 Jekyll 4 下会"静默失效"（构建成功但首页文章列表为空）。
+      # 用与线上一致的 3.9 构建后，断言首页确实渲染出了文章条目，失败即报错。
+      - name: Verify homepage renders posts (catch paginate silent failure)
+        run: |
+          post_count=$(find _posts -name '*.md' | wc -l)
+          echo "posts in _posts/: $post_count"
+          if [ "$post_count" -eq 0 ]; then
+            echo "::error::no posts found in _posts/, nothing to verify"
+            exit 1
+          fi
+          items=$(grep -c 'class="article-item"' _site/index.html || true)
+          echo "article items rendered on homepage: $items"
+          if [ "$items" -eq 0 ]; then
+            echo "::error::homepage renders 0 articles — jekyll-paginate silently failed (empty post list)"
+            exit 1
+          fi
+          echo "OK: homepage renders $items posts"
