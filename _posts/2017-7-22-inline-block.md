@@ -27,7 +27,7 @@ share: true
 实际上是定义了一个行内块元素，行内元素有个vertical-align属性：
 
 ```css
-The vertical-align CSS property specifies the vertical alignment 
+The vertical-align CSS property specifies the vertical alignment
 of an inline or table-cell box. -- MDN
 ```
 

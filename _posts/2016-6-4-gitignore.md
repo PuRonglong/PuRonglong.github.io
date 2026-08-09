@@ -38,4 +38,3 @@ git-rm - Remove files from the working tree and from the index
 
 _site是我们需要从git里取消的文件。
 
-

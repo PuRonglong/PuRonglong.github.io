@@ -41,8 +41,8 @@ sub是substitute的简写，表示替换，作用：
 re.sub替换所有的匹配项，并不只是第一个匹配项
 
 ```
-	re.sub('[abc]', 'o', 'caps')   
-	'oops' 
+	re.sub('[abc]', 'o', 'caps')
+	'oops'
 ```
 re.findall()：
 

@@ -8,7 +8,7 @@ share: true
 cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420173027.png
 ---
 
-> 看到《js语言精髓与编程实践》中讲解的js语法中运算符的二义性之逗号的二义性，做些笔记 
+> 看到《js语言精髓与编程实践》中讲解的js语法中运算符的二义性之逗号的二义性，做些笔记
 
 我们先来看看这两个例子：
 

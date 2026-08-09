@@ -18,7 +18,7 @@ angular tips。
 
 ```html
 经度：
-<input class="form-control" style="display: inline-block;width: 120px;" ng-model="position.fLongitude"/> 
+<input class="form-control" style="display: inline-block;width: 120px;" ng-model="position.fLongitude"/>
 纬度：
 <input class="form-control" style="display: inline-block;width: 120px;" ng-model="position.fLatitude"/>
 ```
@@ -47,7 +47,7 @@ html如下，添加了一个指令和readonly属性。
 
 ```html
 经度：
-<input class="form-control" style="display: inline-block;width: 120px;" ng-model="position.fLongitude" display-address readonly/> 
+<input class="form-control" style="display: inline-block;width: 120px;" ng-model="position.fLongitude" display-address readonly/>
 纬度：
 <input class="form-control" style="display: inline-block;width: 120px;" ng-model="position.fLatitude" display-address readonly/>
 ```
@@ -82,7 +82,7 @@ displayAddressDirective.js指令文件的内容：
         function displayAddressDirective() {
             return {
                 require: 'ngModel',
-                link: function(scope, elm, attrs, ctrl) {                        
+                link: function(scope, elm, attrs, ctrl) {
                     ctrl.$formatters.push(function formatter(value) {
                         return parseFloat(value).toFixed(2);
                     });

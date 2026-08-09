@@ -13,8 +13,8 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420173533.
 <!-- more -->
 
 ```js
-if ($("#id")){ 
-    $("#id").text("hi"); 
+if ($("#id")){
+    $("#id").text("hi");
 }
 ```
 

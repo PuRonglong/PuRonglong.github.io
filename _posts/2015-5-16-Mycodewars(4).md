@@ -195,6 +195,6 @@ solution:
 ```js
 function smash (words) {
 	var string = words.join(" ");
-	return string; 
+	return string;
 };
 ```

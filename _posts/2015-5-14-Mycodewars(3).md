@@ -211,8 +211,8 @@ function min(arr, toReturn) {
 这道题用到了求数组中最小值，简要总结一下JS中获取数组中最大(最小)值的方法。除了上面用到的`Math.min.apply()`方法,还可以使用sort()方法，如：
 
 ```js
-    var arr = [7,3,4,6,10]; 
-    var b = arr.sort(function(a,b){ 
+    var arr = [7,3,4,6,10];
+    var b = arr.sort(function(a,b){
         return (a-b);
     });
     console.log(b[0]);
@@ -242,7 +242,7 @@ example:
 ```js
     function getMax1()
     {
-      var max = 
+      var max =
       {
        name: 'Max Headroom'
       }
@@ -263,7 +263,7 @@ solution:
 ```js
     function getMax1()
     {
-      var max = 
+      var max =
       {
        name: 'Max Headroom'
       }

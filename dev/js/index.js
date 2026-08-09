@@ -89,9 +89,11 @@
 
     /* ---------- 文章底部"上一篇/下一篇"封面居中 ---------- */
     function postCover(img, container) {
+      img.style.display = 'block';
+      img.style.opacity = '1';
       var iw = img.width, ih = img.height;
       var cw = container.clientWidth, ch = container.clientHeight;
-      if (!iw || !ih || !cw || !ch) return;
+      if (!img.naturalWidth || !img.naturalHeight || !cw || !ch) return;
       if (ih < ch) {
         img.style.width = 'auto';
         img.style.height = '100%';
@@ -100,6 +102,7 @@
       } else {
         img.style.marginTop = (ch - ih) / 2 + 'px';
       }
+      img.style.display = 'block';
       img.style.opacity = '1';
     }
 
@@ -109,12 +112,14 @@
         var sections = rn.querySelectorAll('section');
         var rnH = rn.offsetHeight;
         for (var s = 0; s < sections.length; s++) {
+          sections[s].style.display = 'block';
           sections[s].style.marginTop = (rnH - sections[s].offsetHeight) / 2 + 'px';
           sections[s].style.opacity = '1';
         }
         var imgs = rn.querySelectorAll('img');
         for (var m = 0; m < imgs.length; m++) {
           (function (img) {
+            img.style.display = 'block';
             if (img.complete) { postCover(img, rn); }
             else { img.addEventListener('load', function () { postCover(img, rn); }); }
           })(imgs[m]);

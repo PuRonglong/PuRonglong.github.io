@@ -46,30 +46,30 @@ transition主要有***四个属性***，那这四个属性怎么记呢？变换�
 就是我们看到的第一个火箭的例子了，主要代码在这里
 
 ```html
-<style type="text/css"> 
-/* 这是初始状态 */ 
-#outerspace { 
-	position: relative; 
-	height: 400px; 
+<style type="text/css">
+/* 这是初始状态 */
+#outerspace {
+	position: relative;
+	height: 400px;
 	background: #0c0440 url(/images/outerspace.jpg);
-} 
+}
 
-div.rocket { 
-	position: absolute; 
+div.rocket {
+	position: absolute;
 	bottom: 10px;
 	left: 20px;
 	-webkit-transition: all 3s ease-in;
 	transition: all 3s ease-in;
-} 
-div.rocket img { 
+}
+div.rocket img {
 	-webkit-transition: all 2s ease-in-out;
 	transition: all 2s ease-in-out;
 }
-/* 最后状态 */ 
+/* 最后状态 */
 #outerspace:hover{
 	backgrouond-position: -50% bottom;
 }
-#outerspace:hover div.rocket { 
+#outerspace:hover div.rocket {
 	-webkit-transform: translate(540px,-200px);
 	transform: translate(540px,-200px);
 }

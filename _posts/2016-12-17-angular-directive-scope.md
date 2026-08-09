@@ -109,7 +109,7 @@ angular.module("MyApp", [])
       scope: {
         name: '@myName',
         age: '@'
-      }, 
+      },
       link:function(scope){
         scope.changeAgeChild=function(){
           this.age=666;

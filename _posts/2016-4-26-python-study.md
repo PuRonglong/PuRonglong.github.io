@@ -67,7 +67,7 @@ cover: https://puronglong-blog-image.oss-cn-beijing.aliyuncs.com/20200420154359.
 输出：
 
 ```python
-	$ python expression.py 
+	$ python expression.py
 	Area is 10
 	Perimeter is 14
 ```
@@ -474,7 +474,7 @@ Python从0开始计数。
 使用 lambda 形式：
 
 ```python
-	def make_repeater(n): 
+	def make_repeater(n):
 		return lambda s: s*n
 
 	twice = make_repeater(2)
