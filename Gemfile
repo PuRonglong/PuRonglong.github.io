@@ -5,7 +5,7 @@ source "https://rubygems.org"
 # 如需在本地用与 Pages 完全一致的版本做分页等测试，可改用 `gem "github-pages"`。
 gem "jekyll", "4.4.1"
 # 与系统 Ruby 3.3 默认的 bigdecimal 保持一致，避免 Bundler 在 default gem 上版本冲突。
-gem "bigdecimal", "~> 3.1.0"
+gem "bigdecimal", "~> 4.1.2"
 gem "webrick"
 # timezone 需要 tzinfo；Windows 平台还需 tzinfo-data 才能解析 Asia/Shanghai 等时区。
 gem "tzinfo", "~> 2.0"
