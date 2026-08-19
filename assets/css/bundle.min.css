@@ -15,5 +15,183 @@ body.night-mode .g-header.header-solid .g-nav>ul>li>a{color:#c8cdd4}
 body.night-mode #nm-toggle{background:rgba(49,153,219,.55)}
 @media(max-width:600px){#nm-toggle{right:14px;bottom:64px;width:40px;height:40px}}
 
+/* ============================================================
+   Apple 交互优化（2026-08-19 追加）
+   依据 WWDC Designing Fluid Interfaces：即时反馈 / 弹簧可中断 /
+   毛玻璃材质 / 减动效与减透明适配 / 排版字距
+   ============================================================ */
+
+/* ---- 1. 头部毛玻璃（材质与层次：半透明 + backdrop blur） ---- */
+.g-header.header-solid {
+  background-color: rgba(255, 255, 255, 0.72);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04), 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+body.night-mode .g-header.header-solid {
+  background-color: rgba(24, 27, 32, 0.72);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  backdrop-filter: blur(20px) saturate(150%);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06), 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .g-header.header-solid { background-color: rgba(255, 255, 255, 0.98); }
+  body.night-mode .g-header.header-solid { background-color: rgba(27, 30, 36, 0.98); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .g-header.header-solid { background-color: rgba(255, 255, 255, 0.98); }
+  body.night-mode .g-header.header-solid { background-color: rgba(27, 30, 36, 0.98); }
+}
+
+/* ---- 2. 即时反馈：按下即响应，悬停柔和 ---- */
+.g-nav > ul > li > a,
+.pagination .page-link,
+.search_item,
+.article-item .post-meta .post-tag,
+.tags-card .tag,
+.tags-content .tag,
+.g-logo a,
+.sns-links a,
+.g-header .icon-menu,
+#nm-toggle,
+#back-to-top {
+  -webkit-tap-highlight-color: transparent;
+}
+@media (hover: hover) {
+  .article-item {
+    transition: transform .25s cubic-bezier(.25, .1, .25, 1), box-shadow .25s ease;
+  }
+  .article-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0, 37, 55, .08);
+  }
+  .search_item {
+    transition: background-color .2s ease, opacity .2s ease, padding-left .2s ease;
+  }
+  .search_item:hover {
+    padding-left: 24px;
+  }
+  .g-logo {
+    transition: opacity .2s ease, transform .25s cubic-bezier(.25, .1, .25, 1);
+  }
+  .g-logo:hover {
+    transform: scale(1.05);
+  }
+  .pagination .page-link {
+    transition: background-color .2s ease, color .2s ease, transform .15s ease;
+  }
+  .pagination .page-link:hover {
+    transform: translateY(-1px);
+  }
+  .g-nav > ul > li > a {
+    transition: opacity .2s ease, transform .1s ease;
+  }
+}
+.pagination .page-link:active,
+.search_item:active,
+.post-tag:active,
+.tags-card .tag:active,
+.tags-content .tag:active,
+.g-nav > ul > li > a:active {
+  transform: scale(.96);
+}
+#nm-toggle:active {
+  transform: scale(.92);
+  transition: transform .1s ease;
+}
+.article-item:active {
+  transform: translateY(-1px) scale(.995);
+}
+
+/* ---- 3. 移动端导航：materialize（opacity/transform，JS 弹簧驱动） ---- */
+@media (max-width: 695px) {
+  .g-header .g-nav {
+    display: block;               /* 覆盖原 display:none，改由 visibility 控制显隐 */
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-7px) scale(.97);
+    transform-origin: top right;
+    pointer-events: none;
+  }
+  .g-header .g-nav.nav-open {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+}
+
+/* ---- 4. 阅读进度条（仅文章页，JS 注入，scaleX 驱动） ---- */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 2000;
+  background: linear-gradient(90deg, #3199db, #6ec3f0);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  opacity: 0;
+  transition: opacity .3s ease;
+  pointer-events: none;
+  will-change: transform;
+}
+.reading-progress.show { opacity: 1; }
+body.night-mode .reading-progress {
+  background: linear-gradient(90deg, #3d8fd4, #7cc8f2);
+}
+
+/* ---- 5. 分页器：逐项浮现（JS 计时后移除 .page-reveal） ---- */
+.pagination.page-reveal .page-link {
+  opacity: 0;
+  animation: page-link-in .45s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+@keyframes page-link-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- 6. 夜间模式：一次性颜色过渡（JS 驱动 .theme-fade） ---- */
+body.theme-fade,
+body.theme-fade .article-item,
+body.theme-fade .g-sidebar,
+body.theme-fade .search-card input,
+body.theme-fade .search_result,
+body.theme-fade .search_item,
+body.theme-fade .page-links,
+body.theme-fade .post-content,
+body.theme-fade .markdown-body,
+body.theme-fade .g-footer,
+body.theme-fade .g-header.header-solid {
+  transition: background-color .28s ease, color .28s ease, border-color .28s ease;
+}
+
+/* ---- 7. 排版字距（Typography：大标题收紧、正文归零） ---- */
+.home-banner h2 { letter-spacing: -.01em; }
+.post-wrapper h1 { letter-spacing: -.015em; line-height: 1.15; }
+.article-list .article-item .post-preview .post-title { letter-spacing: -.005em; }
+
+/* ---- 8. 减动效适配（Apple: prefers-reduced-motion） ---- */
+@media (prefers-reduced-motion: reduce) {
+  .pagination.page-reveal .page-link { opacity: 1; animation: none; }
+  .reading-progress { display: none; }
+  body.theme-fade,
+  body.theme-fade .article-item,
+  body.theme-fade .g-sidebar,
+  body.theme-fade .search-card input,
+  body.theme-fade .search_result,
+  body.theme-fade .search_item,
+  body.theme-fade .page-links,
+  body.theme-fade .post-content,
+  body.theme-fade .markdown-body,
+  body.theme-fade .g-footer,
+  body.theme-fade .g-header.header-solid {
+    transition: none;
+  }
+  .article-item { transition: none; }
+  .article-item:hover { transform: none; }
+}
+
 /* ===== 正文字号显式声明（16px）===== */
 

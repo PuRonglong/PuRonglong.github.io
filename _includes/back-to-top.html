@@ -4,6 +4,7 @@
   </svg>
 </button>
 <style>
+  /* 显隐由主脚本中的弹簧驱动（transform/opacity），此处只定义静止态与 .show 兜底 */
   #back-to-top {
     position: fixed;
     right: 24px;
@@ -16,23 +17,42 @@
     background: rgba(49, 153, 219, .9);
     color: #fff;
     cursor: pointer;
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(8px) scale(.9);
+    pointer-events: none;
     box-shadow: 0 2px 12px rgba(0, 0, 0, .22);
     z-index: 9999;
-    transition: opacity .3s ease, transform .3s ease, background .3s ease;
   }
   #back-to-top:hover {
     background: #3199db;
     transform: translateY(-2px);
+  }
+  /* 按下即时反馈（优先级高于 hover） */
+  #back-to-top:active {
+    transform: translateY(-1px) scale(.92);
   }
   #back-to-top:focus-visible {
     outline: 2px solid #fff;
     outline-offset: 2px;
   }
   #back-to-top.show {
-    display: flex;
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  /* 减动效：退化为 200ms 透明度过渡 */
+  @media (prefers-reduced-motion: reduce) {
+    #back-to-top {
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    #back-to-top.show {
+      transform: translateY(0) scale(1);
+    }
   }
   @media (max-width: 600px) {
     #back-to-top {
@@ -43,27 +63,3 @@
     }
   }
 </style>
-<script>
-  (function () {
-    var btn = document.getElementById('back-to-top');
-    if (!btn) return;
-    var ticking = false;
-    function onScroll() {
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(function () {
-        if (window.pageYOffset > 400) {
-          btn.classList.add('show');
-        } else {
-          btn.classList.remove('show');
-        }
-        ticking = false;
-      });
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    btn.addEventListener('click', function () {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    onScroll();
-  })();
-</script>

@@ -3,6 +3,8 @@
  * 说明：本文件为 assets/js/index.min.js 的源文件，两者须保持行为一致。
  * 本文件位于 dev/ 目录，不会被 Jekyll 发布；修改后需手动同步到 assets/js/index.min.js。
  * 依赖：原生 JS，无第三方库（jQuery 已于 2026-08 移除）。
+ * 交互依据：Apple Designing Fluid Interfaces —— 即时反馈 / 弹簧（可中断）/
+ * 速度连续 / 减动效适配。所有动画只操作 transform 与 opacity（合成器友好）。
  */
 (function () {
   'use strict';
@@ -16,75 +18,201 @@
   }
 
   ready(function () {
+    var reducedMotion = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     var nav = document.querySelector('.g-nav');
     var toggle = document.getElementById('menu-toggle');
 
-    /* ---------- 移动端导航展开/收起 ---------- */
-    function isHidden(el) {
-      return el.style.display === 'none' || getComputedStyle(el).display === 'none';
+    /* ---------- 轻量弹簧引擎（临界阻尼 ζ=1.0，可中断，从当前值继续） ---------- */
+    function Spring(from, onUpdate) {
+      this.value = from || 0;
+      this.velocity = 0;
+      this.target = this.value;
+      this.onUpdate = onUpdate || function () {};
+      this._raf = null;
+      this._last = 0;
+      var response = 0.35; // 秒：越小越干脆
+      var zeta = 1.0;      // 阻尼比 1.0 = 临界阻尼，无过冲
+      var omega = 2 * Math.PI / response;
+      this._stiffness = omega * omega;
+      this._friction = 2 * zeta * omega;
     }
-
-    function slide(el, open, dur) {
-      dur = dur || 200;
-      if (open) {
-        el.style.display = 'block';
-        var h = el.scrollHeight;
-        el.style.height = '0px';
-        el.style.overflow = 'hidden';
-        el.style.transition = 'height ' + dur + 'ms ease';
-        requestAnimationFrame(function () { el.style.height = h + 'px'; });
-        setTimeout(function () {
-          el.style.height = '';
-          el.style.overflow = '';
-          el.style.transition = '';
-        }, dur + 60);
-      } else {
-        var ch = el.offsetHeight;
-        el.style.transition = 'height ' + dur + 'ms ease';
-        el.style.overflow = 'hidden';
-        el.style.height = ch + 'px';
-        requestAnimationFrame(function () { el.style.height = '0px'; });
-        setTimeout(function () {
-          el.style.display = 'none';
-          el.style.height = '';
-          el.style.overflow = '';
-          el.style.transition = '';
-        }, dur + 60);
+    Spring.prototype.to = function (target) {
+      this.target = target;
+      if (this._raf === null) {
+        this._last = 0;
+        var self = this;
+        this._raf = requestAnimationFrame(function (now) { self._frame(now); });
       }
-    }
+    };
+    Spring.prototype.cancel = function () {
+      if (this._raf !== null) { cancelAnimationFrame(this._raf); this._raf = null; }
+    };
+    Spring.prototype._frame = function (now) {
+      var dt = this._last ? Math.min((now - this._last) / 1000, 1 / 30) : 1 / 60;
+      this._last = now;
+      var accel = -this._stiffness * (this.value - this.target) - this._friction * this.velocity;
+      this.velocity += accel * dt;
+      this.value += this.velocity * dt;
+      var settled = Math.abs(this.target - this.value) < 0.0005 && Math.abs(this.velocity) < 0.002;
+      if (settled) {
+        this.value = this.target;
+        this.velocity = 0;
+        this._raf = null;
+      } else {
+        var self = this;
+        this._raf = requestAnimationFrame(function (t) { self._frame(t); });
+      }
+      this.onUpdate(this.value);
+    };
 
+    /* ---------- 移动端导航：弹簧驱动的 materialize（连点可中断） ---------- */
     if (toggle && nav) {
+      var navOpen = false;
+      var navSpring = new Spring(0, function (v) {
+        if (v <= 0.001 || v >= 0.999) {
+          // 到达终态：清空内联样式，交还 CSS 类（.nav-open）控制，保证 :active 等可命中
+          nav.style.opacity = '';
+          nav.style.transform = '';
+          nav.style.visibility = '';
+          nav.style.pointerEvents = '';
+        } else {
+          nav.style.opacity = v;
+          nav.style.transform = 'translateY(' + (-7 * (1 - v)).toFixed(2) + 'px) scale(' +
+            (0.97 + 0.03 * v).toFixed(4) + ')';
+          nav.style.visibility = 'visible';
+          nav.style.pointerEvents = 'auto';
+        }
+      });
+      function setNav(open) {
+        navOpen = open;
+        nav.classList.toggle('nav-open', open);
+        if (reducedMotion) return;
+        navSpring.to(open ? 1 : 0);
+      }
+      setNav(false);
       toggle.addEventListener('click', function (e) {
         e.stopPropagation();
-        slide(nav, isHidden(nav));
+        setNav(!navOpen);
       });
       document.addEventListener('click', function () {
-        if (!isHidden(nav)) slide(nav, false);
+        if (navOpen) setNav(false);
       });
       nav.addEventListener('click', function (e) { e.stopPropagation(); });
     }
 
-    /* ---------- 头部随滚动变色（桌面端 >695px） ---------- */
-    if (window.innerWidth > 695) {
-      var header = document.querySelector('.g-header');
-      var banner = document.querySelector('.g-banner');
-      if (header && banner) {
-        var headerHeight = header.offsetHeight;
-        var theme = banner.getAttribute('data-theme') || 'default';
-        var scFlag = window.scrollY;
+    /* ---------- 统一滚动监听（头部变色 / 回到顶部 / 阅读进度） ---------- */
+    var header = document.querySelector('.g-header');
+    var banner = document.querySelector('.g-banner');
+    var headerScrollEnabled = window.innerWidth > 695 && header && banner;
+    var headerHeight = header ? header.offsetHeight : 0;
+    var theme = banner ? (banner.getAttribute('data-theme') || 'default') : 'default';
+    var scFlag = window.scrollY;
 
-        function onScroll() {
-          var st = window.scrollY;
-          var solid = st > headerHeight;
-          header.classList.toggle('header-solid', solid);
-          header.classList.toggle('headerUp', st > 3 * headerHeight);
-          header.classList.toggle('headerDown', scFlag > st);
-          if (nav) nav.classList.toggle('nav-' + theme, solid);
-          scFlag = st;
+    /* 回到顶部：弹簧显隐 */
+    var btBtn = document.getElementById('back-to-top');
+    var btVisible = false;
+    var btSpring = null;
+    var activeScrollSpring = null; /* 进行中的回顶弹簧滚动（供滚动监听跳过显隐翻转） */
+    if (btBtn && !reducedMotion) {
+      btSpring = new Spring(0, function (v) {
+        if (v >= 0.999) {
+          // 到达显示终态：清空内联并挂上 .show，交还 CSS 类保证稳定可见
+          btBtn.style.opacity = '';
+          btBtn.style.transform = '';
+          btBtn.style.visibility = '';
+          btBtn.style.pointerEvents = '';
+          btBtn.classList.add('show');
+        } else if (v <= 0.001) {
+          btBtn.style.opacity = '';
+          btBtn.style.transform = '';
+          btBtn.style.visibility = '';
+          btBtn.style.pointerEvents = '';
+          btBtn.classList.remove('show');
+        } else {
+          btBtn.style.opacity = v;
+          btBtn.style.transform = 'translateY(' + (8 * (1 - v)).toFixed(2) + 'px) scale(' +
+            (0.9 + 0.1 * v).toFixed(4) + ')';
+          btBtn.style.visibility = 'visible';
+          btBtn.style.pointerEvents = 'auto';
         }
-        window.addEventListener('scroll', onScroll, { passive: true });
-        onScroll();
+      });
+    }
+
+    /* 阅读进度条（仅文章页，JS 注入，transform: scaleX 驱动） */
+    var progressBar = null;
+    var postContent = document.querySelector('.post-content');
+    if (postContent && !reducedMotion) {
+      progressBar = document.createElement('div');
+      progressBar.className = 'reading-progress';
+      document.body.appendChild(progressBar);
+    }
+
+    var ticking = false;
+    function onScrollFrame() {
+      var st = window.scrollY;
+      if (headerScrollEnabled) {
+        var solid = st > headerHeight;
+        header.classList.toggle('header-solid', solid);
+        header.classList.toggle('headerUp', st > 3 * headerHeight);
+        header.classList.toggle('headerDown', scFlag > st);
+        if (nav) nav.classList.toggle('nav-' + theme, solid);
       }
+      scFlag = st;
+      if (btBtn) {
+        // 回顶滚动进行中保持按钮可见（陪送到顶），避免中途消失
+        var show = st > 400;
+        if (show !== btVisible && !activeScrollSpring) {
+          btVisible = show;
+          if (btSpring) btSpring.to(show ? 1 : 0);
+          else btBtn.classList.toggle('show', show);
+        }
+      }
+      if (progressBar) {
+        var docH = document.documentElement.scrollHeight - window.innerHeight;
+        var p = docH > 0 ? st / docH : 0;
+        progressBar.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+        progressBar.classList.toggle('show', p > 0.001);
+      }
+      ticking = false;
+    }
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(onScrollFrame);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScrollFrame();
+
+    /* 点击回顶：可中断弹簧滚动（wheel/touch 立即打断，交还原生滚动） */
+    if (btBtn) {
+      btBtn.addEventListener('click', function () {
+        var y = window.scrollY;
+        if (y <= 1) return;
+        if (reducedMotion || (window.matchMedia && !window.matchMedia('(hover: hover)').matches)) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+        if (activeScrollSpring) activeScrollSpring.cancel();
+        var s = new Spring(y, function (v) {
+          if (v <= 0.5) {
+            window.scrollTo(0, 0);
+            s.cancel();
+            if (activeScrollSpring === s) activeScrollSpring = null;
+            return;
+          }
+          window.scrollTo(0, v);
+        });
+        activeScrollSpring = s;
+        function cancelScroll() {
+          if (activeScrollSpring === s) activeScrollSpring = null;
+          s.cancel();
+        }
+        window.addEventListener('wheel', cancelScroll, { passive: true, once: true });
+        window.addEventListener('touchstart', cancelScroll, { passive: true, once: true });
+        s.to(0);
+      });
     }
 
     /* ---------- 文章底部"上一篇/下一篇"封面居中 ---------- */
@@ -127,7 +255,7 @@
       })(rnItems[r]);
     }
 
-    /* ---------- 分页器（page:num 路径，与 pageNav.html 配合） ---------- */
+    /* ---------- 分页器（page:num 路径，与 pageNav.html 配合，逐项浮现） ---------- */
     var totalEl = document.getElementById('total_pages');
     if (totalEl) {
       var total = parseInt(totalEl.value, 10) || 0;
@@ -146,7 +274,22 @@
       for (var q = current + 1; q <= current + limit; q++) {
         if (q <= total) html += '<a href="' + baseUrl + 'page' + q + '/" class="page-link page-num">' + q + '</a>';
       }
-      document.getElementById('page-link-container').innerHTML = html;
+      var pageBox = document.getElementById('page-link-container');
+      pageBox.innerHTML = html;
+      if (!reducedMotion) {
+        var links = pageBox.querySelectorAll('.page-link');
+        var pagerWrap = pageBox.parentElement;
+        for (var i2 = 0; i2 < links.length; i2++) {
+          links[i2].style.animationDelay = (i2 * 28) + 'ms';
+        }
+        if (pagerWrap) pagerWrap.classList.add('page-reveal');
+        // 动画结束后移除，避免 animation 占用 transform 导致 :active 反馈失效
+        var totalDur = (links.length - 1) * 28 + 500;
+        setTimeout(function () {
+          if (pagerWrap) pagerWrap.classList.remove('page-reveal');
+          for (var j = 0; j < links.length; j++) links[j].style.animationDelay = '';
+        }, totalDur);
+      }
     }
 
     /* ---------- 站内搜索（防抖 + 缓存 + 标题/标签/摘要匹配） ---------- */
@@ -203,31 +346,41 @@
       });
     }
 
-    /* ---------- 夜间模式：按钮切换 + localStorage 持久化；未手动设置时按配置自动（23点-6点） ---------- */
+    /* ---------- 夜间模式：切换 + localStorage 持久化；自动（23点-6点） ---------- */
     var body = document.body;
     var nmSwitch = document.getElementById('nm-switch');
-    function applyNight(on) { body.classList.toggle('night-mode', on); }
+    var themeFadeTimer = null;
+    function applyNight(on, animate) {
+      // 先激活一次性过渡类，再切换主题色，才能产生颜色渐变
+      if (animate && !reducedMotion) {
+        body.classList.add('theme-fade');
+        clearTimeout(themeFadeTimer);
+        themeFadeTimer = setTimeout(function () {
+          body.classList.remove('theme-fade');
+        }, 320);
+      }
+      body.classList.toggle('night-mode', on);
+    }
 
     var saved = null;
     try { saved = localStorage.getItem('night'); } catch (e) {}
     if (saved !== null) {
-      applyNight(saved === '1');
+      applyNight(saved === '1', false);
     } else if (nmSwitch && nmSwitch.value === 'true') {
       var h = new Date().getHours();
-      applyNight((h >= 0 && h <= 6) || h === 23);
+      applyNight((h >= 0 && h <= 6) || h === 23, false);
     }
 
     var nmBtn = document.getElementById('nm-toggle');
     if (nmBtn) {
       nmBtn.addEventListener('click', function () {
         var on = !body.classList.contains('night-mode');
-        applyNight(on);
+        applyNight(on, true);
         try { localStorage.setItem('night', on ? '1' : '0'); } catch (e) {}
       });
     }
 
     /* ---------- 复制版权声明（选中 ≥30 字符时追加） ---------- */
-    var postContent = document.querySelector('.post-content');
     if (postContent) {
       postContent.addEventListener('copy', function (e) {
         var sel = window.getSelection().toString();
