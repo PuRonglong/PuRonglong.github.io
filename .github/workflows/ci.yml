@@ -16,6 +16,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # 统计页数据新鲜度校验：_data/blog_stats.json 是离线生成的快照，本地 pre-commit 钩子负责自动更新；
+      # 但钩子位于 .git/hooks/（不随仓库分发），换机器或 git commit --no-verify 时会漏跑，故在此兜底。
+      # 比对时剔除 meta.generated_at（每次生成都会变），其余字段逐项比较。
+      - name: Verify blog stats are up to date
+        run: python3 dev/check_stats_fresh.py
+
       # GitHub Pages 线上用 Jekyll 3.9 工具链构建，这里用官方 github-pages gem
       # 保持与线上完全一致的依赖版本，避免"本地 Jekyll 4 通过、线上 3.9 出问题"。
       - name: Set up Ruby 3.0 (compatible with github-pages gem)

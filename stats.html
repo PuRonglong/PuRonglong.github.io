@@ -1,0 +1,995 @@
+---
+layout: default
+title: 数据总览
+description: 蒲荣龙博客的数据总览——文章、字数、标签、写作轨迹与外链去向
+sitemap: false
+---
+
+{% include header.html %}
+
+{% assign OV = site.data.blog_stats.overview %}
+
+<style>
+  .ov-banner {
+    height: 280px;
+    padding: 0 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .ov-banner h2 {
+    margin: 0;
+    font-size: 34px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 1.3;
+  }
+  .ov-banner-sub {
+    margin: 14px 0 0;
+    font-size: 14px;
+    color: #d5dae1;
+    letter-spacing: .5px;
+  }
+
+  .ov-main {
+    --c-text: #24292e;
+    --c-sub: #3f4650;
+    --c-muted: #5f6672;
+    --c-line: #e7eaf1;
+    --c-bg: #f7f8fa;
+    --c-accent: #007aff;
+    width: 960px;
+    max-width: calc(100% - 32px);
+    margin: 0 auto;
+    padding: 8px 0 48px;
+    color: var(--c-text);
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+
+  .ov-toc {
+    position: sticky;
+    top: 58px;
+    z-index: 90;
+    display: flex;
+    gap: 4px;
+    margin: 0 -6px 20px;
+    padding: 8px 6px;
+    background: rgba(255, 255, 255, .92);
+    backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--c-line);
+    overflow-x: auto;
+  }
+  /* 主题在向下滚动超过 3×header 高度时给 .g-header 加 .headerUp（top:-65px，滑出视口）。
+     不跟着贴顶的话，导航条会在上方留出 header 的空位，看起来像悬在半空。 */
+  body:has(.g-header.headerUp) .ov-toc { top: 0; }
+  .ov-toc a {
+    flex: 0 0 auto;
+    padding: 6px 14px;
+    font-size: 13px;
+    color: var(--c-muted);
+    border-radius: 99px;
+    text-decoration: none;
+    transition: background .2s, color .2s;
+  }
+  .ov-toc a:hover { background: var(--c-bg); color: var(--c-text); }
+  .ov-toc a.is-active { background: var(--c-accent); color: #fff; }
+
+  .ov-section { margin-bottom: 40px; scroll-margin-top: 110px; }
+  .ov-h2 {
+    font-size: 19px;
+    font-weight: 500;
+    margin: 0 0 4px;
+    letter-spacing: .5px;
+  }
+  .ov-h2-sub {
+    margin: 0 0 16px;
+    font-size: 13px;
+    color: var(--c-muted);
+    line-height: 1.6;
+  }
+  .ov-h3 {
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0 0 4px;
+  }
+  .ov-h3-sub { margin: 0 0 12px; font-size: 12.5px; color: var(--c-muted); }
+
+  .ov-card {
+    background: #fff;
+    border: 1px solid var(--c-line);
+    border-radius: 8px;
+    padding: 16px 18px;
+    box-sizing: border-box;
+  }
+
+  .ov-kpis {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .ov-kpi {
+    background: var(--c-bg);
+    border-radius: 8px;
+    padding: 14px 14px 12px;
+  }
+  .ov-kpi-label { display: block; font-size: 12.5px; color: var(--c-muted); margin-bottom: 6px; }
+  .ov-kpi-value {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.15;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -.5px;
+  }
+  .ov-kpi-unit { font-size: 13px; color: var(--c-muted); margin-left: 3px; font-weight: 400; }
+  .ov-kpi-note { display: block; font-size: 12px; color: var(--c-muted); margin-top: 5px; line-height: 1.5; }
+
+  .ov-duo {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .ov-meta-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--c-line);
+    font-size: 13px;
+  }
+  .ov-meta-row:last-child { border-bottom: 0; padding-bottom: 0; }
+  .ov-meta-row dt { color: var(--c-muted); margin: 0; flex: 0 0 auto; }
+  .ov-meta-row dd { margin: 0; text-align: right; color: var(--c-sub); min-width: 0; }
+  .ov-meta-row dd a { color: var(--c-accent); text-decoration: none; }
+  .ov-meta-row dd a:hover { text-decoration: underline; }
+  .ov-ellipsis { display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: bottom; }
+
+  .ov-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .ov-block { margin-bottom: 20px; }
+  .ov-chart { width: 100%; }
+  .ov-chart-box { padding: 14px 4px 4px; }
+  .ov-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 13px;
+    color: var(--c-muted);
+  }
+  .ov-fail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 13px;
+    color: #a32d2d;
+    text-align: center;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+
+  .ov-heat-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .ov-heat-inner { min-width: 700px; }
+
+  .ov-ms { list-style: none; margin: 0; padding: 0; }
+  .ov-ms li {
+    position: relative;
+    padding: 0 0 18px 22px;
+    border-left: 1.5px solid var(--c-line);
+  }
+  .ov-ms li:last-child { border-left-color: transparent; padding-bottom: 0; }
+  .ov-ms li::before {
+    content: "";
+    position: absolute;
+    left: -5.5px;
+    top: 4px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--c-accent);
+    box-shadow: 0 0 0 2.5px #fff;
+  }
+  .ov-ms-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+  .ov-ms-date { font-size: 12.5px; color: var(--c-muted); font-variant-numeric: tabular-nums; }
+  .ov-ms-label {
+    font-size: 12px;
+    color: var(--c-accent);
+    background: #eaf3ff;
+    border-radius: 4px;
+    padding: 1px 7px;
+  }
+  .ov-ms-title { font-size: 13.5px; color: var(--c-text); text-decoration: none; }
+  .ov-ms-title:hover { color: var(--c-accent); text-decoration: underline; }
+  .ov-ms-note { font-size: 12px; color: var(--c-muted); }
+
+  .ov-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .ov-table th, .ov-table td {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--c-line);
+  }
+  .ov-table th { font-weight: 500; color: var(--c-muted); font-size: 12.5px; }
+  .ov-table td { color: var(--c-sub); }
+  .ov-table td.num, .ov-table th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .ov-table a { color: var(--c-accent); text-decoration: none; }
+  .ov-table a:hover { text-decoration: underline; }
+  .ov-table tr:last-child td { border-bottom: 0; }
+
+  details.ov-fold { margin-top: 10px; }
+  details.ov-fold summary {
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--c-accent);
+    padding: 6px 0;
+    list-style: none;
+  }
+  details.ov-fold summary::-webkit-details-marker { display: none; }
+  details.ov-fold summary::before { content: "▸ "; }
+  details.ov-fold[open] summary::before { content: "▾ "; }
+
+  .ov-foot {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--c-muted);
+    line-height: 1.8;
+  }
+  .ov-tag-pill {
+    display: inline-block;
+    padding: 2px 9px;
+    margin: 2px 4px 2px 0;
+    font-size: 12px;
+    color: var(--c-muted);
+    background: var(--c-bg);
+    border-radius: 99px;
+  }
+
+  @media (max-width: 760px) {
+    .ov-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ov-grid-2, .ov-duo { grid-template-columns: minmax(0, 1fr); }
+    .ov-banner { height: 220px; }
+    .ov-banner h2 { font-size: 27px; }
+    .ov-kpi-value { font-size: 21px; }
+    .ov-toc { top: 82px; }
+  }
+</style>
+
+<div class="g-banner ov-banner post-pattern-circuitBoard bgcolor-default" data-theme="{{ site.theme-color }}">
+  <h2>数据总览</h2>
+  <p class="ov-banner-sub">{{ OV.total_posts }} 篇文章 · {{ OV.total_words_wan }} 万字 · {{ OV.span_years }} 年</p>
+</div>
+
+<main class="ov-main">
+
+  <nav class="ov-toc" id="ovToc" aria-label="页内导航">
+    <a href="#ov-overview" class="is-active">总览</a>
+    <a href="#ov-time">时间</a>
+    <a href="#ov-content">内容</a>
+    <a href="#ov-links">链接</a>
+  </nav>
+
+  <!-- ================= 总览 ================= -->
+  <section class="ov-section" id="ov-overview">
+    <h2 class="ov-h2">总览</h2>
+    <p class="ov-h2-sub">字数口径：汉字按字 + 英文按词 + 数字按字符，排除代码块、Markdown 标记与标点。</p>
+
+    <div class="ov-kpis">
+      <div class="ov-kpi">
+        <span class="ov-kpi-label">文章</span>
+        <span class="ov-kpi-value" data-done="1" data-count="{{ OV.total_posts }}">{{ OV.total_posts }}</span><span class="ov-kpi-unit">篇</span>
+        <span class="ov-kpi-note">无标签文章 0 篇</span>
+      </div>
+      <div class="ov-kpi">
+        <span class="ov-kpi-label">总字数</span>
+        <span class="ov-kpi-value" data-done="1" data-count="{{ OV.total_words_wan }}" data-decimals="1">{{ OV.total_words_wan }}</span><span class="ov-kpi-unit">万字</span>
+        <span class="ov-kpi-note">{{ OV.total_words_display }} 字 · 不含代码</span>
+      </div>
+      <div class="ov-kpi">
+        <span class="ov-kpi-label">标签</span>
+        <span class="ov-kpi-value" data-done="1" data-count="{{ OV.total_tags }}">{{ OV.total_tags }}</span><span class="ov-kpi-unit">个</span>
+        <span class="ov-kpi-note">覆盖率 100%</span>
+      </div>
+      <div class="ov-kpi">
+        <span class="ov-kpi-label">时间跨度</span>
+        <span class="ov-kpi-value" data-done="1" data-count="{{ OV.span_years }}" data-decimals="1">{{ OV.span_years }}</span><span class="ov-kpi-unit">年</span>
+        <span class="ov-kpi-note">{{ OV.span_days }} 天</span>
+      </div>
+      <div class="ov-kpi">
+        <span class="ov-kpi-label">篇均字数</span>
+        <span class="ov-kpi-value" data-done="1" data-count="{{ OV.avg_words }}" data-group="1">{{ OV.avg_words_display }}</span>
+        <span class="ov-kpi-note">约 4 分钟阅读</span>
+      </div>
+      <div class="ov-kpi">
+        <span class="ov-kpi-label">图片</span>
+        <span class="ov-kpi-value" data-done="1" data-count="{{ OV.total_images }}">{{ OV.total_images }}</span><span class="ov-kpi-unit">张</span>
+        <span class="ov-kpi-note">外链图 {{ site.data.blog_stats.image_ext_total }} 张</span>
+      </div>
+      <div class="ov-kpi">
+        <span class="ov-kpi-label">外链</span>
+        <span class="ov-kpi-value" data-done="1" data-count="{{ OV.ext_total }}">{{ OV.ext_total }}</span><span class="ov-kpi-unit">条</span>
+        <span class="ov-kpi-note">指向 {{ OV.ext_domains }} 个域名</span>
+      </div>
+      <div class="ov-kpi">
+        <span class="ov-kpi-label">更新频率</span>
+        <span class="ov-kpi-value" data-done="1" data-count="{{ OV.posts_per_month }}" data-decimals="2">{{ OV.posts_per_month }}</span><span class="ov-kpi-unit">篇/月</span>
+        <span class="ov-kpi-note">最长断更 {{ OV.max_gap_days }} 天</span>
+      </div>
+    </div>
+
+    <div class="ov-duo">
+      <dl class="ov-card" style="margin:0;">
+        <div class="ov-meta-row">
+          <dt>首篇</dt>
+          <dd><span class="ov-ellipsis"><a href="{{ OV.first_post.url | relative_url }}" title="{{ OV.first_post.title }}">{{ OV.first_post.title }}</a></span><br>{{ OV.first_post.date }}</dd>
+        </div>
+        <div class="ov-meta-row">
+          <dt>最近一篇</dt>
+          <dd><span class="ov-ellipsis"><a href="{{ OV.last_post.url | relative_url }}" title="{{ OV.last_post.title }}">{{ OV.last_post.title }}</a></span><br>{{ OV.last_post.date }}</dd>
+        </div>
+      </dl>
+      <dl class="ov-card" style="margin:0;">
+        <div class="ov-meta-row">
+          <dt>最长文章</dt>
+          <dd><span class="ov-ellipsis"><a href="{{ OV.longest_post.url | relative_url }}" title="{{ OV.longest_post.title }}">{{ OV.longest_post.title }}</a></span><br>
+            <strong style="font-weight:500;">{{ OV.longest_post.words_display }} 字</strong> · {{ OV.longest_post.date }}
+            {% for t in OV.longest_post.tags %}<span class="ov-tag-pill">{{ t }}</span>{% endfor %}</dd>
+        </div>
+        <div class="ov-meta-row">
+          <dt>最短文章</dt>
+          <dd><span class="ov-ellipsis"><a href="{{ OV.shortest_post.url | relative_url }}" title="{{ OV.shortest_post.title }}">{{ OV.shortest_post.title }}</a></span><br>
+            <strong style="font-weight:500;">{{ OV.shortest_post.words_display }} 字</strong> · {{ OV.shortest_post.date }}
+            {% for t in OV.shortest_post.tags %}<span class="ov-tag-pill">{{ t }}</span>{% endfor %}</dd>
+        </div>
+      </dl>
+    </div>
+    <p class="ov-foot">
+      字数构成：汉字 {{ OV.han }} 字 · 英文 {{ OV.latin }} 词 · 数字 {{ OV.digits }} 字符。
+      最长一次停笔：{{ OV.max_gap_after }} → {{ OV.max_gap_before }}，间隔 {{ OV.max_gap_days }} 天。
+      最长与最短相差 {{ OV.longest_post.words | divided_by: OV.shortest_post.words }} 倍。
+    </p>
+  </section>
+
+  <!-- ================= 时间 ================= -->
+  <section class="ov-section" id="ov-time">
+    <h2 class="ov-h2">写作轨迹</h2>
+    <p class="ov-h2-sub">从 2014 年冬天到 2026 年春，每年写了多少、写得多长，哪段时间停笔。</p>
+
+    <div class="ov-card ov-block">
+      <h3 class="ov-h3">年度写作量</h3>
+      <p class="ov-h3-sub">柱：篇数 · 线：字数（千字）</p>
+      <div class="ov-chart" id="chartYear" style="height:300px;"><div class="ov-loading">图表加载中…</div></div>
+    </div>
+
+    <div class="ov-grid-2 ov-block">
+      <div class="ov-card">
+        <h3 class="ov-h3">累计字数</h3>
+        <p class="ov-h3-sub">26.6 万字的积累曲线</p>
+        <div class="ov-chart" id="chartCum" style="height:240px;"><div class="ov-loading">图表加载中…</div></div>
+      </div>
+      <div class="ov-card">
+        <h3 class="ov-h3">篇均字数趋势</h3>
+        <p class="ov-h3-sub">单篇越写越长还是越写越短</p>
+        <div class="ov-chart" id="chartAvg" style="height:240px;"><div class="ov-loading">图表加载中…</div></div>
+      </div>
+    </div>
+
+    <div class="ov-card ov-block">
+      <h3 class="ov-h3">写作日历</h3>
+      <p class="ov-h3-sub">颜色深浅 = 当天写下的字数，色阶上限取第 90 百分位，超出皆为最深色（悬停看明细，手机上左右滑动）</p>
+      <div class="ov-heat-scroll">
+        <div class="ov-heat-inner ov-chart" id="chartHeat" style="height:1180px;"><div class="ov-loading">图表加载中…</div></div>
+      </div>
+    </div>
+
+    <div class="ov-grid-2 ov-block">
+      <div class="ov-card">
+        <h3 class="ov-h3">月度分布</h3>
+        <p class="ov-h3-sub">哪个月最常动笔</p>
+        <div class="ov-chart" id="chartMonth" style="height:230px;"><div class="ov-loading">图表加载中…</div></div>
+      </div>
+      <div class="ov-card">
+        <h3 class="ov-h3">星期分布</h3>
+        <p class="ov-h3-sub">工作日写得多还是周末写得多</p>
+        <div class="ov-chart" id="chartWeek" style="height:230px;"><div class="ov-loading">图表加载中…</div></div>
+      </div>
+    </div>
+
+    <div class="ov-card">
+      <h3 class="ov-h3">里程碑</h3>
+      <p class="ov-h3-sub">第一次动笔、第 50 / 100 / 150 篇，以及累计字数跨过的每一个十万</p>
+      <ul class="ov-ms">
+        {% for m in site.data.blog_stats.milestones %}
+        <li>
+          <div class="ov-ms-top">
+            <span class="ov-ms-date">{{ m.date }}</span>
+            <span class="ov-ms-label">{{ m.label }}</span>
+          </div>
+          <div>
+            <a class="ov-ms-title" href="{{ m.url | relative_url }}">{{ m.title }}</a>
+            <span class="ov-ms-note">{{ m.note }}</span>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= 内容 ================= -->
+  <section class="ov-section" id="ov-content">
+    <h2 class="ov-h2">内容构成</h2>
+    <p class="ov-h2-sub">标签体系、内容偏好，以及代码在写作中的分量。</p>
+
+    <div class="ov-card ov-block">
+      <h3 class="ov-h3">标签分布</h3>
+      <p class="ov-h3-sub">共 {{ OV.total_tags }} 个标签 · 一篇文章可带多个标签</p>
+      <div class="ov-chart" id="chartTags" style="height:340px;"><div class="ov-loading">图表加载中…</div></div>
+      <details class="ov-fold">
+        <summary>查看标签明细（篇数 / 字数 / 篇均）</summary>
+        <table class="ov-table">
+          <thead>
+            <tr><th>标签</th><th class="num">篇数</th><th class="num">字数</th><th class="num">篇均</th></tr>
+          </thead>
+          <tbody>
+            {% for t in site.data.blog_stats.tags %}
+            <tr>
+              <td><a href="{{ '/tags.html' | relative_url }}#{{ t.name }}">{{ t.name }}</a></td>
+              <td class="num">{{ t.count }}</td>
+              <td class="num">{{ t.words }}</td>
+              <td class="num">{{ t.avg }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </details>
+    </div>
+
+    <div class="ov-card ov-block">
+      <h3 class="ov-h3">标签 × 年份</h3>
+      <p class="ov-h3-sub">每一年把笔力花在了哪类内容上</p>
+      <div class="ov-chart" id="chartTagYear" style="height:320px;"><div class="ov-loading">图表加载中…</div></div>
+    </div>
+
+    <div class="ov-grid-2 ov-block">
+      <div class="ov-card">
+        <h3 class="ov-h3">代码占比</h3>
+        <p class="ov-h3-sub">代码块字符数 ÷ （代码 + 正文）</p>
+        <div class="ov-kpis" style="grid-template-columns:repeat(2,minmax(0,1fr));margin-bottom:0;">
+          <div class="ov-kpi">
+            <span class="ov-kpi-label">全站</span>
+            <span class="ov-kpi-value" data-done="1" data-count="{{ site.data.blog_stats.code.ratio }}" data-decimals="1">{{ site.data.blog_stats.code.ratio }}</span><span class="ov-kpi-unit">%</span>
+          </div>
+          <div class="ov-kpi">
+            <span class="ov-kpi-label">技术标签</span>
+            <span class="ov-kpi-value" data-done="1" data-count="{{ site.data.blog_stats.code.tech_ratio }}" data-decimals="1">{{ site.data.blog_stats.code.tech_ratio }}</span><span class="ov-kpi-unit">%</span>
+          </div>
+        </div>
+        <p class="ov-foot">代码 {{ site.data.blog_stats.code.code_chars }} 字符 · 正文 {{ site.data.blog_stats.code.text_chars }} 字</p>
+      </div>
+      <div class="ov-card">
+        <h3 class="ov-h3">标签共现</h3>
+        <p class="ov-h3-sub">同时打了两个标签的文章数</p>
+        <ul style="list-style:none;margin:0;padding:0;">
+          {% for p in site.data.blog_stats.tag_pairs %}
+          <li style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--c-line);font-size:13px;">
+            <span>{{ p.pair }}</span>
+            <span style="color:var(--c-muted);font-variant-numeric:tabular-nums;">{{ p.count }} 篇</span>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="ov-grid-2 ov-block">
+      <div class="ov-card">
+        <h3 class="ov-h3">单篇字数分布</h3>
+        <p class="ov-h3-sub">写作节奏是均匀还是两极分化</p>
+        <div class="ov-chart" id="chartDist" style="height:240px;"><div class="ov-loading">图表加载中…</div></div>
+      </div>
+      <div class="ov-card">
+        <h3 class="ov-h3">配图密度</h3>
+        <p class="ov-h3-sub">平均每篇文章用了多少张图</p>
+        <div class="ov-chart" id="chartImg" style="height:240px;"><div class="ov-loading">图表加载中…</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 链接 ================= -->
+  <section class="ov-section" id="ov-links">
+    <h2 class="ov-h2">链接去向</h2>
+    <p class="ov-h2-sub">这些年写文章时引用了哪些站外资源。图片外链单独统计，不混入正文外链。</p>
+
+    <div class="ov-card ov-block">
+      <h3 class="ov-h3">外链域名排行</h3>
+      <p class="ov-h3-sub">共 {{ OV.ext_total }} 条外链（唯一 {{ OV.ext_unique }} 条），指向 {{ OV.ext_domains }} 个域名</p>
+      <div class="ov-chart" id="chartExt" style="height:460px;"><div class="ov-loading">图表加载中…</div></div>
+      <details class="ov-fold">
+        <summary>查看全部 {{ OV.ext_domains }} 个域名</summary>
+        <table class="ov-table">
+          <thead>
+            <tr><th>域名</th><th class="num">出现次数</th><th class="num">唯一 URL</th><th class="num">涉及文章</th></tr>
+          </thead>
+          <tbody>
+            {% for e in site.data.blog_stats.ext_links %}
+            <tr>
+              <td>{{ e.host }}</td>
+              <td class="num">{{ e.count }}</td>
+              <td class="num">{{ e.unique }}</td>
+              <td class="num">{{ e.posts }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </details>
+    </div>
+
+    <div class="ov-grid-2 ov-block">
+      <div class="ov-card">
+        <h3 class="ov-h3">图片外链</h3>
+        <p class="ov-h3-sub">共 {{ site.data.blog_stats.image_ext_total }} 张外链图片（唯一 {{ site.data.blog_stats.image_ext_unique }} 张）</p>
+        <table class="ov-table">
+          <thead><tr><th>图床域名</th><th class="num">张数</th></tr></thead>
+          <tbody>
+            {% for h in site.data.blog_stats.image_hosts %}
+            <tr><td>{{ h.host }}</td><td class="num">{{ h.count }}</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="ov-card">
+        <h3 class="ov-h3">站内互链</h3>
+        <p class="ov-h3-sub">{{ site.data.blog_stats.internal_posts }} 篇文章链向了其他文章，共 {{ site.data.blog_stats.internal_links.size }} 个目标</p>
+        {% if site.data.blog_stats.internal_links.size > 0 %}
+        <table class="ov-table">
+          <thead><tr><th>被指向的文章</th><th class="num">被引</th></tr></thead>
+          <tbody>
+            {% for l in site.data.blog_stats.internal_links limit:8 %}
+            <tr>
+              <td>
+                {% if l.resolved %}
+                <a href="{{ l.url | relative_url }}">{{ l.target }}</a>
+                {% else %}
+                <span>{{ l.target }}</span>
+                {% endif %}
+              </td>
+              <td class="num">{{ l.count }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+        <p class="ov-foot">暂无站内链接。</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <p class="ov-foot">
+      数据截至 {{ site.data.blog_stats.meta.generated_at }}，共 {{ site.data.blog_stats.meta.source }}。
+      本站内容以生活与读书记录为主，技术文章约占 {{ site.data.blog_stats.code.tech_posts }} 篇。
+    </p>
+  </section>
+
+</main>
+
+{% include footer.html %}
+
+<script type="application/json" id="ovData">{{ site.data.blog_stats | jsonify }}</script>
+<!-- ECharts 本地加载（v= 用固定版本号，保证浏览器与 Service Worker 长期命中缓存） -->
+<script defer src="{{ '/assets/js/echarts.min.js?v=5.5.0' | relative_url }}"></script>
+<script>
+(function () {
+  'use strict';
+
+  // ---------- 数据 ----------
+  var S;
+  try { S = JSON.parse(document.getElementById('ovData').textContent); }
+  catch (e) { return; }
+
+  var PALETTE = ['#007aff', '#3cd5ff', '#fa709a', '#ffce69', '#a06cd5', '#34c759', '#ff9500', '#8e8e93'];
+  var AXIS = { fontSize: 11, color: '#5f6672' };
+  var GRID_LINE = { color: 'rgba(36,41,46,.08)' };
+
+  function n(v) { return (v || 0).toLocaleString('zh-CN'); }
+  function wan(v) { return (v / 10000).toFixed(1) + ' 万'; }
+
+  // ---------- 图表配置 ----------
+  var MAKERS = {
+    chartYear: function () {
+      var rows = S.words_by_year;
+      return {
+        tooltip: {
+          trigger: 'axis',
+          formatter: function (ps) {
+            var i = ps[0].dataIndex, r = rows[i];
+            return r.year + '<br/>' + r.posts + ' 篇 · ' + n(r.words) + ' 字<br/>篇均 ' + n(r.avg) + ' 字';
+          }
+        },
+        legend: { data: ['篇数', '字数（千）'], right: 0, top: 0, itemWidth: 10, itemHeight: 10, textStyle: AXIS },
+        grid: { left: 44, right: 48, top: 34, bottom: 30 },
+        xAxis: { type: 'category', data: rows.map(function (r) { return r.year; }), axisLabel: { fontSize: 11, color: '#5f6672', rotate: 45 }, axisTick: { show: false }, axisLine: { lineStyle: { color: '#e7eaf1' } } },
+        yAxis: [
+          { type: 'value', name: '篇', nameTextStyle: AXIS, axisLabel: AXIS, splitLine: { lineStyle: GRID_LINE } },
+          { type: 'value', name: '千字', nameTextStyle: AXIS, axisLabel: AXIS, splitLine: { show: false } }
+        ],
+        series: [
+          { name: '篇数', type: 'bar', data: rows.map(function (r) { return r.posts; }), itemStyle: { color: PALETTE[0], borderRadius: [3, 3, 0, 0] }, barMaxWidth: 26 },
+          { name: '字数（千）', type: 'line', yAxisIndex: 1, data: rows.map(function (r) { return +(r.words / 1000).toFixed(1); }), smooth: true, symbolSize: 5, itemStyle: { color: PALETTE[1] }, lineStyle: { width: 2, color: PALETTE[1] } }
+        ]
+      };
+    },
+
+    chartCum: function () {
+      var rows = S.cumulative;
+      return {
+        tooltip: {
+          trigger: 'axis',
+          formatter: function (ps) {
+            var r = rows[ps[0].dataIndex];
+            return r.date + '<br/>当日 ' + n(r.words) + ' 字<br/>累计 ' + n(r.cum) + ' 字';
+          }
+        },
+        grid: { left: 52, right: 16, top: 20, bottom: 30 },
+        xAxis: { type: 'category', data: rows.map(function (r) { return r.date; }), axisLabel: { fontSize: 10, color: '#5f6672', interval: Math.floor(rows.length / 6) }, axisTick: { show: false }, axisLine: { lineStyle: { color: '#e7eaf1' } } },
+        yAxis: { type: 'value', axisLabel: { fontSize: 11, color: '#5f6672', formatter: function (v) { return (v / 10000) + '万'; } }, splitLine: { lineStyle: GRID_LINE } },
+        series: [{
+          type: 'line', data: rows.map(function (r) { return r.cum; }), showSymbol: false, smooth: true,
+          lineStyle: { width: 2, color: PALETTE[0] },
+          areaStyle: { color: 'rgba(0,122,255,.12)' }
+        }]
+      };
+    },
+
+    chartAvg: function () {
+      var rows = S.words_by_year.filter(function (r) { return r.posts > 0; });
+      return {
+        tooltip: {
+          trigger: 'axis',
+          formatter: function (ps) {
+            var r = rows[ps[0].dataIndex];
+            return r.year + '<br/>篇均 ' + n(r.avg) + ' 字 · ' + r.posts + ' 篇';
+          }
+        },
+        grid: { left: 52, right: 16, top: 20, bottom: 30 },
+        xAxis: { type: 'category', data: rows.map(function (r) { return r.year; }), axisLabel: { fontSize: 10, color: '#5f6672', rotate: 45 }, axisTick: { show: false }, axisLine: { lineStyle: { color: '#e7eaf1' } } },
+        yAxis: { type: 'value', axisLabel: AXIS, splitLine: { lineStyle: GRID_LINE } },
+        series: [{
+          type: 'line', data: rows.map(function (r) { return r.avg; }), smooth: true,
+          itemStyle: { color: PALETTE[4] }, lineStyle: { width: 2, color: PALETTE[4] },
+          symbolSize: 6, areaStyle: { color: 'rgba(160,108,213,.10)' }
+        }]
+      };
+    },
+
+    chartMonth: function () {
+      var rows = S.posts_by_month;
+      return {
+        tooltip: { trigger: 'axis', formatter: function (ps) { return ps[0].name + ' 月 · ' + ps[0].value + ' 篇'; } },
+        grid: { left: 40, right: 16, top: 20, bottom: 30 },
+        xAxis: { type: 'category', data: rows.map(function (r) { return r.month + '月'; }), axisLabel: { fontSize: 10, color: '#5f6672', interval: 0 }, axisTick: { show: false }, axisLine: { lineStyle: { color: '#e7eaf1' } } },
+        yAxis: { type: 'value', axisLabel: AXIS, splitLine: { lineStyle: GRID_LINE } },
+        series: [{ type: 'bar', data: rows.map(function (r) { return r.count; }), itemStyle: { color: PALETTE[0], borderRadius: [3, 3, 0, 0] }, barMaxWidth: 20 }]
+      };
+    },
+
+    chartWeek: function () {
+      var rows = S.posts_by_weekday;
+      return {
+        tooltip: { trigger: 'axis', formatter: function (ps) { return ps[0].name + ' · ' + ps[0].value + ' 篇'; } },
+        grid: { left: 40, right: 16, top: 20, bottom: 30 },
+        xAxis: { type: 'category', data: rows.map(function (r) { return r.day; }), axisLabel: { fontSize: 11, color: '#5f6672' }, axisTick: { show: false }, axisLine: { lineStyle: { color: '#e7eaf1' } } },
+        yAxis: { type: 'value', axisLabel: AXIS, splitLine: { lineStyle: GRID_LINE } },
+        series: [{
+          type: 'bar',
+          data: rows.map(function (r, i) { return { value: r.count, itemStyle: { color: i >= 5 ? PALETTE[2] : PALETTE[0], borderRadius: [3, 3, 0, 0] } }; }),
+          barMaxWidth: 34
+        }]
+      };
+    },
+
+    chartHeat: function () {
+      var rows = S.heatmap;
+      var years = [];
+      for (var y = +rows[0][0].slice(0, 4); y <= +rows[rows.length - 1][0].slice(0, 4); y++) { years.push(String(y)); }
+      // 按分位数分 5 档：字数集中在 500-1500，线性色阶会把多数格子压成同一种浅色
+      var vals = rows.map(function (r) { return r[1]; }).sort(function (a, b) { return a - b; });
+      function q(p) { return vals[Math.min(vals.length - 1, Math.floor(vals.length * p))]; }
+      var q1 = q(0.2), q2 = q(0.4), q3 = q(0.6), q4 = q(0.8);
+      var data = rows.map(function (r) { return [r[0], r[1], r[2]]; });
+      var calendars = [], series = [];
+      years.forEach(function (yr, i) {
+        calendars.push({
+          top: 46 + i * 90, left: 46, right: 16, height: 68,
+          cellSize: ['auto', 11], range: yr, splitLine: { show: false },
+          itemStyle: { color: '#f2f4f7', borderWidth: 1, borderColor: '#fff' },
+          yearLabel: { show: true, position: 'left', fontSize: 11, color: '#5f6672', margin: 34 },
+          monthLabel: { show: false }, dayLabel: { show: i === 0, fontSize: 10, color: '#5f6672', margin: 6 }
+        });
+        series.push({
+          type: 'heatmap', coordinateSystem: 'calendar', calendarIndex: i,
+          data: data.filter(function (d) { return d[0].slice(0, 4) === yr; })
+        });
+      });
+      return {
+        tooltip: {
+          formatter: function (p) {
+            var d = p.value;
+            return d[0] + '<br/>' + n(d[1]) + ' 字 · ' + d[2] + ' 篇';
+          }
+        },
+        visualMap: {
+          type: 'piecewise', orient: 'horizontal', left: 'center', top: 2,
+          itemWidth: 13, itemHeight: 10, itemGap: 8,
+          textStyle: { fontSize: 11, color: '#5f6672' },
+          pieces: [
+            { min: 0, max: q1, label: '≤' + q1, color: '#cfe4ff' },
+            { min: q1 + 1, max: q2, label: '~' + q2, color: '#9cc8ff' },
+            { min: q2 + 1, max: q3, label: '~' + q3, color: '#5aa4ff' },
+            { min: q3 + 1, max: q4, label: '~' + q4, color: '#1a7fff' },
+            { min: q4 + 1, max: 999999, label: '>' + q4, color: '#004a9e' }
+          ]
+        },
+        calendar: calendars,
+        series: series
+      };
+    },
+
+    chartTags: function () {
+      var rows = S.tags.slice().reverse();
+      return {
+        tooltip: {
+          trigger: 'axis', axisPointer: { type: 'shadow' },
+          formatter: function (ps) {
+            var r = rows[ps[0].dataIndex];
+            return '<b>' + r.name + '</b><br/>' + r.count + ' 篇 · ' + n(r.words) + ' 字<br/>篇均 ' + n(r.avg) + ' 字';
+          }
+        },
+        grid: { left: 56, right: 56, top: 10, bottom: 24 },
+        xAxis: { type: 'value', axisLabel: AXIS, splitLine: { lineStyle: GRID_LINE } },
+        yAxis: { type: 'category', data: rows.map(function (r) { return r.name; }), axisLabel: { fontSize: 12, color: '#3f4650' }, axisTick: { show: false }, axisLine: { show: false } },
+        series: [{
+          type: 'bar',
+          data: rows.map(function (r, i) {
+            return { value: r.count, itemStyle: { color: PALETTE[(rows.length - 1 - i) % PALETTE.length], borderRadius: [0, 3, 3, 0] } };
+          }),
+          barMaxWidth: 22,
+          label: { show: true, position: 'right', fontSize: 11, color: '#5f6672', formatter: '{c} 篇' }
+        }]
+      };
+    },
+
+    chartTagYear: function () {
+      var years = S.tag_year.map(function (r) { return r.year; });
+      var names = S.tags.map(function (t) { return t.name; });
+      return {
+        tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+        legend: { data: names, bottom: 0, itemWidth: 10, itemHeight: 10, textStyle: AXIS },
+        grid: { left: 40, right: 16, top: 20, bottom: 52 },
+        xAxis: { type: 'category', data: years, axisLabel: { fontSize: 10, color: '#5f6672', rotate: 45 }, axisTick: { show: false }, axisLine: { lineStyle: { color: '#e7eaf1' } } },
+        yAxis: { type: 'value', axisLabel: AXIS, splitLine: { lineStyle: GRID_LINE } },
+        series: names.map(function (nm, i) {
+          return {
+            name: nm, type: 'bar', stack: 'total', barMaxWidth: 24,
+            itemStyle: { color: PALETTE[i % PALETTE.length] },
+            data: S.tag_year.map(function (r) { return r.counts[nm] || 0; })
+          };
+        })
+      };
+    },
+
+    chartDist: function () {
+      var rows = S.word_dist;
+      return {
+        tooltip: {
+          trigger: 'axis',
+          formatter: function (ps) {
+            var r = rows[ps[0].dataIndex];
+            return r.bucket + ' 字<br/>' + r.count + ' 篇';
+          }
+        },
+        grid: { left: 40, right: 16, top: 20, bottom: 34 },
+        xAxis: { type: 'category', data: rows.map(function (r) { return r.bucket; }), axisLabel: { fontSize: 10, color: '#5f6672', rotate: 40 }, axisTick: { show: false }, axisLine: { lineStyle: { color: '#e7eaf1' } } },
+        yAxis: { type: 'value', axisLabel: AXIS, splitLine: { lineStyle: GRID_LINE } },
+        series: [{ type: 'bar', data: rows.map(function (r) { return r.count; }), itemStyle: { color: PALETTE[0], borderRadius: [3, 3, 0, 0] }, barMaxWidth: 30 }]
+      };
+    },
+
+    chartImg: function () {
+      var rows = S.words_by_year.filter(function (r) { return r.posts > 0; });
+      return {
+        tooltip: {
+          trigger: 'axis',
+          formatter: function (ps) {
+            var r = rows[ps[0].dataIndex];
+            return r.year + '<br/>篇均 ' + r.img_per_post + ' 张图 · 共 ' + r.images + ' 张';
+          }
+        },
+        grid: { left: 44, right: 16, top: 20, bottom: 30 },
+        xAxis: { type: 'category', data: rows.map(function (r) { return r.year; }), axisLabel: { fontSize: 10, color: '#5f6672', rotate: 45 }, axisTick: { show: false }, axisLine: { lineStyle: { color: '#e7eaf1' } } },
+        yAxis: { type: 'value', axisLabel: AXIS, splitLine: { lineStyle: GRID_LINE } },
+        series: [{
+          type: 'line', data: rows.map(function (r) { return r.img_per_post; }), smooth: true,
+          itemStyle: { color: PALETTE[5] }, lineStyle: { width: 2, color: PALETTE[5] },
+          symbolSize: 6, areaStyle: { color: 'rgba(52,199,89,.12)' }
+        }]
+      };
+    },
+
+    chartExt: function () {
+      var rows = S.ext_links.slice(0, 12).reverse();
+      return {
+        tooltip: {
+          trigger: 'axis', axisPointer: { type: 'shadow' },
+          formatter: function (ps) {
+            var r = rows[ps[0].dataIndex];
+            return '<b>' + r.host + '</b><br/>出现 ' + r.count + ' 次 · 唯一 ' + r.unique + ' 条<br/>来自 ' + r.posts + ' 篇文章';
+          }
+        },
+        grid: { left: 150, right: 60, top: 10, bottom: 24 },
+        xAxis: { type: 'value', axisLabel: AXIS, splitLine: { lineStyle: GRID_LINE } },
+        yAxis: { type: 'category', data: rows.map(function (r) { return r.host; }), axisLabel: { fontSize: 11, color: '#3f4650', width: 140, overflow: 'truncate' }, axisTick: { show: false }, axisLine: { show: false } },
+        series: [{
+          type: 'bar', data: rows.map(function (r) { return r.count; }),
+          itemStyle: { color: PALETTE[1], borderRadius: [0, 3, 3, 0] }, barMaxWidth: 18,
+          label: { show: true, position: 'right', fontSize: 11, color: '#5f6672', formatter: '{c}' }
+        }]
+      };
+    }
+  };
+
+  // ---------- 渲染调度 ----------
+  var inited = {};
+  var instances = [];
+
+  function render(id) {
+    if (inited[id]) { return; }
+    var el = document.getElementById(id);
+    if (!el || !MAKERS[id]) { return; }
+    inited[id] = 1;
+    var loading = el.querySelector('.ov-loading');
+    if (loading) { loading.parentNode.removeChild(loading); }
+    try {
+      var inst = window.echarts.init(el);
+      inst.setOption(MAKERS[id]());
+      instances.push(inst);
+      el.setAttribute('data-chart', 'done');
+    } catch (err) {
+      el.innerHTML = '<div class="ov-fail">图表渲染失败</div>';
+    }
+  }
+
+  function renderAll() {
+    Object.keys(MAKERS).forEach(function (id) { render(id); });
+  }
+
+  function showFail(msg) {
+    document.querySelectorAll('.ov-chart').forEach(function (el) {
+      if (!el.getAttribute('data-chart')) { el.innerHTML = '<div class="ov-fail">' + msg + '</div>'; }
+    });
+  }
+
+  function initAll() {
+    var nodes = document.querySelectorAll('.ov-chart');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { render(en.target.id); io.unobserve(en.target); }
+        });
+      }, { rootMargin: '260px 0px' });
+      nodes.forEach(function (el) { io.observe(el); });
+    } else {
+      nodes.forEach(function (el) { render(el.id); });
+    }
+
+    window.addEventListener('beforeprint', renderAll);
+
+    var rt;
+    window.addEventListener('resize', function () {
+      clearTimeout(rt);
+      rt = setTimeout(function () { instances.forEach(function (i) { i.resize(); }); }, 150);
+    });
+
+    // 锚点导航高亮
+    var links = document.querySelectorAll('.ov-toc a');
+    var sections = [];
+    links.forEach(function (a) {
+      var sec = document.querySelector(a.getAttribute('href'));
+      if (sec) { sections.push({ a: a, sec: sec }); }
+    });
+    if ('IntersectionObserver' in window && sections.length) {
+      var navIo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) { return; }
+          sections.forEach(function (s) {
+            s.a.classList.toggle('is-active', s.sec === en.target);
+          });
+        });
+      }, { rootMargin: '-110px 0px -60% 0px' });
+      sections.forEach(function (s) { navIo.observe(s.sec); });
+    }
+  }
+
+  // ---------- KPI 数字滚动 ----------
+  // 元素上保留 data-done="1"：宿主（WorkBuddy 预览）注入的增强脚本检测到该标记会跳过这些节点，
+  // 由本脚本独占控制，避免两套动画同时改写同一个元素导致数字错乱。
+  (function () {
+    var nodes = document.querySelectorAll('.ov-kpi-value[data-count]');
+    if (!nodes.length) { return; }
+    var each = Array.prototype.forEach;
+
+    function fmt(v, dec, group) {
+      var s = dec > 0 ? v.toFixed(dec) : String(Math.round(v));
+      return group ? s.replace(/\B(?=(\d{3})+(?!\d))/g, ',') : s;
+    }
+
+    function meta(el) {
+      return {
+        target: parseFloat(el.getAttribute('data-count')),
+        dec: parseInt(el.getAttribute('data-decimals') || '0', 10),
+        group: el.getAttribute('data-group') === '1'
+      };
+    }
+
+    function run(el) {
+      if (el.getAttribute('data-counted')) { return; }
+      el.setAttribute('data-counted', '1');
+      var m = meta(el);
+      if (isNaN(m.target)) { return; }
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        el.textContent = fmt(m.target, m.dec, m.group);
+        return;
+      }
+      var dur = 900, t0 = null, done = false;
+      function finish() {
+        if (done) { return; }
+        done = true;
+        el.textContent = fmt(m.target, m.dec, m.group);
+      }
+      function step(ts) {
+        if (done) { return; }
+        if (t0 === null) { t0 = ts; }
+        var p = Math.min(1, (ts - t0) / dur);
+        el.textContent = fmt(m.target * (1 - Math.pow(1 - p, 3)), m.dec, m.group);
+        if (p < 1) { requestAnimationFrame(step); }
+        else { finish(); }
+      }
+      requestAnimationFrame(step);
+      // 标签页不可见时浏览器会暂停 rAF；超时兜底保证数字最终一定到位，不会卡在 0
+      setTimeout(finish, dur + 300);
+    }
+
+    // 先归零：脚本在 body 末尾同步执行，早于首次绘制，不会出现"先看到终值再跳回 0"
+    each.call(nodes, function (el) {
+      var m = meta(el);
+      el.textContent = fmt(0, m.dec, m.group);
+    });
+
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { run(en.target); io.unobserve(en.target); }
+        });
+      }, { rootMargin: '0px 0px -40px 0px' });
+      each.call(nodes, function (el) { io.observe(el); });
+      // 兜底：1.6s 后强制完成，避免 IO 未触发时数字停在 0
+      setTimeout(function () { each.call(nodes, run); }, 1600);
+    } else {
+      each.call(nodes, run);
+    }
+  })();
+
+  // 启动：defer 加载的本地 echarts 会在 DOMContentLoaded 前就绪；仍缺则轮询兜底（最多约 6 秒）
+  var polls = 0;
+  function boot() {
+    if (window.echarts && typeof window.echarts.init === 'function') { initAll(); return; }
+    if (++polls > 100) { showFail('图表库未加载，请刷新页面'); return; }
+    setTimeout(boot, 60);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+})();
+</script>

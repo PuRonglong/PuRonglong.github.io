@@ -71,7 +71,6 @@ exclude:
     "LICENSE",
     ".jshintrc",
     "gem_install.log",
-    "assets/echarts.min.js",
     "assets/js/snowstorm.js",
   ]
 
